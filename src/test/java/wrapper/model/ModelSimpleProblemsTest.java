@@ -10,7 +10,7 @@ import wrapper.solution.Solution;
 import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;
 
-class ModelSolveTest {
+class ModelSimpleProblemsTest {
 
     static {
         System.loadLibrary("highs");
