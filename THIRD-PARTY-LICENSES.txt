@@ -1,0 +1,16 @@
+
+Lists of 14 third-party dependencies.
+     (BSD) (The Apache Software License, Version 2.0) ArchUnit (com.tngtech.archunit:archunit:1.4.1 - https://github.com/TNG/ArchUnit)
+     (The Apache Software License, Version 2.0) ArchUnit (com.tngtech.archunit:archunit-junit5:1.4.1 - https://github.com/TNG/ArchUnit)
+     (The Apache Software License, Version 2.0) ArchUnit (com.tngtech.archunit:archunit-junit5-api:1.4.1 - https://github.com/TNG/ArchUnit)
+     (The Apache Software License, Version 2.0) ArchUnit (com.tngtech.archunit:archunit-junit5-engine:1.4.1 - https://github.com/TNG/ArchUnit)
+     (The Apache Software License, Version 2.0) ArchUnit (com.tngtech.archunit:archunit-junit5-engine-api:1.4.1 - https://github.com/TNG/ArchUnit)
+     (The Apache License, Version 2.0) org.apiguardian:apiguardian-api (org.apiguardian:apiguardian-api:1.1.2 - https://github.com/apiguardian-team/apiguardian)
+     (Eclipse Public License v2.0) JUnit Jupiter API (org.junit.jupiter:junit-jupiter-api:5.14.1 - https://junit.org/)
+     (Eclipse Public License v2.0) JUnit Jupiter Engine (org.junit.jupiter:junit-jupiter-engine:5.14.1 - https://junit.org/)
+     (Eclipse Public License v2.0) JUnit Jupiter Params (org.junit.jupiter:junit-jupiter-params:5.14.1 - https://junit.org/)
+     (Eclipse Public License v2.0) JUnit Platform Commons (org.junit.platform:junit-platform-commons:1.14.1 - https://junit.org/)
+     (Eclipse Public License v2.0) JUnit Platform Engine API (org.junit.platform:junit-platform-engine:1.14.1 - https://junit.org/)
+     (The Apache License, Version 2.0) org.opentest4j:opentest4j (org.opentest4j:opentest4j:1.3.0 - https://github.com/ota4j-team/opentest4j)
+     (The MIT License) Project Lombok (org.projectlombok:lombok:1.18.42 - https://projectlombok.org)
+     (MIT) SLF4J API Module (org.slf4j:slf4j-api:2.0.17 - http://www.slf4j.org)
