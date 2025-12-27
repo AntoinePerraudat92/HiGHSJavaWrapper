@@ -6,7 +6,7 @@ capable of solving linear (LP), mixed-integer (MIP) and quadratic programming (Q
 The project relies on [SWIG](https://swig.org/) to generate the JNI classes to be able to communicate with the HiGHS
 shared library file, `libhighs.so`.
 
-## Dependencies
+## Dependencies / Prerequisites
 
 ### HiGHS
 
