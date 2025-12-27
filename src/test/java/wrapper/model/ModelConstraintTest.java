@@ -84,7 +84,7 @@ class ModelConstraintTest {
         final Model model = new Model();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addBidirectionalConstraint(12.0, 16.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0), new ExpressionCoefficient(x2, 1.0)));
+        final Constraint constraint = model.addGeneralConstraint(12.0, 16.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0), new ExpressionCoefficient(x2, 1.0)));
         model.updateConstraintSides(15.0, 16.0, constraint);
 
         final Solution solution = model.minimize().orElseThrow();
@@ -96,7 +96,7 @@ class ModelConstraintTest {
     void updateConstraintSidesMustThrowForUnknowConstraint() {
         final Model model = new Model();
 
-        final ConstraintException exception = assertThrows(ConstraintException.class, () -> model.updateConstraintSides(12.0, 14.0, new Constraint(900, ConstraintType.BIDIRECTIONAL)));
+        final ConstraintException exception = assertThrows(ConstraintException.class, () -> model.updateConstraintSides(12.0, 14.0, new Constraint(900, ConstraintType.GENERAL)));
         assertEquals("Constraint with index 900 does not exist in the model", exception.getMessage());
     }
 
@@ -134,7 +134,7 @@ class ModelConstraintTest {
 
         assertEquals(0, model.addLessThanOrEqualToConstraint(50.0, expression).index());
         assertEquals(1, model.addEqualityConstraint(25.0, expression).index());
-        assertEquals(2, model.addBidirectionalConstraint(14.0, 25.0, expression).index());
+        assertEquals(2, model.addGeneralConstraint(14.0, 25.0, expression).index());
         assertEquals(3, model.addGreaterThanOrEqualToConstraint(1.9, expression).index());
     }
 
