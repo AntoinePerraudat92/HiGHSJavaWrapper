@@ -46,10 +46,11 @@ class KnapsackProblemTest {
 
         assertTrue(solution.isFeasible());
         assertEquals(230.0, solution.getObjectiveValue(), EPSILON);
-        final double[] xExpectedValues = {0.0, 0.0, 0.0, 50.0, 0.0};
-        for (int i = 0; i < nmbItems; ++i) {
-            assertEquals(xExpectedValues[i], solution.getVariableValue(x[i]), EPSILON);
-        }
+        assertEquals(0.0, solution.getVariableValue(x[0]), EPSILON);
+        assertEquals(0.0, solution.getVariableValue(x[1]), EPSILON);
+        assertEquals(0.0, solution.getVariableValue(x[2]), EPSILON);
+        assertEquals(50.0, solution.getVariableValue(x[3]), EPSILON);
+        assertEquals(0.0, solution.getVariableValue(x[4]), EPSILON);
     }
 
 }
