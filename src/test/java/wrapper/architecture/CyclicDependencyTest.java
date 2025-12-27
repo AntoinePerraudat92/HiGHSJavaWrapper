@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 class CyclicDependencyTest {
 
     @Test
-    void packagesMustBeFreeOfCycles() {
+    void wrapperPackageMustBeFreeOfCycles() {
         final JavaClasses importedClasses = new ClassFileImporter()
                 .withImportOption(new ImportOption.DoNotIncludeTests())
                 .importPackages(List.of("..wrapper.."));
