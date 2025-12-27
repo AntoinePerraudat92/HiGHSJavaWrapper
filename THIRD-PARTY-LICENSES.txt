@@ -1,5 +1,6 @@
 
-Lists of 14 third-party dependencies.
+Lists of 15 third-party dependencies.
+     (The MIT License) HiGHS (https://highs.dev/)
      (BSD) (The Apache Software License, Version 2.0) ArchUnit (com.tngtech.archunit:archunit:1.4.1 - https://github.com/TNG/ArchUnit)
      (The Apache Software License, Version 2.0) ArchUnit (com.tngtech.archunit:archunit-junit5:1.4.1 - https://github.com/TNG/ArchUnit)
      (The Apache Software License, Version 2.0) ArchUnit (com.tngtech.archunit:archunit-junit5-api:1.4.1 - https://github.com/TNG/ArchUnit)
