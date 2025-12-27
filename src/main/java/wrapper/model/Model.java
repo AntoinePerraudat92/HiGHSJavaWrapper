@@ -79,11 +79,19 @@ public class Model {
     }
 
     public void updateConstraintRightHandSide(double rhs, @NonNull final Constraint constraint) throws ConstraintException {
-        checkConstraint(constraint);
         switch (constraint.type()) {
-            case EQUALITY -> this.highs.changeRowBounds(constraint.index(), rhs, rhs);
-            case GREATER_THAN_OR_EQUAL_TO -> this.highs.changeRowBounds(constraint.index(), rhs, Double.MAX_VALUE);
-            case LESS_THAN_OR_EQUAL_TO -> this.highs.changeRowBounds(constraint.index(), -Double.MAX_VALUE, rhs);
+            case EQUALITY -> {
+                checkConstraint(constraint);
+                this.highs.changeRowBounds(constraint.index(), rhs, rhs);
+            }
+            case GREATER_THAN_OR_EQUAL_TO -> {
+                checkConstraint(constraint);
+                this.highs.changeRowBounds(constraint.index(), rhs, Double.MAX_VALUE);
+            }
+            case LESS_THAN_OR_EQUAL_TO -> {
+                checkConstraint(constraint);
+                this.highs.changeRowBounds(constraint.index(), -Double.MAX_VALUE, rhs);
+            }
             case GENERAL -> {
                 // Has no effect for general constraints. updateConstraintSides must be called instead.
             }
@@ -91,8 +99,8 @@ public class Model {
     }
 
     public void updateConstraintSides(double lhs, double rhs, @NonNull final Constraint constraint) throws ConstraintException {
-        checkConstraint(constraint);
         if (constraint.type() == ConstraintType.GENERAL) {
+            checkConstraint(constraint);
             this.highs.changeRowBounds(constraint.index(), lhs, rhs);
         }
     }

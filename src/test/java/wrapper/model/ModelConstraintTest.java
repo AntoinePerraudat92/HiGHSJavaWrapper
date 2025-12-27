@@ -72,6 +72,19 @@ class ModelConstraintTest {
     }
 
     @Test
+    void updateConstraintRightHandSideMustNotHaveEffectForGeneralConstraint() throws ConstraintException, LinearExpressionException {
+        final Model model = new Model();
+        final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
+        final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
+        final Constraint constraint = model.addGeneralConstraint(0.0, 30.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0), new ExpressionCoefficient(x2, 1.0)));
+        model.updateConstraintRightHandSide(10.0, constraint);
+
+        final Solution solution = model.maximize().orElseThrow();
+
+        assertEquals(30.0, solution.getObjectiveValue(), EPSILON);
+    }
+
+    @Test
     void updateConstraintRightHandSideMustThrowForUnknowConstraint() {
         final Model model = new Model();
 
@@ -90,6 +103,19 @@ class ModelConstraintTest {
         final Solution solution = model.minimize().orElseThrow();
 
         assertEquals(15.0, solution.getObjectiveValue(), EPSILON);
+    }
+
+    @Test
+    void updateConstraintSidesMustNotHaveEffectForEqualityConstraint() throws ConstraintException, LinearExpressionException {
+        final Model model = new Model();
+        final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
+        final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
+        final Constraint constraint = model.addEqualityConstraint(1.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0), new ExpressionCoefficient(x2, 1.0)));
+        model.updateConstraintSides(0.0, 2.0, constraint);
+
+        final Solution solution = model.maximize().orElseThrow();
+
+        assertEquals(1.0, solution.getObjectiveValue(), EPSILON);
     }
 
     @Test
