@@ -84,7 +84,24 @@ public class Model {
             case EQUALITY -> this.highs.changeRowBounds(constraint.index(), rhs, rhs);
             case GREATER_THAN_OR_EQUAL_TO -> this.highs.changeRowBounds(constraint.index(), rhs, Double.MAX_VALUE);
             case LESS_THAN_OR_EQUAL_TO -> this.highs.changeRowBounds(constraint.index(), -Double.MAX_VALUE, rhs);
+            case BIDIRECTIONAL -> {
+                // Has no effect for bidirectional constraints. updateConstraintSides must be called instead.
+            }
         }
+    }
+
+    public void updateConstraintSides(double lhs, double rhs, @NonNull final Constraint constraint) throws ConstraintException {
+        checkConstraint(constraint);
+        if (constraint.type() == ConstraintType.BIDIRECTIONAL) {
+            this.highs.changeRowBounds(constraint.index(), lhs, rhs);
+        }
+    }
+
+    /**
+     * LHS <= LinearExpression <= RHS. Example: 4 <= 2x1 + 5x2 <= 12.
+     */
+    public Constraint addBidirectionalConstraint(double lhs, double rhs, @NonNull final LinearExpression linearExpression) {
+        return addConstraint(lhs, rhs, linearExpression, ConstraintType.BIDIRECTIONAL);
     }
 
     /**

@@ -1,4 +1,6 @@
 package wrapper.model.constraint;
 
-public record Constraint(int index, ConstraintType type) {
+import lombok.NonNull;
+
+public record Constraint(int index, @NonNull ConstraintType type) {
 }
