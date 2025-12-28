@@ -13,9 +13,9 @@ jobs:
       - name: Install GCC
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc=13.2
-          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13.2 132
-          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13.2 132
+          sudo apt-get install -y gcc=13
+          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 13O
+          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 130
 
       - name: Install CMake
         run: sudo apt-get update && sudo apt-get install -y cmake=3.31.6
