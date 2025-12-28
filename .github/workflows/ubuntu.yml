@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install gcc
+        run: sudo apt-get update && sudo apt-get install -y gcc
+
+      - name: Install SWIG
+        run: sudo apt-get update && sudo apt-get install -y swig
+
       - uses: actions/checkout@v4
 
       - name: Set up JDK
