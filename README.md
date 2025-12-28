@@ -15,7 +15,7 @@ Some examples on how to use the wrapper are provided in `src/test/java/wrapper/m
 ### HiGHS
 
 `HiGHS` must be built following [the instructions](https://github.com/ERGO-Code/HiGHS/) on its repository page. Once
-`HiGHS`is built, the environment variable `HIGHS_HOME` must be defined.
+`HiGHS`is built, the environment variable `HIGHS_HOME` must be defined. For now, the wrapper expects version `v1.12.0`.
 
 ### Java
 
@@ -30,13 +30,16 @@ A JDK 23 or later is required. `JAVA_HOME` must be defined.
 `gcc` must be installed. Other compilers could be used. In this case, `generate_jni_classes` should be updated
 accordingly.
 
-### Build JNI classes
+### Build the JNI classes
 
-To build the JNI classes required by the wrapper, `generate_jni_classes` should be used:
+To build the JNI classes required by the wrapper, `generate_jni_classes` should be used: It builds the JNI classes in
+`src/main/java/highs`,
 
-- It builds the JNI classes in `src/main/java/highs`,
-- It automatically creates object files in `src/main/java/highs` and copies the shared libraries `libhighs.so` and
-  `libhighswrap.so` in the base directory.
+### Build the shared libraries
+
+The build the shared libraries required by the wrapper, `generate_shared_libraries` should be used: It automatically
+creates the required shared libraries, `libhighs.so` and
+`libhighswrap.so`, in the base directory.
 
 ## Use
 
@@ -52,11 +55,5 @@ referred path must contain `libhighs.so` and `libhighswrap.so`. The relevant cla
 ```
 
 If the shared libraries `libhighs.so` and `libhighswrap.so` cannot be found at run time, then exceptions of type
-`UnsatisfiedLinkError` will be thrown. Note that `libhighs.so` must be loaded before `libhighswrap.so`.
-
-## Test system
-
-- Ubuntu 25.10,
-- GCC 15.1.2,
-- SWIG 4.3.0,
-- Java 23.0.2.
+`UnsatisfiedLinkError` or type `ClassNotFound` will be thrown. Note that `libhighs.so` must be loaded before
+`libhighswrap.so`.

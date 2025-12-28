@@ -1,0 +1,66 @@
+name: Java CI Ubuntu Latest
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install GCC
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc g++
+          echo "CC=gcc" >> $GITHUB_ENV
+          echo "CXX=g++" >> $GITHUB_ENV
+
+      - name: Install CMake
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake
+
+      - name: Install SWIG
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y swig
+
+      - name: Checkout HiGHS
+        uses: actions/checkout@v4
+        with:
+          repository: ERGO-Code/HiGHS
+          ref: v1.12.0
+          path: HiGHS
+
+      - name: Build HiGHS
+        run: |
+          echo "HIGHS_HOME=$(pwd)/HiGHS" >> $GITHUB_ENV
+          cd HiGHS
+          cmake -S . -B build
+          cmake --build build --parallel
+          cd build
+          ctest
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '23'
+          distribution: 'temurin'
+
+      - name: Checkout project
+        uses: actions/checkout@v4
+        with:
+          path: Wrapper
+
+      - name: Generate JNI classes
+        run: |
+          cd Wrapper
+          chmod +x ./generate_shared_libraries
+          ./generate_shared_libraries
+
+      - name: Run Tests
+        run: |
+          cd Wrapper
+          mvn test
