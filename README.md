@@ -30,13 +30,16 @@ A JDK 23 or later is required. `JAVA_HOME` must be defined.
 `gcc` must be installed. Other compilers could be used. In this case, `generate_jni_classes` should be updated
 accordingly.
 
-### Build the JNI classes and shared libraries
+### Build the JNI classes
 
-To build the JNI classes required by the wrapper, `generate_jni_classes` should be used:
+To build the JNI classes required by the wrapper, `generate_jni_classes` should be used: It builds the JNI classes in
+`src/main/java/highs`,
 
-- It builds the JNI classes in `src/main/java/highs`,
-- It automatically creates object files in `src/main/java/highs` and copies the shared libraries `libhighs.so` and
-  `libhighswrap.so` in the base directory.
+### Build the shared libraries
+
+The build the shared libraries required by the wrapper, `generate_shared_libraries` should be used: It automatically
+creates the required shared libraries, `libhighs.so` and
+`libhighswrap.so`, in the base directory.
 
 ## Use
 
