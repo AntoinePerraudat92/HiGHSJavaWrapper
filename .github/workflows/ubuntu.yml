@@ -7,17 +7,17 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-25.10
+    runs-on: ubuntu
 
     steps:
       - name: Install GCC
-        run: sudo apt-get update && sudo apt-get install -y gcc=15.2.0
+        run: sudo apt-get update && sudo apt-get install -y gcc g++
 
       - name: Install CMake
-        run: sudo apt-get update && sudo apt-get install -y cmake=3.31.6
+        run: sudo apt-get update && sudo apt-get install -y cmake
 
       - name: Install SWIG
-        run: sudo apt-get update && sudo apt-get install -y swig=4.3.0
+        run: sudo apt-get update && sudo apt-get install -y swig
 
       - name: Checkout HiGHS
         uses: actions/checkout@v4
@@ -31,6 +31,7 @@ jobs:
           cd HiGHS
           cmake -S . -B build
           cmake --build build --parallel
+          cd build
           ctest
 
       - name: Set HIGHS_HOME
