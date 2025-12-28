@@ -15,7 +15,7 @@ Some examples on how to use the wrapper are provided in `src/test/java/wrapper/m
 ### HiGHS
 
 `HiGHS` must be built following [the instructions](https://github.com/ERGO-Code/HiGHS/) on its repository page. Once
-`HiGHS`is built, the environment variable `HIGHS_HOME` must be defined.
+`HiGHS`is built, the environment variable `HIGHS_HOME` must be defined. For now, the wrapper expects version `v1.12.0`.
 
 ### Java
 
@@ -55,4 +55,5 @@ referred path must contain `libhighs.so` and `libhighswrap.so`. The relevant cla
 ```
 
 If the shared libraries `libhighs.so` and `libhighswrap.so` cannot be found at run time, then exceptions of type
-`UnsatisfiedLinkError` will be thrown. Note that `libhighs.so` must be loaded before `libhighswrap.so`.
+`UnsatisfiedLinkError` or type `ClassNotFound` will be thrown. Note that `libhighs.so` must be loaded before
+`libhighswrap.so`.
