@@ -28,7 +28,6 @@ jobs:
         with:
           repository: ERGO-Code/HiGHS
           ref: v1.12.0
-          path: HiGHS
 
       - name: Build HiGHS
         run: |
