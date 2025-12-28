@@ -55,15 +55,10 @@ jobs:
 
       - name: Generate JNI classes
         run: |
+          ll
+          echo $(pwd)
           chmod +x ./generate_jni_classes
           ./generate_jni_classes
-
-      - name: Cache Maven packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
 
       - name: Run Tests
         run: mvn test
