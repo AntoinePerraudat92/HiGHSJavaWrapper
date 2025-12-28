@@ -42,17 +42,16 @@ jobs:
         run: |
           echo "HIGHS_HOME=$(pwd)/HiGHS" >> $GITHUB_ENV
 
-      - name: Verify HIGHS_HOME
-        run: |
-          echo "HIGHS_HOME is set to: $HIGHS_HOME"
-
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           java-version: '23'
           distribution: 'temurin'
 
-      - uses: actions/checkout@v4
+      - name: Checkout project
+        uses: actions/checkout@v4
+        with:
+          path: Wrapper
 
       - name: Generate JNI classes
         run: |
