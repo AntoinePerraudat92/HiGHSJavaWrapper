@@ -53,10 +53,3 @@ referred path must contain `libhighs.so` and `libhighswrap.so`. The relevant cla
 
 If the shared libraries `libhighs.so` and `libhighswrap.so` cannot be found at run time, then exceptions of type
 `UnsatisfiedLinkError` will be thrown. Note that `libhighs.so` must be loaded before `libhighswrap.so`.
-
-## Test system
-
-- Ubuntu 25.10,
-- GCC 15.1.2,
-- SWIG 4.3.0,
-- Java 23.0.2.
