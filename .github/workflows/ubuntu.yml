@@ -11,10 +11,26 @@ jobs:
 
     steps:
       - name: Install gcc
-        run: sudo apt-get update && sudo apt-get install -y gcc
+        run: sudo apt-get update && sudo apt-get install -y gcc g++
+
+      - name: Install CMake
+        run: sudo apt-get update && sudo apt-get install -y cmake
 
       - name: Install SWIG
         run: sudo apt-get update && sudo apt-get install -y swig
+
+      - name: Checkout HiGHS
+        uses: actions/checkout@v4
+        with:
+          repository: ERGO-Code/HiGHS
+          ref: v1.12.0
+          path: HiGHS
+
+      - name: Build HiGHS
+        run: |
+          cd HiGHS
+          cmake -S . -B build
+          cmake --build build
 
       - uses: actions/checkout@v4
 
