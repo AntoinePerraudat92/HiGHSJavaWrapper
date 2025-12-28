@@ -11,11 +11,12 @@ jobs:
 
     steps:
       - name: Install GCC
+        run: sudo apt-get update && sudo apt-get install -y gcc g++
+
+      - name: Set C and CXX environment variables
         run: |
-          sudo apt-get update
-          sudo apt-get install -y gcc-13
-          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 130
-          sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 130
+          echo "C=gcc" >> $GITHUB_ENV
+          echo "CXX=g++" >> $GITHUB_ENV
 
       - name: Install CMake
         run: sudo apt-get update && sudo apt-get install -y cmake
