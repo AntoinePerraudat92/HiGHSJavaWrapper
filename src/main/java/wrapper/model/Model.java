@@ -1,6 +1,5 @@
 package wrapper.model;
 
-
 import highs.*;
 import lombok.NonNull;
 import wrapper.model.constraint.Constraint;
