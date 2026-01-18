@@ -100,6 +100,7 @@ public class Model {
     }
 
     public void updateConstraintSides(double lhs, double rhs, @NonNull final Constraint constraint) throws ConstraintException {
+        // Has no effect for specific constraint types. updateConstraintRightHandSide must be called instead.
         if (constraint.type() == ConstraintType.GENERAL) {
             checkConstraint(constraint);
             this.highs.changeRowBounds(constraint.index(), lhs, rhs);
