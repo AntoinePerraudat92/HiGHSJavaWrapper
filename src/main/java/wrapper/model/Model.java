@@ -20,12 +20,14 @@ import java.util.function.ObjDoubleConsumer;
 
 public class Model {
 
-    private static final String OUTPUT_FLAG_OPTION = "output_flag";
-
     private final Highs highs = new Highs();
 
     public Model() {
-        this.highs.setOptionValue(OUTPUT_FLAG_OPTION, false);
+        try {
+            addOption(CommonBooleanOptions.SOLVER_OUTPUT.getOption(false));
+        } catch (OptionException _) {
+            // Should never throw.
+        }
     }
 
     public boolean addOption(@NonNull final Option option) throws OptionException {
@@ -145,7 +147,7 @@ public class Model {
         return solve();
     }
 
-    public boolean parseSolution(@NonNull final InitialSolution initialSolution) {
+    public boolean parseInitialSolution(@NonNull final InitialSolution initialSolution) {
 
         class InitialSolutionConsumer implements ObjDoubleConsumer<Variable> {
 
