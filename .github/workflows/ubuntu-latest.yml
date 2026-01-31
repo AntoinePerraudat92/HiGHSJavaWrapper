@@ -1,4 +1,4 @@
-name: Java CI Ubuntu Latest
+name: Ubuntu Latest
 
 on:
   push:
@@ -8,6 +8,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java: [ '23', '24', '25' ]
+
+    name: Build with JDK ${{ matrix.java }}
 
     steps:
       - name: Install GCC
@@ -46,7 +52,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '23'
+          java-version: ${{ matrix.java }}
           distribution: 'temurin'
 
       - name: Checkout project
