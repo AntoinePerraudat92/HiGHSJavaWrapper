@@ -43,7 +43,7 @@ To build the JNI classes required by the wrapper, `generate_jni_classes` should 
 creates the required shared libraries, `libhighs.so` and
 `libhighswrap.so`, in the base directory.
 
-The following environment variables must be defined:
+The following environment variables must be defined for the script to work:
 
 - `HIGHS_HOME`,
 - `JAVA_HOME`.
