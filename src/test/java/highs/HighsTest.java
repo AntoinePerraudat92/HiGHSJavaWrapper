@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CompilationOptionTest {
+class HighsTest {
 
     static {
         System.loadLibrary("highs");
@@ -12,7 +12,7 @@ class CompilationOptionTest {
     }
 
     @Test
-    void toto() {
+    void HighsIntMustBeEqualToFour() {
         final Highs highs = new Highs();
 
         assertEquals(4, highs.getSizeofHighsInt());
