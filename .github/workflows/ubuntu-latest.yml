@@ -1,4 +1,4 @@
-name: Java CI Ubuntu Latest
+name: Ubuntu Latest
 
 on:
   push:
@@ -12,6 +12,8 @@ jobs:
     strategy:
       matrix:
         java: [ '23', '24', '25' ]
+
+    name: Build with JDK ${{ matrix.java }}
 
     steps:
       - name: Install GCC
