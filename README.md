@@ -25,10 +25,9 @@ A JDK 23 or later is required. `JAVA_HOME` must be defined.
 
 `SWIG` must be installed. On Ubuntu systems, one can use `sudo apt install swig`.
 
-### GCC
+### Compiler
 
-`gcc` must be installed. Other compilers could be used. In this case, `generate_jni_classes` should be updated
-accordingly.
+`gcc` or `clang` must be installed. Note that `HiGHS` must have been installed with the same compiler.
 
 ### Build the JNI classes
 
