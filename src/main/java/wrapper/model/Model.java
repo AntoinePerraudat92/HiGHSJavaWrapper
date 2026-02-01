@@ -50,7 +50,7 @@ public class Model {
 
     public Variable addContinuousVariable(double lb, double ub, double cost) {
         this.highs.addCol(cost, lb, ub, 0, null, null);
-        return new Variable(this.highs.getNumCols() - 1);
+        return new Variable(this.highs.getNumCol() - 1);
     }
 
     public Variable addBinaryVariable(double cost) {
@@ -59,7 +59,7 @@ public class Model {
 
     public Variable addIntegerVariable(double lb, double ub, double cost) {
         this.highs.addCol(cost, lb, ub, 0, null, null);
-        final int variableIndex = this.highs.getNumCols() - 1;
+        final int variableIndex = this.highs.getNumCol() - 1;
         this.highs.changeColIntegrality(variableIndex, HighsVarType.kInteger);
         return new Variable(variableIndex);
     }
@@ -210,17 +210,17 @@ public class Model {
         final LinearExpressionCoefficientConsumer consumer = new LinearExpressionCoefficientConsumer(nmbCoefficients);
         linearExpression.consumeExpression(consumer);
         this.highs.addRow(lhs, rhs, nmbCoefficients, consumer.indices.cast(), consumer.values.cast());
-        return new Constraint(this.highs.getNumRows() - 1, constraintType);
+        return new Constraint(this.highs.getNumRow() - 1, constraintType);
     }
 
     private void checkVariable(final Variable variable) throws VariableException {
-        if (variable.index() >= this.highs.getNumCols()) {
+        if (variable.index() >= this.highs.getNumCol()) {
             throw new VariableException(String.format("Variable with index %d does not exist in the model", variable.index()));
         }
     }
 
     private void checkConstraint(final Constraint constraint) throws ConstraintException {
-        if (constraint.index() >= this.highs.getNumRows()) {
+        if (constraint.index() >= this.highs.getNumRow()) {
             throw new ConstraintException(String.format("Constraint with index %d does not exist in the model", constraint.index()));
         }
     }
