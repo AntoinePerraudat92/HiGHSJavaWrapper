@@ -8,22 +8,22 @@
 
 package highs;
 
-public class SWIGTYPE_p_int8_t {
+public class SWIGTYPE_p_std__vectorT_long_long_t {
   private transient long swigCPtr;
 
-  protected SWIGTYPE_p_int8_t(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
+  protected SWIGTYPE_p_std__vectorT_long_long_t(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
     swigCPtr = cPtr;
   }
 
-  protected SWIGTYPE_p_int8_t() {
+  protected SWIGTYPE_p_std__vectorT_long_long_t() {
     swigCPtr = 0;
   }
 
-  protected static long getCPtr(SWIGTYPE_p_int8_t obj) {
+  protected static long getCPtr(SWIGTYPE_p_std__vectorT_long_long_t obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
-  protected static long swigRelease(SWIGTYPE_p_int8_t obj) {
+  protected static long swigRelease(SWIGTYPE_p_std__vectorT_long_long_t obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 }

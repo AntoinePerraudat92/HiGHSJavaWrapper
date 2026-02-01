@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 @NoArgsConstructor
 public class LinearExpression {
 
-    private final Set<Integer> variableIndices = new HashSet<>();
+    private final Set<Long> variableIndices = new HashSet<>();
     private final List<ExpressionCoefficient> coefficients = new ArrayList<>();
 
     public static LinearExpression of(final ExpressionCoefficient... coefficients) throws LinearExpressionException {

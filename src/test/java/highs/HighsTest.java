@@ -12,10 +12,10 @@ class HighsTest {
     }
 
     @Test
-    void highsIntMustBeEqualToFour() {
+    void highsIntMustBeEqualToEight() {
         final Highs highs = new Highs();
 
-        assertEquals(4, highs.getSizeofHighsInt());
+        assertEquals(8, highs.getSizeofHighsInt());
     }
 
     @Test

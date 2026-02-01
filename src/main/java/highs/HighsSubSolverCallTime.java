@@ -57,13 +57,13 @@ public class HighsSubSolverCallTime {
     return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_std__string_t(cPtr, false);
   }
 
-  public void setNum_call(SWIGTYPE_p_std__vectorT_int_t value) {
-    highsJNI.HighsSubSolverCallTime_num_call_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_int_t.getCPtr(value));
+  public void setNum_call(SWIGTYPE_p_std__vectorT_long_long_t value) {
+    highsJNI.HighsSubSolverCallTime_num_call_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
   }
 
-  public SWIGTYPE_p_std__vectorT_int_t getNum_call() {
+  public SWIGTYPE_p_std__vectorT_long_long_t getNum_call() {
     long cPtr = highsJNI.HighsSubSolverCallTime_num_call_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_int_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
   }
 
   public void setRun_time(DoubleVector value) {

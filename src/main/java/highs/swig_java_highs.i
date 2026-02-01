@@ -1,6 +1,7 @@
 /* swig_java_highs.i */
 %module highs
 %{
+#include "HConfig.h"
 #include "lp_data/HStruct.h"
 #include "lp_data/HConst.h"
 #include "util/HighsInt.h"
@@ -17,8 +18,10 @@ namespace std {
 
 %include "carrays.i"
 %array_class(double, DoubleArray);
-%array_class(int, IntegerArray);
+%array_class(long long, LongLongArray);
 %include "std_string.i"
+%include "stdint.i"
+%include "HConfig.h"
 %include "lp_data/HStruct.h"
 %include "lp_data/HConst.h"
 %include "util/HighsInt.h"

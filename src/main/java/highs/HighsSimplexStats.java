@@ -56,35 +56,35 @@ public class HighsSimplexStats {
     return highsJNI.HighsSimplexStats_valid_get(swigCPtr, this);
   }
 
-  public void setIteration_count(int value) {
+  public void setIteration_count(long value) {
     highsJNI.HighsSimplexStats_iteration_count_set(swigCPtr, this, value);
   }
 
-  public int getIteration_count() {
+  public long getIteration_count() {
     return highsJNI.HighsSimplexStats_iteration_count_get(swigCPtr, this);
   }
 
-  public void setNum_invert(int value) {
+  public void setNum_invert(long value) {
     highsJNI.HighsSimplexStats_num_invert_set(swigCPtr, this, value);
   }
 
-  public int getNum_invert() {
+  public long getNum_invert() {
     return highsJNI.HighsSimplexStats_num_invert_get(swigCPtr, this);
   }
 
-  public void setLast_invert_num_el(int value) {
+  public void setLast_invert_num_el(long value) {
     highsJNI.HighsSimplexStats_last_invert_num_el_set(swigCPtr, this, value);
   }
 
-  public int getLast_invert_num_el() {
+  public long getLast_invert_num_el() {
     return highsJNI.HighsSimplexStats_last_invert_num_el_get(swigCPtr, this);
   }
 
-  public void setLast_factored_basis_num_el(int value) {
+  public void setLast_factored_basis_num_el(long value) {
     highsJNI.HighsSimplexStats_last_factored_basis_num_el_set(swigCPtr, this, value);
   }
 
-  public int getLast_factored_basis_num_el() {
+  public long getLast_factored_basis_num_el() {
     return highsJNI.HighsSimplexStats_last_factored_basis_num_el_get(swigCPtr, this);
   }
 
@@ -128,7 +128,7 @@ public class HighsSimplexStats {
     highsJNI.HighsSimplexStats_report__SWIG_1(swigCPtr, this, SWIGTYPE_p_FILE.getCPtr(file));
   }
 
-  public void initialise(int iteration_count_) {
+  public void initialise(long iteration_count_) {
     highsJNI.HighsSimplexStats_initialise__SWIG_0(swigCPtr, this, iteration_count_);
   }
 

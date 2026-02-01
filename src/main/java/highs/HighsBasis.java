@@ -80,19 +80,19 @@ public class HighsBasis {
     return highsJNI.HighsBasis_was_alien_get(swigCPtr, this);
   }
 
-  public void setDebug_id(int value) {
+  public void setDebug_id(long value) {
     highsJNI.HighsBasis_debug_id_set(swigCPtr, this, value);
   }
 
-  public int getDebug_id() {
+  public long getDebug_id() {
     return highsJNI.HighsBasis_debug_id_get(swigCPtr, this);
   }
 
-  public void setDebug_update_count(int value) {
+  public void setDebug_update_count(long value) {
     highsJNI.HighsBasis_debug_update_count_set(swigCPtr, this, value);
   }
 
-  public int getDebug_update_count() {
+  public long getDebug_update_count() {
     return highsJNI.HighsBasis_debug_update_count_get(swigCPtr, this);
   }
 

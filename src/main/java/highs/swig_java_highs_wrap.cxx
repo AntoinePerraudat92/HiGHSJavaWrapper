@@ -274,6 +274,7 @@ template <typename T> T SwigValueInit() {
 #endif
 
 
+#include "HConfig.h"
 #include "lp_data/HStruct.h"
 #include "lp_data/HConst.h"
 #include "util/HighsInt.h"
@@ -388,28 +389,31 @@ SWIGINTERN DoubleArray *DoubleArray_frompointer(double *t){
   return (DoubleArray *) t;
 }
 
-typedef int IntegerArray;
+typedef long long LongLongArray;
 
-SWIGINTERN IntegerArray *new_IntegerArray(size_t nelements){
-  return new int[nelements]();
+SWIGINTERN LongLongArray *new_LongLongArray(size_t nelements){
+  return new long long[nelements]();
 }
-SWIGINTERN void delete_IntegerArray(IntegerArray *self){
+SWIGINTERN void delete_LongLongArray(LongLongArray *self){
   delete [] self;
 }
-SWIGINTERN int IntegerArray_getitem(IntegerArray *self,size_t index){
+SWIGINTERN long long LongLongArray_getitem(LongLongArray *self,size_t index){
   return self[index];
 }
-SWIGINTERN void IntegerArray_setitem(IntegerArray *self,size_t index,int value){
+SWIGINTERN void LongLongArray_setitem(LongLongArray *self,size_t index,long long value){
   self[index] = value;
 }
-SWIGINTERN int *IntegerArray_cast(IntegerArray *self){
+SWIGINTERN long long *LongLongArray_cast(LongLongArray *self){
   return self;
 }
-SWIGINTERN IntegerArray *IntegerArray_frompointer(int *t){
-  return (IntegerArray *) t;
+SWIGINTERN LongLongArray *LongLongArray_frompointer(long long *t){
+  return (LongLongArray *) t;
 }
 
 #include <string>
+
+
+#include <stdint.h>		// Use the C99 official header
 
 
 #ifdef __cplusplus
@@ -779,87 +783,147 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_DoubleArray_1frompointer(JNIEnv *je
 }
 
 
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1IntegerArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1LongLongArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   size_t arg1 ;
-  IntegerArray *result = 0 ;
+  LongLongArray *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = (size_t)jarg1; 
-  result = (IntegerArray *)new_IntegerArray(SWIG_STD_MOVE(arg1));
-  *(IntegerArray **)&jresult = result; 
+  result = (LongLongArray *)new_LongLongArray(SWIG_STD_MOVE(arg1));
+  *(LongLongArray **)&jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_delete_1IntegerArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  IntegerArray *arg1 = (IntegerArray *) 0 ;
+SWIGEXPORT void JNICALL Java_highs_highsJNI_delete_1LongLongArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  LongLongArray *arg1 = (LongLongArray *) 0 ;
   
   (void)jenv;
   (void)jcls;
-  arg1 = *(IntegerArray **)&jarg1; 
-  delete_IntegerArray(arg1);
+  arg1 = *(LongLongArray **)&jarg1; 
+  delete_LongLongArray(arg1);
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_IntegerArray_1getitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  jint jresult = 0 ;
-  IntegerArray *arg1 = (IntegerArray *) 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_LongLongArray_1getitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jlong jresult = 0 ;
+  LongLongArray *arg1 = (LongLongArray *) 0 ;
   size_t arg2 ;
-  int result;
+  long long result;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(IntegerArray **)&jarg1; 
+  arg1 = *(LongLongArray **)&jarg1; 
   arg2 = (size_t)jarg2; 
-  result = (int)IntegerArray_getitem(arg1,SWIG_STD_MOVE(arg2));
+  result = (long long)LongLongArray_getitem(arg1,SWIG_STD_MOVE(arg2));
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_LongLongArray_1setitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
+  LongLongArray *arg1 = (LongLongArray *) 0 ;
+  size_t arg2 ;
+  long long arg3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(LongLongArray **)&jarg1; 
+  arg2 = (size_t)jarg2; 
+  arg3 = (long long)jarg3; 
+  LongLongArray_setitem(arg1,SWIG_STD_MOVE(arg2),arg3);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_LongLongArray_1cast(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  LongLongArray *arg1 = (LongLongArray *) 0 ;
+  long long *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(LongLongArray **)&jarg1; 
+  result = (long long *)LongLongArray_cast(arg1);
+  *(long long **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_LongLongArray_1frompointer(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  jlong jresult = 0 ;
+  long long *arg1 = (long long *) 0 ;
+  LongLongArray *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(long long **)&jarg1; 
+  result = (LongLongArray *)LongLongArray_frompointer(arg1);
+  *(LongLongArray **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_highs_highsJNI_CMAKE_1BUILD_1TYPE_1get(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (char *)("RELEASE");
+  if (result) jresult = jenv->NewStringUTF((const char *)result);
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_highs_highsJNI_HIGHS_1GITHASH_1get(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (char *)("n/a");
+  if (result) jresult = jenv->NewStringUTF((const char *)result);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_HIGHS_1VERSION_1MAJOR_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (int)(1);
   jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_IntegerArray_1setitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3) {
-  IntegerArray *arg1 = (IntegerArray *) 0 ;
-  size_t arg2 ;
-  int arg3 ;
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_HIGHS_1VERSION_1MINOR_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
   
   (void)jenv;
   (void)jcls;
-  (void)jarg1_;
-  arg1 = *(IntegerArray **)&jarg1; 
-  arg2 = (size_t)jarg2; 
-  arg3 = (int)jarg3; 
-  IntegerArray_setitem(arg1,SWIG_STD_MOVE(arg2),arg3);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_IntegerArray_1cast(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  IntegerArray *arg1 = (IntegerArray *) 0 ;
-  int *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(IntegerArray **)&jarg1; 
-  result = (int *)IntegerArray_cast(arg1);
-  *(int **)&jresult = result; 
+  result = (int)(12);
+  jresult = (jint)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_IntegerArray_1frompointer(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  jlong jresult = 0 ;
-  int *arg1 = (int *) 0 ;
-  IntegerArray *result = 0 ;
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_HIGHS_1VERSION_1PATCH_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  int result;
   
   (void)jenv;
   (void)jcls;
-  arg1 = *(int **)&jarg1; 
-  result = (IntegerArray *)IntegerArray_frompointer(arg1);
-  *(IntegerArray **)&jresult = result; 
+  result = (int)(0);
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -1917,7 +1981,7 @@ SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HighsBasis_1was_1alien_1get(JNIE
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsBasis_1debug_1id_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsBasis_1debug_1id_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsBasis *arg1 = (HighsBasis *) 0 ;
   HighsInt arg2 ;
   
@@ -1930,8 +1994,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsBasis_1debug_1id_1set(JNIEnv *j
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsBasis_1debug_1id_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsBasis_1debug_1id_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsBasis *arg1 = (HighsBasis *) 0 ;
   HighsInt result;
   
@@ -1940,12 +2004,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsBasis_1debug_1id_1get(JNIEnv *j
   (void)jarg1_;
   arg1 = *(HighsBasis **)&jarg1; 
   result = (HighsInt) ((arg1)->debug_id);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsBasis_1debug_1update_1count_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsBasis_1debug_1update_1count_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsBasis *arg1 = (HighsBasis *) 0 ;
   HighsInt arg2 ;
   
@@ -1958,8 +2022,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsBasis_1debug_1update_1count_1se
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsBasis_1debug_1update_1count_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsBasis_1debug_1update_1count_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsBasis *arg1 = (HighsBasis *) 0 ;
   HighsInt result;
   
@@ -1968,7 +2032,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsBasis_1debug_1update_1count_1ge
   (void)jarg1_;
   arg1 = *(HighsBasis **)&jarg1; 
   result = (HighsInt) ((arg1)->debug_update_count);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -2235,7 +2299,7 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_delete_1HighsBasis(JNIEnv *jenv, jcl
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsScale_1strategy_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsScale_1strategy_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsScale *arg1 = (HighsScale *) 0 ;
   HighsInt arg2 ;
   
@@ -2248,8 +2312,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsScale_1strategy_1set(JNIEnv *je
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsScale_1strategy_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsScale_1strategy_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsScale *arg1 = (HighsScale *) 0 ;
   HighsInt result;
   
@@ -2258,7 +2322,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsScale_1strategy_1get(JNIEnv *je
   (void)jarg1_;
   arg1 = *(HighsScale **)&jarg1; 
   result = (HighsInt) ((arg1)->strategy);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -2291,7 +2355,7 @@ SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HighsScale_1has_1scaling_1get(JN
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsScale_1num_1col_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsScale_1num_1col_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsScale *arg1 = (HighsScale *) 0 ;
   HighsInt arg2 ;
   
@@ -2304,8 +2368,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsScale_1num_1col_1set(JNIEnv *je
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsScale_1num_1col_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsScale_1num_1col_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsScale *arg1 = (HighsScale *) 0 ;
   HighsInt result;
   
@@ -2314,12 +2378,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsScale_1num_1col_1get(JNIEnv *je
   (void)jarg1_;
   arg1 = *(HighsScale **)&jarg1; 
   result = (HighsInt) ((arg1)->num_col);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsScale_1num_1row_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsScale_1num_1row_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsScale *arg1 = (HighsScale *) 0 ;
   HighsInt arg2 ;
   
@@ -2332,8 +2396,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsScale_1num_1row_1set(JNIEnv *je
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsScale_1num_1row_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsScale_1num_1row_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsScale *arg1 = (HighsScale *) 0 ;
   HighsInt result;
   
@@ -2342,7 +2406,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsScale_1num_1row_1get(JNIEnv *je
   (void)jarg1_;
   arg1 = *(HighsScale **)&jarg1; 
   result = (HighsInt) ((arg1)->num_row);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -3012,7 +3076,7 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_delete_1HighsNameHash(JNIEnv *jenv, 
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1call_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1call_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsPresolveRuleLog *arg1 = (HighsPresolveRuleLog *) 0 ;
   HighsInt arg2 ;
   
@@ -3025,8 +3089,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1call_1set(JNIE
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1call_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1call_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsPresolveRuleLog *arg1 = (HighsPresolveRuleLog *) 0 ;
   HighsInt result;
   
@@ -3035,12 +3099,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1call_1get(JNIE
   (void)jarg1_;
   arg1 = *(HighsPresolveRuleLog **)&jarg1; 
   result = (HighsInt) ((arg1)->call);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1col_1removed_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1col_1removed_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsPresolveRuleLog *arg1 = (HighsPresolveRuleLog *) 0 ;
   HighsInt arg2 ;
   
@@ -3053,8 +3117,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1col_1removed_1
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1col_1removed_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1col_1removed_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsPresolveRuleLog *arg1 = (HighsPresolveRuleLog *) 0 ;
   HighsInt result;
   
@@ -3063,12 +3127,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1col_1removed_1
   (void)jarg1_;
   arg1 = *(HighsPresolveRuleLog **)&jarg1; 
   result = (HighsInt) ((arg1)->col_removed);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1row_1removed_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1row_1removed_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsPresolveRuleLog *arg1 = (HighsPresolveRuleLog *) 0 ;
   HighsInt arg2 ;
   
@@ -3081,8 +3145,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1row_1removed_1
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1row_1removed_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1row_1removed_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsPresolveRuleLog *arg1 = (HighsPresolveRuleLog *) 0 ;
   HighsInt result;
   
@@ -3091,7 +3155,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsPresolveRuleLog_1row_1removed_1
   (void)jarg1_;
   arg1 = *(HighsPresolveRuleLog **)&jarg1; 
   result = (HighsInt) ((arg1)->row_removed);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -3179,7 +3243,7 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_delete_1HighsPresolveLog(JNIEnv *jen
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsIllConditioningRecord_1index_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsIllConditioningRecord_1index_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsIllConditioningRecord *arg1 = (HighsIllConditioningRecord *) 0 ;
   HighsInt arg2 ;
   
@@ -3192,8 +3256,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsIllConditioningRecord_1index_1s
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsIllConditioningRecord_1index_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsIllConditioningRecord_1index_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsIllConditioningRecord *arg1 = (HighsIllConditioningRecord *) 0 ;
   HighsInt result;
   
@@ -3202,7 +3266,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsIllConditioningRecord_1index_1g
   (void)jarg1_;
   arg1 = *(HighsIllConditioningRecord **)&jarg1; 
   result = (HighsInt) ((arg1)->index);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -3459,7 +3523,7 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_HighsLinearObjective_1rel_1tolera
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsLinearObjective_1priority_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsLinearObjective_1priority_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsLinearObjective *arg1 = (HighsLinearObjective *) 0 ;
   HighsInt arg2 ;
   
@@ -3472,8 +3536,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsLinearObjective_1priority_1set(
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsLinearObjective_1priority_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsLinearObjective_1priority_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsLinearObjective *arg1 = (HighsLinearObjective *) 0 ;
   HighsInt result;
   
@@ -3482,7 +3546,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsLinearObjective_1priority_1get(
   (void)jarg1_;
   arg1 = *(HighsLinearObjective **)&jarg1; 
   result = (HighsInt) ((arg1)->priority);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -3704,7 +3768,7 @@ SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HighsSimplexStats_1valid_1get(JN
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1iteration_1count_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1iteration_1count_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsSimplexStats *arg1 = (HighsSimplexStats *) 0 ;
   HighsInt arg2 ;
   
@@ -3717,8 +3781,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1iteration_1count_
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsSimplexStats_1iteration_1count_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsSimplexStats_1iteration_1count_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsSimplexStats *arg1 = (HighsSimplexStats *) 0 ;
   HighsInt result;
   
@@ -3727,12 +3791,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsSimplexStats_1iteration_1count_
   (void)jarg1_;
   arg1 = *(HighsSimplexStats **)&jarg1; 
   result = (HighsInt) ((arg1)->iteration_count);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1num_1invert_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1num_1invert_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsSimplexStats *arg1 = (HighsSimplexStats *) 0 ;
   HighsInt arg2 ;
   
@@ -3745,8 +3809,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1num_1invert_1set(
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsSimplexStats_1num_1invert_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsSimplexStats_1num_1invert_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsSimplexStats *arg1 = (HighsSimplexStats *) 0 ;
   HighsInt result;
   
@@ -3755,12 +3819,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsSimplexStats_1num_1invert_1get(
   (void)jarg1_;
   arg1 = *(HighsSimplexStats **)&jarg1; 
   result = (HighsInt) ((arg1)->num_invert);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1invert_1num_1el_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1invert_1num_1el_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsSimplexStats *arg1 = (HighsSimplexStats *) 0 ;
   HighsInt arg2 ;
   
@@ -3773,8 +3837,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1invert_1num
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1invert_1num_1el_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1invert_1num_1el_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsSimplexStats *arg1 = (HighsSimplexStats *) 0 ;
   HighsInt result;
   
@@ -3783,12 +3847,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1invert_1num
   (void)jarg1_;
   arg1 = *(HighsSimplexStats **)&jarg1; 
   result = (HighsInt) ((arg1)->last_invert_num_el);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1factored_1basis_1num_1el_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1factored_1basis_1num_1el_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsSimplexStats *arg1 = (HighsSimplexStats *) 0 ;
   HighsInt arg2 ;
   
@@ -3801,8 +3865,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1factored_1b
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1factored_1basis_1num_1el_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1factored_1basis_1num_1el_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsSimplexStats *arg1 = (HighsSimplexStats *) 0 ;
   HighsInt result;
   
@@ -3811,7 +3875,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsSimplexStats_1last_1factored_1b
   (void)jarg1_;
   arg1 = *(HighsSimplexStats **)&jarg1; 
   result = (HighsInt) ((arg1)->last_factored_basis_num_el);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -3963,7 +4027,7 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1report_1_1SWIG_11
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1initialise_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1initialise_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsSimplexStats *arg1 = (HighsSimplexStats *) 0 ;
   HighsInt arg2 ;
   
@@ -4009,7 +4073,7 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_delete_1HighsSimplexStats(JNIEnv *je
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1objective_1scale_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1objective_1scale_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt arg2 ;
   
@@ -4022,8 +4086,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1objective_
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1objective_1scale_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1objective_1scale_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt result;
   
@@ -4032,12 +4096,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1objective_
   (void)jarg1_;
   arg1 = *(HighsUserScaleData **)&jarg1; 
   result = (HighsInt) ((arg1)->user_objective_scale);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1bound_1scale_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1bound_1scale_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt arg2 ;
   
@@ -4050,8 +4114,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1bound_1sca
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1bound_1scale_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1bound_1scale_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt result;
   
@@ -4060,7 +4124,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1user_1bound_1sca
   (void)jarg1_;
   arg1 = *(HighsUserScaleData **)&jarg1; 
   result = (HighsInt) ((arg1)->user_bound_scale);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -4177,7 +4241,7 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_HighsUserScaleData_1large_1matrix
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1costs_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1costs_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt arg2 ;
   
@@ -4190,8 +4254,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1c
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1costs_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1costs_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt result;
   
@@ -4200,12 +4264,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1c
   (void)jarg1_;
   arg1 = *(HighsUserScaleData **)&jarg1; 
   result = (HighsInt) ((arg1)->num_infinite_costs);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1hessian_1values_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1hessian_1values_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt arg2 ;
   
@@ -4218,8 +4282,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1h
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1hessian_1values_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1hessian_1values_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt result;
   
@@ -4228,12 +4292,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1h
   (void)jarg1_;
   arg1 = *(HighsUserScaleData **)&jarg1; 
   result = (HighsInt) ((arg1)->num_infinite_hessian_values);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1col_1bounds_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1col_1bounds_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt arg2 ;
   
@@ -4246,8 +4310,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1c
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1col_1bounds_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1col_1bounds_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt result;
   
@@ -4256,12 +4320,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1c
   (void)jarg1_;
   arg1 = *(HighsUserScaleData **)&jarg1; 
   result = (HighsInt) ((arg1)->num_infinite_col_bounds);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1row_1bounds_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1row_1bounds_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt arg2 ;
   
@@ -4274,8 +4338,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1r
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1row_1bounds_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1row_1bounds_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt result;
   
@@ -4284,12 +4348,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1infinite_1r
   (void)jarg1_;
   arg1 = *(HighsUserScaleData **)&jarg1; 
   result = (HighsInt) ((arg1)->num_infinite_row_bounds);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1small_1matrix_1values_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1small_1matrix_1values_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt arg2 ;
   
@@ -4302,8 +4366,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1small_1matr
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1small_1matrix_1values_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1small_1matrix_1values_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt result;
   
@@ -4312,12 +4376,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1small_1matr
   (void)jarg1_;
   arg1 = *(HighsUserScaleData **)&jarg1; 
   result = (HighsInt) ((arg1)->num_small_matrix_values);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1large_1matrix_1values_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1large_1matrix_1values_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt arg2 ;
   
@@ -4330,8 +4394,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1large_1matr
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1large_1matrix_1values_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1large_1matrix_1values_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt result;
   
@@ -4340,12 +4404,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1num_1large_1matr
   (void)jarg1_;
   arg1 = *(HighsUserScaleData **)&jarg1; 
   result = (HighsInt) ((arg1)->num_large_matrix_values);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_1objective_1scale_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_1objective_1scale_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt arg2 ;
   
@@ -4358,8 +4422,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_1objective_1scale_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_1objective_1scale_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt result;
   
@@ -4368,12 +4432,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_
   (void)jarg1_;
   arg1 = *(HighsUserScaleData **)&jarg1; 
   result = (HighsInt) ((arg1)->suggested_user_objective_scale);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_1bound_1scale_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_1bound_1scale_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt arg2 ;
   
@@ -4386,8 +4450,8 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_1bound_1scale_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_1bound_1scale_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt result;
   
@@ -4396,7 +4460,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsUserScaleData_1suggested_1user_
   (void)jarg1_;
   arg1 = *(HighsUserScaleData **)&jarg1; 
   result = (HighsInt) ((arg1)->suggested_user_bound_scale);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -4429,7 +4493,7 @@ SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HighsUserScaleData_1applied_1get
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1initialise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jdouble jarg4, jdouble jarg5, jdouble jarg6, jdouble jarg7) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsUserScaleData_1initialise(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jdouble jarg4, jdouble jarg5, jdouble jarg6, jdouble jarg7) {
   HighsUserScaleData *arg1 = (HighsUserScaleData *) 0 ;
   HighsInt *arg2 = 0 ;
   HighsInt *arg3 = 0 ;
@@ -4552,26 +4616,26 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kHighsSize_1tInf_1get(JNIEnv *jenv,
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kHighsIInf_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kHighsIInf_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kHighsIInf;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kHighsIInf32_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kHighsIInf32_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kHighsIInf32;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -4672,26 +4736,26 @@ SWIGEXPORT jstring JNICALL Java_highs_highsJNI_kHighsOnString_1get(JNIEnv *jenv,
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kHighsMaxStringLength_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kHighsMaxStringLength_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kHighsMaxStringLength;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kSimplexConcurrencyLimit_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kSimplexConcurrencyLimit_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kSimplexConcurrencyLimit;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -4756,14 +4820,14 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kExcessivelyLargeBoundValue_1get(
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kNoThreadInstance_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kNoThreadInstance_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kNoThreadInstance;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -5776,26 +5840,26 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kHessianRegularizationValue_1get(
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kDefaultAllowedMatrixPow2Scale_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kDefaultAllowedMatrixPow2Scale_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kDefaultAllowedMatrixPow2Scale;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kMaxAllowedMatrixPow2Scale_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kMaxAllowedMatrixPow2Scale_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kMaxAllowedMatrixPow2Scale;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -5812,14 +5876,14 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kHighsIllegalInfeasibilityMeasure
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kHighsIllegalInfeasibilityCount_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kHighsIllegalInfeasibilityCount_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kHighsIllegalInfeasibilityCount;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -5836,14 +5900,14 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kHighsIllegalResidualMeasure_1get
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kHighsIllegalResidualCount_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kHighsIllegalResidualCount_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kHighsIllegalResidualCount;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -5860,14 +5924,14 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kHighsIllegalErrorValue_1get(JNIE
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kHighsIllegalErrorIndex_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kHighsIllegalErrorIndex_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kHighsIllegalErrorIndex;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -5884,14 +5948,14 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kHighsIllegalComplementarityViola
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kHighsIllegalComplementarityCount_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kHighsIllegalComplementarityCount_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kHighsIllegalComplementarityCount;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -5920,14 +5984,14 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kExcessivePrimalValue_1get(JNIEnv
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kHashIsDuplicate_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kHashIsDuplicate_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kHashIsDuplicate;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -5980,98 +6044,86 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kGlpsolSolutionValueToStringToler
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kNoLink_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kNoLink_1get(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)(HighsInt)kNoLink;
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kPivotIllegal_1get(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
+SWIGEXPORT jbyte JNICALL Java_highs_highsJNI_kPivotIllegal_1get(JNIEnv *jenv, jclass jcls) {
+  jbyte jresult = 0 ;
   int8_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (int8_t)kPivotIllegal;
-  *(int8_t **)&jresult = new int8_t(result); 
+  result = (int8_t)(int8_t)kPivotIllegal;
+  jresult = (jbyte)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kPivotLogical_1get(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
+SWIGEXPORT jbyte JNICALL Java_highs_highsJNI_kPivotLogical_1get(JNIEnv *jenv, jclass jcls) {
+  jbyte jresult = 0 ;
   int8_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (int8_t)kPivotLogical;
-  *(int8_t **)&jresult = new int8_t(result); 
+  result = (int8_t)(int8_t)kPivotLogical;
+  jresult = (jbyte)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kPivotUnit_1get(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
+SWIGEXPORT jbyte JNICALL Java_highs_highsJNI_kPivotUnit_1get(JNIEnv *jenv, jclass jcls) {
+  jbyte jresult = 0 ;
   int8_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (int8_t)kPivotUnit;
-  *(int8_t **)&jresult = new int8_t(result); 
+  result = (int8_t)(int8_t)kPivotUnit;
+  jresult = (jbyte)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kPivotRowSingleton_1get(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
+SWIGEXPORT jbyte JNICALL Java_highs_highsJNI_kPivotRowSingleton_1get(JNIEnv *jenv, jclass jcls) {
+  jbyte jresult = 0 ;
   int8_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (int8_t)kPivotRowSingleton;
-  *(int8_t **)&jresult = new int8_t(result); 
+  result = (int8_t)(int8_t)kPivotRowSingleton;
+  jresult = (jbyte)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kPivotColSingleton_1get(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
+SWIGEXPORT jbyte JNICALL Java_highs_highsJNI_kPivotColSingleton_1get(JNIEnv *jenv, jclass jcls) {
+  jbyte jresult = 0 ;
   int8_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (int8_t)kPivotColSingleton;
-  *(int8_t **)&jresult = new int8_t(result); 
+  result = (int8_t)(int8_t)kPivotColSingleton;
+  jresult = (jbyte)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kPivotMarkowitz_1get(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
+SWIGEXPORT jbyte JNICALL Java_highs_highsJNI_kPivotMarkowitz_1get(JNIEnv *jenv, jclass jcls) {
+  jbyte jresult = 0 ;
   int8_t result;
   
   (void)jenv;
   (void)jcls;
-  result = (int8_t)kPivotMarkowitz;
-  *(int8_t **)&jresult = new int8_t(result); 
-  return jresult;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_highs_highsJNI_HIGHSINT_1FORMAT_1get(JNIEnv *jenv, jclass jcls) {
-  jstring jresult = 0 ;
-  char *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (char *)("d");
-  if (result) jresult = jenv->NewStringUTF((const char *)result);
+  result = (int8_t)(int8_t)kPivotMarkowitz;
+  jresult = (jbyte)result; 
   return jresult;
 }
 
@@ -6459,38 +6511,38 @@ SWIGEXPORT jstring JNICALL Java_highs_highsJNI_highsVersion(JNIEnv *jenv, jclass
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_highsVersionMajor(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_highsVersionMajor(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)highsVersionMajor();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_highsVersionMinor(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_highsVersionMinor(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)highsVersionMinor();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_highsVersionPatch(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_highsVersionPatch(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
   HighsInt result;
   
   (void)jenv;
   (void)jcls;
   result = (HighsInt)highsVersionPatch();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -6544,8 +6596,8 @@ SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1version(JNIEnv *jenv, jcla
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1versionMajor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1versionMajor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -6554,13 +6606,13 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1versionMajor(JNIEnv *jenv, jc
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->versionMajor();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1versionMinor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1versionMinor(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -6569,13 +6621,13 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1versionMinor(JNIEnv *jenv, jc
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->versionMinor();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1versionPatch(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1versionPatch(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -6584,7 +6636,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1versionPatch(JNIEnv *jenv, jc
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->versionPatch();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -6711,7 +6763,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_11(JNIEnv *
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jint jarg4, jint jarg5, jint jarg6, jint jarg7, jint jarg8, jdouble jarg9, jlong jarg10, jlong jarg11, jlong jarg12, jlong jarg13, jlong jarg14, jlong jarg15, jlong jarg16, jlong jarg17, jlong jarg18, jlong jarg19, jlong jarg20, jlong jarg21) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8, jdouble jarg9, jlong jarg10, jlong jarg11, jlong jarg12, jlong jarg13, jlong jarg14, jlong jarg15, jlong jarg16, jlong jarg17, jlong jarg18, jlong jarg19, jlong jarg20, jlong jarg21) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -6766,7 +6818,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_12(JNIEnv *
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jint jarg4, jint jarg5, jint jarg6, jint jarg7, jint jarg8, jdouble jarg9, jlong jarg10, jlong jarg11, jlong jarg12, jlong jarg13, jlong jarg14, jlong jarg15, jlong jarg16, jlong jarg17, jlong jarg18, jlong jarg19, jlong jarg20) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8, jdouble jarg9, jlong jarg10, jlong jarg11, jlong jarg12, jlong jarg13, jlong jarg14, jlong jarg15, jlong jarg16, jlong jarg17, jlong jarg18, jlong jarg19, jlong jarg20) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -6819,7 +6871,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_13(JNIEnv *
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jint jarg4, jint jarg5, jint jarg6, jdouble jarg7, jlong jarg8, jlong jarg9, jlong jarg10, jlong jarg11, jlong jarg12, jlong jarg13, jlong jarg14, jlong jarg15, jlong jarg16) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jdouble jarg7, jlong jarg8, jlong jarg9, jlong jarg10, jlong jarg11, jlong jarg12, jlong jarg13, jlong jarg14, jlong jarg15, jlong jarg16) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -6864,7 +6916,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_14(JNIEnv *
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_15(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jint jarg4, jint jarg5, jint jarg6, jdouble jarg7, jlong jarg8, jlong jarg9, jlong jarg10, jlong jarg11, jlong jarg12, jlong jarg13, jlong jarg14, jlong jarg15) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_15(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jdouble jarg7, jlong jarg8, jlong jarg9, jlong jarg10, jlong jarg11, jlong jarg12, jlong jarg13, jlong jarg14, jlong jarg15) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -6930,7 +6982,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian_1_1SWIG_10(JNIEnv
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jint jarg4, jlong jarg5, jlong jarg6, jlong jarg7) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -6957,7 +7009,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian_1_1SWIG_11(JNIEnv
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passLinearObjectives(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passLinearObjectives(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jobject jarg3_) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -6977,7 +7029,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passLinearObjectives(JNIEnv *
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addLinearObjective_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addLinearObjective_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsLinearObjective *arg2 = 0 ;
@@ -7023,8 +7075,8 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addLinearObjective_1_1SWIG_11
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumLinearObjectives(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getNumLinearObjectives(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -7033,12 +7085,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumLinearObjectives(JNIEnv
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->getNumLinearObjectives();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getLinearObjective(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getLinearObjective(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -7070,7 +7122,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1clearLinearObjectives(JNIEnv 
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passColName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passColName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jstring jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -7097,7 +7149,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passColName(JNIEnv *jenv, jcl
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passRowName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passRowName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jstring jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -7280,7 +7332,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1postsolve_1_1SWIG_11(JNIEnv *
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1writeSolution_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1writeSolution_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   std::string *arg2 = 0 ;
@@ -7332,7 +7384,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1writeSolution_1_1SWIG_11(JNIE
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1readSolution_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1readSolution_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   std::string *arg2 = 0 ;
@@ -7444,7 +7496,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setOptionValue_1_1SWIG_10(JNI
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setOptionValue_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setOptionValue_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   std::string *arg2 = 0 ;
@@ -7471,7 +7523,34 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setOptionValue_1_1SWIG_11(JNI
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setOptionValue_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jdouble jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setOptionValue_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  std::string *arg2 = 0 ;
+  int arg3 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  arg3 = (int)jarg3; 
+  result = (HighsStatus)(arg1)->setOptionValue((std::string const &)*arg2,arg3);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setOptionValue_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jdouble jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   std::string *arg2 = 0 ;
@@ -7498,7 +7577,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setOptionValue_1_1SWIG_12(JNI
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setOptionValue_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setOptionValue_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   std::string *arg2 = 0 ;
@@ -7816,8 +7895,8 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1writeOptions_1_1SWIG_11(JNIEn
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumOptions(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getNumOptions(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -7826,12 +7905,12 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumOptions(JNIEnv *jenv, j
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->getNumOptions();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getOptionName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getOptionName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -8352,37 +8431,6 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getInfoValue_1_1SWIG_11(JNIEn
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   std::string *arg2 = 0 ;
-  int64_t *arg3 = 0 ;
-  HighsStatus result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(Highs **)&jarg1; 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return 0;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return 0;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  arg3 = *(int64_t **)&jarg3;
-  if (!arg3) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "int64_t & is null");
-    return 0;
-  } 
-  result = (HighsStatus)((Highs const *)arg1)->getInfoValue((std::string const &)*arg2,*arg3);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getInfoValue_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3) {
-  jint jresult = 0 ;
-  Highs *arg1 = (Highs *) 0 ;
-  std::string *arg2 = 0 ;
   double *arg3 = 0 ;
   HighsStatus result;
   
@@ -8496,8 +8544,8 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_Highs_1getInfinity(JNIEnv *jenv, 
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getSizeofHighsInt(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getSizeofHighsInt(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -8506,7 +8554,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getSizeofHighsInt(JNIEnv *jen
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->getSizeofHighsInt();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -9308,7 +9356,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1feasibilityRelaxation_1_1SWIG
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getIllConditioning_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jboolean jarg3, jint jarg4, jdouble jarg5) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getIllConditioning_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jboolean jarg3, jlong jarg4, jdouble jarg5) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsIllConditioning *arg2 = 0 ;
@@ -9336,7 +9384,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getIllConditioning_1_1SWIG_10
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getIllConditioning_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jboolean jarg3, jint jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getIllConditioning_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jboolean jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsIllConditioning *arg2 = 0 ;
@@ -9502,7 +9550,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasicVariables(JNIEnv *jen
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseRow_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseRow_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9525,7 +9573,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseRow_1_1SWIG_10
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseRow_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseRow_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9546,7 +9594,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseRow_1_1SWIG_11
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseRow_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseRow_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9565,7 +9613,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseRow_1_1SWIG_12
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseCol_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseCol_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9588,7 +9636,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseCol_1_1SWIG_10
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseCol_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseCol_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9609,7 +9657,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseCol_1_1SWIG_11
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseCol_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseCol_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9754,7 +9802,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisTransposeSolve_1_1SWI
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9779,7 +9827,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_10(JNIE
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9802,7 +9850,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_11(JNIE
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9823,7 +9871,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_12(JNIE
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9842,7 +9890,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedRow_1_1SWIG_13(JNIE
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedColumn_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedColumn_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9865,7 +9913,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedColumn_1_1SWIG_10(J
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedColumn_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedColumn_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9886,7 +9934,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedColumn_1_1SWIG_11(J
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedColumn_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getReducedColumn_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -9974,8 +10022,8 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getKappa_1_1SWIG_12(JNIEnv *j
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumCol(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getNumCol(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -9984,13 +10032,13 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumCol(JNIEnv *jenv, jclas
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->getNumCol();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumRow(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getNumRow(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -9999,13 +10047,13 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumRow(JNIEnv *jenv, jclas
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->getNumRow();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumNz(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getNumNz(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -10014,13 +10062,13 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumNz(JNIEnv *jenv, jclass
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->getNumNz();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getHessianNumNz(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getHessianNumNz(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -10029,7 +10077,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getHessianNumNz(JNIEnv *jenv,
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->getHessianNumNz();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -10076,7 +10124,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getObjectiveOffset(JNIEnv *je
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getCols_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8, jlong jarg9, jlong jarg10, jlong jarg11) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getCols_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8, jlong jarg9, jlong jarg10, jlong jarg11) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10119,7 +10167,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getCols_1_1SWIG_10(JNIEnv *je
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getCols_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8, jlong jarg9, jlong jarg10, jlong jarg11) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getCols_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8, jlong jarg9, jlong jarg10, jlong jarg11) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10203,7 +10251,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getCols_1_1SWIG_12(JNIEnv *je
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getColName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getColName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10257,7 +10305,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getColByName(JNIEnv *jenv, jc
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getColIntegrality(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getColIntegrality(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10280,7 +10328,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getColIntegrality(JNIEnv *jen
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getRows_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8, jlong jarg9, jlong jarg10) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getRows_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8, jlong jarg9, jlong jarg10) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10321,7 +10369,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getRows_1_1SWIG_10(JNIEnv *je
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getRows_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8, jlong jarg9, jlong jarg10) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getRows_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8, jlong jarg9, jlong jarg10) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10401,7 +10449,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getRows_1_1SWIG_12(JNIEnv *je
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getRowName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getRowName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10455,7 +10503,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getRowByName(JNIEnv *jenv, jc
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getCoeff(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getCoeff(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10728,7 +10776,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeObjectiveOffset(JNIEnv 
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColIntegrality(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColIntegrality(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10747,7 +10795,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColIntegrality(JNIEnv *
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsIntegrality_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsIntegrality_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10768,7 +10816,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsIntegrality_1_1SWIG
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsIntegrality_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsIntegrality_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10823,7 +10871,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1clearIntegrality(JNIEnv *jenv
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColCost(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jdouble jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColCost(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jdouble jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10842,7 +10890,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColCost(JNIEnv *jenv, j
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsCost_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsCost_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10863,7 +10911,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsCost_1_1SWIG_10(JNI
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsCost_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsCost_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10903,7 +10951,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsCost_1_1SWIG_12(JNI
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColBounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jdouble jarg3, jdouble jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColBounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jdouble jarg3, jdouble jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10924,7 +10972,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColBounds(JNIEnv *jenv,
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsBounds_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jlong jarg4, jlong jarg5) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsBounds_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10947,7 +10995,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsBounds_1_1SWIG_10(J
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsBounds_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsBounds_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -10991,7 +11039,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeColsBounds_1_1SWIG_12(J
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeRowBounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jdouble jarg3, jdouble jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeRowBounds(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jdouble jarg3, jdouble jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11012,7 +11060,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeRowBounds(JNIEnv *jenv,
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeRowsBounds_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jlong jarg4, jlong jarg5) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeRowsBounds_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11035,7 +11083,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeRowsBounds_1_1SWIG_10(J
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeRowsBounds_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeRowsBounds_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11079,7 +11127,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeRowsBounds_1_1SWIG_12(J
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeCoeff(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3, jdouble jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1changeCoeff(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jdouble jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11117,7 +11165,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setMatrixFormat(JNIEnv *jenv,
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addCol(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2, jdouble jarg3, jdouble jarg4, jint jarg5, jlong jarg6, jlong jarg7) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addCol(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2, jdouble jarg3, jdouble jarg4, jlong jarg5, jlong jarg6, jlong jarg7) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   double arg2 ;
@@ -11144,7 +11192,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addCol(JNIEnv *jenv, jclass j
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addCols(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jint jarg6, jlong jarg7, jlong jarg8, jlong jarg9) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addCols(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8, jlong jarg9) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11226,7 +11274,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addVar_1_1SWIG_12(JNIEnv *jen
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addVars(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addVars(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11247,7 +11295,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addVars(JNIEnv *jenv, jclass 
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addRow(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2, jdouble jarg3, jint jarg4, jlong jarg5, jlong jarg6) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addRow(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2, jdouble jarg3, jlong jarg4, jlong jarg5, jlong jarg6) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   double arg2 ;
@@ -11272,7 +11320,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addRow(JNIEnv *jenv, jclass j
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addRows(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4, jint jarg5, jlong jarg6, jlong jarg7, jlong jarg8) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1addRows(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7, jlong jarg8) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11331,7 +11379,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1ensureRowwise(JNIEnv *jenv, j
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteCols_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteCols_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11350,7 +11398,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteCols_1_1SWIG_10(JNIEnv 
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteCols_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteCols_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11386,7 +11434,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteCols_1_1SWIG_12(JNIEnv 
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteVars_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteVars_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11405,7 +11453,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteVars_1_1SWIG_10(JNIEnv 
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteVars_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteVars_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11441,7 +11489,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteVars_1_1SWIG_12(JNIEnv 
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteRows_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteRows_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11460,7 +11508,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteRows_1_1SWIG_10(JNIEnv 
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteRows_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteRows_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11496,7 +11544,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1deleteRows_1_1SWIG_12(JNIEnv 
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1scaleCol(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jdouble jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1scaleCol(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jdouble jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11515,7 +11563,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1scaleCol(JNIEnv *jenv, jclass
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1scaleRow(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jdouble jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1scaleRow(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jdouble jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11556,7 +11604,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setSolution_1_1SWIG_10(JNIEnv
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setSolution_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setSolution_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11958,7 +12006,7 @@ SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1modelStatusToString(JNIEnv
 }
 
 
-SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1solutionStatusToString(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1solutionStatusToString(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   jstring jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -11992,7 +12040,7 @@ SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1basisStatusToString(JNIEnv
 }
 
 
-SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1basisValidityToString(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1basisValidityToString(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   jstring jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -12009,7 +12057,7 @@ SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1basisValidityToString(JNIE
 }
 
 
-SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1presolveRuleTypeToString(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1presolveRuleTypeToString(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   jstring jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -12131,7 +12179,7 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getBasicVariablesArray(JNIEn
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseRowSparse(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getBasisInverseRowSparse(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
@@ -12169,8 +12217,8 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getPrimalPhase1Dual(JNIEnv *
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1defineClock(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1defineClock(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   char *arg2 = (char *) 0 ;
   HighsInt result;
@@ -12185,7 +12233,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1defineClock(JNIEnv *jenv, jcl
     if (!arg2) return 0;
   }
   result = (HighsInt)(arg1)->defineClock((char const *)arg2);
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   if (arg2) jenv->ReleaseStringUTFChars(jarg2, (const char *)arg2);
   return jresult;
 }
@@ -12268,8 +12316,8 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setLogCallback_1_1SWIG_11(JNI
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumCols(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getNumCols(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -12278,13 +12326,13 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumCols(JNIEnv *jenv, jcla
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->getNumCols();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumRows(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getNumRows(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -12293,13 +12341,13 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumRows(JNIEnv *jenv, jcla
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)((Highs const *)arg1)->getNumRows();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumEntries(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getNumEntries(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -12308,7 +12356,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getNumEntries(JNIEnv *jenv, j
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)(arg1)->getNumEntries();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -12340,7 +12388,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setHighsOptionValue_1_1SWIG_1
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setHighsOptionValue_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setHighsOptionValue_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jlong jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   std::string *arg2 = 0 ;
@@ -12367,7 +12415,34 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setHighsOptionValue_1_1SWIG_1
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setHighsOptionValue_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jdouble jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setHighsOptionValue_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jint jarg3) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  std::string *arg2 = 0 ;
+  int arg3 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return 0;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  arg3 = (int)jarg3; 
+  result = (HighsStatus)(arg1)->setHighsOptionValue((std::string const &)*arg2,arg3);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setHighsOptionValue_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jdouble jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   std::string *arg2 = 0 ;
@@ -12394,7 +12469,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setHighsOptionValue_1_1SWIG_1
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setHighsOptionValue_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1setHighsOptionValue_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2, jstring jarg3) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   std::string *arg2 = 0 ;
@@ -12712,8 +12787,8 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1writeHighsOptions_1_1SWIG_11(
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getSimplexIterationCount(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getSimplexIterationCount(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt result;
   
@@ -12722,7 +12797,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getSimplexIterationCount(JNIE
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsInt)(arg1)->getSimplexIterationCount();
-  jresult = (jint)result; 
+  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -13040,7 +13115,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1freezeBasis(JNIEnv *jenv, jcl
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1unfreezeBasis(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1unfreezeBasis(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;

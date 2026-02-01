@@ -65,13 +65,13 @@ public class HotStart {
     return (cPtr == 0) ? null : new RefactorInfo(cPtr, false);
   }
 
-  public void setNonbasicMove(SWIGTYPE_p_std__vectorT_int8_t_t value) {
-    highsJNI.HotStart_nonbasicMove_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_int8_t_t.getCPtr(value));
+  public void setNonbasicMove(SWIGTYPE_p_std__vectorT_signed_char_t value) {
+    highsJNI.HotStart_nonbasicMove_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_signed_char_t.getCPtr(value));
   }
 
-  public SWIGTYPE_p_std__vectorT_int8_t_t getNonbasicMove() {
+  public SWIGTYPE_p_std__vectorT_signed_char_t getNonbasicMove() {
     long cPtr = highsJNI.HotStart_nonbasicMove_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_int8_t_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_signed_char_t(cPtr, false);
   }
 
   public HotStart() {

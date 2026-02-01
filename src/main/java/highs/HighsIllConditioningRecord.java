@@ -48,11 +48,11 @@ public class HighsIllConditioningRecord {
     }
   }
 
-  public void setIndex(int value) {
+  public void setIndex(long value) {
     highsJNI.HighsIllConditioningRecord_index_set(swigCPtr, this, value);
   }
 
-  public int getIndex() {
+  public long getIndex() {
     return highsJNI.HighsIllConditioningRecord_index_get(swigCPtr, this);
   }
 
