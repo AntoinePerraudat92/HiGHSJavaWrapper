@@ -30,12 +30,6 @@ public class highsJNI {
   public final static native void DoubleArray_setitem(long jarg1, DoubleArray jarg1_, long jarg2, double jarg3);
   public final static native long DoubleArray_cast(long jarg1, DoubleArray jarg1_);
   public final static native long DoubleArray_frompointer(long jarg1);
-  public final static native long new_IntegerArray(long jarg1);
-  public final static native void delete_IntegerArray(long jarg1);
-  public final static native int IntegerArray_getitem(long jarg1, IntegerArray jarg1_, long jarg2);
-  public final static native void IntegerArray_setitem(long jarg1, IntegerArray jarg1_, long jarg2, int jarg3);
-  public final static native long IntegerArray_cast(long jarg1, IntegerArray jarg1_);
-  public final static native long IntegerArray_frompointer(long jarg1);
   public final static native long new_LongLongArray(long jarg1);
   public final static native void delete_LongLongArray(long jarg1);
   public final static native long LongLongArray_getitem(long jarg1, LongLongArray jarg1_, long jarg2);

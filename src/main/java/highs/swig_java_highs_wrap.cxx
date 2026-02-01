@@ -389,27 +389,6 @@ SWIGINTERN DoubleArray *DoubleArray_frompointer(double *t){
   return (DoubleArray *) t;
 }
 
-typedef int IntegerArray;
-
-SWIGINTERN IntegerArray *new_IntegerArray(size_t nelements){
-  return new int[nelements]();
-}
-SWIGINTERN void delete_IntegerArray(IntegerArray *self){
-  delete [] self;
-}
-SWIGINTERN int IntegerArray_getitem(IntegerArray *self,size_t index){
-  return self[index];
-}
-SWIGINTERN void IntegerArray_setitem(IntegerArray *self,size_t index,int value){
-  self[index] = value;
-}
-SWIGINTERN int *IntegerArray_cast(IntegerArray *self){
-  return self;
-}
-SWIGINTERN IntegerArray *IntegerArray_frompointer(int *t){
-  return (IntegerArray *) t;
-}
-
 typedef long long LongLongArray;
 
 SWIGINTERN LongLongArray *new_LongLongArray(size_t nelements){
@@ -800,91 +779,6 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_DoubleArray_1frompointer(JNIEnv *je
   arg1 = *(double **)&jarg1; 
   result = (DoubleArray *)DoubleArray_frompointer(arg1);
   *(DoubleArray **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1IntegerArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  jlong jresult = 0 ;
-  size_t arg1 ;
-  IntegerArray *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = (size_t)jarg1; 
-  result = (IntegerArray *)new_IntegerArray(SWIG_STD_MOVE(arg1));
-  *(IntegerArray **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_highs_highsJNI_delete_1IntegerArray(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  IntegerArray *arg1 = (IntegerArray *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(IntegerArray **)&jarg1; 
-  delete_IntegerArray(arg1);
-}
-
-
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_IntegerArray_1getitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  jint jresult = 0 ;
-  IntegerArray *arg1 = (IntegerArray *) 0 ;
-  size_t arg2 ;
-  int result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(IntegerArray **)&jarg1; 
-  arg2 = (size_t)jarg2; 
-  result = (int)IntegerArray_getitem(arg1,SWIG_STD_MOVE(arg2));
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_highs_highsJNI_IntegerArray_1setitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3) {
-  IntegerArray *arg1 = (IntegerArray *) 0 ;
-  size_t arg2 ;
-  int arg3 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(IntegerArray **)&jarg1; 
-  arg2 = (size_t)jarg2; 
-  arg3 = (int)jarg3; 
-  IntegerArray_setitem(arg1,SWIG_STD_MOVE(arg2),arg3);
-}
-
-
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_IntegerArray_1cast(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  IntegerArray *arg1 = (IntegerArray *) 0 ;
-  int *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(IntegerArray **)&jarg1; 
-  result = (int *)IntegerArray_cast(arg1);
-  *(int **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_IntegerArray_1frompointer(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  jlong jresult = 0 ;
-  int *arg1 = (int *) 0 ;
-  IntegerArray *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(int **)&jarg1; 
-  result = (IntegerArray *)IntegerArray_frompointer(arg1);
-  *(IntegerArray **)&jresult = result; 
   return jresult;
 }
 

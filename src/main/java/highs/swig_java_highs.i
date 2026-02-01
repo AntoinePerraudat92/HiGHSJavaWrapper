@@ -18,7 +18,6 @@ namespace std {
 
 %include "carrays.i"
 %array_class(double, DoubleArray);
-%array_class(int, IntegerArray);
 %array_class(long long, LongLongArray);
 %include "std_string.i"
 %include "stdint.i"
