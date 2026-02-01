@@ -89,11 +89,11 @@ public class HighsLinearObjective {
     return highsJNI.HighsLinearObjective_rel_tolerance_get(swigCPtr, this);
   }
 
-  public void setPriority(int value) {
+  public void setPriority(long value) {
     highsJNI.HighsLinearObjective_priority_set(swigCPtr, this, value);
   }
 
-  public int getPriority() {
+  public long getPriority() {
     return highsJNI.HighsLinearObjective_priority_get(swigCPtr, this);
   }
 

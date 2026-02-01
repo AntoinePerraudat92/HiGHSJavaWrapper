@@ -48,27 +48,27 @@ public class HighsPresolveRuleLog {
     }
   }
 
-  public void setCall(int value) {
+  public void setCall(long value) {
     highsJNI.HighsPresolveRuleLog_call_set(swigCPtr, this, value);
   }
 
-  public int getCall() {
+  public long getCall() {
     return highsJNI.HighsPresolveRuleLog_call_get(swigCPtr, this);
   }
 
-  public void setCol_removed(int value) {
+  public void setCol_removed(long value) {
     highsJNI.HighsPresolveRuleLog_col_removed_set(swigCPtr, this, value);
   }
 
-  public int getCol_removed() {
+  public long getCol_removed() {
     return highsJNI.HighsPresolveRuleLog_col_removed_get(swigCPtr, this);
   }
 
-  public void setRow_removed(int value) {
+  public void setRow_removed(long value) {
     highsJNI.HighsPresolveRuleLog_row_removed_set(swigCPtr, this, value);
   }
 
-  public int getRow_removed() {
+  public long getRow_removed() {
     return highsJNI.HighsPresolveRuleLog_row_removed_get(swigCPtr, this);
   }
 

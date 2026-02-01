@@ -15,7 +15,7 @@ class HighsTest {
     void highsIntMustBeEqualToFour() {
         final Highs highs = new Highs();
 
-        assertEquals(4, highs.getSizeofHighsInt());
+        assertEquals(8, highs.getSizeofHighsInt());
     }
 
     @Test

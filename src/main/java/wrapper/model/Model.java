@@ -59,7 +59,7 @@ public class Model {
 
     public Variable addIntegerVariable(double lb, double ub, double cost) {
         this.highs.addCol(cost, lb, ub, 0, null, null);
-        final int variableIndex = this.highs.getNumCol() - 1;
+        final long variableIndex = this.highs.getNumCol() - 1;
         this.highs.changeColIntegrality(variableIndex, HighsVarType.kInteger);
         return new Variable(variableIndex);
     }
@@ -152,12 +152,12 @@ public class Model {
         class InitialSolutionConsumer implements ObjDoubleConsumer<Variable> {
 
             private final DoubleArray values;
-            private final IntegerArray indices;
-            private int index = 0;
+            private final LongLongArray indices;
+            private long index = 0;
 
             InitialSolutionConsumer(int initialSolutionSize) {
                 this.values = new DoubleArray(initialSolutionSize);
-                this.indices = new IntegerArray(initialSolutionSize);
+                this.indices = new LongLongArray(initialSolutionSize);
             }
 
             @Override
@@ -187,12 +187,12 @@ public class Model {
         class LinearExpressionCoefficientConsumer implements Consumer<ExpressionCoefficient> {
 
             private final DoubleArray values;
-            private final IntegerArray indices;
-            private int index = 0;
+            private final LongLongArray indices;
+            private long index = 0;
 
             LinearExpressionCoefficientConsumer(int nmbCoefficients) {
                 this.values = new DoubleArray(nmbCoefficients);
-                this.indices = new IntegerArray(nmbCoefficients);
+                this.indices = new LongLongArray(nmbCoefficients);
             }
 
             @Override

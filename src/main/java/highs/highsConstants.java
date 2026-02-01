@@ -9,5 +9,9 @@
 package highs;
 
 public interface highsConstants {
-  public final static String HIGHSINT_FORMAT = highsJNI.HIGHSINT_FORMAT_get();
+  public final static String CMAKE_BUILD_TYPE = highsJNI.CMAKE_BUILD_TYPE_get();
+  public final static String HIGHS_GITHASH = highsJNI.HIGHS_GITHASH_get();
+  public final static int HIGHS_VERSION_MAJOR = highsJNI.HIGHS_VERSION_MAJOR_get();
+  public final static int HIGHS_VERSION_MINOR = highsJNI.HIGHS_VERSION_MINOR_get();
+  public final static int HIGHS_VERSION_PATCH = highsJNI.HIGHS_VERSION_PATCH_get();
 }

@@ -48,11 +48,11 @@ public class HighsScale {
     }
   }
 
-  public void setStrategy(int value) {
+  public void setStrategy(long value) {
     highsJNI.HighsScale_strategy_set(swigCPtr, this, value);
   }
 
-  public int getStrategy() {
+  public long getStrategy() {
     return highsJNI.HighsScale_strategy_get(swigCPtr, this);
   }
 
@@ -64,19 +64,19 @@ public class HighsScale {
     return highsJNI.HighsScale_has_scaling_get(swigCPtr, this);
   }
 
-  public void setNum_col(int value) {
+  public void setNum_col(long value) {
     highsJNI.HighsScale_num_col_set(swigCPtr, this, value);
   }
 
-  public int getNum_col() {
+  public long getNum_col() {
     return highsJNI.HighsScale_num_col_get(swigCPtr, this);
   }
 
-  public void setNum_row(int value) {
+  public void setNum_row(long value) {
     highsJNI.HighsScale_num_row_set(swigCPtr, this, value);
   }
 
-  public int getNum_row() {
+  public long getNum_row() {
     return highsJNI.HighsScale_num_row_get(swigCPtr, this);
   }
 

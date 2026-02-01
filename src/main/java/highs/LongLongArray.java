@@ -8,20 +8,20 @@
 
 package highs;
 
-public class HighsIllConditioningRecord {
+public class LongLongArray {
   private transient long swigCPtr;
   protected transient boolean swigCMemOwn;
 
-  protected HighsIllConditioningRecord(long cPtr, boolean cMemoryOwn) {
+  protected LongLongArray(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = cPtr;
   }
 
-  protected static long getCPtr(HighsIllConditioningRecord obj) {
+  protected static long getCPtr(LongLongArray obj) {
     return (obj == null) ? 0 : obj.swigCPtr;
   }
 
-  protected static long swigRelease(HighsIllConditioningRecord obj) {
+  protected static long swigRelease(LongLongArray obj) {
     long ptr = 0;
     if (obj != null) {
       if (!obj.swigCMemOwn)
@@ -42,30 +42,32 @@ public class HighsIllConditioningRecord {
     if (swigCPtr != 0) {
       if (swigCMemOwn) {
         swigCMemOwn = false;
-        highsJNI.delete_HighsIllConditioningRecord(swigCPtr);
+        highsJNI.delete_LongLongArray(swigCPtr);
       }
       swigCPtr = 0;
     }
   }
 
-  public void setIndex(long value) {
-    highsJNI.HighsIllConditioningRecord_index_set(swigCPtr, this, value);
+  public LongLongArray(long nelements) {
+    this(highsJNI.new_LongLongArray(nelements), true);
   }
 
-  public long getIndex() {
-    return highsJNI.HighsIllConditioningRecord_index_get(swigCPtr, this);
+  public long getitem(long index) {
+    return highsJNI.LongLongArray_getitem(swigCPtr, this, index);
   }
 
-  public void setMultiplier(double value) {
-    highsJNI.HighsIllConditioningRecord_multiplier_set(swigCPtr, this, value);
+  public void setitem(long index, long value) {
+    highsJNI.LongLongArray_setitem(swigCPtr, this, index, value);
   }
 
-  public double getMultiplier() {
-    return highsJNI.HighsIllConditioningRecord_multiplier_get(swigCPtr, this);
+  public SWIGTYPE_p_long_long cast() {
+    long cPtr = highsJNI.LongLongArray_cast(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_long_long(cPtr, false);
   }
 
-  public HighsIllConditioningRecord() {
-    this(highsJNI.new_HighsIllConditioningRecord(), true);
+  public static LongLongArray frompointer(SWIGTYPE_p_long_long t) {
+    long cPtr = highsJNI.LongLongArray_frompointer(SWIGTYPE_p_long_long.getCPtr(t));
+    return (cPtr == 0) ? null : new LongLongArray(cPtr, false);
   }
 
 }

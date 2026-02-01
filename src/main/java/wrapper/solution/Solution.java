@@ -28,7 +28,7 @@ public class Solution {
         if (variable.index() >= variableValues.size()) {
             throw new VariableException(String.format("Variable with index %d does not exist in the solution", variable.index()));
         }
-        return variableValues.get(variable.index());
+        return variableValues.get((int) variable.index());
     }
 
     public double getDualValue(@NonNull final Constraint constraint) throws ConstraintException {
@@ -36,7 +36,7 @@ public class Solution {
         if (constraint.index() >= dualValues.size()) {
             throw new ConstraintException(String.format("Constraint with index %d does not exist in the solution", constraint.index()));
         }
-        return dualValues.get(constraint.index());
+        return dualValues.get((int) constraint.index());
     }
 
     public boolean isFeasible() {

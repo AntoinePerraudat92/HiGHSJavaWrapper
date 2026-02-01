@@ -56,31 +56,31 @@ public class RefactorInfo {
     return highsJNI.RefactorInfo_use_get(swigCPtr, this);
   }
 
-  public void setPivot_row(SWIGTYPE_p_std__vectorT_int_t value) {
-    highsJNI.RefactorInfo_pivot_row_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_int_t.getCPtr(value));
+  public void setPivot_row(SWIGTYPE_p_std__vectorT_long_long_t value) {
+    highsJNI.RefactorInfo_pivot_row_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
   }
 
-  public SWIGTYPE_p_std__vectorT_int_t getPivot_row() {
+  public SWIGTYPE_p_std__vectorT_long_long_t getPivot_row() {
     long cPtr = highsJNI.RefactorInfo_pivot_row_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_int_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
   }
 
-  public void setPivot_var(SWIGTYPE_p_std__vectorT_int_t value) {
-    highsJNI.RefactorInfo_pivot_var_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_int_t.getCPtr(value));
+  public void setPivot_var(SWIGTYPE_p_std__vectorT_long_long_t value) {
+    highsJNI.RefactorInfo_pivot_var_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
   }
 
-  public SWIGTYPE_p_std__vectorT_int_t getPivot_var() {
+  public SWIGTYPE_p_std__vectorT_long_long_t getPivot_var() {
     long cPtr = highsJNI.RefactorInfo_pivot_var_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_int_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
   }
 
-  public void setPivot_type(SWIGTYPE_p_std__vectorT_int8_t_t value) {
-    highsJNI.RefactorInfo_pivot_type_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_int8_t_t.getCPtr(value));
+  public void setPivot_type(SWIGTYPE_p_std__vectorT_signed_char_t value) {
+    highsJNI.RefactorInfo_pivot_type_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_signed_char_t.getCPtr(value));
   }
 
-  public SWIGTYPE_p_std__vectorT_int8_t_t getPivot_type() {
+  public SWIGTYPE_p_std__vectorT_signed_char_t getPivot_type() {
     long cPtr = highsJNI.RefactorInfo_pivot_type_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_int8_t_t(cPtr, false);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_signed_char_t(cPtr, false);
   }
 
   public void setBuild_synthetic_tick(double value) {

@@ -48,19 +48,19 @@ public class HighsUserScaleData {
     }
   }
 
-  public void setUser_objective_scale(int value) {
+  public void setUser_objective_scale(long value) {
     highsJNI.HighsUserScaleData_user_objective_scale_set(swigCPtr, this, value);
   }
 
-  public int getUser_objective_scale() {
+  public long getUser_objective_scale() {
     return highsJNI.HighsUserScaleData_user_objective_scale_get(swigCPtr, this);
   }
 
-  public void setUser_bound_scale(int value) {
+  public void setUser_bound_scale(long value) {
     highsJNI.HighsUserScaleData_user_bound_scale_set(swigCPtr, this, value);
   }
 
-  public int getUser_bound_scale() {
+  public long getUser_bound_scale() {
     return highsJNI.HighsUserScaleData_user_bound_scale_get(swigCPtr, this);
   }
 
@@ -96,67 +96,67 @@ public class HighsUserScaleData {
     return highsJNI.HighsUserScaleData_large_matrix_value_get(swigCPtr, this);
   }
 
-  public void setNum_infinite_costs(int value) {
+  public void setNum_infinite_costs(long value) {
     highsJNI.HighsUserScaleData_num_infinite_costs_set(swigCPtr, this, value);
   }
 
-  public int getNum_infinite_costs() {
+  public long getNum_infinite_costs() {
     return highsJNI.HighsUserScaleData_num_infinite_costs_get(swigCPtr, this);
   }
 
-  public void setNum_infinite_hessian_values(int value) {
+  public void setNum_infinite_hessian_values(long value) {
     highsJNI.HighsUserScaleData_num_infinite_hessian_values_set(swigCPtr, this, value);
   }
 
-  public int getNum_infinite_hessian_values() {
+  public long getNum_infinite_hessian_values() {
     return highsJNI.HighsUserScaleData_num_infinite_hessian_values_get(swigCPtr, this);
   }
 
-  public void setNum_infinite_col_bounds(int value) {
+  public void setNum_infinite_col_bounds(long value) {
     highsJNI.HighsUserScaleData_num_infinite_col_bounds_set(swigCPtr, this, value);
   }
 
-  public int getNum_infinite_col_bounds() {
+  public long getNum_infinite_col_bounds() {
     return highsJNI.HighsUserScaleData_num_infinite_col_bounds_get(swigCPtr, this);
   }
 
-  public void setNum_infinite_row_bounds(int value) {
+  public void setNum_infinite_row_bounds(long value) {
     highsJNI.HighsUserScaleData_num_infinite_row_bounds_set(swigCPtr, this, value);
   }
 
-  public int getNum_infinite_row_bounds() {
+  public long getNum_infinite_row_bounds() {
     return highsJNI.HighsUserScaleData_num_infinite_row_bounds_get(swigCPtr, this);
   }
 
-  public void setNum_small_matrix_values(int value) {
+  public void setNum_small_matrix_values(long value) {
     highsJNI.HighsUserScaleData_num_small_matrix_values_set(swigCPtr, this, value);
   }
 
-  public int getNum_small_matrix_values() {
+  public long getNum_small_matrix_values() {
     return highsJNI.HighsUserScaleData_num_small_matrix_values_get(swigCPtr, this);
   }
 
-  public void setNum_large_matrix_values(int value) {
+  public void setNum_large_matrix_values(long value) {
     highsJNI.HighsUserScaleData_num_large_matrix_values_set(swigCPtr, this, value);
   }
 
-  public int getNum_large_matrix_values() {
+  public long getNum_large_matrix_values() {
     return highsJNI.HighsUserScaleData_num_large_matrix_values_get(swigCPtr, this);
   }
 
-  public void setSuggested_user_objective_scale(int value) {
+  public void setSuggested_user_objective_scale(long value) {
     highsJNI.HighsUserScaleData_suggested_user_objective_scale_set(swigCPtr, this, value);
   }
 
-  public int getSuggested_user_objective_scale() {
+  public long getSuggested_user_objective_scale() {
     return highsJNI.HighsUserScaleData_suggested_user_objective_scale_get(swigCPtr, this);
   }
 
-  public void setSuggested_user_bound_scale(int value) {
+  public void setSuggested_user_bound_scale(long value) {
     highsJNI.HighsUserScaleData_suggested_user_bound_scale_set(swigCPtr, this, value);
   }
 
-  public int getSuggested_user_bound_scale() {
+  public long getSuggested_user_bound_scale() {
     return highsJNI.HighsUserScaleData_suggested_user_bound_scale_get(swigCPtr, this);
   }
 
@@ -168,7 +168,7 @@ public class HighsUserScaleData {
     return highsJNI.HighsUserScaleData_applied_get(swigCPtr, this);
   }
 
-  public void initialise(int user_objective_scale_, int user_bound_scale_, double infinite_cost_, double infinite_bound_, double small_matrix_value_, double large_matrix_value_) {
+  public void initialise(long user_objective_scale_, long user_bound_scale_, double infinite_cost_, double infinite_bound_, double small_matrix_value_, double large_matrix_value_) {
     highsJNI.HighsUserScaleData_initialise(swigCPtr, this, user_objective_scale_, user_bound_scale_, infinite_cost_, infinite_bound_, small_matrix_value_, large_matrix_value_);
   }
 
