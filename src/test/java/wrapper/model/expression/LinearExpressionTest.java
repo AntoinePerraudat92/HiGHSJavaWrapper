@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static wrapper.util.Constants.EPSILON;
 
 class LinearExpressionTest {
 
@@ -31,19 +32,19 @@ class LinearExpressionTest {
 
     @Test
     void minus() throws LinearExpressionException {
-        final LinearExpression firstExpression = new LinearExpression();
+        final LinearExpression firstExpression = new LinearExpression(5.0);
         firstExpression.addNewVariable(new Variable(0), 1.0);
-        firstExpression.addNewVariable(new Variable(1), -1.0);
-        final LinearExpression secondExpression = new LinearExpression();
+        firstExpression.addNewVariable(new Variable(1), 3.0);
+        final LinearExpression secondExpression = new LinearExpression(3.0);
         secondExpression.addNewVariable(new Variable(0), 2.0);
-        secondExpression.addNewVariable(new Variable(1), -0.5);
         secondExpression.addNewVariable(new Variable(4), 1.0);
 
         final LinearExpression expression = firstExpression.minus(secondExpression);
 
         final Map<Variable, Double> map = new HashMap<>();
         expression.consumeExpression(expressionCoefficient -> map.put(expressionCoefficient.variable(), expressionCoefficient.value()));
-        assertEquals(Map.of(new Variable(0), -1.0, new Variable(1), -0.5, new Variable(4), -1.0), map);
+        assertEquals(Map.of(new Variable(0), -1.0, new Variable(1), 3.0, new Variable(4), -1.0), map);
+        assertEquals(2.0, expression.getConstant(), EPSILON);
     }
 
 }

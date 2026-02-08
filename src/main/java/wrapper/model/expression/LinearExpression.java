@@ -1,6 +1,5 @@
 package wrapper.model.expression;
 
-import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import wrapper.model.variable.Variable;
 
@@ -8,10 +7,19 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-@NoArgsConstructor
+
 public class LinearExpression {
 
+    private final double constant;
     private final Map<Variable, ExpressionCoefficient> coefficients = new HashMap<>();
+
+    public LinearExpression() {
+        this(0.0);
+    }
+
+    public LinearExpression(double constant) {
+        this.constant = constant;
+    }
 
     public static LinearExpression of(final ExpressionCoefficient... coefficients) throws LinearExpressionException {
         final LinearExpression expression = new LinearExpression();
@@ -35,7 +43,7 @@ public class LinearExpression {
     }
 
     public LinearExpression minus(@NonNull final LinearExpression otherExpression) {
-        final LinearExpression newLinearExpression = new LinearExpression();
+        final LinearExpression newLinearExpression = new LinearExpression(constant - otherExpression.constant);
         consumeExpression(expressionCoefficient -> newLinearExpression.addVariable(expressionCoefficient.variable(), expressionCoefficient.value()));
         for (final ExpressionCoefficient expressionCoefficient : otherExpression.coefficients.values()) {
             final Variable variable = expressionCoefficient.variable();
@@ -44,6 +52,10 @@ public class LinearExpression {
             newLinearExpression.coefficients.putIfAbsent(variable, new ExpressionCoefficient(variable, -coefficient));
         }
         return newLinearExpression;
+    }
+
+    public double getConstant() {
+        return this.constant;
     }
 
     public int getNmbCoefficients() {
