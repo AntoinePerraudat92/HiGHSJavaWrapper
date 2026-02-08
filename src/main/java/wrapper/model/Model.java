@@ -124,6 +124,13 @@ public class Model {
     }
 
     /**
+     * Expression = RHS. Example: 2x1 + 5x2 = x3.
+     */
+    public Constraint addEqualityConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
+        return addConstraint(0.0, 0.0, expression.minus(rhs), ConstraintType.EQUALITY);
+    }
+
+    /**
      * Expression <= RHS. Example: 2x1 + 5x2 <= 4.
      */
     public Constraint addLessThanOrEqualToConstraint(double rhs, @NonNull final LinearExpression expression) {

@@ -21,6 +21,8 @@ public class LinearExpression {
         return expression;
     }
 
+    // TODO: only expose public functions to create the linear expressions, the others must be package private
+
     public void consumeExpression(@NonNull final Consumer<ExpressionCoefficient> consumer) {
         this.coefficients.values().forEach(consumer);
     }
