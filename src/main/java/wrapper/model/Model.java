@@ -110,31 +110,31 @@ public class Model {
     }
 
     /**
-     * LHS <= LinearExpression <= RHS. Example: 4 <= 2x1 + 5x2 <= 12.
+     * LHS <= Expression <= RHS. Example: 4 <= 2x1 + 5x2 <= 12.
      */
-    public Constraint addGeneralConstraint(double lhs, double rhs, @NonNull final LinearExpression linearExpression) {
-        return addConstraint(lhs, rhs, linearExpression, ConstraintType.GENERAL);
+    public Constraint addGeneralConstraint(double lhs, double rhs, @NonNull final LinearExpression expression) {
+        return addConstraint(lhs, rhs, expression, ConstraintType.GENERAL);
     }
 
     /**
-     * LinearExpression = RHS. Example: 2x1 + 5x2 = 4.
+     * Expression = RHS. Example: 2x1 + 5x2 = 4.
      */
-    public Constraint addEqualityConstraint(double rhs, @NonNull final LinearExpression linearExpression) {
-        return addConstraint(rhs, rhs, linearExpression, ConstraintType.EQUALITY);
+    public Constraint addEqualityConstraint(double rhs, @NonNull final LinearExpression expression) {
+        return addConstraint(rhs, rhs, expression, ConstraintType.EQUALITY);
     }
 
     /**
-     * LinearExpression <= RHS. Example: 2x1 + 5x2 <= 4.
+     * Expression <= RHS. Example: 2x1 + 5x2 <= 4.
      */
-    public Constraint addLessThanOrEqualToConstraint(double rhs, @NonNull final LinearExpression linearExpression) {
-        return addConstraint(-Double.MAX_VALUE, rhs, linearExpression, ConstraintType.LESS_THAN_OR_EQUAL_TO);
+    public Constraint addLessThanOrEqualToConstraint(double rhs, @NonNull final LinearExpression expression) {
+        return addConstraint(-Double.MAX_VALUE, rhs, expression, ConstraintType.LESS_THAN_OR_EQUAL_TO);
     }
 
     /**
-     * LinearExpression >= RHS. Example: 2x1 + 5x2 >= 4.
+     * Expression >= RHS. Example: 2x1 + 5x2 >= 4.
      */
-    public Constraint addGreaterThanOrEqualToConstraint(double rhs, @NonNull final LinearExpression linearExpression) {
-        return addConstraint(rhs, Double.MAX_VALUE, linearExpression, ConstraintType.GREATER_THAN_OR_EQUAL_TO);
+    public Constraint addGreaterThanOrEqualToConstraint(double rhs, @NonNull final LinearExpression expression) {
+        return addConstraint(rhs, Double.MAX_VALUE, expression, ConstraintType.GREATER_THAN_OR_EQUAL_TO);
     }
 
     public Optional<Solution> minimize() {
