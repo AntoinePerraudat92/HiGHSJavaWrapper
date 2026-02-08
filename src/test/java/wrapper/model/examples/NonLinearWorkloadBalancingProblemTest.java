@@ -136,10 +136,10 @@ class NonLinearWorkloadBalancingProblemTest {
             // For machine m: \sum_{p}(qualificationPerProductPerMachine_{p,m} * this.processTimePerProductPerMachine[p][m] * x_{p,m}) = capacityPerMachine_{m} w_{m}.
             for (int m = 0; m < this.nmbMachines; ++m) {
                 final LinearExpression expression = new LinearExpression();
-                expression.addCoefficient(this.w[m], this.capacityPerMachine[m]);
+                expression.addNewVariable(this.w[m], this.capacityPerMachine[m]);
                 for (int p = 0; p < this.nmbProducts; ++p) {
                     final double coefficient = this.qualificationPerProductPerMachine[p][m] * this.processTimePerProductPerMachine[p][m];
-                    expression.addCoefficient(this.x[p][m], -coefficient);
+                    expression.addNewVariable(this.x[p][m], -coefficient);
                 }
                 this.model.addEqualityConstraint(0D, expression);
             }
@@ -148,7 +148,7 @@ class NonLinearWorkloadBalancingProblemTest {
             for (int p = 0; p < this.nmbProducts; ++p) {
                 final LinearExpression expression = new LinearExpression();
                 for (int m = 0; m < this.nmbMachines; ++m) {
-                    expression.addCoefficient(this.x[p][m], this.qualificationPerProductPerMachine[p][m]);
+                    expression.addNewVariable(this.x[p][m], this.qualificationPerProductPerMachine[p][m]);
                 }
                 this.model.addEqualityConstraint(this.demandPerProduct[p], expression);
             }
@@ -170,8 +170,8 @@ class NonLinearWorkloadBalancingProblemTest {
 
         private void addLinearizationConstraint(int m, double x0) throws LinearExpressionException {
             final LinearExpression expression = new LinearExpression();
-            expression.addCoefficient(this.wl[m], 1D);
-            expression.addCoefficient(this.w[m], -this.balancingExponent * Math.pow(x0, this.balancingExponent - 1D));
+            expression.addNewVariable(this.wl[m], 1D);
+            expression.addNewVariable(this.w[m], -this.balancingExponent * Math.pow(x0, this.balancingExponent - 1D));
             this.model.addGreaterThanOrEqualToConstraint(Math.pow(x0, this.balancingExponent) * (1D - this.balancingExponent), expression);
         }
 

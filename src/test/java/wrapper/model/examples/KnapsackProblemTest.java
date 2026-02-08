@@ -35,7 +35,7 @@ class KnapsackProblemTest {
         // Knapsack capacity constraint: \sum_{i}x_{i} <= capacity.
         final LinearExpression capacityExpression = new LinearExpression();
         for (int i = 0; i < nmbItems; ++i) {
-            capacityExpression.addCoefficient(x[i], weights[i]);
+            capacityExpression.addNewVariable(x[i], weights[i]);
         }
         model.addLessThanOrEqualToConstraint(capacity, capacityExpression);
 
