@@ -124,7 +124,7 @@ public class Model {
     }
 
     /**
-     * Expression = RHS. Example: 2x1 + 5x2 = x3.
+     * Expression = RHS. Example: 2x1 + 5x2 = x3 + 4.
      */
     public Constraint addEqualityConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
         final LinearExpression completeExpression = expression.minus(rhs);
@@ -139,7 +139,7 @@ public class Model {
     }
 
     /**
-     * Expression <= RHS. Example: 2x1 + 5x2 <= x3.
+     * Expression <= RHS. Example: 2x1 + 5x2 <= x3 + 4.
      */
     public Constraint addLessThanOrEqualToConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
         final LinearExpression completeExpression = expression.minus(rhs);
@@ -154,7 +154,7 @@ public class Model {
     }
 
     /**
-     * Expression >= RHS. Example: 2x1 + 5x2 >= x3.
+     * Expression >= RHS. Example: 2x1 + 5x2 >= x3 + 4.
      */
     public Constraint addGreaterThanOrEqualToConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
         final LinearExpression completeExpression = expression.minus(rhs);
