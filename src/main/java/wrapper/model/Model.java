@@ -128,7 +128,7 @@ public class Model {
      */
     public Constraint addEqualityConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
         final LinearExpression completeExpression = expression.minus(rhs);
-        addEqualityConstraint(-completeExpression.getConstant(), completeExpression);
+        return addEqualityConstraint(-completeExpression.getConstant(), completeExpression);
     }
 
     /**
