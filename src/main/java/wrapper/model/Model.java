@@ -138,10 +138,24 @@ public class Model {
     }
 
     /**
+     * Expression <= RHS. Example: 2x1 + 5x2 <= x3.
+     */
+    public Constraint addLessThanOrEqualToConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
+        return addConstraint(-Double.MAX_VALUE, 0.0, expression.minus(rhs), ConstraintType.LESS_THAN_OR_EQUAL_TO);
+    }
+
+    /**
      * Expression >= RHS. Example: 2x1 + 5x2 >= 4.
      */
     public Constraint addGreaterThanOrEqualToConstraint(double rhs, @NonNull final LinearExpression expression) {
         return addConstraint(rhs, Double.MAX_VALUE, expression, ConstraintType.GREATER_THAN_OR_EQUAL_TO);
+    }
+
+    /**
+     * Expression >= RHS. Example: 2x1 + 5x2 >= x3.
+     */
+    public Constraint addGreaterThanOrEqualToConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
+        return addConstraint(0.0, Double.MAX_VALUE, expression.minus(rhs), ConstraintType.GREATER_THAN_OR_EQUAL_TO);
     }
 
     public Optional<Solution> minimize() {
