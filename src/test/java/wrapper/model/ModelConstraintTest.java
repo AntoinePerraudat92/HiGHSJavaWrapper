@@ -159,9 +159,12 @@ class ModelConstraintTest {
         expression.addNewVariable(model.addContinuousVariable(1.0, 2.0, 0.0), 1.0);
 
         assertEquals(0, model.addLessThanOrEqualToConstraint(50.0, expression).index());
-        assertEquals(1, model.addEqualityConstraint(25.0, expression).index());
-        assertEquals(2, model.addGeneralConstraint(14.0, 25.0, expression).index());
-        assertEquals(3, model.addGreaterThanOrEqualToConstraint(1.9, expression).index());
+        assertEquals(1, model.addLessThanOrEqualToConstraint(LinearExpression.of(50.0), expression).index());
+        assertEquals(2, model.addEqualityConstraint(25.0, expression).index());
+        assertEquals(3, model.addEqualityConstraint(LinearExpression.of(25.0), expression).index());
+        assertEquals(4, model.addGeneralConstraint(14.0, 25.0, expression).index());
+        assertEquals(5, model.addGreaterThanOrEqualToConstraint(1.9, expression).index());
+        assertEquals(6, model.addGreaterThanOrEqualToConstraint(LinearExpression.of(1.9), expression).index());
     }
 
     @Test

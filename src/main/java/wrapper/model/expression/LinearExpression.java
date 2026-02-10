@@ -22,7 +22,11 @@ public class LinearExpression {
     }
 
     public static LinearExpression of(final ExpressionCoefficient... coefficients) throws LinearExpressionException {
-        final LinearExpression expression = new LinearExpression();
+        return LinearExpression.of(0.0, coefficients);
+    }
+
+    public static LinearExpression of(double constant, final ExpressionCoefficient... coefficients) throws LinearExpressionException {
+        final LinearExpression expression = new LinearExpression(constant);
         for (final ExpressionCoefficient coefficient : coefficients) {
             expression.addNewVariable(coefficient.variable(), coefficient.value());
         }
