@@ -3,6 +3,7 @@ package wrapper.model.examples;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import wrapper.model.Model;
+import wrapper.model.expression.ExpressionCoefficient;
 import wrapper.model.expression.LinearExpression;
 import wrapper.model.expression.LinearExpressionException;
 import wrapper.model.variable.Variable;
@@ -136,12 +137,11 @@ class NonLinearWorkloadBalancingProblemTest {
             // For machine m: \sum_{p}(qualificationPerProductPerMachine_{p,m} * this.processTimePerProductPerMachine[p][m] * x_{p,m}) = capacityPerMachine_{m} w_{m}.
             for (int m = 0; m < this.nmbMachines; ++m) {
                 final LinearExpression expression = new LinearExpression();
-                expression.addNewVariable(this.w[m], this.capacityPerMachine[m]);
                 for (int p = 0; p < this.nmbProducts; ++p) {
                     final double coefficient = this.qualificationPerProductPerMachine[p][m] * this.processTimePerProductPerMachine[p][m];
-                    expression.addNewVariable(this.x[p][m], -coefficient);
+                    expression.addNewVariable(this.x[p][m], coefficient);
                 }
-                this.model.addEqualityConstraint(0D, expression);
+                this.model.addEqualityConstraint(LinearExpression.of(new ExpressionCoefficient(this.w[m], this.capacityPerMachine[m])), expression);
             }
             // Demand satisfaction constraints.
             // For product p: \sum_{p}(qualificationPerProductPerMachine_{p,m} *x_{p,m}) = demandPerProduct_{p}.
