@@ -46,6 +46,10 @@ public class LinearExpression {
         addVariable(variable, coefficient);
     }
 
+    public void addVariable(final Variable variable, double coefficient) {
+        this.coefficients.put(variable, new ExpressionCoefficient(variable, coefficient));
+    }
+
     public LinearExpression minus(@NonNull final LinearExpression otherExpression) {
         final LinearExpression newLinearExpression = new LinearExpression(constant - otherExpression.constant);
         consumeExpression(expressionCoefficient -> newLinearExpression.addVariable(expressionCoefficient.variable(), expressionCoefficient.value()));
@@ -60,10 +64,6 @@ public class LinearExpression {
 
     public int getNmbCoefficients() {
         return this.coefficients.size();
-    }
-
-    private void addVariable(final Variable variable, double coefficient) {
-        this.coefficients.put(variable, new ExpressionCoefficient(variable, coefficient));
     }
 
 }
