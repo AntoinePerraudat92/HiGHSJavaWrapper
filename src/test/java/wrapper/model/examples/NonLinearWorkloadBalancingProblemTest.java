@@ -155,7 +155,7 @@ class NonLinearWorkloadBalancingProblemTest {
             // Linearization constraints.
             for (double x0 = 0.0; x0 <= 1.0; x0 += 0.1) {
                 for (int m = 0; m < this.nmbMachines; ++m) {
-                    // For machine m: wl_{m} - exponent*x0^{exponent-1}w_{m} >= x0^{exponent}*(1 - exponent).
+                    // For machine m: wl_{m} >= exponent*x0^{exponent-1}w_{m} + x0^{exponent}*(1 - exponent).
                     addLinearizationConstraint(m, x0);
                 }
             }
