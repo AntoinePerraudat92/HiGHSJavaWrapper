@@ -126,12 +126,12 @@ class NonLinearWorkloadBalancingProblemTest {
                     final double ub = this.demandPerProduct[p] * this.qualificationPerProductPerMachine[p][m];
                     // The upper bound is used for qualification constraints.
                     // For product p and machine m: x_{p,m} <= demandPerProduct_{p} * qualificationPerProductPerMachine_{p,m}.
-                    this.x[p][m] = this.model.addContinuousVariable(0D, ub, 0D);
+                    this.x[p][m] = this.model.addContinuousVariable(0.0, ub, 0.0);
                 }
             }
             for (int m = 0; m < this.nmbMachines; ++m) {
-                this.w[m] = this.model.addContinuousVariable(-Double.MAX_VALUE, Double.MAX_VALUE, 0D);
-                this.wl[m] = this.model.addContinuousVariable(0D, Double.MAX_VALUE, 1D);
+                this.w[m] = this.model.addContinuousVariable(-Double.MAX_VALUE, Double.MAX_VALUE, 0.0);
+                this.wl[m] = this.model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
             }
             // Workload computation constraints.
             // For machine m: \sum_{p}(qualificationPerProductPerMachine_{p,m} * this.processTimePerProductPerMachine[p][m] * x_{p,m}) = capacityPerMachine_{m} * w_{m}.
@@ -153,7 +153,7 @@ class NonLinearWorkloadBalancingProblemTest {
                 this.model.addEqualityConstraint(this.demandPerProduct[p], expression);
             }
             // Linearization constraints.
-            for (double x0 = 0D; x0 <= 1D; x0 += 0.1D) {
+            for (double x0 = 0.0; x0 <= 1.0; x0 += 0.1) {
                 for (int m = 0; m < this.nmbMachines; ++m) {
                     // For machine m: wl_{m} - exponent*x0^{exponent-1}w_{m} >= x0^{exponent}*(1 - exponent).
                     addLinearizationConstraint(m, x0);
