@@ -1,5 +1,6 @@
 package wrapper.model.expression;
 
+import lombok.Getter;
 import lombok.NonNull;
 import wrapper.model.variable.Variable;
 
@@ -10,6 +11,7 @@ import java.util.function.Consumer;
 
 public class LinearExpression {
 
+    @Getter
     private final double constant;
     private final Map<Variable, ExpressionCoefficient> coefficients = new HashMap<>();
 
@@ -33,8 +35,6 @@ public class LinearExpression {
         return expression;
     }
 
-    // TODO: only expose public functions to create the linear expressions, the others must be package private
-
     public void consumeExpression(@NonNull final Consumer<ExpressionCoefficient> consumer) {
         this.coefficients.values().forEach(consumer);
     }
@@ -56,10 +56,6 @@ public class LinearExpression {
             newLinearExpression.coefficients.putIfAbsent(variable, new ExpressionCoefficient(variable, -coefficient));
         }
         return newLinearExpression;
-    }
-
-    public double getConstant() {
-        return this.constant;
     }
 
     public int getNmbCoefficients() {
