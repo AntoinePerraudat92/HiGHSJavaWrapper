@@ -2,6 +2,7 @@ package wrapper.model.examples;
 
 import org.junit.jupiter.api.Test;
 import wrapper.model.Model;
+import wrapper.model.expression.ExpressionCoefficient;
 import wrapper.model.expression.LinearExpression;
 import wrapper.model.expression.LinearExpressionException;
 import wrapper.model.variable.Variable;
@@ -59,7 +60,7 @@ class FacilityLocationProblemTest {
         for (int f = 0; f < nmbFacilities; ++f) {
             final LinearExpression expression = new LinearExpression();
             for (int c = 0; c < nmbCustomers; ++c) {
-                expression.addCoefficient(y[f][c], 1.0);
+                expression.addNewVariable(y[f][c], 1.0);
             }
             model.addLessThanOrEqualToConstraint(capacityPerFacility[f], expression);
         }
@@ -68,7 +69,7 @@ class FacilityLocationProblemTest {
         for (int c = 0; c < nmbCustomers; ++c) {
             final LinearExpression expression = new LinearExpression();
             for (int f = 0; f < nmbFacilities; ++f) {
-                expression.addCoefficient(y[f][c], 1.0);
+                expression.addNewVariable(y[f][c], 1.0);
             }
             model.addEqualityConstraint(demandPerCustomer[c], expression);
         }
@@ -77,10 +78,9 @@ class FacilityLocationProblemTest {
         for (int f = 0; f < nmbFacilities; ++f) {
             final LinearExpression expression = new LinearExpression();
             for (int c = 0; c < nmbCustomers; ++c) {
-                expression.addCoefficient(y[f][c], 1.0);
+                expression.addNewVariable(y[f][c], 1.0);
             }
-            expression.addCoefficient(x[f], -totalDemand);
-            model.addLessThanOrEqualToConstraint(0.0, expression);
+            model.addLessThanOrEqualToConstraint(LinearExpression.of(new ExpressionCoefficient(x[f], totalDemand)), expression);
         }
 
         final Solution solution = model.minimize().orElseThrow();

@@ -3,6 +3,7 @@ package wrapper.model.examples;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import wrapper.model.Model;
+import wrapper.model.expression.ExpressionCoefficient;
 import wrapper.model.expression.LinearExpression;
 import wrapper.model.expression.LinearExpressionException;
 import wrapper.model.variable.Variable;
@@ -124,38 +125,37 @@ class NonLinearWorkloadBalancingProblemTest {
                 for (int m = 0; m < this.nmbMachines; ++m) {
                     final double ub = this.demandPerProduct[p] * this.qualificationPerProductPerMachine[p][m];
                     // The upper bound is used for qualification constraints.
-                    // For product p and machine m: x_{p,m} <= qualificationPerProductPerMachine_{p,m}.
-                    this.x[p][m] = this.model.addContinuousVariable(0D, ub, 0D);
+                    // For product p and machine m: x_{p,m} <= demandPerProduct_{p} * qualificationPerProductPerMachine_{p,m}.
+                    this.x[p][m] = this.model.addContinuousVariable(0.0, ub, 0.0);
                 }
             }
             for (int m = 0; m < this.nmbMachines; ++m) {
-                this.w[m] = this.model.addContinuousVariable(-Double.MAX_VALUE, Double.MAX_VALUE, 0D);
-                this.wl[m] = this.model.addContinuousVariable(0D, Double.MAX_VALUE, 1D);
+                this.w[m] = this.model.addContinuousVariable(-Double.MAX_VALUE, Double.MAX_VALUE, 0.0);
+                this.wl[m] = this.model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
             }
             // Workload computation constraints.
-            // For machine m: \sum_{p}(qualificationPerProductPerMachine_{p,m} * this.processTimePerProductPerMachine[p][m] * x_{p,m}) = capacityPerMachine_{m} w_{m}.
+            // For machine m: \sum_{p}(qualificationPerProductPerMachine_{p,m} * this.processTimePerProductPerMachine[p][m] * x_{p,m}) = capacityPerMachine_{m} * w_{m}.
             for (int m = 0; m < this.nmbMachines; ++m) {
                 final LinearExpression expression = new LinearExpression();
-                expression.addCoefficient(this.w[m], this.capacityPerMachine[m]);
                 for (int p = 0; p < this.nmbProducts; ++p) {
                     final double coefficient = this.qualificationPerProductPerMachine[p][m] * this.processTimePerProductPerMachine[p][m];
-                    expression.addCoefficient(this.x[p][m], -coefficient);
+                    expression.addNewVariable(this.x[p][m], coefficient);
                 }
-                this.model.addEqualityConstraint(0D, expression);
+                this.model.addEqualityConstraint(LinearExpression.of(new ExpressionCoefficient(this.w[m], this.capacityPerMachine[m])), expression);
             }
             // Demand satisfaction constraints.
-            // For product p: \sum_{p}(qualificationPerProductPerMachine_{p,m} *x_{p,m}) = demandPerProduct_{p}.
+            // For product p: \sum_{p}(qualificationPerProductPerMachine_{p,m} * x_{p,m}) = demandPerProduct_{p}.
             for (int p = 0; p < this.nmbProducts; ++p) {
                 final LinearExpression expression = new LinearExpression();
                 for (int m = 0; m < this.nmbMachines; ++m) {
-                    expression.addCoefficient(this.x[p][m], this.qualificationPerProductPerMachine[p][m]);
+                    expression.addNewVariable(this.x[p][m], this.qualificationPerProductPerMachine[p][m]);
                 }
                 this.model.addEqualityConstraint(this.demandPerProduct[p], expression);
             }
             // Linearization constraints.
-            for (double x0 = 0D; x0 <= 1D; x0 += 0.1D) {
+            for (double x0 = 0.0; x0 <= 1.0; x0 += 0.1) {
                 for (int m = 0; m < this.nmbMachines; ++m) {
-                    // For machine m: wl_{m} - exponent*x0^{exponent-1}w_{m} >= x0^{exponent}*(1 - exponent).
+                    // For machine m: wl_{m} >= exponent*x0^{exponent-1}w_{m} + x0^{exponent}*(1 - exponent).
                     addLinearizationConstraint(m, x0);
                 }
             }
@@ -169,10 +169,12 @@ class NonLinearWorkloadBalancingProblemTest {
         }
 
         private void addLinearizationConstraint(int m, double x0) throws LinearExpressionException {
-            final LinearExpression expression = new LinearExpression();
-            expression.addCoefficient(this.wl[m], 1D);
-            expression.addCoefficient(this.w[m], -this.balancingExponent * Math.pow(x0, this.balancingExponent - 1D));
-            this.model.addGreaterThanOrEqualToConstraint(Math.pow(x0, this.balancingExponent) * (1D - this.balancingExponent), expression);
+            double rhsConstant = Math.pow(x0, this.balancingExponent) * (1.0 - this.balancingExponent);
+            double rhsCoefficient = this.balancingExponent * Math.pow(x0, this.balancingExponent - 1.0);
+            this.model.addGreaterThanOrEqualToConstraint(
+                    LinearExpression.of(rhsConstant, new ExpressionCoefficient(this.w[m], rhsCoefficient)),
+                    LinearExpression.of(new ExpressionCoefficient(this.wl[m], 1.0))
+            );
         }
 
         private boolean isRelativeGapReached(final double objectiveValue, final double[] workload) {

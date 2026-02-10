@@ -146,4 +146,42 @@ class ModelSolveTest {
         assertEquals(1.0, secondSolution.getVariableValue(x3));
     }
 
+    @Test
+    void maximizeWithConstraintsUsingLinearExpressionsForBothSides() throws LinearExpressionException {
+        final Model model = new Model();
+        final Variable x1 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
+        final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
+        final Variable x3 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 1.0);
+        model.addEqualityConstraint(
+                LinearExpression.of(2.0, new ExpressionCoefficient(x3, 1.0)),
+                LinearExpression.of(new ExpressionCoefficient(x1, 3.0), new ExpressionCoefficient(x2, 1.0))
+        );
+        model.addLessThanOrEqualToConstraint(
+                LinearExpression.of(1.0),
+                LinearExpression.of(new ExpressionCoefficient(x1, 1.0), new ExpressionCoefficient(x2, 1.0))
+        );
+
+        final Solution solution = model.maximize().orElseThrow();
+
+        assertTrue(solution.isFeasible());
+        assertEquals(1.0, solution.getVariableValue(x3), EPSILON);
+    }
+
+    @Test
+    void minimizeWithConstraintsUsingLinearExpressionsForBothSides() throws LinearExpressionException {
+        final Model model = new Model();
+        final Variable x1 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
+        final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
+        model.addGreaterThanOrEqualToConstraint(
+                LinearExpression.of(10.0, new ExpressionCoefficient(x1, 1.0)),
+                LinearExpression.of(5.0, new ExpressionCoefficient(x2, 1.0))
+        );
+
+        final Solution solution = model.minimize().orElseThrow();
+
+        assertTrue(solution.isFeasible());
+        assertEquals(0.0, solution.getVariableValue(x1), EPSILON);
+        assertEquals(5.0, solution.getVariableValue(x2), EPSILON);
+    }
+
 }

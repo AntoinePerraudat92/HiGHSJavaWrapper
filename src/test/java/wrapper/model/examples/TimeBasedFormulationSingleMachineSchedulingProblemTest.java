@@ -46,7 +46,7 @@ class TimeBasedFormulationSingleMachineSchedulingProblemTest {
         for (int j = 0; j < nmbJobs; ++j) {
             final LinearExpression expression = new LinearExpression();
             for (int t = 0; t < nmbPeriods; ++t) {
-                expression.addCoefficient(x[j][t], 1.0);
+                expression.addNewVariable(x[j][t], 1.0);
             }
             model.addLessThanOrEqualToConstraint(1.0, expression);
         }
@@ -55,7 +55,7 @@ class TimeBasedFormulationSingleMachineSchedulingProblemTest {
             final LinearExpression expression = new LinearExpression();
             for (int j = 0; j < nmbJobs; ++j) {
                 for (int s = t; s < Math.min(nmbPeriods, t + processingTimePerJob[j] - 1); ++s) {
-                    expression.addCoefficient(x[j][s], 1.0);
+                    expression.addNewVariable(x[j][s], 1.0);
                 }
             }
             model.addLessThanOrEqualToConstraint(1.0, expression);

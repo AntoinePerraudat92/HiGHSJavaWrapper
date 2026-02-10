@@ -156,19 +156,22 @@ class ModelConstraintTest {
     void addConstraint() throws LinearExpressionException {
         final Model model = new Model();
         final LinearExpression expression = new LinearExpression();
-        expression.addCoefficient(model.addContinuousVariable(1.0, 2.0, 0.0), 1.0);
+        expression.addNewVariable(model.addContinuousVariable(1.0, 2.0, 0.0), 1.0);
 
         assertEquals(0, model.addLessThanOrEqualToConstraint(50.0, expression).index());
-        assertEquals(1, model.addEqualityConstraint(25.0, expression).index());
-        assertEquals(2, model.addGeneralConstraint(14.0, 25.0, expression).index());
-        assertEquals(3, model.addGreaterThanOrEqualToConstraint(1.9, expression).index());
+        assertEquals(1, model.addLessThanOrEqualToConstraint(LinearExpression.of(50.0), expression).index());
+        assertEquals(2, model.addEqualityConstraint(25.0, expression).index());
+        assertEquals(3, model.addEqualityConstraint(LinearExpression.of(25.0), expression).index());
+        assertEquals(4, model.addGeneralConstraint(14.0, 25.0, expression).index());
+        assertEquals(5, model.addGreaterThanOrEqualToConstraint(1.9, expression).index());
+        assertEquals(6, model.addGreaterThanOrEqualToConstraint(LinearExpression.of(1.9), expression).index());
     }
 
     @Test
     void addConstraintMustThrowIfLinearExpressionContainsUnknownVariable() throws LinearExpressionException {
         final Model model = new Model();
         final LinearExpression expression = new LinearExpression();
-        expression.addCoefficient(new Variable(0), 1.0);
+        expression.addNewVariable(new Variable(0), 1.0);
 
         final VariableException exception = assertThrows(VariableException.class, () -> model.addEqualityConstraint(2.4, expression));
         assertEquals("Variable with index 0 does not exist in the model", exception.getMessage());
