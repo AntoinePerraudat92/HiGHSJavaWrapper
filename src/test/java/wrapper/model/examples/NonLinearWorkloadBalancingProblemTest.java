@@ -169,8 +169,8 @@ class NonLinearWorkloadBalancingProblemTest {
         }
 
         private void addLinearizationConstraint(int m, double x0) throws LinearExpressionException {
-            double rhsConstant = Math.pow(x0, this.balancingExponent) * (1D - this.balancingExponent);
-            double rhsCoefficient = this.balancingExponent * Math.pow(x0, this.balancingExponent - 1D);
+            double rhsConstant = Math.pow(x0, this.balancingExponent) * (1.0 - this.balancingExponent);
+            double rhsCoefficient = this.balancingExponent * Math.pow(x0, this.balancingExponent - 1.0);
             this.model.addGreaterThanOrEqualToConstraint(
                     LinearExpression.of(rhsConstant, new ExpressionCoefficient(this.w[m], rhsCoefficient)),
                     LinearExpression.of(new ExpressionCoefficient(this.wl[m], 1.0))
