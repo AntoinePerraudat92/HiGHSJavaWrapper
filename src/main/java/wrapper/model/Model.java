@@ -5,7 +5,7 @@ import lombok.NonNull;
 import wrapper.model.constraint.Constraint;
 import wrapper.model.constraint.ConstraintException;
 import wrapper.model.constraint.ConstraintType;
-import wrapper.model.expression.ExpressionCoefficient;
+import wrapper.model.expression.ExpressionMember;
 import wrapper.model.expression.LinearExpression;
 import wrapper.model.option.*;
 import wrapper.model.variable.Variable;
@@ -74,11 +74,11 @@ public class Model {
         this.highs.changeColBounds(variable.index(), lb, ub);
     }
 
-    public void updateConstraintCoefficient(@NonNull final ExpressionCoefficient newCoefficient, @NonNull final Constraint constraint) throws ConstraintException {
+    public void updateConstraintCoefficient(@NonNull final ExpressionMember newMember, @NonNull final Constraint constraint) throws ConstraintException {
         checkConstraint(constraint);
-        final Variable variable = newCoefficient.variable();
+        final Variable variable = newMember.variable();
         checkVariable(variable);
-        this.highs.changeCoeff(constraint.index(), variable.index(), newCoefficient.value());
+        this.highs.changeCoeff(constraint.index(), variable.index(), newMember.coefficient());
     }
 
     public void updateConstraintRightHandSide(double rhs, @NonNull final Constraint constraint) throws ConstraintException {
@@ -208,22 +208,22 @@ public class Model {
     }
 
     private Constraint addConstraint(double lhs, double rhs, final LinearExpression linearExpression, final ConstraintType constraintType) {
-        class LinearExpressionCoefficientConsumer implements Consumer<ExpressionCoefficient> {
+        class LinearExpressionConsumer implements Consumer<ExpressionMember> {
 
             private final DoubleArray values;
             private final LongLongArray indices;
             private long index = 0;
 
-            LinearExpressionCoefficientConsumer(int nmbCoefficients) {
+            LinearExpressionConsumer(int nmbCoefficients) {
                 this.values = new DoubleArray(nmbCoefficients);
                 this.indices = new LongLongArray(nmbCoefficients);
             }
 
             @Override
-            public void accept(final ExpressionCoefficient expressionCoefficient) {
-                final Variable variable = expressionCoefficient.variable();
+            public void accept(final ExpressionMember expressionMember) {
+                final Variable variable = expressionMember.variable();
                 checkVariable(variable);
-                this.values.setitem(this.index, expressionCoefficient.value());
+                this.values.setitem(this.index, expressionMember.coefficient());
                 this.indices.setitem(this.index, variable.index());
                 ++this.index;
             }
@@ -231,7 +231,7 @@ public class Model {
         }
 
         final int nmbCoefficients = linearExpression.getNmbCoefficients();
-        final LinearExpressionCoefficientConsumer consumer = new LinearExpressionCoefficientConsumer(nmbCoefficients);
+        final LinearExpressionConsumer consumer = new LinearExpressionConsumer(nmbCoefficients);
         linearExpression.consumeExpression(consumer);
         this.highs.addRow(lhs, rhs, nmbCoefficients, consumer.indices.cast(), consumer.values.cast());
         return new Constraint(this.highs.getNumRow() - 1, constraintType);

@@ -2,7 +2,7 @@ package wrapper.model.examples;
 
 import org.junit.jupiter.api.Test;
 import wrapper.model.Model;
-import wrapper.model.expression.ExpressionCoefficient;
+import wrapper.model.expression.ExpressionMember;
 import wrapper.model.expression.LinearExpression;
 import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
@@ -79,7 +79,7 @@ class FacilityLocationProblemTest {
             for (int c = 0; c < nmbCustomers; ++c) {
                 expression.addVariable(y[f][c], 1.0);
             }
-            model.addLessThanOrEqualToConstraint(LinearExpression.of(new ExpressionCoefficient(x[f], totalDemand)), expression);
+            model.addLessThanOrEqualToConstraint(LinearExpression.of(new ExpressionMember(x[f], totalDemand)), expression);
         }
 
         final Solution solution = model.minimize().orElseThrow();

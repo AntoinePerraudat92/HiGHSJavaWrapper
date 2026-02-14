@@ -3,7 +3,7 @@ package wrapper.model.examples;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import wrapper.model.Model;
-import wrapper.model.expression.ExpressionCoefficient;
+import wrapper.model.expression.ExpressionMember;
 import wrapper.model.expression.LinearExpression;
 import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
@@ -140,7 +140,7 @@ class NonLinearWorkloadBalancingProblemTest {
                     final double coefficient = this.qualificationPerProductPerMachine[p][m] * this.processTimePerProductPerMachine[p][m];
                     expression.addVariable(this.x[p][m], coefficient);
                 }
-                this.model.addEqualityConstraint(LinearExpression.of(new ExpressionCoefficient(this.w[m], this.capacityPerMachine[m])), expression);
+                this.model.addEqualityConstraint(LinearExpression.of(new ExpressionMember(this.w[m], this.capacityPerMachine[m])), expression);
             }
             // Demand satisfaction constraints.
             // For product p: \sum_{p}(qualificationPerProductPerMachine_{p,m} * x_{p,m}) = demandPerProduct_{p}.
@@ -171,8 +171,8 @@ class NonLinearWorkloadBalancingProblemTest {
             double rhsConstant = Math.pow(x0, this.balancingExponent) * (1.0 - this.balancingExponent);
             double rhsCoefficient = this.balancingExponent * Math.pow(x0, this.balancingExponent - 1.0);
             this.model.addGreaterThanOrEqualToConstraint(
-                    LinearExpression.of(rhsConstant, new ExpressionCoefficient(this.w[m], rhsCoefficient)),
-                    LinearExpression.of(new ExpressionCoefficient(this.wl[m], 1.0))
+                    LinearExpression.of(rhsConstant, new ExpressionMember(this.w[m], rhsCoefficient)),
+                    LinearExpression.of(new ExpressionMember(this.wl[m], 1.0))
             );
         }
 
