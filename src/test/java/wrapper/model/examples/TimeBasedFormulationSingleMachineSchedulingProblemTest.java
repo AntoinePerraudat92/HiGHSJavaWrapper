@@ -3,7 +3,6 @@ package wrapper.model.examples;
 import org.junit.jupiter.api.Test;
 import wrapper.model.Model;
 import wrapper.model.expression.LinearExpression;
-import wrapper.model.expression.LinearExpressionException;
 import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
 
@@ -21,7 +20,7 @@ class TimeBasedFormulationSingleMachineSchedulingProblemTest {
     }
 
     @Test
-    void example() throws LinearExpressionException {
+    void example() {
         // Instance.
         final Random random = new Random(0);
         final int nmbJobs = 10;
@@ -46,7 +45,7 @@ class TimeBasedFormulationSingleMachineSchedulingProblemTest {
         for (int j = 0; j < nmbJobs; ++j) {
             final LinearExpression expression = new LinearExpression();
             for (int t = 0; t < nmbPeriods; ++t) {
-                expression.addNewVariable(x[j][t], 1.0);
+                expression.addVariable(x[j][t], 1.0);
             }
             model.addLessThanOrEqualToConstraint(1.0, expression);
         }
@@ -55,7 +54,7 @@ class TimeBasedFormulationSingleMachineSchedulingProblemTest {
             final LinearExpression expression = new LinearExpression();
             for (int j = 0; j < nmbJobs; ++j) {
                 for (int s = t; s < Math.min(nmbPeriods, t + processingTimePerJob[j] - 1); ++s) {
-                    expression.addNewVariable(x[j][s], 1.0);
+                    expression.addVariable(x[j][s], 1.0);
                 }
             }
             model.addLessThanOrEqualToConstraint(1.0, expression);

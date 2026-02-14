@@ -3,7 +3,6 @@ package wrapper.model;
 import org.junit.jupiter.api.Test;
 import wrapper.model.expression.ExpressionCoefficient;
 import wrapper.model.expression.LinearExpression;
-import wrapper.model.expression.LinearExpressionException;
 import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
 
@@ -42,7 +41,7 @@ class ModelSolveTest {
     }
 
     @Test
-    void maximizeWithSimpleConstraint() throws LinearExpressionException {
+    void maximizeWithSimpleConstraint() {
         final Model model = new Model();
         final LinearExpression linearExpression = LinearExpression.of(
                 new ExpressionCoefficient(model.addContinuousVariable(0.0, Double.MAX_VALUE, 5.5), 1.0),
@@ -57,7 +56,7 @@ class ModelSolveTest {
     }
 
     @Test
-    void maximizeWithThreeConstraints() throws LinearExpressionException {
+    void maximizeWithThreeConstraints() {
         final Model model = new Model();
         final Variable x1 = model.addContinuousVariable(0.0, 1.0, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, 12.0, 5.0);
@@ -72,7 +71,7 @@ class ModelSolveTest {
     }
 
     @Test
-    void maximizeWithBinaryVariables() throws LinearExpressionException {
+    void maximizeWithBinaryVariables() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.2);
         final Variable x2 = model.addBinaryVariable(1.3);
@@ -85,7 +84,7 @@ class ModelSolveTest {
     }
 
     @Test
-    void maximizeMustFailDueToInfeasibilityOnIntegralityConstraints() throws LinearExpressionException {
+    void maximizeMustFailDueToInfeasibilityOnIntegralityConstraints() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
@@ -97,7 +96,7 @@ class ModelSolveTest {
     }
 
     @Test
-    void binaryVariablesMustHaveTheExpectedValues() throws LinearExpressionException {
+    void binaryVariablesMustHaveTheExpectedValues() {
         final Model model = new Model();
         final Variable x1 = model.addIntegerVariable(0.0, 3.0, 2.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 8.0);
@@ -116,7 +115,7 @@ class ModelSolveTest {
     }
 
     @Test
-    void successiveCallsToSolverMustLeadToDifferentSolutions() throws LinearExpressionException {
+    void successiveCallsToSolverMustLeadToDifferentSolutions() {
         final Model model = new Model();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 2.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 1.0);
@@ -147,7 +146,7 @@ class ModelSolveTest {
     }
 
     @Test
-    void maximizeWithConstraintsUsingLinearExpressionsForBothSides() throws LinearExpressionException {
+    void maximizeWithConstraintsUsingLinearExpressionsForBothSides() {
         final Model model = new Model();
         final Variable x1 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
@@ -168,7 +167,7 @@ class ModelSolveTest {
     }
 
     @Test
-    void minimizeWithConstraintsUsingLinearExpressionsForBothSides() throws LinearExpressionException {
+    void minimizeWithConstraintsUsingLinearExpressionsForBothSides() {
         final Model model = new Model();
         final Variable x1 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);

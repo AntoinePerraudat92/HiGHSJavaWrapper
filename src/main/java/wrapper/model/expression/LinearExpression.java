@@ -23,14 +23,14 @@ public class LinearExpression {
         this.constant = constant;
     }
 
-    public static LinearExpression of(final ExpressionCoefficient... coefficients) throws LinearExpressionException {
+    public static LinearExpression of(final ExpressionCoefficient... coefficients) {
         return LinearExpression.of(0.0, coefficients);
     }
 
-    public static LinearExpression of(double constant, final ExpressionCoefficient... coefficients) throws LinearExpressionException {
+    public static LinearExpression of(double constant, final ExpressionCoefficient... coefficients) {
         final LinearExpression expression = new LinearExpression(constant);
         for (final ExpressionCoefficient coefficient : coefficients) {
-            expression.addNewVariable(coefficient.variable(), coefficient.value());
+            expression.addVariable(coefficient.variable(), coefficient.value());
         }
         return expression;
     }
@@ -39,15 +39,8 @@ public class LinearExpression {
         this.coefficients.values().forEach(consumer);
     }
 
-    public void addNewVariable(@NonNull final Variable variable, double coefficient) throws LinearExpressionException {
-        if (this.coefficients.containsKey(variable)) {
-            throw new LinearExpressionException(String.format("Variable with index %d is already in linear expression", variable.index()));
-        }
-        addVariable(variable, coefficient);
-    }
-
     public void addVariable(final Variable variable, double coefficient) {
-        this.coefficients.put(variable, new ExpressionCoefficient(variable, coefficient));
+        this.coefficients.putIfAbsent(variable, new ExpressionCoefficient(variable, coefficient));
     }
 
     public LinearExpression minus(@NonNull final LinearExpression otherExpression) {

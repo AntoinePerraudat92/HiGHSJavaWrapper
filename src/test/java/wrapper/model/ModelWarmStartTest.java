@@ -3,7 +3,6 @@ package wrapper.model;
 import org.junit.jupiter.api.Test;
 import wrapper.model.expression.ExpressionCoefficient;
 import wrapper.model.expression.LinearExpression;
-import wrapper.model.expression.LinearExpressionException;
 import wrapper.model.variable.Variable;
 import wrapper.model.variable.VariableException;
 import wrapper.solution.InitialSolution;
@@ -32,7 +31,7 @@ class ModelWarmStartTest {
     }
 
     @Test
-    void parseInitialSolutionMustReturnFalse() throws LinearExpressionException {
+    void parseInitialSolutionMustReturnFalse() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0)));
@@ -43,7 +42,7 @@ class ModelWarmStartTest {
     }
 
     @Test
-    void parseInitialSolutionMustReturnTrue() throws LinearExpressionException {
+    void parseInitialSolutionMustReturnTrue() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);

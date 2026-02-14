@@ -5,7 +5,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import wrapper.model.Model;
 import wrapper.model.expression.ExpressionCoefficient;
 import wrapper.model.expression.LinearExpression;
-import wrapper.model.expression.LinearExpressionException;
 import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
 
@@ -60,7 +59,7 @@ class NonLinearWorkloadBalancingProblemTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 4})
-    void example(final int balancingExponent) throws LinearExpressionException {
+    void example(final int balancingExponent) {
         final WorkloadBalancing workloadBalancing = new WorkloadBalancing(balancingExponent);
 
         final Solution solution = workloadBalancing.solve();
@@ -91,7 +90,7 @@ class NonLinearWorkloadBalancingProblemTest {
         private final Variable[] wl = new Variable[this.nmbMachines];
         private final double balancingExponent;
 
-        WorkloadBalancing(double balancingExponent) throws LinearExpressionException {
+        WorkloadBalancing(double balancingExponent) {
             this.balancingExponent = balancingExponent;
             createInstance();
             createModel();
@@ -120,7 +119,7 @@ class NonLinearWorkloadBalancingProblemTest {
             Arrays.fill(this.capacityPerMachine, (totalDemand * averageProcessTime) / (double) (this.nmbMachines));
         }
 
-        private void createModel() throws LinearExpressionException {
+        private void createModel() {
             for (int p = 0; p < this.nmbProducts; ++p) {
                 for (int m = 0; m < this.nmbMachines; ++m) {
                     final double ub = this.demandPerProduct[p] * this.qualificationPerProductPerMachine[p][m];
@@ -139,7 +138,7 @@ class NonLinearWorkloadBalancingProblemTest {
                 final LinearExpression expression = new LinearExpression();
                 for (int p = 0; p < this.nmbProducts; ++p) {
                     final double coefficient = this.qualificationPerProductPerMachine[p][m] * this.processTimePerProductPerMachine[p][m];
-                    expression.addNewVariable(this.x[p][m], coefficient);
+                    expression.addVariable(this.x[p][m], coefficient);
                 }
                 this.model.addEqualityConstraint(LinearExpression.of(new ExpressionCoefficient(this.w[m], this.capacityPerMachine[m])), expression);
             }
@@ -148,7 +147,7 @@ class NonLinearWorkloadBalancingProblemTest {
             for (int p = 0; p < this.nmbProducts; ++p) {
                 final LinearExpression expression = new LinearExpression();
                 for (int m = 0; m < this.nmbMachines; ++m) {
-                    expression.addNewVariable(this.x[p][m], this.qualificationPerProductPerMachine[p][m]);
+                    expression.addVariable(this.x[p][m], this.qualificationPerProductPerMachine[p][m]);
                 }
                 this.model.addEqualityConstraint(this.demandPerProduct[p], expression);
             }
@@ -161,14 +160,14 @@ class NonLinearWorkloadBalancingProblemTest {
             }
         }
 
-        private void addLinearizationConstraints(final double[] workload) throws LinearExpressionException {
+        private void addLinearizationConstraints(final double[] workload) {
             for (int m = 0; m < this.nmbMachines; ++m) {
                 final double x0 = workload[m];
                 addLinearizationConstraint(m, x0);
             }
         }
 
-        private void addLinearizationConstraint(int m, double x0) throws LinearExpressionException {
+        private void addLinearizationConstraint(int m, double x0) {
             double rhsConstant = Math.pow(x0, this.balancingExponent) * (1.0 - this.balancingExponent);
             double rhsCoefficient = this.balancingExponent * Math.pow(x0, this.balancingExponent - 1.0);
             this.model.addGreaterThanOrEqualToConstraint(
@@ -186,7 +185,7 @@ class NonLinearWorkloadBalancingProblemTest {
             return linearizedObjectiveValue <= RELATIVE_GAP_TARGET || objectiveValue <= RELATIVE_GAP_TARGET || gap <= RELATIVE_GAP_TARGET;
         }
 
-        public Solution solve() throws LinearExpressionException {
+        public Solution solve() {
             boolean isRelativeGapReached;
             Solution solution;
             do {
