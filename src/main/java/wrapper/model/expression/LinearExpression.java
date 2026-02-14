@@ -13,7 +13,7 @@ public class LinearExpression {
 
     @Getter
     private final double constant;
-    private final Map<Variable, ExpressionMember> coefficients = new HashMap<>();
+    private final Map<Variable, ExpressionMember> variables = new HashMap<>();
 
     public LinearExpression() {
         this(0.0);
@@ -36,27 +36,27 @@ public class LinearExpression {
     }
 
     public void consumeExpression(@NonNull final Consumer<ExpressionMember> consumer) {
-        this.coefficients.values().forEach(consumer);
+        this.variables.values().forEach(consumer);
     }
 
     public void addVariable(final Variable variable, double coefficient) {
-        this.coefficients.putIfAbsent(variable, new ExpressionMember(variable, coefficient));
+        this.variables.putIfAbsent(variable, new ExpressionMember(variable, coefficient));
     }
 
     public LinearExpression minus(@NonNull final LinearExpression otherExpression) {
         final LinearExpression newLinearExpression = new LinearExpression(constant - otherExpression.constant);
         consumeExpression(member -> newLinearExpression.addVariable(member.variable(), member.coefficient()));
-        for (final ExpressionMember member : otherExpression.coefficients.values()) {
+        for (final ExpressionMember member : otherExpression.variables.values()) {
             final Variable variable = member.variable();
             double coefficient = member.coefficient();
-            newLinearExpression.coefficients.computeIfPresent(variable, (_, otherMember) -> new ExpressionMember(variable, otherMember.coefficient() - coefficient));
-            newLinearExpression.coefficients.putIfAbsent(variable, new ExpressionMember(variable, -coefficient));
+            newLinearExpression.variables.computeIfPresent(variable, (_, otherMember) -> new ExpressionMember(variable, otherMember.coefficient() - coefficient));
+            newLinearExpression.variables.putIfAbsent(variable, new ExpressionMember(variable, -coefficient));
         }
         return newLinearExpression;
     }
 
     public int getNmbVariables() {
-        return this.coefficients.size();
+        return this.variables.size();
     }
 
 }
