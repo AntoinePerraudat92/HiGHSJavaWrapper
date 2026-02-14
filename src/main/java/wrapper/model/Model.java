@@ -178,9 +178,9 @@ public class Model {
             private final LongLongArray indices;
             private long index = 0;
 
-            InitialSolutionConsumer(int initialSolutionSize) {
-                this.values = new DoubleArray(initialSolutionSize);
-                this.indices = new LongLongArray(initialSolutionSize);
+            InitialSolutionConsumer(int nmbVariables) {
+                this.values = new DoubleArray(nmbVariables);
+                this.indices = new LongLongArray(nmbVariables);
             }
 
             @Override
