@@ -44,7 +44,7 @@ public class LinearExpression {
     }
 
     public LinearExpression minus(@NonNull final LinearExpression otherExpression) {
-        final LinearExpression newLinearExpression = new LinearExpression(constant - otherExpression.constant);
+        final LinearExpression newLinearExpression = new LinearExpression(this.constant - otherExpression.constant);
         consumeExpression(member -> newLinearExpression.addVariable(member.variable(), member.coefficient()));
         for (final ExpressionMember member : otherExpression.variables.values()) {
             final Variable variable = member.variable();

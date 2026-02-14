@@ -172,7 +172,6 @@ public class Model {
     }
 
     public boolean parseInitialSolution(@NonNull final InitialSolution initialSolution) {
-
         class InitialSolutionConsumer implements ObjDoubleConsumer<Variable> {
 
             private final DoubleArray values;
