@@ -12,12 +12,12 @@ import static wrapper.util.Constants.EPSILON;
 class LinearExpressionTest {
 
     @Test
-    void getNmbCoefficients() {
+    void getNmbVariables() {
         final LinearExpression linearExpression = new LinearExpression();
         linearExpression.addVariable(new Variable(4), 1.0);
         linearExpression.addVariable(new Variable(12), 0.5);
 
-        assertEquals(2, linearExpression.getNmbCoefficients());
+        assertEquals(2, linearExpression.getNmbVariables());
     }
 
     @Test

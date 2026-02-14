@@ -55,7 +55,7 @@ public class LinearExpression {
         return newLinearExpression;
     }
 
-    public int getNmbCoefficients() {
+    public int getNmbVariables() {
         return this.coefficients.size();
     }
 

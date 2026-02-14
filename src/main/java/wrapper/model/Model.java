@@ -230,10 +230,10 @@ public class Model {
 
         }
 
-        final int nmbCoefficients = linearExpression.getNmbCoefficients();
-        final LinearExpressionConsumer consumer = new LinearExpressionConsumer(nmbCoefficients);
+        final int nmbVariables = linearExpression.getNmbVariables();
+        final LinearExpressionConsumer consumer = new LinearExpressionConsumer(nmbVariables);
         linearExpression.consumeExpression(consumer);
-        this.highs.addRow(lhs, rhs, nmbCoefficients, consumer.indices.cast(), consumer.values.cast());
+        this.highs.addRow(lhs, rhs, nmbVariables, consumer.indices.cast(), consumer.values.cast());
         return new Constraint(this.highs.getNumRow() - 1, constraintType);
     }
 
