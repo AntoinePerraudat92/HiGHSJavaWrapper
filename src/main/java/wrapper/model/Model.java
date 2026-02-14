@@ -172,6 +172,11 @@ public class Model {
     }
 
     public boolean parseInitialSolution(@NonNull final InitialSolution initialSolution) {
+        final int nmbVariables = initialSolution.getNmbVariables();
+        if (nmbVariables < 1) {
+            return false;
+        }
+
         class InitialSolutionConsumer implements ObjDoubleConsumer<Variable> {
 
             private final DoubleArray values;
@@ -192,8 +197,7 @@ public class Model {
             }
 
         }
-
-        final int nmbVariables = initialSolution.getNmbVariables();
+        
         final InitialSolutionConsumer consumer = new InitialSolutionConsumer(nmbVariables);
         initialSolution.consumeSolution(consumer);
         return this.highs.setSolution(nmbVariables, consumer.indices.cast(), consumer.values.cast()) == HighsStatus.kOk;

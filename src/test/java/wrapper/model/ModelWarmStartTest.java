@@ -31,12 +31,23 @@ class ModelWarmStartTest {
     }
 
     @Test
-    void parseInitialSolutionMustReturnFalse() {
+    void parseInitialSolutionMustReturnFalseIfInvalidInitialValue() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(new ExpressionMember(x1, 1.0)));
 
         assertFalse(model.parseInitialSolution(InitialSolution.of(Map.of(x1, -1.0))));
+        final Solution solution = model.maximize().orElseThrow();
+        assertEquals(1.0, solution.getObjectiveValue(), EPSILON);
+    }
+
+    @Test
+    void parseInitialSolutionMustReturnFalseWhenInitialSolutionIsEmpty() {
+        final Model model = new Model();
+        final Variable x1 = model.addBinaryVariable(1.0);
+        model.addEqualityConstraint(1.0, LinearExpression.of(new ExpressionMember(x1, 1.0)));
+
+        assertFalse(model.parseInitialSolution(new InitialSolution()));
         final Solution solution = model.maximize().orElseThrow();
         assertEquals(1.0, solution.getObjectiveValue(), EPSILON);
     }
