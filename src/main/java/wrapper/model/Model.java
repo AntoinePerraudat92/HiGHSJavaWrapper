@@ -216,7 +216,7 @@ public class Model {
         private final LongLongArray indices;
         private long arrayIndex = 0;
 
-        VariableConsumer(int nmbVariables) {
+        public VariableConsumer(int nmbVariables) {
             this.values = new DoubleArray(nmbVariables);
             this.indices = new LongLongArray(nmbVariables);
         }
