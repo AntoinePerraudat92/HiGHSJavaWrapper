@@ -16,10 +16,8 @@ public class Solution {
 
     @NonNull
     private final HighsSolution highsSolution;
-
     @NonNull
     private final HighsModelStatus highsModelStatus;
-
     @Getter
     private final double objectiveValue;
 

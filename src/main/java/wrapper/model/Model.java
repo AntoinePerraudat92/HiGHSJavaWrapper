@@ -80,6 +80,9 @@ public class Model {
         this.highs.changeCoeff(constraint.index(), variable.index(), newMember.coefficient());
     }
 
+    /**
+     * Has no effect for general constraints. updateConstraintSides must be called instead.
+     */
     public void updateConstraintRightHandSide(double rhs, @NonNull final Constraint constraint) throws ConstraintException {
         switch (constraint.type()) {
             case EQUALITY -> {
@@ -95,13 +98,15 @@ public class Model {
                 this.highs.changeRowBounds(constraint.index(), -Double.MAX_VALUE, rhs);
             }
             case GENERAL -> {
-                // Has no effect for general constraints. updateConstraintSides must be called instead.
+                // No effect.
             }
         }
     }
 
+    /**
+     * Has no effect for non-general constraints. updateConstraintRightHandSide must be called instead.
+     */
     public void updateConstraintSides(double lhs, double rhs, @NonNull final Constraint constraint) throws ConstraintException {
-        // Has no effect for specific constraint types. updateConstraintRightHandSide must be called instead.
         if (constraint.type() == ConstraintType.GENERAL) {
             checkConstraint(constraint);
             this.highs.changeRowBounds(constraint.index(), lhs, rhs);
