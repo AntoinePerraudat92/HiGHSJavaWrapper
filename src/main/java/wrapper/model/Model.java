@@ -14,7 +14,6 @@ import wrapper.solution.InitialSolution;
 import wrapper.solution.Solution;
 
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.function.ObjDoubleConsumer;
 
 
@@ -172,34 +171,13 @@ public class Model {
     }
 
     public boolean parseInitialSolution(@NonNull final InitialSolution initialSolution) {
-        class InitialSolutionConsumer implements ObjDoubleConsumer<Variable> {
-
-            private final DoubleArray values;
-            private final LongLongArray indices;
-            private long index = 0;
-
-            InitialSolutionConsumer(int nmbVariables) {
-                this.values = new DoubleArray(nmbVariables);
-                this.indices = new LongLongArray(nmbVariables);
-            }
-
-            @Override
-            public void accept(final Variable variable, double initialValue) {
-                checkVariable(variable);
-                this.values.setitem(this.index, initialValue);
-                this.indices.setitem(this.index, variable.index());
-                ++this.index;
-            }
-
-        }
-
         final int nmbVariables = initialSolution.getNmbVariables();
         if (nmbVariables < 1) {
             return false;
         }
-        final InitialSolutionConsumer consumer = new InitialSolutionConsumer(nmbVariables);
-        initialSolution.consumeSolution(consumer);
-        return this.highs.setSolution(nmbVariables, consumer.indices.cast(), consumer.values.cast()) == HighsStatus.kOk;
+        final VariableConsumer variableConsumer = new VariableConsumer(nmbVariables);
+        initialSolution.consumeVariables(variableConsumer);
+        return this.highs.setSolution(nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()) == HighsStatus.kOk;
     }
 
     private Optional<Solution> solve() {
@@ -210,34 +188,13 @@ public class Model {
     }
 
     private Constraint addConstraint(double lhs, double rhs, final LinearExpression linearExpression, final ConstraintType constraintType) {
-        class LinearExpressionConsumer implements Consumer<ExpressionMember> {
-
-            private final DoubleArray values;
-            private final LongLongArray indices;
-            private long index = 0;
-
-            LinearExpressionConsumer(int nmbCoefficients) {
-                this.values = new DoubleArray(nmbCoefficients);
-                this.indices = new LongLongArray(nmbCoefficients);
-            }
-
-            @Override
-            public void accept(final ExpressionMember expressionMember) {
-                final Variable variable = expressionMember.variable();
-                checkVariable(variable);
-                this.values.setitem(this.index, expressionMember.coefficient());
-                this.indices.setitem(this.index, variable.index());
-                ++this.index;
-            }
-
-        }
         final int nmbVariables = linearExpression.getNmbVariables();
         if (nmbVariables < 1) {
             throw new VariableException("Linear expression has no variable");
         }
-        final LinearExpressionConsumer consumer = new LinearExpressionConsumer(nmbVariables);
-        linearExpression.consumeExpression(consumer);
-        this.highs.addRow(lhs, rhs, nmbVariables, consumer.indices.cast(), consumer.values.cast());
+        final VariableConsumer variableConsumer = new VariableConsumer(nmbVariables);
+        linearExpression.consumeVariables(variableConsumer);
+        this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
         return new Constraint(this.highs.getNumRow() - 1, constraintType);
     }
 
@@ -251,6 +208,27 @@ public class Model {
         if (constraint.index() >= this.highs.getNumRow()) {
             throw new ConstraintException(String.format("Constraint with index %d does not exist in the model", constraint.index()));
         }
+    }
+
+    private class VariableConsumer implements ObjDoubleConsumer<Variable> {
+
+        private final DoubleArray values;
+        private final LongLongArray indices;
+        private long arrayIndex = 0;
+
+        VariableConsumer(int nmbVariables) {
+            this.values = new DoubleArray(nmbVariables);
+            this.indices = new LongLongArray(nmbVariables);
+        }
+
+        @Override
+        public void accept(final Variable variable, double value) {
+            checkVariable(variable);
+            this.values.setitem(this.arrayIndex, value);
+            this.indices.setitem(this.arrayIndex, variable.index());
+            ++this.arrayIndex;
+        }
+
     }
 
 }

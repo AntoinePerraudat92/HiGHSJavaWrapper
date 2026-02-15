@@ -19,7 +19,7 @@ public class InitialSolution {
         return initialSolution;
     }
 
-    public void consumeSolution(@NonNull final ObjDoubleConsumer<Variable> consumer) {
+    public void consumeVariables(@NonNull final ObjDoubleConsumer<Variable> consumer) {
         this.initialValueByVariable.forEach(consumer::accept);
     }
 

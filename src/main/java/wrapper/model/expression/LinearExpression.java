@@ -6,7 +6,7 @@ import wrapper.model.variable.Variable;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
+import java.util.function.ObjDoubleConsumer;
 
 
 public class LinearExpression {
@@ -35,17 +35,17 @@ public class LinearExpression {
         return expression;
     }
 
-    public void consumeExpression(@NonNull final Consumer<ExpressionMember> consumer) {
-        this.variables.values().forEach(consumer);
+    public void consumeVariables(@NonNull final ObjDoubleConsumer<Variable> consumer) {
+        this.variables.values().forEach(expressionMember -> consumer.accept(expressionMember.variable(), expressionMember.coefficient()));
     }
 
-    public void addVariable(final Variable variable, double coefficient) {
+    public void addVariable(@NonNull final Variable variable, double coefficient) {
         this.variables.putIfAbsent(variable, new ExpressionMember(variable, coefficient));
     }
 
     public LinearExpression minus(@NonNull final LinearExpression otherExpression) {
         final LinearExpression newLinearExpression = new LinearExpression(this.constant - otherExpression.constant);
-        consumeExpression(member -> newLinearExpression.addVariable(member.variable(), member.coefficient()));
+        consumeVariables(newLinearExpression::addVariable);
         for (final ExpressionMember member : otherExpression.variables.values()) {
             final Variable variable = member.variable();
             double coefficient = member.coefficient();

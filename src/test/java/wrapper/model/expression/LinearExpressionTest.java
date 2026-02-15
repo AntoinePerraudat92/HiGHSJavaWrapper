@@ -32,7 +32,7 @@ class LinearExpressionTest {
         final LinearExpression expression = firstExpression.minus(secondExpression);
 
         final Map<Variable, Double> computedCoefficientByVariable = new HashMap<>();
-        expression.consumeExpression(member -> computedCoefficientByVariable.put(member.variable(), member.coefficient()));
+        expression.consumeVariables(computedCoefficientByVariable::put);
         assertEquals(Map.of(new Variable(0), -1.0, new Variable(1), 3.0, new Variable(4), -1.0), computedCoefficientByVariable);
         assertEquals(2.0, expression.getConstant(), EPSILON);
     }
