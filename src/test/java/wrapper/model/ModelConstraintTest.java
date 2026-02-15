@@ -176,4 +176,13 @@ class ModelConstraintTest {
         assertEquals("Variable with index 0 does not exist in the model", exception.getMessage());
     }
 
+    @Test
+    void addConstraintMustThrowIfLinearExpressionHasNoVariable() {
+        final Model model = new Model();
+        final LinearExpression expression = new LinearExpression();
+
+        final VariableException exception = assertThrows(VariableException.class, () -> model.addEqualityConstraint(18.3, expression));
+        assertEquals("Linear expression has no variable", exception.getMessage());
+    }
+
 }

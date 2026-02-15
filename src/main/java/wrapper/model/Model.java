@@ -172,11 +172,6 @@ public class Model {
     }
 
     public boolean parseInitialSolution(@NonNull final InitialSolution initialSolution) {
-        final int nmbVariables = initialSolution.getNmbVariables();
-        if (nmbVariables < 1) {
-            return false;
-        }
-
         class InitialSolutionConsumer implements ObjDoubleConsumer<Variable> {
 
             private final DoubleArray values;
@@ -197,7 +192,11 @@ public class Model {
             }
 
         }
-        
+
+        final int nmbVariables = initialSolution.getNmbVariables();
+        if (nmbVariables < 1) {
+            return false;
+        }
         final InitialSolutionConsumer consumer = new InitialSolutionConsumer(nmbVariables);
         initialSolution.consumeSolution(consumer);
         return this.highs.setSolution(nmbVariables, consumer.indices.cast(), consumer.values.cast()) == HighsStatus.kOk;
@@ -232,8 +231,10 @@ public class Model {
             }
 
         }
-
         final int nmbVariables = linearExpression.getNmbVariables();
+        if (nmbVariables < 1) {
+            throw new VariableException("Linear expression has no variable");
+        }
         final LinearExpressionConsumer consumer = new LinearExpressionConsumer(nmbVariables);
         linearExpression.consumeExpression(consumer);
         this.highs.addRow(lhs, rhs, nmbVariables, consumer.indices.cast(), consumer.values.cast());
