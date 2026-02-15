@@ -190,13 +190,13 @@ public class Model {
         return Optional.of(new Solution(this.highs.getSolution(), this.highs.getModelStatus(), this.highs.getObjectiveValue()));
     }
 
-    private Constraint addConstraint(double lhs, double rhs, final LinearExpression linearExpression, final ConstraintType constraintType) {
-        final int nmbVariables = linearExpression.getNmbVariables();
+    private Constraint addConstraint(double lhs, double rhs, final LinearExpression expression, final ConstraintType constraintType) {
+        final int nmbVariables = expression.getNmbVariables();
         if (nmbVariables < 1) {
             throw new VariableException("Linear expression has no variable");
         }
         final VariableConsumer variableConsumer = new VariableConsumer(nmbVariables);
-        linearExpression.consumeVariables(variableConsumer);
+        expression.consumeVariables(variableConsumer);
         this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
         return new Constraint(this.highs.getNumRow() - 1, constraintType);
     }
