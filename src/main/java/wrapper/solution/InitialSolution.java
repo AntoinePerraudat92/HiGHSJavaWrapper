@@ -23,8 +23,8 @@ public class InitialSolution {
         this.initialValueByVariable.forEach(consumer::accept);
     }
 
-    public void addVariable(@NonNull final Variable variable, double value) {
-        this.initialValueByVariable.putIfAbsent(variable, value);
+    public void addVariable(@NonNull final Variable variable, double initialValue) {
+        this.initialValueByVariable.putIfAbsent(variable, initialValue);
     }
 
     public int getNmbVariables() {
