@@ -5,13 +5,13 @@ import lombok.NonNull;
 import wrapper.model.constraint.Constraint;
 import wrapper.model.constraint.ConstraintException;
 import wrapper.model.constraint.ConstraintType;
-import wrapper.model.expression.ExpressionMember;
 import wrapper.model.expression.LinearExpression;
 import wrapper.model.option.*;
 import wrapper.model.variable.Variable;
 import wrapper.model.variable.VariableException;
 import wrapper.solution.InitialSolution;
 import wrapper.solution.Solution;
+import wrapper.util.Term;
 
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
@@ -73,11 +73,11 @@ public class Model {
         this.highs.changeColBounds(variable.index(), newLb, newUb);
     }
 
-    public void updateConstraintCoefficient(@NonNull final ExpressionMember newMember, @NonNull final Constraint constraint) throws ConstraintException {
+    public void updateConstraintCoefficient(@NonNull final Term newTerm, @NonNull final Constraint constraint) throws ConstraintException {
         checkConstraint(constraint);
-        final Variable variable = newMember.variable();
+        final Variable variable = newTerm.variable();
         checkVariable(variable);
-        this.highs.changeCoeff(constraint.index(), variable.index(), newMember.coefficient());
+        this.highs.changeCoeff(constraint.index(), variable.index(), newTerm.scalar());
     }
 
     /**

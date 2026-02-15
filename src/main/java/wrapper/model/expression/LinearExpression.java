@@ -3,6 +3,7 @@ package wrapper.model.expression;
 import lombok.Getter;
 import lombok.NonNull;
 import wrapper.model.variable.Variable;
+import wrapper.util.Term;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +14,7 @@ public class LinearExpression {
 
     @Getter
     private final double constant;
-    private final Map<Variable, ExpressionMember> variables = new HashMap<>();
+    private final Map<Variable, Term> terms = new HashMap<>();
 
     public LinearExpression() {
         this(0.0);
@@ -23,40 +24,40 @@ public class LinearExpression {
         this.constant = constant;
     }
 
-    public static LinearExpression of(final ExpressionMember... expressionMembers) {
-        return LinearExpression.of(0.0, expressionMembers);
+    public static LinearExpression of(final Term... terms) {
+        return LinearExpression.of(0.0, terms);
     }
 
-    public static LinearExpression of(double constant, final ExpressionMember... expressionMembers) {
+    public static LinearExpression of(double constant, final Term... terms) {
         final LinearExpression expression = new LinearExpression(constant);
-        for (final ExpressionMember expressionMember : expressionMembers) {
-            expression.addVariable(expressionMember.variable(), expressionMember.coefficient());
+        for (final Term term : terms) {
+            expression.addVariable(term.variable(), term.scalar());
         }
         return expression;
     }
 
     public void consumeVariables(@NonNull final ObjDoubleConsumer<Variable> consumer) {
-        this.variables.values().forEach(expressionMember -> consumer.accept(expressionMember.variable(), expressionMember.coefficient()));
+        this.terms.values().forEach(term -> consumer.accept(term.variable(), term.scalar()));
     }
 
     public void addVariable(@NonNull final Variable variable, double coefficient) {
-        this.variables.putIfAbsent(variable, new ExpressionMember(variable, coefficient));
+        this.terms.putIfAbsent(variable, new Term(variable, coefficient));
     }
 
     public LinearExpression minus(@NonNull final LinearExpression otherExpression) {
         final LinearExpression newLinearExpression = new LinearExpression(this.constant - otherExpression.constant);
         consumeVariables(newLinearExpression::addVariable);
-        for (final ExpressionMember member : otherExpression.variables.values()) {
-            final Variable variable = member.variable();
-            double coefficient = member.coefficient();
-            newLinearExpression.variables.computeIfPresent(variable, (_, otherMember) -> new ExpressionMember(variable, otherMember.coefficient() - coefficient));
-            newLinearExpression.variables.putIfAbsent(variable, new ExpressionMember(variable, -coefficient));
+        for (final Term term : otherExpression.terms.values()) {
+            final Variable variable = term.variable();
+            double coefficient = term.scalar();
+            newLinearExpression.terms.computeIfPresent(variable, (_, otherTerm) -> new Term(variable, otherTerm.scalar() - coefficient));
+            newLinearExpression.terms.putIfAbsent(variable, new Term(variable, -coefficient));
         }
         return newLinearExpression;
     }
 
     public int getNmbVariables() {
-        return this.variables.size();
+        return this.terms.size();
     }
 
 }
