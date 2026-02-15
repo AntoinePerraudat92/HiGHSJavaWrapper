@@ -68,9 +68,9 @@ public class Model {
         this.highs.changeColCost(variable.index(), newCost);
     }
 
-    public void updateVariableBounds(double lb, double ub, @NonNull final Variable variable) {
+    public void updateVariableBounds(double newLb, double newUb, @NonNull final Variable variable) {
         checkVariable(variable);
-        this.highs.changeColBounds(variable.index(), lb, ub);
+        this.highs.changeColBounds(variable.index(), newLb, newUb);
     }
 
     public void updateConstraintCoefficient(@NonNull final ExpressionMember newMember, @NonNull final Constraint constraint) throws ConstraintException {
