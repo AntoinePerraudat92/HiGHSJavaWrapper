@@ -1,9 +1,8 @@
 package wrapper.model;
 
 import org.junit.jupiter.api.Test;
-import wrapper.model.expression.ExpressionCoefficient;
+import wrapper.model.expression.ExpressionMember;
 import wrapper.model.expression.LinearExpression;
-import wrapper.model.expression.LinearExpressionException;
 import wrapper.model.variable.Variable;
 import wrapper.model.variable.VariableException;
 import wrapper.solution.InitialSolution;
@@ -32,10 +31,10 @@ class ModelWarmStartTest {
     }
 
     @Test
-    void parseInitialSolutionMustReturnFalse() throws LinearExpressionException {
+    void parseInitialSolutionMustReturnFalseIfInvalidInitialValue() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
-        model.addEqualityConstraint(1.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0)));
+        model.addEqualityConstraint(1.0, LinearExpression.of(new ExpressionMember(x1, 1.0)));
 
         assertFalse(model.parseInitialSolution(InitialSolution.of(Map.of(x1, -1.0))));
         final Solution solution = model.maximize().orElseThrow();
@@ -43,15 +42,26 @@ class ModelWarmStartTest {
     }
 
     @Test
-    void parseInitialSolutionMustReturnTrue() throws LinearExpressionException {
+    void parseInitialSolutionMustReturnFalseWhenInitialSolutionIsEmpty() {
+        final Model model = new Model();
+        final Variable x1 = model.addBinaryVariable(1.0);
+        model.addEqualityConstraint(1.0, LinearExpression.of(new ExpressionMember(x1, 1.0)));
+
+        assertFalse(model.parseInitialSolution(new InitialSolution()));
+        final Solution solution = model.maximize().orElseThrow();
+        assertEquals(1.0, solution.getObjectiveValue(), EPSILON);
+    }
+
+    @Test
+    void parseInitialSolutionMustReturnTrue() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
         final Variable x3 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(
-                new ExpressionCoefficient(x1, 1.0),
-                new ExpressionCoefficient(x2, 1.0),
-                new ExpressionCoefficient(x3, 1.0)
+                new ExpressionMember(x1, 1.0),
+                new ExpressionMember(x2, 1.0),
+                new ExpressionMember(x3, 1.0)
         ));
 
         assertTrue(model.parseInitialSolution(InitialSolution.of(Map.of(x1, 1.0, x2, 0.0, x3, 0.0))));

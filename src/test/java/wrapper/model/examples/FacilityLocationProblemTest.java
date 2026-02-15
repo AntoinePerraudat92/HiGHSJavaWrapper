@@ -2,9 +2,8 @@ package wrapper.model.examples;
 
 import org.junit.jupiter.api.Test;
 import wrapper.model.Model;
-import wrapper.model.expression.ExpressionCoefficient;
+import wrapper.model.expression.ExpressionMember;
 import wrapper.model.expression.LinearExpression;
-import wrapper.model.expression.LinearExpressionException;
 import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
 
@@ -23,7 +22,7 @@ class FacilityLocationProblemTest {
     }
 
     @Test
-    void example() throws LinearExpressionException {
+    void example() {
         // Instance.
         final Random random = new Random(0);
         final int nmbFacilities = 5;
@@ -60,7 +59,7 @@ class FacilityLocationProblemTest {
         for (int f = 0; f < nmbFacilities; ++f) {
             final LinearExpression expression = new LinearExpression();
             for (int c = 0; c < nmbCustomers; ++c) {
-                expression.addNewVariable(y[f][c], 1.0);
+                expression.addVariable(y[f][c], 1.0);
             }
             model.addLessThanOrEqualToConstraint(capacityPerFacility[f], expression);
         }
@@ -69,7 +68,7 @@ class FacilityLocationProblemTest {
         for (int c = 0; c < nmbCustomers; ++c) {
             final LinearExpression expression = new LinearExpression();
             for (int f = 0; f < nmbFacilities; ++f) {
-                expression.addNewVariable(y[f][c], 1.0);
+                expression.addVariable(y[f][c], 1.0);
             }
             model.addEqualityConstraint(demandPerCustomer[c], expression);
         }
@@ -78,9 +77,9 @@ class FacilityLocationProblemTest {
         for (int f = 0; f < nmbFacilities; ++f) {
             final LinearExpression expression = new LinearExpression();
             for (int c = 0; c < nmbCustomers; ++c) {
-                expression.addNewVariable(y[f][c], 1.0);
+                expression.addVariable(y[f][c], 1.0);
             }
-            model.addLessThanOrEqualToConstraint(LinearExpression.of(new ExpressionCoefficient(x[f], totalDemand)), expression);
+            model.addLessThanOrEqualToConstraint(LinearExpression.of(new ExpressionMember(x[f], totalDemand)), expression);
         }
 
         final Solution solution = model.minimize().orElseThrow();

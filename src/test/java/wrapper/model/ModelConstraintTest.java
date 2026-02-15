@@ -4,9 +4,8 @@ import org.junit.jupiter.api.Test;
 import wrapper.model.constraint.Constraint;
 import wrapper.model.constraint.ConstraintException;
 import wrapper.model.constraint.ConstraintType;
-import wrapper.model.expression.ExpressionCoefficient;
+import wrapper.model.expression.ExpressionMember;
 import wrapper.model.expression.LinearExpression;
-import wrapper.model.expression.LinearExpressionException;
 import wrapper.model.variable.Variable;
 import wrapper.model.variable.VariableException;
 import wrapper.solution.Solution;
@@ -23,29 +22,29 @@ class ModelConstraintTest {
     }
 
     @Test
-    void updateConstraintCoefficient() throws ConstraintException, LinearExpressionException {
+    void updateConstraintCoefficient() throws ConstraintException {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
-        final Constraint constraint = model.addLessThanOrEqualToConstraint(1.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0)));
+        final Constraint constraint = model.addLessThanOrEqualToConstraint(1.0, LinearExpression.of(new ExpressionMember(x1, 1.0)));
 
         final Solution firstSolution = model.maximize().orElseThrow();
         assertEquals(2.0, firstSolution.getObjectiveValue(), EPSILON);
 
-        model.updateConstraintCoefficient(new ExpressionCoefficient(x2, 1.0), constraint);
+        model.updateConstraintCoefficient(new ExpressionMember(x2, 1.0), constraint);
 
         final Solution secondSolution = model.maximize().orElseThrow();
         assertEquals(1.0, secondSolution.getObjectiveValue(), EPSILON);
     }
 
     @Test
-    void updateConstraintCoefficientMustThrowForUnknownVariable() throws LinearExpressionException {
+    void updateConstraintCoefficientMustThrowForUnknownVariable() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
-        final Constraint constraint = model.addLessThanOrEqualToConstraint(4.0, LinearExpression.of(new ExpressionCoefficient(x1, 0.5)));
-        final ExpressionCoefficient newExpressionCoefficient = new ExpressionCoefficient(new Variable(12), 0.5);
+        final Constraint constraint = model.addLessThanOrEqualToConstraint(4.0, LinearExpression.of(new ExpressionMember(x1, 0.5)));
+        final ExpressionMember newExpressionMember = new ExpressionMember(new Variable(12), 0.5);
 
-        final VariableException exception = assertThrows(VariableException.class, () -> model.updateConstraintCoefficient(newExpressionCoefficient, constraint));
+        final VariableException exception = assertThrows(VariableException.class, () -> model.updateConstraintCoefficient(newExpressionMember, constraint));
         assertEquals("Variable with index 12 does not exist in the model", exception.getMessage());
     }
 
@@ -54,16 +53,16 @@ class ModelConstraintTest {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
 
-        final ConstraintException exception = assertThrows(ConstraintException.class, () -> model.updateConstraintCoefficient(new ExpressionCoefficient(x1, 0.5), new Constraint(0, ConstraintType.EQUALITY)));
+        final ConstraintException exception = assertThrows(ConstraintException.class, () -> model.updateConstraintCoefficient(new ExpressionMember(x1, 0.5), new Constraint(0, ConstraintType.EQUALITY)));
         assertEquals("Constraint with index 0 does not exist in the model", exception.getMessage());
     }
 
     @Test
-    void updateConstraintRightHandSideForEqualityConstraint() throws ConstraintException, LinearExpressionException {
+    void updateConstraintRightHandSideForEqualityConstraint() throws ConstraintException {
         final Model model = new Model();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addEqualityConstraint(1.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0), new ExpressionCoefficient(x2, 1.0)));
+        final Constraint constraint = model.addEqualityConstraint(1.0, LinearExpression.of(new ExpressionMember(x1, 1.0), new ExpressionMember(x2, 1.0)));
         model.updateConstraintRightHandSide(18.0, constraint);
 
         final Solution solution = model.maximize().orElseThrow();
@@ -72,11 +71,11 @@ class ModelConstraintTest {
     }
 
     @Test
-    void updateConstraintRightHandSideMustNotHaveEffectForGeneralConstraint() throws ConstraintException, LinearExpressionException {
+    void updateConstraintRightHandSideMustNotHaveEffectForGeneralConstraint() throws ConstraintException {
         final Model model = new Model();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addGeneralConstraint(0.0, 30.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0), new ExpressionCoefficient(x2, 1.0)));
+        final Constraint constraint = model.addGeneralConstraint(0.0, 30.0, LinearExpression.of(new ExpressionMember(x1, 1.0), new ExpressionMember(x2, 1.0)));
         model.updateConstraintRightHandSide(10.0, constraint);
 
         final Solution solution = model.maximize().orElseThrow();
@@ -93,11 +92,11 @@ class ModelConstraintTest {
     }
 
     @Test
-    void updateConstraintSides() throws ConstraintException, LinearExpressionException {
+    void updateConstraintSides() throws ConstraintException {
         final Model model = new Model();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addGeneralConstraint(12.0, 16.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0), new ExpressionCoefficient(x2, 1.0)));
+        final Constraint constraint = model.addGeneralConstraint(12.0, 16.0, LinearExpression.of(new ExpressionMember(x1, 1.0), new ExpressionMember(x2, 1.0)));
         model.updateConstraintSides(15.0, 16.0, constraint);
 
         final Solution solution = model.minimize().orElseThrow();
@@ -106,11 +105,11 @@ class ModelConstraintTest {
     }
 
     @Test
-    void updateConstraintSidesMustNotHaveEffectForEqualityConstraint() throws ConstraintException, LinearExpressionException {
+    void updateConstraintSidesMustNotHaveEffectForEqualityConstraint() throws ConstraintException {
         final Model model = new Model();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addEqualityConstraint(1.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0), new ExpressionCoefficient(x2, 1.0)));
+        final Constraint constraint = model.addEqualityConstraint(1.0, LinearExpression.of(new ExpressionMember(x1, 1.0), new ExpressionMember(x2, 1.0)));
         model.updateConstraintSides(0.0, 2.0, constraint);
 
         final Solution solution = model.maximize().orElseThrow();
@@ -127,11 +126,11 @@ class ModelConstraintTest {
     }
 
     @Test
-    void updateConstraintRightHandSideForLessThanOrEqualToConstraint() throws ConstraintException, LinearExpressionException {
+    void updateConstraintRightHandSideForLessThanOrEqualToConstraint() throws ConstraintException {
         final Model model = new Model();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addLessThanOrEqualToConstraint(10.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0), new ExpressionCoefficient(x2, 1.0)));
+        final Constraint constraint = model.addLessThanOrEqualToConstraint(10.0, LinearExpression.of(new ExpressionMember(x1, 1.0), new ExpressionMember(x2, 1.0)));
         model.updateConstraintRightHandSide(37.0, constraint);
 
         final Solution solution = model.maximize().orElseThrow();
@@ -140,11 +139,11 @@ class ModelConstraintTest {
     }
 
     @Test
-    void updateConstraintRightHandSideForGreaterThanOrEqualToConstraint() throws ConstraintException, LinearExpressionException {
+    void updateConstraintRightHandSideForGreaterThanOrEqualToConstraint() throws ConstraintException {
         final Model model = new Model();
         final Variable x1 = model.addIntegerVariable(12.0, Double.MAX_VALUE, 2.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addGreaterThanOrEqualToConstraint(20.0, LinearExpression.of(new ExpressionCoefficient(x1, 1.0), new ExpressionCoefficient(x2, 1.0)));
+        final Constraint constraint = model.addGreaterThanOrEqualToConstraint(20.0, LinearExpression.of(new ExpressionMember(x1, 1.0), new ExpressionMember(x2, 1.0)));
         model.updateConstraintRightHandSide(12.0, constraint);
 
         final Solution solution = model.minimize().orElseThrow();
@@ -153,10 +152,10 @@ class ModelConstraintTest {
     }
 
     @Test
-    void addConstraint() throws LinearExpressionException {
+    void addConstraint() {
         final Model model = new Model();
         final LinearExpression expression = new LinearExpression();
-        expression.addNewVariable(model.addContinuousVariable(1.0, 2.0, 0.0), 1.0);
+        expression.addVariable(model.addContinuousVariable(1.0, 2.0, 0.0), 1.0);
 
         assertEquals(0, model.addLessThanOrEqualToConstraint(50.0, expression).index());
         assertEquals(1, model.addLessThanOrEqualToConstraint(LinearExpression.of(50.0), expression).index());
@@ -168,13 +167,22 @@ class ModelConstraintTest {
     }
 
     @Test
-    void addConstraintMustThrowIfLinearExpressionContainsUnknownVariable() throws LinearExpressionException {
+    void addConstraintMustThrowIfLinearExpressionContainsUnknownVariable() {
         final Model model = new Model();
         final LinearExpression expression = new LinearExpression();
-        expression.addNewVariable(new Variable(0), 1.0);
+        expression.addVariable(new Variable(0), 1.0);
 
         final VariableException exception = assertThrows(VariableException.class, () -> model.addEqualityConstraint(2.4, expression));
         assertEquals("Variable with index 0 does not exist in the model", exception.getMessage());
+    }
+
+    @Test
+    void addConstraintMustThrowIfLinearExpressionHasNoVariable() {
+        final Model model = new Model();
+        final LinearExpression expression = new LinearExpression();
+
+        final VariableException exception = assertThrows(VariableException.class, () -> model.addEqualityConstraint(18.3, expression));
+        assertEquals("Linear expression has no variable", exception.getMessage());
     }
 
 }

@@ -3,7 +3,6 @@ package wrapper.model.examples;
 import org.junit.jupiter.api.Test;
 import wrapper.model.Model;
 import wrapper.model.expression.LinearExpression;
-import wrapper.model.expression.LinearExpressionException;
 import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
 
@@ -19,7 +18,7 @@ class KnapsackProblemTest {
     }
 
     @Test
-    void example() throws LinearExpressionException {
+    void example() {
         // Instance.
         final int nmbItems = 5;
         final int capacity = 50;
@@ -35,7 +34,7 @@ class KnapsackProblemTest {
         // Knapsack capacity constraint: \sum_{i}x_{i} <= capacity.
         final LinearExpression capacityExpression = new LinearExpression();
         for (int i = 0; i < nmbItems; ++i) {
-            capacityExpression.addNewVariable(x[i], weights[i]);
+            capacityExpression.addVariable(x[i], weights[i]);
         }
         model.addLessThanOrEqualToConstraint(capacity, capacityExpression);
 

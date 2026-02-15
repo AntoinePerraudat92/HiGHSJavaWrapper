@@ -5,7 +5,7 @@ import lombok.NonNull;
 import wrapper.model.constraint.Constraint;
 import wrapper.model.constraint.ConstraintException;
 import wrapper.model.constraint.ConstraintType;
-import wrapper.model.expression.ExpressionCoefficient;
+import wrapper.model.expression.ExpressionMember;
 import wrapper.model.expression.LinearExpression;
 import wrapper.model.option.*;
 import wrapper.model.variable.Variable;
@@ -14,7 +14,6 @@ import wrapper.solution.InitialSolution;
 import wrapper.solution.Solution;
 
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.function.ObjDoubleConsumer;
 
 
@@ -74,11 +73,11 @@ public class Model {
         this.highs.changeColBounds(variable.index(), lb, ub);
     }
 
-    public void updateConstraintCoefficient(@NonNull final ExpressionCoefficient newCoefficient, @NonNull final Constraint constraint) throws ConstraintException {
+    public void updateConstraintCoefficient(@NonNull final ExpressionMember newMember, @NonNull final Constraint constraint) throws ConstraintException {
         checkConstraint(constraint);
-        final Variable variable = newCoefficient.variable();
+        final Variable variable = newMember.variable();
         checkVariable(variable);
-        this.highs.changeCoeff(constraint.index(), variable.index(), newCoefficient.value());
+        this.highs.changeCoeff(constraint.index(), variable.index(), newMember.coefficient());
     }
 
     public void updateConstraintRightHandSide(double rhs, @NonNull final Constraint constraint) throws ConstraintException {
@@ -172,32 +171,13 @@ public class Model {
     }
 
     public boolean parseInitialSolution(@NonNull final InitialSolution initialSolution) {
-
-        class InitialSolutionConsumer implements ObjDoubleConsumer<Variable> {
-
-            private final DoubleArray values;
-            private final LongLongArray indices;
-            private long index = 0;
-
-            InitialSolutionConsumer(int initialSolutionSize) {
-                this.values = new DoubleArray(initialSolutionSize);
-                this.indices = new LongLongArray(initialSolutionSize);
-            }
-
-            @Override
-            public void accept(final Variable variable, double initialValue) {
-                checkVariable(variable);
-                this.values.setitem(this.index, initialValue);
-                this.indices.setitem(this.index, variable.index());
-                ++this.index;
-            }
-
-        }
-
         final int nmbVariables = initialSolution.getNmbVariables();
-        final InitialSolutionConsumer consumer = new InitialSolutionConsumer(nmbVariables);
-        initialSolution.consumeSolution(consumer);
-        return this.highs.setSolution(nmbVariables, consumer.indices.cast(), consumer.values.cast()) == HighsStatus.kOk;
+        if (nmbVariables < 1) {
+            return false;
+        }
+        final VariableConsumer variableConsumer = new VariableConsumer(nmbVariables);
+        initialSolution.consumeVariables(variableConsumer);
+        return this.highs.setSolution(nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()) == HighsStatus.kOk;
     }
 
     private Optional<Solution> solve() {
@@ -208,32 +188,13 @@ public class Model {
     }
 
     private Constraint addConstraint(double lhs, double rhs, final LinearExpression linearExpression, final ConstraintType constraintType) {
-        class LinearExpressionCoefficientConsumer implements Consumer<ExpressionCoefficient> {
-
-            private final DoubleArray values;
-            private final LongLongArray indices;
-            private long index = 0;
-
-            LinearExpressionCoefficientConsumer(int nmbCoefficients) {
-                this.values = new DoubleArray(nmbCoefficients);
-                this.indices = new LongLongArray(nmbCoefficients);
-            }
-
-            @Override
-            public void accept(final ExpressionCoefficient expressionCoefficient) {
-                final Variable variable = expressionCoefficient.variable();
-                checkVariable(variable);
-                this.values.setitem(this.index, expressionCoefficient.value());
-                this.indices.setitem(this.index, variable.index());
-                ++this.index;
-            }
-
+        final int nmbVariables = linearExpression.getNmbVariables();
+        if (nmbVariables < 1) {
+            throw new VariableException("Linear expression has no variable");
         }
-
-        final int nmbCoefficients = linearExpression.getNmbCoefficients();
-        final LinearExpressionCoefficientConsumer consumer = new LinearExpressionCoefficientConsumer(nmbCoefficients);
-        linearExpression.consumeExpression(consumer);
-        this.highs.addRow(lhs, rhs, nmbCoefficients, consumer.indices.cast(), consumer.values.cast());
+        final VariableConsumer variableConsumer = new VariableConsumer(nmbVariables);
+        linearExpression.consumeVariables(variableConsumer);
+        this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
         return new Constraint(this.highs.getNumRow() - 1, constraintType);
     }
 
@@ -247,6 +208,27 @@ public class Model {
         if (constraint.index() >= this.highs.getNumRow()) {
             throw new ConstraintException(String.format("Constraint with index %d does not exist in the model", constraint.index()));
         }
+    }
+
+    private class VariableConsumer implements ObjDoubleConsumer<Variable> {
+
+        private final DoubleArray values;
+        private final LongLongArray indices;
+        private long arrayIndex = 0;
+
+        public VariableConsumer(int nmbVariables) {
+            this.values = new DoubleArray(nmbVariables);
+            this.indices = new LongLongArray(nmbVariables);
+        }
+
+        @Override
+        public void accept(final Variable variable, double value) {
+            checkVariable(variable);
+            this.values.setitem(this.arrayIndex, value);
+            this.indices.setitem(this.arrayIndex, variable.index());
+            ++this.arrayIndex;
+        }
+
     }
 
 }
