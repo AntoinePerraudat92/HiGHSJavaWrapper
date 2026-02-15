@@ -11,7 +11,6 @@ import wrapper.model.variable.Variable;
 import wrapper.model.variable.VariableException;
 import wrapper.solution.InitialSolution;
 import wrapper.solution.Solution;
-import wrapper.util.Term;
 
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
@@ -73,11 +72,10 @@ public class Model {
         this.highs.changeColBounds(variable.index(), newLb, newUb);
     }
 
-    public void updateConstraintCoefficient(@NonNull final Term newTerm, @NonNull final Constraint constraint) throws ConstraintException {
+    public void updateConstraintCoefficient(double newCoefficient, @NonNull final Variable variable, @NonNull final Constraint constraint) throws ConstraintException {
         checkConstraint(constraint);
-        final Variable variable = newTerm.variable();
         checkVariable(variable);
-        this.highs.changeCoeff(constraint.index(), variable.index(), newTerm.scalar());
+        this.highs.changeCoeff(constraint.index(), variable.index(), newCoefficient);
     }
 
     /**
@@ -192,13 +190,13 @@ public class Model {
         return Optional.of(new Solution(this.highs.getSolution(), this.highs.getModelStatus(), this.highs.getObjectiveValue()));
     }
 
-    private Constraint addConstraint(double lhs, double rhs, final LinearExpression linearExpression, final ConstraintType constraintType) {
-        final int nmbVariables = linearExpression.getNmbVariables();
+    private Constraint addConstraint(double lhs, double rhs, final LinearExpression expression, final ConstraintType constraintType) {
+        final int nmbVariables = expression.getNmbVariables();
         if (nmbVariables < 1) {
             throw new VariableException("Linear expression has no variable");
         }
         final VariableConsumer variableConsumer = new VariableConsumer(nmbVariables);
-        linearExpression.consumeVariables(variableConsumer);
+        expression.consumeVariables(variableConsumer);
         this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
         return new Constraint(this.highs.getNumRow() - 1, constraintType);
     }

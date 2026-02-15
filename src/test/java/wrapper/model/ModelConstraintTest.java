@@ -31,7 +31,7 @@ class ModelConstraintTest {
         final Solution firstSolution = model.maximize().orElseThrow();
         assertEquals(2.0, firstSolution.getObjectiveValue(), EPSILON);
 
-        model.updateConstraintCoefficient(new Term(x2, 1.0), constraint);
+        model.updateConstraintCoefficient(1.0, x2, constraint);
 
         final Solution secondSolution = model.maximize().orElseThrow();
         assertEquals(1.0, secondSolution.getObjectiveValue(), EPSILON);
@@ -42,9 +42,9 @@ class ModelConstraintTest {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Constraint constraint = model.addLessThanOrEqualToConstraint(4.0, LinearExpression.of(new Term(x1, 0.5)));
-        final Term newTerm = new Term(new Variable(12), 0.5);
+        final Variable unknownVariable = new Variable(12);
 
-        final VariableException exception = assertThrows(VariableException.class, () -> model.updateConstraintCoefficient(newTerm, constraint));
+        final VariableException exception = assertThrows(VariableException.class, () -> model.updateConstraintCoefficient(0.5, unknownVariable, constraint));
         assertEquals("Variable with index 12 does not exist in the model", exception.getMessage());
     }
 
@@ -52,8 +52,9 @@ class ModelConstraintTest {
     void updateConstraintCoefficientMustThrowForUnknownConstraint() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
+        final Constraint unknownConstraint = new Constraint(0, ConstraintType.EQUALITY);
 
-        final ConstraintException exception = assertThrows(ConstraintException.class, () -> model.updateConstraintCoefficient(new Term(x1, 0.5), new Constraint(0, ConstraintType.EQUALITY)));
+        final ConstraintException exception = assertThrows(ConstraintException.class, () -> model.updateConstraintCoefficient(0.5, x1, unknownConstraint));
         assertEquals("Constraint with index 0 does not exist in the model", exception.getMessage());
     }
 
