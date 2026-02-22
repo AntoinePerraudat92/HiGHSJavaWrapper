@@ -33,7 +33,11 @@ public class LinearExpression {
     }
 
     public void addVariable(@NonNull final Variable variable, double coefficient) {
-        this.terms.putIfAbsent(variable, new Term(variable, coefficient));
+        addTerm(new Term(variable, coefficient));
+    }
+
+    public void addTerm(@NonNull final Term term) {
+        this.terms.putIfAbsent(term.variable, term);
     }
 
     public record Term(@NonNull Variable variable, double scalar) {
