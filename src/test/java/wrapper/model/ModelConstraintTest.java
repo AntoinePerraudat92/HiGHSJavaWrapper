@@ -1,12 +1,12 @@
 package wrapper.model;
 
 import org.junit.jupiter.api.Test;
+import wrapper.exceptions.VariableException;
 import wrapper.model.constraint.Constraint;
 import wrapper.model.expression.LinearExpression;
+import wrapper.model.util.Term;
 import wrapper.model.variable.Variable;
-import wrapper.model.variable.VariableException;
 import wrapper.solution.Solution;
-import wrapper.util.Term;
 
 import java.util.List;
 

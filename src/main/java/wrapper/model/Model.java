@@ -2,12 +2,13 @@ package wrapper.model;
 
 import highs.*;
 import lombok.NonNull;
+import wrapper.exceptions.OptionException;
+import wrapper.exceptions.VariableException;
 import wrapper.model.constraint.Constraint;
 import wrapper.model.constraint.ConstraintType;
 import wrapper.model.expression.LinearExpression;
 import wrapper.model.option.*;
 import wrapper.model.variable.Variable;
-import wrapper.model.variable.VariableException;
 import wrapper.solution.InitialSolution;
 import wrapper.solution.Solution;
 

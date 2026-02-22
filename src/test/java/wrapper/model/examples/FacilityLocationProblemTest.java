@@ -3,9 +3,9 @@ package wrapper.model.examples;
 import org.junit.jupiter.api.Test;
 import wrapper.model.Model;
 import wrapper.model.expression.LinearExpression;
+import wrapper.model.util.Term;
 import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
-import wrapper.util.Term;
 
 import java.util.Arrays;
 import java.util.Random;

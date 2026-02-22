@@ -4,9 +4,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import wrapper.model.Model;
 import wrapper.model.expression.LinearExpression;
+import wrapper.model.util.Term;
 import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
-import wrapper.util.Term;
 
 import java.util.Arrays;
 import java.util.Random;

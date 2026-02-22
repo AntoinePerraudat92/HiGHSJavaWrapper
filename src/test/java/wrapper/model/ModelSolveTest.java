@@ -2,9 +2,9 @@ package wrapper.model;
 
 import org.junit.jupiter.api.Test;
 import wrapper.model.expression.LinearExpression;
+import wrapper.model.util.Term;
 import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
-import wrapper.util.Term;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;

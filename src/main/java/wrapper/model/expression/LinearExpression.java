@@ -2,8 +2,8 @@ package wrapper.model.expression;
 
 import lombok.Getter;
 import lombok.NonNull;
+import wrapper.model.util.Term;
 import wrapper.model.variable.Variable;
-import wrapper.util.Term;
 
 import java.util.HashMap;
 import java.util.Map;

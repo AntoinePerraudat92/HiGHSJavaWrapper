@@ -1,4 +1,4 @@
-package wrapper.util;
+package wrapper.model.util;
 
 import lombok.NonNull;
 import wrapper.model.variable.Variable;

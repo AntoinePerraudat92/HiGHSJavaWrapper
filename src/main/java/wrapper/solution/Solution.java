@@ -6,10 +6,10 @@ import highs.HighsSolution;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
+import wrapper.exceptions.ConstraintException;
+import wrapper.exceptions.VariableException;
 import wrapper.model.constraint.Constraint;
-import wrapper.model.constraint.ConstraintException;
 import wrapper.model.variable.Variable;
-import wrapper.model.variable.VariableException;
 
 @AllArgsConstructor
 public class Solution {

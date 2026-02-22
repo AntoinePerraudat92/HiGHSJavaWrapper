@@ -1,4 +1,4 @@
-package wrapper.model.option;
+package wrapper.exceptions;
 
 public class OptionException extends Exception {
 

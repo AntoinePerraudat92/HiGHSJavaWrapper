@@ -1,4 +1,4 @@
-package wrapper.model.variable;
+package wrapper.exceptions;
 
 public class VariableException extends RuntimeException {
 
