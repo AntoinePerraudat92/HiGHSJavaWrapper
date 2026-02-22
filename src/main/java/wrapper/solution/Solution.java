@@ -31,10 +31,10 @@ public class Solution {
 
     public double getDualValue(@NonNull final Constraint constraint) throws ConstraintException {
         final DoubleVector dualValues = this.highsSolution.getRow_dual();
-        if (constraint.index() >= dualValues.size()) {
-            throw new ConstraintException(String.format("Constraint with index %d does not exist in the solution", constraint.index()));
+        if (constraint.getIndex() >= dualValues.size()) {
+            throw new ConstraintException(String.format("Constraint with index %d does not exist in the solution", constraint.getIndex()));
         }
-        return dualValues.get((int) constraint.index());
+        return dualValues.get((int) constraint.getIndex());
     }
 
     public boolean isFeasible() {

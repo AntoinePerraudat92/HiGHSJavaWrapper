@@ -99,8 +99,8 @@ class SolutionTest {
         highsSolution.setRow_dual(new DoubleVector(new double[]{1.8, 6.9}));
         final Solution solution = new Solution(highsSolution, HighsModelStatus.kOptimal, 0.0);
 
-        assertEquals(1.8, solution.getDualValue(new Constraint(0, ConstraintType.EQUALITY)), EPSILON);
-        assertEquals(6.9, solution.getDualValue(new Constraint(1, ConstraintType.LESS_THAN_OR_EQUAL_TO)), EPSILON);
+        assertEquals(1.8, solution.getDualValue(new Constraint(0, ConstraintType.EQUALITY, 0.0, 0.0)), EPSILON);
+        assertEquals(6.9, solution.getDualValue(new Constraint(1, ConstraintType.LESS_THAN_OR_EQUAL_TO, 0.0, 0.0)), EPSILON);
     }
 
     @Test
@@ -108,8 +108,9 @@ class SolutionTest {
         final HighsSolution highsSolution = new HighsSolution();
         highsSolution.setRow_dual(new DoubleVector(new double[]{0.0, 3.0, 5.6}));
         final Solution solution = new Solution(highsSolution, HighsModelStatus.kTimeLimit, 0.0);
+        final Constraint constraint = new Constraint(10, ConstraintType.GREATER_THAN_OR_EQUAL_TO, 0.0, 0.0);
 
-        final ConstraintException exception = assertThrows(ConstraintException.class, () -> solution.getDualValue(new Constraint(10, ConstraintType.GREATER_THAN_OR_EQUAL_TO)));
+        final ConstraintException exception = assertThrows(ConstraintException.class, () -> solution.getDualValue(constraint));
         assertEquals("Constraint with index 10 does not exist in the solution", exception.getMessage());
     }
 

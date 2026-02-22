@@ -3,7 +3,6 @@ package wrapper.model;
 import highs.*;
 import lombok.NonNull;
 import wrapper.model.constraint.Constraint;
-import wrapper.model.constraint.ConstraintException;
 import wrapper.model.constraint.ConstraintType;
 import wrapper.model.expression.LinearExpression;
 import wrapper.model.option.*;
@@ -15,6 +14,8 @@ import wrapper.solution.Solution;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
+
+import static wrapper.model.constraint.ConstraintType.GENERAL;
 
 
 public class Model {
@@ -59,50 +60,11 @@ public class Model {
         return addVariable(lb, ub, cost, HighsVarType.kInteger);
     }
 
-    public void updateConstraintCoefficient(double newCoefficient, @NonNull final Variable variable, @NonNull final Constraint constraint) throws ConstraintException {
-        checkConstraint(constraint);
-        checkVariable(variable);
-        this.highs.changeCoeff(constraint.index(), variable.getIndex(), newCoefficient);
-    }
-
-    /**
-     * Has no effect for general constraints. updateConstraintSides must be called instead.
-     */
-    public void updateConstraintRightHandSide(double rhs, @NonNull final Constraint constraint) throws ConstraintException {
-        switch (constraint.type()) {
-            case EQUALITY -> {
-                checkConstraint(constraint);
-                this.highs.changeRowBounds(constraint.index(), rhs, rhs);
-            }
-            case GREATER_THAN_OR_EQUAL_TO -> {
-                checkConstraint(constraint);
-                this.highs.changeRowBounds(constraint.index(), rhs, Double.MAX_VALUE);
-            }
-            case LESS_THAN_OR_EQUAL_TO -> {
-                checkConstraint(constraint);
-                this.highs.changeRowBounds(constraint.index(), -Double.MAX_VALUE, rhs);
-            }
-            case GENERAL -> {
-                // No effect.
-            }
-        }
-    }
-
-    /**
-     * Has no effect for non-general constraints. updateConstraintRightHandSide must be called instead.
-     */
-    public void updateConstraintSides(double lhs, double rhs, @NonNull final Constraint constraint) throws ConstraintException {
-        if (constraint.type() == ConstraintType.GENERAL) {
-            checkConstraint(constraint);
-            this.highs.changeRowBounds(constraint.index(), lhs, rhs);
-        }
-    }
-
     /**
      * LHS <= Expression <= RHS. Example: 4 <= 2x1 + 5x2 <= 12.
      */
     public Constraint addGeneralConstraint(double lhs, double rhs, @NonNull final LinearExpression expression) {
-        return addConstraint(lhs, rhs, expression, ConstraintType.GENERAL);
+        return addConstraint(lhs, rhs, expression, GENERAL);
     }
 
     /**
@@ -194,7 +156,30 @@ public class Model {
         final VariableConsumer variableConsumer = new VariableConsumer(nmbVariables);
         expression.consumeVariables(variableConsumer);
         this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
-        return new Constraint(this.highs.getNumRow() - 1, constraintType);
+        final Constraint constraint = new Constraint(this.highs.getNumRow() - 1, constraintType, lhs, rhs);
+        constraint.onConstraintCoefficientUpdated((variable, scalar) -> {
+            checkVariable(variable);
+            this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), scalar);
+        });
+        constraint.onConstraintRightHandSideUpdated(newRhs -> {
+            switch (constraint.getConstraintType()) {
+                case EQUALITY -> this.highs.changeRowBounds(constraint.getIndex(), newRhs, newRhs);
+                case GREATER_THAN_OR_EQUAL_TO ->
+                        this.highs.changeRowBounds(constraint.getIndex(), newRhs, Double.MAX_VALUE);
+                case LESS_THAN_OR_EQUAL_TO ->
+                        this.highs.changeRowBounds(constraint.getIndex(), -Double.MAX_VALUE, newRhs);
+                case GENERAL -> this.highs.changeRowBounds(constraint.getIndex(), constraint.getLhs(), newRhs);
+            }
+        });
+        constraint.onConstraintLeftHandSideUpdated(newLhs -> {
+            if (constraint.getConstraintType() == ConstraintType.EQUALITY) {
+                this.highs.changeRowBounds(constraint.getIndex(), newLhs, newLhs);
+            }
+            if (constraint.getConstraintType() == GENERAL) {
+                this.highs.changeRowBounds(constraint.getIndex(), newLhs, constraint.getRhs());
+            }
+        });
+        return constraint;
     }
 
     private Variable addVariable(double lb, double ub, double cost, HighsVarType varType) {
@@ -203,20 +188,15 @@ public class Model {
         if (varType == HighsVarType.kInteger) {
             this.highs.changeColIntegrality(variableIndex, varType);
         }
-        return new Variable(variableIndex,
-                newCost -> this.highs.changeColCost(variableIndex, newCost),
-                (newLb, newUb) -> this.highs.changeColBounds(variableIndex, newLb, newUb));
+        final Variable variable = new Variable(variableIndex);
+        variable.onCostUpdated(newCost -> this.highs.changeColCost(variableIndex, newCost));
+        variable.onBoundsUpdated((newLb, newUb) -> this.highs.changeColBounds(variableIndex, newLb, newUb));
+        return variable;
     }
 
     private void checkVariable(final Variable variable) throws VariableException {
         if (variable.getIndex() >= this.highs.getNumCol()) {
             throw new VariableException(String.format("Variable with index %d does not exist in the model", variable.getIndex()));
-        }
-    }
-
-    private void checkConstraint(final Constraint constraint) throws ConstraintException {
-        if (constraint.index() >= this.highs.getNumRow()) {
-            throw new ConstraintException(String.format("Constraint with index %d does not exist in the model", constraint.index()));
         }
     }
 
