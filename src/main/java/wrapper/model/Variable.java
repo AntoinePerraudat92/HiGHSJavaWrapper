@@ -34,9 +34,9 @@ public class Variable {
         }
     }
 
-    public void updateBounds(double lb, double ub) {
+    public void updateBounds(double newLb, double newUb) {
         if (this.onBoundsUpdateCallback != null) {
-            this.onBoundsUpdateCallback.accept(lb, ub);
+            this.onBoundsUpdateCallback.accept(newLb, newUb);
         }
     }
 

@@ -29,16 +29,16 @@ public class Constraint {
         this.rhs = rhs;
     }
 
-    void onConstraintCoefficientUpdated(final BiConsumer<Variable, Double> onCoefficientUpdated) {
-        this.onCoefficientUpdated = onCoefficientUpdated;
+    void onConstraintCoefficientUpdated(final BiConsumer<Variable, Double> callback) {
+        this.onCoefficientUpdated = callback;
     }
 
-    void onConstraintRightHandSideUpdated(final Consumer<Double> onConstraintRightHandSideUpdated) {
-        this.onConstraintRightHandSideUpdated = onConstraintRightHandSideUpdated;
+    void onConstraintRightHandSideUpdated(final Consumer<Double> callback) {
+        this.onConstraintRightHandSideUpdated = callback;
     }
 
-    void onConstraintLeftHandSideUpdated(final Consumer<Double> onConstraintLeftHandSideUpdated) {
-        this.onConstraintLeftHandSideUpdated = onConstraintLeftHandSideUpdated;
+    void onConstraintLeftHandSideUpdated(final Consumer<Double> callback) {
+        this.onConstraintLeftHandSideUpdated = callback;
     }
 
     double getRhs() {
