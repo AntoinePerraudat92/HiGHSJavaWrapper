@@ -25,7 +25,7 @@ class ModelHintTest {
     }
 
     @Test
-    void parseInitialSolutionMustReturnFalseIfInvalidInitialValue() {
+    void parseHintMustReturnFalseIfInvalidInitialValue() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
@@ -36,7 +36,7 @@ class ModelHintTest {
     }
 
     @Test
-    void parseInitialSolutionMustReturnFalseWhenHintIsEmpty() {
+    void parseHintMustReturnFalseWhenHintIsEmpty() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
