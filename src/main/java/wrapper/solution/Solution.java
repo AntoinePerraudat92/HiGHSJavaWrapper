@@ -8,8 +8,8 @@ import lombok.Getter;
 import lombok.NonNull;
 import wrapper.exceptions.ConstraintException;
 import wrapper.exceptions.VariableException;
-import wrapper.model.constraint.Constraint;
-import wrapper.model.variable.Variable;
+import wrapper.model.Constraint;
+import wrapper.model.Variable;
 
 @AllArgsConstructor
 public class Solution {

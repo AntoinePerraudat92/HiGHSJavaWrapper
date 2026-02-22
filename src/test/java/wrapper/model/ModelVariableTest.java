@@ -2,7 +2,6 @@ package wrapper.model;
 
 
 import org.junit.jupiter.api.Test;
-import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

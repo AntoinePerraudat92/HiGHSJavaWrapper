@@ -1,10 +1,10 @@
 package wrapper.model.examples;
 
 import org.junit.jupiter.api.Test;
+import wrapper.model.LinearExpression;
 import wrapper.model.Model;
-import wrapper.model.expression.LinearExpression;
-import wrapper.model.util.Term;
-import wrapper.model.variable.Variable;
+import wrapper.model.Term;
+import wrapper.model.Variable;
 import wrapper.solution.Solution;
 
 import java.util.Arrays;

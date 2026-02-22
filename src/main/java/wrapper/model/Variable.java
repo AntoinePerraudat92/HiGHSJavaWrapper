@@ -1,8 +1,7 @@
-package wrapper.model.variable;
+package wrapper.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
 
 import java.util.function.BiConsumer;
 import java.util.function.DoubleConsumer;
@@ -17,15 +16,15 @@ public class Variable {
     @EqualsAndHashCode.Exclude
     private BiConsumer<Double, Double> onBoundsUpdateCallback;
 
-    public Variable(long index) {
+    Variable(long index) {
         this.index = index;
     }
 
-    public void onCostUpdated(@NonNull final DoubleConsumer callback) {
+    void onCostUpdated(final DoubleConsumer callback) {
         this.onCostUpdatedCallback = callback;
     }
 
-    public void onBoundsUpdated(@NonNull final BiConsumer<Double, Double> callback) {
+    void onBoundsUpdated(final BiConsumer<Double, Double> callback) {
         this.onBoundsUpdateCallback = callback;
     }
 

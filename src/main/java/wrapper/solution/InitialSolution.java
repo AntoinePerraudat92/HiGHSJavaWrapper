@@ -2,7 +2,7 @@ package wrapper.solution;
 
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import wrapper.model.variable.Variable;
+import wrapper.model.Variable;
 
 import java.util.HashMap;
 import java.util.Map;

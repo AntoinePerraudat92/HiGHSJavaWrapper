@@ -1,9 +1,8 @@
-package wrapper.model.constraint;
+package wrapper.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
-import wrapper.model.variable.Variable;
 
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -13,11 +12,8 @@ public class Constraint {
 
     @Getter
     private final long index;
-    @Getter
     private final ConstraintType constraintType;
-    @Getter
     private double lhs;
-    @Getter
     private double rhs;
     @EqualsAndHashCode.Exclude
     private BiConsumer<Variable, Double> onCoefficientUpdated;
@@ -26,25 +22,41 @@ public class Constraint {
     @EqualsAndHashCode.Exclude
     private Consumer<Double> onConstraintLeftHandSideUpdated;
 
-    public Constraint(long index, @NonNull final ConstraintType constraintType, double lhs, double rhs) {
+    Constraint(long index, final ConstraintType constraintType, double lhs, double rhs) {
         this.index = index;
         this.constraintType = constraintType;
         this.lhs = lhs;
         this.rhs = rhs;
     }
 
-    public void onConstraintCoefficientUpdated(@NonNull final BiConsumer<Variable, Double> onCoefficientUpdated) {
+    void onConstraintCoefficientUpdated(final BiConsumer<Variable, Double> onCoefficientUpdated) {
         this.onCoefficientUpdated = onCoefficientUpdated;
+    }
+
+    void onConstraintRightHandSideUpdated(final Consumer<Double> onConstraintRightHandSideUpdated) {
+        this.onConstraintRightHandSideUpdated = onConstraintRightHandSideUpdated;
+    }
+
+    void onConstraintLeftHandSideUpdated(final Consumer<Double> onConstraintLeftHandSideUpdated) {
+        this.onConstraintLeftHandSideUpdated = onConstraintLeftHandSideUpdated;
+    }
+
+    double getRhs() {
+        return this.rhs;
+    }
+
+    double getLhs() {
+        return this.lhs;
+    }
+
+    ConstraintType getConstraintType() {
+        return this.constraintType;
     }
 
     public void updateConstraintCoefficient(double newCoefficient, @NonNull final Variable variable) {
         if (this.onCoefficientUpdated != null) {
             this.onCoefficientUpdated.accept(variable, newCoefficient);
         }
-    }
-
-    public void onConstraintRightHandSideUpdated(@NonNull final Consumer<Double> onConstraintRightHandSideUpdated) {
-        this.onConstraintRightHandSideUpdated = onConstraintRightHandSideUpdated;
     }
 
     public void updateConstraintRightHandSide(double rhs) {
@@ -54,13 +66,6 @@ public class Constraint {
         }
     }
 
-    public void onConstraintLeftHandSideUpdated(@NonNull final Consumer<Double> onConstraintLeftHandSideUpdated) {
-        this.onConstraintLeftHandSideUpdated = onConstraintLeftHandSideUpdated;
-    }
-
-    /**
-     * Has no effect for general constraints. updateConstraintSides must be called instead.
-     */
     public void updateConstraintLeftHandSide(double lhs) {
         if (this.onConstraintLeftHandSideUpdated != null) {
             this.lhs = lhs;

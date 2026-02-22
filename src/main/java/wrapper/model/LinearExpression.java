@@ -1,9 +1,6 @@
-package wrapper.model.expression;
+package wrapper.model;
 
-import lombok.Getter;
 import lombok.NonNull;
-import wrapper.model.util.Term;
-import wrapper.model.variable.Variable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +9,6 @@ import java.util.function.ObjDoubleConsumer;
 
 public class LinearExpression {
 
-    @Getter
     private final double constant;
     private final Map<Variable, Term> terms = new HashMap<>();
 
@@ -36,15 +32,15 @@ public class LinearExpression {
         return expression;
     }
 
-    public void consumeVariables(@NonNull final ObjDoubleConsumer<Variable> consumer) {
-        this.terms.values().forEach(term -> consumer.accept(term.variable(), term.scalar()));
-    }
-
     public void addVariable(@NonNull final Variable variable, double coefficient) {
         this.terms.putIfAbsent(variable, new Term(variable, coefficient));
     }
 
-    public LinearExpression minus(@NonNull final LinearExpression otherExpression) {
+    void consumeVariables(final ObjDoubleConsumer<Variable> consumer) {
+        this.terms.values().forEach(term -> consumer.accept(term.variable(), term.scalar()));
+    }
+
+    LinearExpression minus(final LinearExpression otherExpression) {
         final LinearExpression newLinearExpression = new LinearExpression(this.constant - otherExpression.constant);
         consumeVariables(newLinearExpression::addVariable);
         for (final Term term : otherExpression.terms.values()) {
@@ -56,7 +52,11 @@ public class LinearExpression {
         return newLinearExpression;
     }
 
-    public int getNmbVariables() {
+    double getConstant() {
+        return this.constant;
+    }
+
+    int getNmbVariables() {
         return this.terms.size();
     }
 

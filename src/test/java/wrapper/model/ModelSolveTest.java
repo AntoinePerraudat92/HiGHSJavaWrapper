@@ -1,9 +1,6 @@
 package wrapper.model;
 
 import org.junit.jupiter.api.Test;
-import wrapper.model.expression.LinearExpression;
-import wrapper.model.util.Term;
-import wrapper.model.variable.Variable;
 import wrapper.solution.Solution;
 
 import static org.junit.jupiter.api.Assertions.*;

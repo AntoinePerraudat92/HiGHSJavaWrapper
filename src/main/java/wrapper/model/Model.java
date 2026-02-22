@@ -4,11 +4,7 @@ import highs.*;
 import lombok.NonNull;
 import wrapper.exceptions.OptionException;
 import wrapper.exceptions.VariableException;
-import wrapper.model.constraint.Constraint;
-import wrapper.model.constraint.ConstraintType;
-import wrapper.model.expression.LinearExpression;
 import wrapper.model.option.*;
-import wrapper.model.variable.Variable;
 import wrapper.solution.InitialSolution;
 import wrapper.solution.Solution;
 
@@ -16,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
 
-import static wrapper.model.constraint.ConstraintType.GENERAL;
+import static wrapper.model.ConstraintType.GENERAL;
 
 
 public class Model {
