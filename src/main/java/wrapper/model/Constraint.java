@@ -1,7 +1,6 @@
 package wrapper.model;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.function.BiConsumer;
@@ -10,7 +9,6 @@ import java.util.function.Consumer;
 @EqualsAndHashCode
 public class Constraint {
 
-    @Getter
     private final long index;
     private final ConstraintType constraintType;
     private double lhs;
@@ -41,16 +39,20 @@ public class Constraint {
         this.onConstraintLeftHandSideUpdated = callback;
     }
 
+    long getIndex() {
+        return this.index;
+    }
+
+    ConstraintType getConstraintType() {
+        return this.constraintType;
+    }
+
     double getRhs() {
         return this.rhs;
     }
 
     double getLhs() {
         return this.lhs;
-    }
-
-    ConstraintType getConstraintType() {
-        return this.constraintType;
     }
 
     enum ConstraintType {
