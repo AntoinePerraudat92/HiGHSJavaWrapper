@@ -66,16 +66,16 @@ public class Constraint {
         }
     }
 
-    public void updateConstraintRightHandSide(double rhs) {
+    public void updateConstraintRightHandSide(double newRhs) {
         if (this.onConstraintRightHandSideUpdated != null) {
-            this.rhs = rhs;
+            this.rhs = newRhs;
             this.onConstraintRightHandSideUpdated.accept(this.rhs);
         }
     }
 
-    public void updateConstraintLeftHandSide(double lhs) {
+    public void updateConstraintLeftHandSide(double newLhs) {
         if (this.onConstraintLeftHandSideUpdated != null) {
-            this.lhs = lhs;
+            this.lhs = newLhs;
             this.onConstraintLeftHandSideUpdated.accept(this.lhs);
         }
     }
