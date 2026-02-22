@@ -126,13 +126,13 @@ public class Model {
         return solve();
     }
 
-    public boolean parseInitialSolution(@NonNull final InitialSolution initialSolution) {
-        final int nmbVariables = initialSolution.getNmbVariables();
+    public boolean parseHint(@NonNull final Hint hint) {
+        final int nmbVariables = hint.getNmbHints();
         if (nmbVariables < 1) {
             return false;
         }
         final VariableConsumer variableConsumer = new VariableConsumer(nmbVariables);
-        initialSolution.consumeVariables(variableConsumer);
+        hint.consumeHints(variableConsumer);
         return this.highs.setSolution(nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()) == HighsStatus.kOk;
     }
 
