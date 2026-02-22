@@ -14,11 +14,11 @@ public class Hint {
 
     public static Hint of(@NonNull final Map<Variable, Double> hintByVariable) {
         final Hint hint = new Hint();
-        hintByVariable.forEach(hint::addVariableHint);
+        hintByVariable.forEach(hint::addHint);
         return hint;
     }
 
-    public void addVariableHint(@NonNull final Variable variable, double hint) {
+    public void addHint(@NonNull final Variable variable, double hint) {
         this.hintByVariable.putIfAbsent(variable, hint);
     }
 
