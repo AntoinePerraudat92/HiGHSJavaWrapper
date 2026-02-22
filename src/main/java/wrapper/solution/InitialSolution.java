@@ -31,5 +31,4 @@ public class InitialSolution {
         return this.initialValueByVariable.size();
     }
 
-
 }
