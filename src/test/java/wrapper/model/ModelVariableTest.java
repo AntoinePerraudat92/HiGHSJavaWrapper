@@ -3,11 +3,9 @@ package wrapper.model;
 
 import org.junit.jupiter.api.Test;
 import wrapper.model.variable.Variable;
-import wrapper.model.variable.VariableException;
 import wrapper.solution.Solution;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static wrapper.util.Constants.EPSILON;
 
 class ModelVariableTest {
@@ -49,20 +47,10 @@ class ModelVariableTest {
         final Solution firstSolution = model.minimize().orElseThrow();
         assertEquals(1.0, firstSolution.getObjectiveValue(), EPSILON);
 
-        model.updateVariableBounds(15.0, 35.0, x1);
+        x1.updateBounds(15.0, 35.0);
 
         final Solution secondSolution = model.minimize().orElseThrow();
         assertEquals(15.0, secondSolution.getObjectiveValue(), EPSILON);
-    }
-
-    @Test
-    void updateVariableBoundsMustThrowForUnknownVariable() {
-        final Model model = new Model();
-        model.addContinuousVariable(1.0, 2.0, 1.0);
-        final Variable fictitiousVariable = new Variable(14);
-
-        final VariableException exception = assertThrows(VariableException.class, () -> model.updateVariableBounds(5.0, 5.1, fictitiousVariable));
-        assertEquals("Variable with index 14 does not exist in the model", exception.getMessage());
     }
 
 }

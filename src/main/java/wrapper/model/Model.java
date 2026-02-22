@@ -59,11 +59,6 @@ public class Model {
         return addVariable(lb, ub, cost, HighsVarType.kInteger);
     }
 
-    public void updateVariableBounds(double newLb, double newUb, @NonNull final Variable variable) {
-        checkVariable(variable);
-        this.highs.changeColBounds(variable.getIndex(), newLb, newUb);
-    }
-
     public void updateConstraintCoefficient(double newCoefficient, @NonNull final Variable variable, @NonNull final Constraint constraint) throws ConstraintException {
         checkConstraint(constraint);
         checkVariable(variable);
@@ -208,7 +203,9 @@ public class Model {
         if (varType == HighsVarType.kInteger) {
             this.highs.changeColIntegrality(variableIndex, varType);
         }
-        return new Variable(variableIndex, value -> highs.changeColCost(variableIndex, value));
+        return new Variable(variableIndex,
+                newCost -> this.highs.changeColCost(variableIndex, newCost),
+                (newLb, newUb) -> this.highs.changeColBounds(variableIndex, newLb, newUb));
     }
 
     private void checkVariable(final Variable variable) throws VariableException {
