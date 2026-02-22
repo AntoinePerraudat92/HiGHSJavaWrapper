@@ -12,6 +12,7 @@ import wrapper.model.variable.VariableException;
 import wrapper.solution.InitialSolution;
 import wrapper.solution.Solution;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
 
@@ -116,6 +117,15 @@ public class Model {
      */
     public Constraint addGeneralConstraint(double lhs, double rhs, @NonNull final LinearExpression expression) {
         return addConstraint(lhs, rhs, expression, ConstraintType.GENERAL);
+    }
+
+    /**
+     * LHS <= Expression <= RHS. Example: 4 - x5 <= 2x1 + 5x2 <= 12 + x4.
+     */
+    public List<Constraint> addGeneralConstraint(@NonNull final LinearExpression lhs, @NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
+        final Constraint firstConstraint = addLessThanOrEqualToConstraint(rhs, expression);
+        final Constraint secondConstraint = addGreaterThanOrEqualToConstraint(lhs, expression);
+        return List.of(firstConstraint, secondConstraint);
     }
 
     /**
