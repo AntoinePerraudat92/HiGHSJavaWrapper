@@ -21,9 +21,9 @@ class ModelVariableTest {
     void addVariable() {
         final Model model = new Model();
 
-        assertEquals(0, model.addContinuousVariable(14.2, 18.5, 15.0).index());
-        assertEquals(1, model.addIntegerVariable(0.0, 5.2, 1.0).index());
-        assertEquals(2, model.addBinaryVariable(0.0).index());
+        assertEquals(0, model.addContinuousVariable(14.2, 18.5, 15.0).getIndex());
+        assertEquals(1, model.addIntegerVariable(0.0, 5.2, 1.0).getIndex());
+        assertEquals(2, model.addBinaryVariable(0.0).getIndex());
     }
 
     @Test
@@ -35,21 +35,10 @@ class ModelVariableTest {
         final Solution firstSolution = model.maximize().orElseThrow();
         assertEquals(52.55, firstSolution.getObjectiveValue(), EPSILON);
 
-        model.updateVariableCost(2.3, x2);
+        x2.updateCost(2.3);
 
         final Solution secondSolution = model.maximize().orElseThrow();
         assertEquals(65.55, secondSolution.getObjectiveValue(), EPSILON);
-    }
-
-    @Test
-    void updateVariableCostMustThrowForUnknownVariable() {
-        final Model model = new Model();
-        model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Variable fictitiousVariable = new Variable(2);
-
-        final VariableException exception = assertThrows(VariableException.class, () -> model.updateVariableCost(5.0, fictitiousVariable));
-        assertEquals("Variable with index 2 does not exist in the model", exception.getMessage());
     }
 
     @Test

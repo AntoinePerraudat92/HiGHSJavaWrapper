@@ -23,10 +23,10 @@ public class Solution {
 
     public double getVariableValue(@NonNull final Variable variable) throws VariableException {
         final DoubleVector variableValues = this.highsSolution.getCol_value();
-        if (variable.index() >= variableValues.size()) {
-            throw new VariableException(String.format("Variable with index %d does not exist in the solution", variable.index()));
+        if (variable.getIndex() >= variableValues.size()) {
+            throw new VariableException(String.format("Variable with index %d does not exist in the solution", variable.getIndex()));
         }
-        return variableValues.get((int) variable.index());
+        return variableValues.get((int) variable.getIndex());
     }
 
     public double getDualValue(@NonNull final Constraint constraint) throws ConstraintException {

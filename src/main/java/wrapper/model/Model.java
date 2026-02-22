@@ -48,35 +48,26 @@ public class Model {
     }
 
     public Variable addContinuousVariable(double lb, double ub, double cost) {
-        this.highs.addCol(cost, lb, ub, 0, null, null);
-        return new Variable(this.highs.getNumCol() - 1);
+        return addVariable(lb, ub, cost, HighsVarType.kContinuous);
     }
 
     public Variable addBinaryVariable(double cost) {
-        return addIntegerVariable(0.0, 1.0, cost);
+        return addVariable(0.0, 1.0, cost, HighsVarType.kInteger);
     }
 
     public Variable addIntegerVariable(double lb, double ub, double cost) {
-        this.highs.addCol(cost, lb, ub, 0, null, null);
-        final long variableIndex = this.highs.getNumCol() - 1;
-        this.highs.changeColIntegrality(variableIndex, HighsVarType.kInteger);
-        return new Variable(variableIndex);
-    }
-
-    public void updateVariableCost(double newCost, @NonNull final Variable variable) {
-        checkVariable(variable);
-        this.highs.changeColCost(variable.index(), newCost);
+        return addVariable(lb, ub, cost, HighsVarType.kInteger);
     }
 
     public void updateVariableBounds(double newLb, double newUb, @NonNull final Variable variable) {
         checkVariable(variable);
-        this.highs.changeColBounds(variable.index(), newLb, newUb);
+        this.highs.changeColBounds(variable.getIndex(), newLb, newUb);
     }
 
     public void updateConstraintCoefficient(double newCoefficient, @NonNull final Variable variable, @NonNull final Constraint constraint) throws ConstraintException {
         checkConstraint(constraint);
         checkVariable(variable);
-        this.highs.changeCoeff(constraint.index(), variable.index(), newCoefficient);
+        this.highs.changeCoeff(constraint.index(), variable.getIndex(), newCoefficient);
     }
 
     /**
@@ -211,9 +202,18 @@ public class Model {
         return new Constraint(this.highs.getNumRow() - 1, constraintType);
     }
 
+    private Variable addVariable(double lb, double ub, double cost, HighsVarType varType) {
+        this.highs.addCol(cost, lb, ub, 0, null, null);
+        final long variableIndex = this.highs.getNumCol() - 1;
+        if (varType == HighsVarType.kInteger) {
+            this.highs.changeColIntegrality(variableIndex, varType);
+        }
+        return new Variable(variableIndex, value -> highs.changeColCost(variableIndex, value));
+    }
+
     private void checkVariable(final Variable variable) throws VariableException {
-        if (variable.index() >= this.highs.getNumCol()) {
-            throw new VariableException(String.format("Variable with index %d does not exist in the model", variable.index()));
+        if (variable.getIndex() >= this.highs.getNumCol()) {
+            throw new VariableException(String.format("Variable with index %d does not exist in the model", variable.getIndex()));
         }
     }
 
@@ -238,7 +238,7 @@ public class Model {
         public void accept(final Variable variable, double value) {
             checkVariable(variable);
             this.values.setitem(this.arrayIndex, value);
-            this.indices.setitem(this.arrayIndex, variable.index());
+            this.indices.setitem(this.arrayIndex, variable.getIndex());
             ++this.arrayIndex;
         }
 
