@@ -1,4 +1,4 @@
-package wrapper.model.constraint;
+package wrapper.exceptions;
 
 public class ConstraintException extends Exception {
 

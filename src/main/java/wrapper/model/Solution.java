@@ -1,17 +1,16 @@
-package wrapper.solution;
+package wrapper.model;
 
 import highs.DoubleVector;
 import highs.HighsModelStatus;
 import highs.HighsSolution;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
-import wrapper.model.constraint.Constraint;
-import wrapper.model.constraint.ConstraintException;
-import wrapper.model.variable.Variable;
-import wrapper.model.variable.VariableException;
+import wrapper.exceptions.ConstraintException;
+import wrapper.exceptions.VariableException;
 
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class Solution {
 
     @NonNull
@@ -23,18 +22,18 @@ public class Solution {
 
     public double getVariableValue(@NonNull final Variable variable) throws VariableException {
         final DoubleVector variableValues = this.highsSolution.getCol_value();
-        if (variable.index() >= variableValues.size()) {
-            throw new VariableException(String.format("Variable with index %d does not exist in the solution", variable.index()));
+        if (variable.getIndex() >= variableValues.size()) {
+            throw new VariableException(String.format("Variable with index %d does not exist in the solution", variable.getIndex()));
         }
-        return variableValues.get((int) variable.index());
+        return variableValues.get((int) variable.getIndex());
     }
 
     public double getDualValue(@NonNull final Constraint constraint) throws ConstraintException {
         final DoubleVector dualValues = this.highsSolution.getRow_dual();
-        if (constraint.index() >= dualValues.size()) {
-            throw new ConstraintException(String.format("Constraint with index %d does not exist in the solution", constraint.index()));
+        if (constraint.getIndex() >= dualValues.size()) {
+            throw new ConstraintException(String.format("Constraint with index %d does not exist in the solution", constraint.getIndex()));
         }
-        return dualValues.get((int) constraint.index());
+        return dualValues.get((int) constraint.getIndex());
     }
 
     public boolean isFeasible() {

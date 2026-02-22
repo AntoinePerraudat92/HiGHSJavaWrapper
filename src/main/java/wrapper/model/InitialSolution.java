@@ -1,8 +1,7 @@
-package wrapper.solution;
+package wrapper.model;
 
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import wrapper.model.variable.Variable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,17 +18,16 @@ public class InitialSolution {
         return initialSolution;
     }
 
-    public void consumeVariables(@NonNull final ObjDoubleConsumer<Variable> consumer) {
-        this.initialValueByVariable.forEach(consumer::accept);
-    }
-
     public void addVariable(@NonNull final Variable variable, double initialValue) {
         this.initialValueByVariable.putIfAbsent(variable, initialValue);
     }
 
-    public int getNmbVariables() {
-        return this.initialValueByVariable.size();
+    void consumeVariables(final ObjDoubleConsumer<Variable> consumer) {
+        this.initialValueByVariable.forEach(consumer::accept);
     }
 
+    int getNmbVariables() {
+        return this.initialValueByVariable.size();
+    }
 
 }

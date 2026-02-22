@@ -1,10 +1,10 @@
-package wrapper.model.examples;
+package wrapper.examples;
 
 import org.junit.jupiter.api.Test;
+import wrapper.model.LinearExpression;
 import wrapper.model.Model;
-import wrapper.model.expression.LinearExpression;
-import wrapper.model.variable.Variable;
-import wrapper.solution.Solution;
+import wrapper.model.Solution;
+import wrapper.model.Variable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

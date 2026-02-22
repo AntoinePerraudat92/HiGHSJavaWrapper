@@ -1,12 +1,11 @@
-package wrapper.model.examples;
+package wrapper.examples;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import wrapper.model.LinearExpression;
 import wrapper.model.Model;
-import wrapper.model.expression.LinearExpression;
-import wrapper.model.variable.Variable;
-import wrapper.solution.Solution;
-import wrapper.util.Term;
+import wrapper.model.Solution;
+import wrapper.model.Variable;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -140,7 +139,7 @@ class NonLinearWorkloadBalancingProblemTest {
                     final double coefficient = this.qualificationPerProductPerMachine[p][m] * this.processTimePerProductPerMachine[p][m];
                     expression.addVariable(this.x[p][m], coefficient);
                 }
-                this.model.addEqualityConstraint(LinearExpression.of(new Term(this.w[m], this.capacityPerMachine[m])), expression);
+                this.model.addEqualityConstraint(LinearExpression.of(new LinearExpression.Term(this.w[m], this.capacityPerMachine[m])), expression);
             }
             // Demand satisfaction constraints.
             // For product p: \sum_{p}(qualificationPerProductPerMachine_{p,m} * x_{p,m}) = demandPerProduct_{p}.
@@ -171,8 +170,8 @@ class NonLinearWorkloadBalancingProblemTest {
             double rhsConstant = Math.pow(x0, this.balancingExponent) * (1.0 - this.balancingExponent);
             double rhsCoefficient = this.balancingExponent * Math.pow(x0, this.balancingExponent - 1.0);
             this.model.addGreaterThanOrEqualToConstraint(
-                    LinearExpression.of(rhsConstant, new Term(this.w[m], rhsCoefficient)),
-                    LinearExpression.of(new Term(this.wl[m], 1.0))
+                    LinearExpression.of(rhsConstant, new LinearExpression.Term(this.w[m], rhsCoefficient)),
+                    LinearExpression.of(new LinearExpression.Term(this.wl[m], 1.0))
             );
         }
 

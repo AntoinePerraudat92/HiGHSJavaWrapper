@@ -3,6 +3,7 @@ package wrapper.model.option;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
+import wrapper.exceptions.OptionException;
 import wrapper.model.Model;
 
 import java.util.Arrays;

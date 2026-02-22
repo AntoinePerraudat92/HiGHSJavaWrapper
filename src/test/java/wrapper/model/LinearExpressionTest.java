@@ -1,7 +1,6 @@
-package wrapper.model.expression;
+package wrapper.model;
 
 import org.junit.jupiter.api.Test;
-import wrapper.model.variable.Variable;
 
 import java.util.HashMap;
 import java.util.Map;

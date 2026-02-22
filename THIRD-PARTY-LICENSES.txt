@@ -2,6 +2,7 @@ This project uses the following third-party libraries:
 - HiGHS (MIT License, https://highs.dev/),
 - ArchUnit (Apache 2.0 License, https://www.archunit.org/),
 - Maven (Apache 2.0 License, https://maven.apache.org/),
+- Mockito (MIT License, https://site.mockito.org/),
 - Jacoco (Eclipse Public License 2.0, https://www.eclemma.org/jacoco/),
 - Lombok (MIT License, https://projectlombok.org),
 - Junit Jupiter (Eclipse Public License 2.0, https://junit.org/).
