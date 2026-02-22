@@ -21,7 +21,7 @@ Note that the wrapper must be compiled with the HiGHS compilation option `HIGHSI
 
 ### Java
 
-A JDK 23 or later is required.
+A JDK 21 or later is required.
 
 ### SWIG
 
