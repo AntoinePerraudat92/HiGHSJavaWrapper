@@ -8,7 +8,7 @@ shared library file, `libhighs.so`.
 
 Additional wrap functions can be added and help can be provided on demand.
 
-Some examples on how to use the wrapper are provided in `src/test/java/wrapper/model/examples`.
+Some examples on how to use the wrapper are provided in `src/test/java/wrapper/examples`.
 
 ## Dependencies / Prerequisites
 

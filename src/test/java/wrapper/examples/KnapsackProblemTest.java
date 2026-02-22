@@ -1,4 +1,4 @@
-package wrapper.model.examples;
+package wrapper.examples;
 
 import org.junit.jupiter.api.Test;
 import wrapper.model.LinearExpression;

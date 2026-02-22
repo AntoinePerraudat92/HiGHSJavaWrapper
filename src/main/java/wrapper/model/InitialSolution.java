@@ -22,7 +22,7 @@ public class InitialSolution {
         this.initialValueByVariable.putIfAbsent(variable, initialValue);
     }
 
-    void consumeVariables(@NonNull final ObjDoubleConsumer<Variable> consumer) {
+    void consumeVariables(final ObjDoubleConsumer<Variable> consumer) {
         this.initialValueByVariable.forEach(consumer::accept);
     }
 
