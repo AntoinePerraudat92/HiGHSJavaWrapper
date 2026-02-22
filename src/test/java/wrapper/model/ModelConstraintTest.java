@@ -10,6 +10,8 @@ import wrapper.model.variable.VariableException;
 import wrapper.solution.Solution;
 import wrapper.util.Term;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static wrapper.util.Constants.EPSILON;
@@ -163,8 +165,11 @@ class ModelConstraintTest {
         assertEquals(2, model.addEqualityConstraint(25.0, expression).index());
         assertEquals(3, model.addEqualityConstraint(LinearExpression.of(25.0), expression).index());
         assertEquals(4, model.addGeneralConstraint(14.0, 25.0, expression).index());
-        assertEquals(5, model.addGreaterThanOrEqualToConstraint(1.9, expression).index());
-        assertEquals(6, model.addGreaterThanOrEqualToConstraint(LinearExpression.of(1.9), expression).index());
+        final List<Constraint> generalConstraints = model.addGeneralConstraint(LinearExpression.of(14.0), LinearExpression.of(25.0), expression);
+        assertEquals(5, generalConstraints.getFirst().index());
+        assertEquals(6, generalConstraints.getLast().index());
+        assertEquals(7, model.addGreaterThanOrEqualToConstraint(1.9, expression).index());
+        assertEquals(8, model.addGreaterThanOrEqualToConstraint(LinearExpression.of(1.9), expression).index());
     }
 
     @Test

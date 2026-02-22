@@ -183,4 +183,25 @@ class ModelSolveTest {
         assertEquals(5.0, solution.getVariableValue(x2), EPSILON);
     }
 
+    @Test
+    void minimizeWithGeneralConstraintsUsingLinearExpressionsForBothSides() {
+        final Model model = new Model();
+        final Variable x1 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
+        final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 12.0);
+        final Variable x3 = model.addIntegerVariable(4.0, Double.MAX_VALUE, 0.0);
+        final Variable x4 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 1.0);
+        final LinearExpression lhs = LinearExpression.of(5.0, new Term(x3, 1.0));
+        final LinearExpression rhs = LinearExpression.of(-1.0, new Term(x4, 1.0));
+        final LinearExpression expression = LinearExpression.of(new Term(x1, 1.0), new Term(x2, 2.0));
+        model.addGeneralConstraint(lhs, rhs, expression);
+
+        final Solution solution = model.minimize().orElseThrow();
+
+        assertTrue(solution.isFeasible());
+        assertEquals(9.0, solution.getVariableValue(x1), EPSILON);
+        assertEquals(0.0, solution.getVariableValue(x2), EPSILON);
+        assertEquals(4.0, solution.getVariableValue(x3), EPSILON);
+        assertEquals(10.0, solution.getVariableValue(x4), EPSILON);
+    }
+
 }
