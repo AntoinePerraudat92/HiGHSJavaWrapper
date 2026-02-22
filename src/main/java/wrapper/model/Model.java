@@ -20,7 +20,7 @@ public class Model {
     public Model() {
         try {
             addOption(CommonBooleanOptions.SOLVER_OUTPUT.getOption(false));
-        } catch (OptionException _) {
+        } catch (OptionException optionException) {
             // Should never throw.
         }
     }

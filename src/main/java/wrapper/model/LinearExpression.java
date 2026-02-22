@@ -51,10 +51,8 @@ public class LinearExpression {
         final LinearExpression newLinearExpression = new LinearExpression(this.constant - otherExpression.constant);
         consumeVariables(newLinearExpression::addVariable);
         for (final Term term : otherExpression.terms.values()) {
-            final Variable variable = term.variable();
-            double coefficient = term.scalar();
-            newLinearExpression.terms.computeIfPresent(variable, (_, otherTerm) -> new Term(variable, otherTerm.scalar() - coefficient));
-            newLinearExpression.terms.putIfAbsent(variable, new Term(variable, -coefficient));
+            newLinearExpression.terms.computeIfPresent(term.variable(), (variable, otherTerm) -> new Term(variable, otherTerm.scalar() - term.scalar()));
+            newLinearExpression.terms.putIfAbsent(term.variable(), new Term(term.variable(), -term.scalar()));
         }
         return newLinearExpression;
     }
