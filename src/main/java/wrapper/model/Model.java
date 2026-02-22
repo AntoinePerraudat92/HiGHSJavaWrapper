@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
 
-import static wrapper.model.ConstraintType.GENERAL;
+import static wrapper.model.Constraint.ConstraintType.GENERAL;
 
 
 public class Model {
@@ -77,7 +77,7 @@ public class Model {
      * Expression = RHS. Example: 2x1 + 5x2 = 4.
      */
     public Constraint addEqualityConstraint(double rhs, @NonNull final LinearExpression expression) {
-        return addConstraint(rhs, rhs, expression, ConstraintType.EQUALITY);
+        return addConstraint(rhs, rhs, expression, Constraint.ConstraintType.EQUALITY);
     }
 
     /**
@@ -92,7 +92,7 @@ public class Model {
      * Expression <= RHS. Example: 2x1 + 5x2 <= 4.
      */
     public Constraint addLessThanOrEqualToConstraint(double rhs, @NonNull final LinearExpression expression) {
-        return addConstraint(-Double.MAX_VALUE, rhs, expression, ConstraintType.LESS_THAN_OR_EQUAL_TO);
+        return addConstraint(-Double.MAX_VALUE, rhs, expression, Constraint.ConstraintType.LESS_THAN_OR_EQUAL_TO);
     }
 
     /**
@@ -100,14 +100,14 @@ public class Model {
      */
     public Constraint addLessThanOrEqualToConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
         final LinearExpression completeExpression = expression.minus(rhs);
-        return addConstraint(-Double.MAX_VALUE, -completeExpression.getConstant(), completeExpression, ConstraintType.LESS_THAN_OR_EQUAL_TO);
+        return addConstraint(-Double.MAX_VALUE, -completeExpression.getConstant(), completeExpression, Constraint.ConstraintType.LESS_THAN_OR_EQUAL_TO);
     }
 
     /**
      * Expression >= RHS. Example: 2x1 + 5x2 >= 4.
      */
     public Constraint addGreaterThanOrEqualToConstraint(double rhs, @NonNull final LinearExpression expression) {
-        return addConstraint(rhs, Double.MAX_VALUE, expression, ConstraintType.GREATER_THAN_OR_EQUAL_TO);
+        return addConstraint(rhs, Double.MAX_VALUE, expression, Constraint.ConstraintType.GREATER_THAN_OR_EQUAL_TO);
     }
 
     /**
@@ -115,7 +115,7 @@ public class Model {
      */
     public Constraint addGreaterThanOrEqualToConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
         final LinearExpression completeExpression = expression.minus(rhs);
-        return addConstraint(-completeExpression.getConstant(), Double.MAX_VALUE, completeExpression, ConstraintType.GREATER_THAN_OR_EQUAL_TO);
+        return addConstraint(-completeExpression.getConstant(), Double.MAX_VALUE, completeExpression, Constraint.ConstraintType.GREATER_THAN_OR_EQUAL_TO);
     }
 
     public Optional<Solution> minimize() {
@@ -145,7 +145,7 @@ public class Model {
         return Optional.of(new Solution(this.highs.getSolution(), this.highs.getModelStatus(), this.highs.getObjectiveValue()));
     }
 
-    private Constraint addConstraint(double lhs, double rhs, final LinearExpression expression, final ConstraintType constraintType) {
+    private Constraint addConstraint(double lhs, double rhs, final LinearExpression expression, final Constraint.ConstraintType constraintType) {
         final int nmbVariables = expression.getNmbVariables();
         if (nmbVariables < 1) {
             throw new VariableException("Linear expression has no variable");
@@ -169,7 +169,7 @@ public class Model {
             }
         });
         constraint.onConstraintLeftHandSideUpdated(newLhs -> {
-            if (constraint.getConstraintType() == ConstraintType.EQUALITY) {
+            if (constraint.getConstraintType() == Constraint.ConstraintType.EQUALITY) {
                 this.highs.changeRowBounds(constraint.getIndex(), newLhs, newLhs);
             }
             if (constraint.getConstraintType() == GENERAL) {

@@ -53,6 +53,13 @@ public class Constraint {
         return this.constraintType;
     }
 
+    enum ConstraintType {
+        EQUALITY,
+        GREATER_THAN_OR_EQUAL_TO,
+        LESS_THAN_OR_EQUAL_TO,
+        GENERAL
+    }
+
     public void updateConstraintCoefficient(double newCoefficient, @NonNull final Variable variable) {
         if (this.onCoefficientUpdated != null) {
             this.onCoefficientUpdated.accept(variable, newCoefficient);
