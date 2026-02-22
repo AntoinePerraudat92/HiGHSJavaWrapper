@@ -36,6 +36,9 @@ public class LinearExpression {
         this.terms.putIfAbsent(variable, new Term(variable, coefficient));
     }
 
+    public record Term(@NonNull Variable variable, double scalar) {
+    }
+
     void consumeVariables(final ObjDoubleConsumer<Variable> consumer) {
         this.terms.values().forEach(term -> consumer.accept(term.variable(), term.scalar()));
     }

@@ -31,7 +31,7 @@ class ModelWarmStartTest {
     void parseInitialSolutionMustReturnFalseIfInvalidInitialValue() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
-        model.addEqualityConstraint(1.0, LinearExpression.of(new Term(x1, 1.0)));
+        model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
 
         assertFalse(model.parseInitialSolution(InitialSolution.of(Map.of(x1, -1.0))));
         final Solution solution = model.maximize().orElseThrow();
@@ -42,7 +42,7 @@ class ModelWarmStartTest {
     void parseInitialSolutionMustReturnFalseWhenInitialSolutionIsEmpty() {
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
-        model.addEqualityConstraint(1.0, LinearExpression.of(new Term(x1, 1.0)));
+        model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
 
         assertFalse(model.parseInitialSolution(new InitialSolution()));
         final Solution solution = model.maximize().orElseThrow();
@@ -56,9 +56,9 @@ class ModelWarmStartTest {
         final Variable x2 = model.addBinaryVariable(1.0);
         final Variable x3 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(
-                new Term(x1, 1.0),
-                new Term(x2, 1.0),
-                new Term(x3, 1.0)
+                new LinearExpression.Term(x1, 1.0),
+                new LinearExpression.Term(x2, 1.0),
+                new LinearExpression.Term(x3, 1.0)
         ));
 
         assertTrue(model.parseInitialSolution(InitialSolution.of(Map.of(x1, 1.0, x2, 0.0, x3, 0.0))));
