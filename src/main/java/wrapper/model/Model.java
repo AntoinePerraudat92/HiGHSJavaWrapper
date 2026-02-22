@@ -5,8 +5,6 @@ import lombok.NonNull;
 import wrapper.exceptions.OptionException;
 import wrapper.exceptions.VariableException;
 import wrapper.model.option.*;
-import wrapper.solution.InitialSolution;
-import wrapper.solution.Solution;
 
 import java.util.List;
 import java.util.Optional;

@@ -2,8 +2,6 @@ package wrapper.model;
 
 import org.junit.jupiter.api.Test;
 import wrapper.exceptions.VariableException;
-import wrapper.solution.InitialSolution;
-import wrapper.solution.Solution;
 
 import java.util.Map;
 

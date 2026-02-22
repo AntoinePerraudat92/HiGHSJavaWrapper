@@ -2,7 +2,6 @@ package wrapper.model;
 
 
 import org.junit.jupiter.api.Test;
-import wrapper.solution.Solution;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static wrapper.util.Constants.EPSILON;

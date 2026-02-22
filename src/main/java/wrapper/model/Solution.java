@@ -1,17 +1,16 @@
-package wrapper.solution;
+package wrapper.model;
 
 import highs.DoubleVector;
 import highs.HighsModelStatus;
 import highs.HighsSolution;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 import wrapper.exceptions.ConstraintException;
 import wrapper.exceptions.VariableException;
-import wrapper.model.Constraint;
-import wrapper.model.Variable;
 
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class Solution {
 
     @NonNull

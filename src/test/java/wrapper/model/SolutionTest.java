@@ -1,4 +1,4 @@
-package wrapper.solution;
+package wrapper.model;
 
 
 import highs.DoubleVector;
@@ -10,8 +10,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import wrapper.exceptions.ConstraintException;
 import wrapper.exceptions.VariableException;
-import wrapper.model.Constraint;
-import wrapper.model.Variable;
 import wrapper.util.ObjectCreator;
 
 import static org.junit.jupiter.api.Assertions.*;
