@@ -179,7 +179,7 @@ public class Model {
         return constraint;
     }
 
-    private Variable addVariable(double lb, double ub, double cost, HighsVarType varType) {
+    private Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
         this.highs.addCol(cost, lb, ub, 0, null, null);
         final long variableIndex = this.highs.getNumCol() - 1;
         if (varType == HighsVarType.kInteger) {
