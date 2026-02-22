@@ -1,12 +1,9 @@
-package wrapper.util;
-
-import wrapper.model.Constraint;
-import wrapper.model.Variable;
+package wrapper.model;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class ObjectCreator {
+class MockObjectCreator {
 
     public static Variable mockVariable(long index) {
         final Variable variable = mock(Variable.class);

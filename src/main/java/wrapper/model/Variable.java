@@ -1,7 +1,6 @@
 package wrapper.model;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 
 import java.util.function.BiConsumer;
 import java.util.function.DoubleConsumer;
@@ -9,7 +8,6 @@ import java.util.function.DoubleConsumer;
 @EqualsAndHashCode
 public class Variable {
 
-    @Getter
     private final long index;
     @EqualsAndHashCode.Exclude
     private DoubleConsumer onCostUpdatedCallback;
@@ -18,6 +16,10 @@ public class Variable {
 
     Variable(long index) {
         this.index = index;
+    }
+
+    long getIndex() {
+        return this.index;
     }
 
     void onCostUpdated(final DoubleConsumer callback) {
@@ -34,9 +36,9 @@ public class Variable {
         }
     }
 
-    public void updateBounds(double lb, double ub) {
+    public void updateBounds(double newLb, double newUb) {
         if (this.onBoundsUpdateCallback != null) {
-            this.onBoundsUpdateCallback.accept(lb, ub);
+            this.onBoundsUpdateCallback.accept(newLb, newUb);
         }
     }
 

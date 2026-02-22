@@ -1,7 +1,6 @@
 package wrapper.model;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NonNull;
 
 import java.util.function.BiConsumer;
@@ -10,7 +9,6 @@ import java.util.function.Consumer;
 @EqualsAndHashCode
 public class Constraint {
 
-    @Getter
     private final long index;
     private final ConstraintType constraintType;
     private double lhs;
@@ -29,16 +27,24 @@ public class Constraint {
         this.rhs = rhs;
     }
 
-    void onConstraintCoefficientUpdated(final BiConsumer<Variable, Double> onCoefficientUpdated) {
-        this.onCoefficientUpdated = onCoefficientUpdated;
+    void onConstraintCoefficientUpdated(final BiConsumer<Variable, Double> callback) {
+        this.onCoefficientUpdated = callback;
     }
 
-    void onConstraintRightHandSideUpdated(final Consumer<Double> onConstraintRightHandSideUpdated) {
-        this.onConstraintRightHandSideUpdated = onConstraintRightHandSideUpdated;
+    void onConstraintRightHandSideUpdated(final Consumer<Double> callback) {
+        this.onConstraintRightHandSideUpdated = callback;
     }
 
-    void onConstraintLeftHandSideUpdated(final Consumer<Double> onConstraintLeftHandSideUpdated) {
-        this.onConstraintLeftHandSideUpdated = onConstraintLeftHandSideUpdated;
+    void onConstraintLeftHandSideUpdated(final Consumer<Double> callback) {
+        this.onConstraintLeftHandSideUpdated = callback;
+    }
+
+    long getIndex() {
+        return this.index;
+    }
+
+    ConstraintType getConstraintType() {
+        return this.constraintType;
     }
 
     double getRhs() {
@@ -47,10 +53,6 @@ public class Constraint {
 
     double getLhs() {
         return this.lhs;
-    }
-
-    ConstraintType getConstraintType() {
-        return this.constraintType;
     }
 
     enum ConstraintType {
@@ -66,16 +68,16 @@ public class Constraint {
         }
     }
 
-    public void updateConstraintRightHandSide(double rhs) {
+    public void updateConstraintRightHandSide(double newRhs) {
         if (this.onConstraintRightHandSideUpdated != null) {
-            this.rhs = rhs;
+            this.rhs = newRhs;
             this.onConstraintRightHandSideUpdated.accept(this.rhs);
         }
     }
 
-    public void updateConstraintLeftHandSide(double lhs) {
+    public void updateConstraintLeftHandSide(double newLhs) {
         if (this.onConstraintLeftHandSideUpdated != null) {
-            this.lhs = lhs;
+            this.lhs = newLhs;
             this.onConstraintLeftHandSideUpdated.accept(this.lhs);
         }
     }

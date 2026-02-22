@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import wrapper.exceptions.ConstraintException;
 import wrapper.exceptions.VariableException;
-import wrapper.util.ObjectCreator;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;
@@ -75,9 +74,9 @@ class SolutionTest {
         highsSolution.setCol_value(new DoubleVector(new double[]{1.0, 5.4, 8.1}));
         final Solution solution = new Solution(highsSolution, HighsModelStatus.kOptimal, 0.0);
 
-        assertEquals(1.0, solution.getVariableValue(ObjectCreator.mockVariable(0)), EPSILON);
-        assertEquals(5.4, solution.getVariableValue(ObjectCreator.mockVariable(1)), EPSILON);
-        assertEquals(8.1, solution.getVariableValue(ObjectCreator.mockVariable(2)), EPSILON);
+        assertEquals(1.0, solution.getVariableValue(MockObjectCreator.mockVariable(0)), EPSILON);
+        assertEquals(5.4, solution.getVariableValue(MockObjectCreator.mockVariable(1)), EPSILON);
+        assertEquals(8.1, solution.getVariableValue(MockObjectCreator.mockVariable(2)), EPSILON);
     }
 
     @Test
@@ -85,7 +84,7 @@ class SolutionTest {
         final HighsSolution highsSolution = new HighsSolution();
         highsSolution.setCol_value(new DoubleVector(new double[]{1.0, 1.0, 10.1, 5.2}));
         final Solution solution = new Solution(highsSolution, HighsModelStatus.kIterationLimit, 0.0);
-        final Variable unknownVariable = ObjectCreator.mockVariable(7);
+        final Variable unknownVariable = MockObjectCreator.mockVariable(7);
 
         final VariableException exception = assertThrows(VariableException.class, () -> solution.getVariableValue(unknownVariable));
         assertEquals("Variable with index 7 does not exist in the solution", exception.getMessage());
@@ -97,8 +96,8 @@ class SolutionTest {
         highsSolution.setRow_dual(new DoubleVector(new double[]{1.8, 6.9}));
         final Solution solution = new Solution(highsSolution, HighsModelStatus.kOptimal, 0.0);
 
-        assertEquals(1.8, solution.getDualValue(ObjectCreator.mockConstraint(0)), EPSILON);
-        assertEquals(6.9, solution.getDualValue(ObjectCreator.mockConstraint(1)), EPSILON);
+        assertEquals(1.8, solution.getDualValue(MockObjectCreator.mockConstraint(0)), EPSILON);
+        assertEquals(6.9, solution.getDualValue(MockObjectCreator.mockConstraint(1)), EPSILON);
     }
 
     @Test
@@ -106,7 +105,7 @@ class SolutionTest {
         final HighsSolution highsSolution = new HighsSolution();
         highsSolution.setRow_dual(new DoubleVector(new double[]{0.0, 3.0, 5.6}));
         final Solution solution = new Solution(highsSolution, HighsModelStatus.kTimeLimit, 0.0);
-        final Constraint constraint = ObjectCreator.mockConstraint(10);
+        final Constraint constraint = MockObjectCreator.mockConstraint(10);
 
         final ConstraintException exception = assertThrows(ConstraintException.class, () -> solution.getDualValue(constraint));
         assertEquals("Constraint with index 10 does not exist in the solution", exception.getMessage());
