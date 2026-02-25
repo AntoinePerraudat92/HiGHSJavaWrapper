@@ -18,7 +18,7 @@ class ModelHintTest {
     @Test
     void parseMustThrowForUnknownVariables() {
         final Model model = new Model();
-        final Hint hint = Hint.of(Map.of(new Variable(32), -45D));
+        final Hint hint = Hint.of(Map.of(Variable.builder().index(32).build(), -45D));
 
         final VariableException exception = assertThrows(VariableException.class, () -> model.parseHint(hint));
         assertEquals("Variable with index 32 does not exist in the model", exception.getMessage());

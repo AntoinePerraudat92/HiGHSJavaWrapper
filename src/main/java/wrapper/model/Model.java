@@ -6,11 +6,8 @@ import wrapper.exceptions.OptionException;
 import wrapper.exceptions.VariableException;
 import wrapper.model.option.*;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
-
-import static wrapper.model.Constraint.ConstraintType.GENERAL;
 
 
 public class Model {
@@ -53,22 +50,6 @@ public class Model {
 
     public Variable addIntegerVariable(double lb, double ub, double cost) {
         return addVariable(lb, ub, cost, HighsVarType.kInteger);
-    }
-
-    /**
-     * LHS <= Expression <= RHS. Example: 4 <= 2x1 + 5x2 <= 12.
-     */
-    public Constraint addGeneralConstraint(double lhs, double rhs, @NonNull final LinearExpression expression) {
-        return addConstraint(lhs, rhs, expression, GENERAL);
-    }
-
-    /**
-     * LHS <= Expression <= RHS. Example: 4 - x5 <= 2x1 + 5x2 <= 12 + x4.
-     */
-    public List<Constraint> addGeneralConstraint(@NonNull final LinearExpression lhs, @NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
-        final Constraint firstConstraint = addLessThanOrEqualToConstraint(rhs, expression);
-        final Constraint secondConstraint = addGreaterThanOrEqualToConstraint(lhs, expression);
-        return List.of(firstConstraint, secondConstraint);
     }
 
     /**
@@ -140,7 +121,7 @@ public class Model {
         if (this.highs.run() == HighsStatus.kError) {
             return Optional.empty();
         }
-        return Optional.of(new Solution(this.highs.getSolution(), this.highs.getModelStatus(), this.highs.getObjectiveValue()));
+        return Optional.of(new Solution(this.highs.getModelStatus(), this.highs.getObjectiveValue()));
     }
 
     private Constraint addConstraint(double lhs, double rhs, final LinearExpression expression, final Constraint.ConstraintType constraintType) {
@@ -151,30 +132,33 @@ public class Model {
         final VariableConsumer variableConsumer = new VariableConsumer(nmbVariables);
         expression.consumeVariables(variableConsumer);
         this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
-        final Constraint constraint = new Constraint(this.highs.getNumRow() - 1, constraintType, lhs, rhs);
-        constraint.onConstraintCoefficientUpdated((variable, scalar) -> {
-            checkVariable(variable);
-            this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), scalar);
-        });
-        constraint.onConstraintRightHandSideUpdated(newRhs -> {
-            switch (constraint.getConstraintType()) {
-                case EQUALITY -> this.highs.changeRowBounds(constraint.getIndex(), newRhs, newRhs);
-                case GREATER_THAN_OR_EQUAL_TO ->
-                        this.highs.changeRowBounds(constraint.getIndex(), newRhs, Double.MAX_VALUE);
-                case LESS_THAN_OR_EQUAL_TO ->
-                        this.highs.changeRowBounds(constraint.getIndex(), -Double.MAX_VALUE, newRhs);
-                case GENERAL -> this.highs.changeRowBounds(constraint.getIndex(), constraint.getLhs(), newRhs);
-            }
-        });
-        constraint.onConstraintLeftHandSideUpdated(newLhs -> {
-            if (constraint.getConstraintType() == Constraint.ConstraintType.EQUALITY) {
-                this.highs.changeRowBounds(constraint.getIndex(), newLhs, newLhs);
-            }
-            if (constraint.getConstraintType() == GENERAL) {
-                this.highs.changeRowBounds(constraint.getIndex(), newLhs, constraint.getRhs());
-            }
-        });
-        return constraint;
+        final long constraintIndex = this.highs.getNumRow() - 1;
+        return Constraint.builder()
+                .index(constraintIndex)
+                .onCoefficientUpdatedCallback((variable, scalar) -> {
+                    checkVariable(variable);
+                    this.highs.changeCoeff(constraintIndex, variable.getIndex(), scalar);
+                })
+                .onConstraintRightHandSideUpdatedCallback(newRhs -> {
+                    switch (constraintType) {
+                        case EQUALITY -> this.highs.changeRowBounds(constraintIndex, newRhs, newRhs);
+                        case GREATER_THAN_OR_EQUAL_TO ->
+                                this.highs.changeRowBounds(constraintIndex, newRhs, Double.MAX_VALUE);
+                        case LESS_THAN_OR_EQUAL_TO ->
+                                this.highs.changeRowBounds(constraintIndex, -Double.MAX_VALUE, newRhs);
+                    }
+                })
+                .onGetValueCallback(() -> {
+                    final HighsSolution highsSolution = this.highs.getSolution();
+                    final DoubleVector constraintValues = highsSolution.getRow_value();
+                    return constraintValues.get((int) constraintIndex);
+                })
+                .onGetDualValueCallback(() -> {
+                    final HighsSolution highsSolution = this.highs.getSolution();
+                    final DoubleVector dualValues = highsSolution.getRow_dual();
+                    return dualValues.get((int) constraintIndex);
+                })
+                .build();
     }
 
     private Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
@@ -183,10 +167,21 @@ public class Model {
         if (varType == HighsVarType.kInteger) {
             this.highs.changeColIntegrality(variableIndex, varType);
         }
-        final Variable variable = new Variable(variableIndex);
-        variable.onCostUpdated(newCost -> this.highs.changeColCost(variableIndex, newCost));
-        variable.onBoundsUpdated((newLb, newUb) -> this.highs.changeColBounds(variableIndex, newLb, newUb));
-        return variable;
+        return Variable.builder()
+                .index(variableIndex)
+                .onCostUpdatedCallback(newCost -> this.highs.changeColCost(variableIndex, newCost))
+                .onBoundsUpdateCallback((newLb, newUb) -> this.highs.changeColBounds(variableIndex, newLb, newUb))
+                .onGetValueCallback(() -> {
+                    final HighsSolution highsSolution = this.highs.getSolution();
+                    final DoubleVector variableValues = highsSolution.getCol_value();
+                    return variableValues.get((int) variableIndex);
+                })
+                .onGetDualValueCallback(() -> {
+                    final HighsSolution highsSolution = this.highs.getSolution();
+                    final DoubleVector dualValues = highsSolution.getCol_dual();
+                    return dualValues.get((int) variableIndex);
+                })
+                .build();
     }
 
     private void checkVariable(final Variable variable) throws VariableException {

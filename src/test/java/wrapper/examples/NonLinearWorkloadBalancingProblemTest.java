@@ -67,7 +67,7 @@ class NonLinearWorkloadBalancingProblemTest {
         assertEquals(getExpectedObjectiveValue(balancingExponent), solution.getObjectiveValue(), EPSILON);
         final double[] expectedWorkload = getExpectedWorkload(balancingExponent);
         assertNotNull(expectedWorkload);
-        final double[] computedWorkload = workloadBalancing.getWorkload(solution);
+        final double[] computedWorkload = workloadBalancing.getWorkload();
         assertTrue(compareWorkloads(expectedWorkload, computedWorkload));
     }
 
@@ -189,7 +189,7 @@ class NonLinearWorkloadBalancingProblemTest {
             Solution solution;
             do {
                 solution = this.model.minimize().orElseThrow();
-                final double[] workload = getWorkload(solution);
+                final double[] workload = getWorkload();
                 isRelativeGapReached = isRelativeGapReached(solution.getObjectiveValue(), workload);
                 if (!isRelativeGapReached) {
                     addLinearizationConstraints(workload);
@@ -198,10 +198,10 @@ class NonLinearWorkloadBalancingProblemTest {
             return solution;
         }
 
-        public double[] getWorkload(final Solution solution) {
+        public double[] getWorkload() {
             double[] workload = new double[this.nmbMachines];
             for (int m = 0; m < this.nmbMachines; ++m) {
-                workload[m] = solution.getVariableValue(this.w[m]);
+                workload[m] = this.w[m].getValue();
             }
             return workload;
         }
