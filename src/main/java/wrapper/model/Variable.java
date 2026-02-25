@@ -1,45 +1,42 @@
 package wrapper.model;
 
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 
 import java.util.function.BiConsumer;
 import java.util.function.DoubleConsumer;
+import java.util.function.DoubleSupplier;
 
-@EqualsAndHashCode
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Builder(access = AccessLevel.PACKAGE)
 public class Variable {
 
+    @EqualsAndHashCode.Include
     private final long index;
-    @EqualsAndHashCode.Exclude
     private DoubleConsumer onCostUpdatedCallback;
-    @EqualsAndHashCode.Exclude
     private BiConsumer<Double, Double> onBoundsUpdateCallback;
-
-    Variable(long index) {
-        this.index = index;
-    }
+    private DoubleSupplier onGetValueCallback;
+    private DoubleSupplier onGetDualValueCallback;
 
     long getIndex() {
         return this.index;
     }
 
-    void onCostUpdated(final DoubleConsumer callback) {
-        this.onCostUpdatedCallback = callback;
-    }
-
-    void onBoundsUpdated(final BiConsumer<Double, Double> callback) {
-        this.onBoundsUpdateCallback = callback;
-    }
-
     public void updateCost(double newCost) {
-        if (this.onCostUpdatedCallback != null) {
-            this.onCostUpdatedCallback.accept(newCost);
-        }
+        this.onCostUpdatedCallback.accept(newCost);
     }
 
     public void updateBounds(double newLb, double newUb) {
-        if (this.onBoundsUpdateCallback != null) {
-            this.onBoundsUpdateCallback.accept(newLb, newUb);
-        }
+        this.onBoundsUpdateCallback.accept(newLb, newUb);
+    }
+
+    public double getValue() {
+        return this.onGetValueCallback.getAsDouble();
+    }
+
+    public double getDualValue() {
+        return this.onGetDualValueCallback.getAsDouble();
     }
 
 }

@@ -10,7 +10,7 @@ import java.util.function.ObjDoubleConsumer;
 public class LinearExpression {
 
     private final double constant;
-    private final Map<Variable, Term> terms = new HashMap<>();
+    private final Map<Long, Term> terms = new HashMap<>();
 
     public LinearExpression() {
         this(0.0);
@@ -37,7 +37,7 @@ public class LinearExpression {
     }
 
     public void addTerm(@NonNull final Term term) {
-        this.terms.putIfAbsent(term.variable, term);
+        this.terms.putIfAbsent(term.variable.getIndex(), term);
     }
 
     public record Term(@NonNull Variable variable, double scalar) {
@@ -51,8 +51,11 @@ public class LinearExpression {
         final LinearExpression newLinearExpression = new LinearExpression(this.constant - otherExpression.constant);
         consumeVariables(newLinearExpression::addVariable);
         for (final Term term : otherExpression.terms.values()) {
-            newLinearExpression.terms.computeIfPresent(term.variable(), (variable, otherTerm) -> new Term(variable, otherTerm.scalar() - term.scalar()));
-            newLinearExpression.terms.putIfAbsent(term.variable(), new Term(term.variable(), -term.scalar()));
+            final Variable variable = term.variable();
+            final long variableIndex = variable.getIndex();
+            final double scalar = term.scalar();
+            newLinearExpression.terms.computeIfPresent(variableIndex, (index, otherTerm) -> new Term(variable, otherTerm.scalar() - scalar));
+            newLinearExpression.terms.putIfAbsent(variableIndex, new Term(variable, -scalar));
         }
         return newLinearExpression;
     }

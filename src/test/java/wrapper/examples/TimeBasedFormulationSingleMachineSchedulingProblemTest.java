@@ -67,7 +67,7 @@ class TimeBasedFormulationSingleMachineSchedulingProblemTest {
         int nmbScheduledJobs = 0;
         for (int j = 0; j < nmbJobs; ++j) {
             for (int t = 0; t < nmbPeriods; ++t) {
-                if (solution.getVariableValue(x[j][t]) > 0.5) {
+                if (x[j][t].getValue() > 0.5) {
                     ++nmbScheduledJobs;
                 }
             }
