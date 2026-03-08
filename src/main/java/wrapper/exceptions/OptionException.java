@@ -1,8 +1,8 @@
 package wrapper.exceptions;
 
-public class OptionException extends Exception {
+public class OptionException extends WrapperException {
 
-    public OptionException(String message) {
+    public OptionException(final String message) {
         super(message);
     }
 
