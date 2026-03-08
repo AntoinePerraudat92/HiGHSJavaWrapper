@@ -16,20 +16,6 @@ class ModelOptionTest {
         System.loadLibrary("highswrap");
     }
 
-//    @Test
-//    void addOptionMustReturnFalseForUnknownType() {
-//        class UnknowOption implements Option {
-//            @Override
-//            public String getOptionName() {
-//                return "UnknowOption";
-//            }
-//        }
-//        final Model model = new Model();
-//
-//        final OptionException exception = assertThrows(OptionException.class, () -> model.addOption(new UnknowOption()));
-//        assertEquals("Option is not supported", exception.getMessage());
-//    }
-
     @ParameterizedTest
     @ValueSource(strings = {"on", "off"})
     void addStringOption(final String optionValue) {
