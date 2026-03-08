@@ -1,5 +1,7 @@
 # HiGHS Java Wrapper
 
+(In construction)
+
 The scope of this project is to provide a Java wrapper for the open-source [HiGHS solver](https://highs.dev/), which is
 capable of solving linear (LP), mixed-integer (MIP) and quadratic programming (QP) problems.
 
@@ -25,7 +27,10 @@ A JDK 21 or later is required.
 
 ### SWIG
 
-`SWIG` [must be installed](https://www.swig.org/). On Ubuntu systems, one can use `sudo apt install swig`.
+`SWIG` [must be installed](https://www.swig.org/) only if you intend to generate the JNI classes. If you only plan to
+use the wrapper, installing `SWIG` should not be necessary.
+
+On Ubuntu systems, one can use `sudo apt install swig`.
 
 ### Compiler
 
