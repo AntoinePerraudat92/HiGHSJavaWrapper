@@ -33,7 +33,9 @@ public class Model {
             case Integer integerValue -> {
                 return this.highs.setOptionValue(option.getName(), integerValue) == HighsStatus.kOk;
             }
-            default -> throw new IllegalStateException("Unexpected value: " + optionValue);
+            default -> {
+                return false;
+            }
         }
     }
 
