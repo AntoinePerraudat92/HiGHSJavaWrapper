@@ -1,6 +1,6 @@
 package wrapper.model.option;
 
-public enum CommonDoubleOptions {
+public enum DoubleOptions {
 
     MIP_RELATIVE_GAP {
         String getHighsOptionName() {
@@ -28,7 +28,8 @@ public enum CommonDoubleOptions {
 
     abstract String getHighsOptionName();
 
-    public Option getOption(double value) {
-        return new DoubleOption(getHighsOptionName(), value);
+    public Option getOption(final Double value) {
+        return new Option(getHighsOptionName(), value);
     }
+
 }
