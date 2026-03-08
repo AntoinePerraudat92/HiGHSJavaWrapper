@@ -1,7 +1,15 @@
 package wrapper.model.option;
 
-public interface Option {
 
-    String getOptionName();
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@Getter
+public class Option {
+
+    private final String name;
+    private final Object value;
 
 }

@@ -2,9 +2,9 @@ package wrapper.model;
 
 import highs.*;
 import lombok.NonNull;
-import wrapper.exceptions.OptionException;
 import wrapper.exceptions.VariableException;
-import wrapper.model.option.*;
+import wrapper.model.option.BooleanOptions;
+import wrapper.model.option.Option;
 
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
@@ -15,28 +15,26 @@ public class Model {
     private final Highs highs = new Highs();
 
     public Model() {
-        try {
-            addOption(CommonBooleanOptions.SOLVER_OUTPUT.getOption(false));
-        } catch (OptionException optionException) {
-            // Should never throw.
-        }
+        addOption(BooleanOptions.SOLVER_OUTPUT.getOption(false));
     }
 
-    public boolean addOption(@NonNull final Option option) throws OptionException {
-        switch (option) {
-            case StringOption stringOption -> {
-                return this.highs.setOptionValue(option.getOptionName(), stringOption.getValue()) == HighsStatus.kOk;
+    public boolean addOption(@NonNull final Option option) {
+        switch (option.getValue()) {
+            case String stringValue -> {
+                return this.highs.setOptionValue(option.getName(), stringValue) == HighsStatus.kOk;
             }
-            case BooleanOption booleanOption -> {
-                return this.highs.setOptionValue(option.getOptionName(), booleanOption.getValue()) == HighsStatus.kOk;
+            case Boolean booleanValue -> {
+                return this.highs.setOptionValue(option.getName(), booleanValue) == HighsStatus.kOk;
             }
-            case DoubleOption doubleOption -> {
-                return this.highs.setOptionValue(option.getOptionName(), doubleOption.getValue()) == HighsStatus.kOk;
+            case Double doubleValue -> {
+                return this.highs.setOptionValue(option.getName(), doubleValue) == HighsStatus.kOk;
             }
-            case IntegerOption integerOption -> {
-                return this.highs.setOptionValue(option.getOptionName(), integerOption.getValue()) == HighsStatus.kOk;
+            case Integer integerValue -> {
+                return this.highs.setOptionValue(option.getName(), integerValue) == HighsStatus.kOk;
             }
-            default -> throw new OptionException("Option is not supported");
+            default -> {
+                return false;
+            }
         }
     }
 

@@ -1,8 +1,8 @@
 package wrapper.exceptions;
 
-public class VariableException extends RuntimeException {
+public class VariableException extends WrapperException {
 
-    public VariableException(String message) {
+    public VariableException(final String message) {
         super(message);
     }
 

@@ -3,7 +3,6 @@ package wrapper.model.option;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
-import wrapper.exceptions.OptionException;
 import wrapper.model.Model;
 
 import java.util.Arrays;
@@ -12,7 +11,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CommonDoubleOptionsTest {
+class IntegerOptionsTest {
 
     static {
         System.loadLibrary("highs");
@@ -20,24 +19,23 @@ class CommonDoubleOptionsTest {
     }
 
     private static int computeNmbOptions() {
-        return Arrays.stream(CommonDoubleOptions.values())
-                .map(CommonDoubleOptions::getHighsOptionName)
+        return Arrays.stream(IntegerOptions.values())
+                .map(IntegerOptions::getHighsOptionName)
                 .collect(Collectors.toSet())
                 .size();
     }
 
     @Test
-    void commonDoubleOptionsMustNotHaveDuplicates() {
-        assertEquals(CommonDoubleOptions.values().length, computeNmbOptions());
+    void commonIntegerOptionsMustNotHaveDuplicates() {
+        assertEquals(IntegerOptions.values().length, computeNmbOptions());
     }
 
     @ParameterizedTest
-    @EnumSource(value = CommonDoubleOptions.class)
-    void allCommonDoubleOptionsMustBeValidOptions(final CommonDoubleOptions commonDoubleOptions) throws OptionException {
+    @EnumSource(value = IntegerOptions.class)
+    void allCommonIntegerOptionsMustBeValidOptions(final IntegerOptions integerOptions) {
         final Model model = new Model();
 
-        System.out.println(commonDoubleOptions.toString());
-        assertTrue(model.addOption(commonDoubleOptions.getOption(35)));
+        assertTrue(model.addOption(integerOptions.getOption(1)));
     }
 
 }

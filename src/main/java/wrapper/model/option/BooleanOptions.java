@@ -1,6 +1,6 @@
 package wrapper.model.option;
 
-public enum CommonBooleanOptions {
+public enum BooleanOptions {
 
     SOLVER_OUTPUT {
         String getHighsOptionName() {
@@ -22,8 +22,8 @@ public enum CommonBooleanOptions {
 
     abstract String getHighsOptionName();
 
-    public Option getOption(boolean value) {
-        return new BooleanOption(getHighsOptionName(), value);
+    public Option getOption(final Boolean value) {
+        return new Option(getHighsOptionName(), value);
     }
 
 }
