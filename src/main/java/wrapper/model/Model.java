@@ -19,8 +19,7 @@ public class Model {
     }
 
     public boolean addOption(@NonNull final Option option) {
-        final Object optionValue = option.getValue();
-        switch (optionValue) {
+        switch (option.getValue()) {
             case String stringValue -> {
                 return this.highs.setOptionValue(option.getName(), stringValue) == HighsStatus.kOk;
             }
