@@ -910,7 +910,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HIGHS_1VERSION_1MINOR_1get(JNIEnv *j
   
   (void)jenv;
   (void)jcls;
-  result = (int)(12);
+  result = (int)(13);
   jresult = (jint)result; 
   return jresult;
 }
@@ -922,286 +922,9 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HIGHS_1VERSION_1PATCH_1get(JNIEnv *j
   
   (void)jenv;
   (void)jcls;
-  result = (int)(0);
+  result = (int)(1);
   jresult = (jint)result; 
   return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsFiles_1empty_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  bool arg2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  arg2 = jarg2 ? true : false; 
-  if (arg1) (arg1)->empty = arg2;
-}
-
-
-SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HighsFiles_1empty_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jboolean jresult = 0 ;
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  bool result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  result = (bool) ((arg1)->empty);
-  jresult = (jboolean)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsFiles_1read_1solution_1file_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return ;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return ;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if (arg1) (arg1)->read_solution_file = *arg2;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_highs_highsJNI_HighsFiles_1read_1solution_1file_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jstring jresult = 0 ;
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  result = (std::string *) & ((arg1)->read_solution_file);
-  jresult = jenv->NewStringUTF(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsFiles_1read_1basis_1file_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return ;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return ;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if (arg1) (arg1)->read_basis_file = *arg2;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_highs_highsJNI_HighsFiles_1read_1basis_1file_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jstring jresult = 0 ;
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  result = (std::string *) & ((arg1)->read_basis_file);
-  jresult = jenv->NewStringUTF(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsFiles_1write_1model_1file_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return ;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return ;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if (arg1) (arg1)->write_model_file = *arg2;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_highs_highsJNI_HighsFiles_1write_1model_1file_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jstring jresult = 0 ;
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  result = (std::string *) & ((arg1)->write_model_file);
-  jresult = jenv->NewStringUTF(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsFiles_1write_1iis_1model_1file_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return ;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return ;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if (arg1) (arg1)->write_iis_model_file = *arg2;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_highs_highsJNI_HighsFiles_1write_1iis_1model_1file_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jstring jresult = 0 ;
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  result = (std::string *) & ((arg1)->write_iis_model_file);
-  jresult = jenv->NewStringUTF(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsFiles_1write_1solution_1file_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return ;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return ;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if (arg1) (arg1)->write_solution_file = *arg2;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_highs_highsJNI_HighsFiles_1write_1solution_1file_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jstring jresult = 0 ;
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  result = (std::string *) & ((arg1)->write_solution_file);
-  jresult = jenv->NewStringUTF(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsFiles_1write_1basis_1file_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *arg2 = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  if(!jarg2) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return ;
-  }
-  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
-  if (!arg2_pstr) return ;
-  std::string arg2_str(arg2_pstr);
-  arg2 = &arg2_str;
-  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  if (arg1) (arg1)->write_basis_file = *arg2;
-}
-
-
-SWIGEXPORT jstring JNICALL Java_highs_highsJNI_HighsFiles_1write_1basis_1file_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jstring jresult = 0 ;
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  std::string *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  result = (std::string *) & ((arg1)->write_basis_file);
-  jresult = jenv->NewStringUTF(result->c_str()); 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsFiles_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsFiles **)&jarg1; 
-  (arg1)->clear();
-}
-
-
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1HighsFiles(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  HighsFiles *result = 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (HighsFiles *)new HighsFiles();
-  *(HighsFiles **)&jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void JNICALL Java_highs_highsJNI_delete_1HighsFiles(JNIEnv *jenv, jclass jcls, jlong jarg1) {
-  HighsFiles *arg1 = (HighsFiles *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  arg1 = *(HighsFiles **)&jarg1; 
-  delete arg1;
 }
 
 
@@ -5756,6 +5479,78 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStrategyLight_1get(JNIEnv *jenv,
 }
 
 
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStrategyFromRay_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  IisStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (IisStrategy)kIisStrategyFromRay;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStrategyFromLp_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  IisStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (IisStrategy)kIisStrategyFromLp;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStrategyIrreducible_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  IisStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (IisStrategy)kIisStrategyIrreducible;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStrategyColPriority_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  IisStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (IisStrategy)kIisStrategyColPriority;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStrategyRelaxation_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  IisStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (IisStrategy)kIisStrategyRelaxation;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStrategyDefault_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  IisStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (IisStrategy)kIisStrategyDefault;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStrategyMax_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   IisStrategy result;
@@ -5780,13 +5575,13 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStatusMin_1get(JNIEnv *jenv, jcl
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStatusInConflict_1get(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStatusNotInConflict_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   IisStatus result;
   
   (void)jenv;
   (void)jcls;
-  result = (IisStatus)kIisStatusInConflict;
+  result = (IisStatus)kIisStatusNotInConflict;
   jresult = (jint)result; 
   return jresult;
 }
@@ -12091,6 +11886,66 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_Highs_1resetGlobalScheduler_1_1SWIG_
 }
 
 
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1optimizeHighs(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  result = (HighsStatus)(arg1)->optimizeHighs();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1optimizeModel(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  result = (HighsStatus)(arg1)->optimizeModel();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1calledOptimizeModel(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  result = (HighsStatus)(arg1)->calledOptimizeModel();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1optimizeLp(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  result = (HighsStatus)(arg1)->optimizeLp();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getSimplexStats(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
@@ -12213,6 +12068,37 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_Highs_1getPrimalPhase1Dual(JNIEnv *
   arg1 = *(Highs **)&jarg1; 
   result = (std::vector< double > *) &((Highs const *)arg1)->getPrimalPhase1Dual();
   *(std::vector< double > **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1getColOrRowName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jboolean jarg3, jlong jarg4, jlong jarg5) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsLp *arg2 = 0 ;
+  bool arg3 ;
+  HighsInt arg4 ;
+  std::string *arg5 = 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  arg2 = *(HighsLp **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "HighsLp const & is null");
+    return 0;
+  } 
+  arg3 = jarg3 ? true : false; 
+  arg4 = (HighsInt)jarg4; 
+  arg5 = *(std::string **)&jarg5;
+  if (!arg5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::string & is null");
+    return 0;
+  } 
+  result = (HighsStatus)((Highs const *)arg1)->getColOrRowName((HighsLp const &)*arg2,arg3,arg4,*arg5);
+  jresult = (jint)result; 
   return jresult;
 }
 

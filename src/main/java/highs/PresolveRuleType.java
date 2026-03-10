@@ -28,6 +28,7 @@ public final class PresolveRuleType {
   public final static PresolveRuleType kPresolveRuleParallelRowsAndCols = new PresolveRuleType("kPresolveRuleParallelRowsAndCols");
   public final static PresolveRuleType kPresolveRuleSparsify = new PresolveRuleType("kPresolveRuleSparsify");
   public final static PresolveRuleType kPresolveRuleProbing = new PresolveRuleType("kPresolveRuleProbing");
+  public final static PresolveRuleType kPresolveRuleEnumeration = new PresolveRuleType("kPresolveRuleEnumeration");
   public final static PresolveRuleType kPresolveRuleMax = new PresolveRuleType("kPresolveRuleMax", highsJNI.kPresolveRuleMax_get());
   public final static PresolveRuleType kPresolveRuleLastAllowOff = new PresolveRuleType("kPresolveRuleLastAllowOff", highsJNI.kPresolveRuleLastAllowOff_get());
   public final static PresolveRuleType kPresolveRuleCount = new PresolveRuleType("kPresolveRuleCount");
@@ -66,7 +67,7 @@ public final class PresolveRuleType {
     swigNext = this.swigValue+1;
   }
 
-  private static PresolveRuleType[] swigValues = { kPresolveRuleIllegal, kPresolveRuleMin, kPresolveRuleEmptyRow, kPresolveRuleSingletonRow, kPresolveRuleRedundantRow, kPresolveRuleEmptyCol, kPresolveRuleFixedCol, kPresolveRuleDominatedCol, kPresolveRuleFirstAllowOff, kPresolveRuleForcingRow, kPresolveRuleForcingCol, kPresolveRuleFreeColSubstitution, kPresolveRuleDoubletonEquation, kPresolveRuleDependentEquations, kPresolveRuleDependentFreeCols, kPresolveRuleAggregator, kPresolveRuleParallelRowsAndCols, kPresolveRuleSparsify, kPresolveRuleProbing, kPresolveRuleMax, kPresolveRuleLastAllowOff, kPresolveRuleCount };
+  private static PresolveRuleType[] swigValues = { kPresolveRuleIllegal, kPresolveRuleMin, kPresolveRuleEmptyRow, kPresolveRuleSingletonRow, kPresolveRuleRedundantRow, kPresolveRuleEmptyCol, kPresolveRuleFixedCol, kPresolveRuleDominatedCol, kPresolveRuleFirstAllowOff, kPresolveRuleForcingRow, kPresolveRuleForcingCol, kPresolveRuleFreeColSubstitution, kPresolveRuleDoubletonEquation, kPresolveRuleDependentEquations, kPresolveRuleDependentFreeCols, kPresolveRuleAggregator, kPresolveRuleParallelRowsAndCols, kPresolveRuleSparsify, kPresolveRuleProbing, kPresolveRuleEnumeration, kPresolveRuleMax, kPresolveRuleLastAllowOff, kPresolveRuleCount };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;
