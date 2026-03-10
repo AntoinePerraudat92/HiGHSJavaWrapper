@@ -18,6 +18,12 @@ public enum BooleanOptions {
         String getHighsOptionName() {
             return "mip_allow_restart";
         }
+    },
+
+    LOG_TO_CONSOLE {
+        String getHighsOptionName() {
+            return "log_to_console";
+        }
     };
 
     abstract String getHighsOptionName();
