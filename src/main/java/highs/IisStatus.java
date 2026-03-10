@@ -10,9 +10,9 @@ package highs;
 
 public final class IisStatus {
   public final static IisStatus kIisStatusMin = new IisStatus("kIisStatusMin", highsJNI.kIisStatusMin_get());
-  public final static IisStatus kIisStatusInConflict = new IisStatus("kIisStatusInConflict", highsJNI.kIisStatusInConflict_get());
-  public final static IisStatus kIisStatusNotInConflict = new IisStatus("kIisStatusNotInConflict");
+  public final static IisStatus kIisStatusNotInConflict = new IisStatus("kIisStatusNotInConflict", highsJNI.kIisStatusNotInConflict_get());
   public final static IisStatus kIisStatusMaybeInConflict = new IisStatus("kIisStatusMaybeInConflict");
+  public final static IisStatus kIisStatusInConflict = new IisStatus("kIisStatusInConflict");
   public final static IisStatus kIisStatusMax = new IisStatus("kIisStatusMax", highsJNI.kIisStatusMax_get());
 
   public final int swigValue() {
@@ -49,7 +49,7 @@ public final class IisStatus {
     swigNext = this.swigValue+1;
   }
 
-  private static IisStatus[] swigValues = { kIisStatusMin, kIisStatusInConflict, kIisStatusNotInConflict, kIisStatusMaybeInConflict, kIisStatusMax };
+  private static IisStatus[] swigValues = { kIisStatusMin, kIisStatusNotInConflict, kIisStatusMaybeInConflict, kIisStatusInConflict, kIisStatusMax };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

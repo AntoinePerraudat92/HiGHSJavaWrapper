@@ -11,8 +11,12 @@ package highs;
 public final class IisStrategy {
   public final static IisStrategy kIisStrategyMin = new IisStrategy("kIisStrategyMin", highsJNI.kIisStrategyMin_get());
   public final static IisStrategy kIisStrategyLight = new IisStrategy("kIisStrategyLight", highsJNI.kIisStrategyLight_get());
-  public final static IisStrategy kIisStrategyFromLpRowPriority = new IisStrategy("kIisStrategyFromLpRowPriority");
-  public final static IisStrategy kIisStrategyFromLpColPriority = new IisStrategy("kIisStrategyFromLpColPriority");
+  public final static IisStrategy kIisStrategyFromRay = new IisStrategy("kIisStrategyFromRay", highsJNI.kIisStrategyFromRay_get());
+  public final static IisStrategy kIisStrategyFromLp = new IisStrategy("kIisStrategyFromLp", highsJNI.kIisStrategyFromLp_get());
+  public final static IisStrategy kIisStrategyIrreducible = new IisStrategy("kIisStrategyIrreducible", highsJNI.kIisStrategyIrreducible_get());
+  public final static IisStrategy kIisStrategyColPriority = new IisStrategy("kIisStrategyColPriority", highsJNI.kIisStrategyColPriority_get());
+  public final static IisStrategy kIisStrategyRelaxation = new IisStrategy("kIisStrategyRelaxation", highsJNI.kIisStrategyRelaxation_get());
+  public final static IisStrategy kIisStrategyDefault = new IisStrategy("kIisStrategyDefault", highsJNI.kIisStrategyDefault_get());
   public final static IisStrategy kIisStrategyMax = new IisStrategy("kIisStrategyMax", highsJNI.kIisStrategyMax_get());
 
   public final int swigValue() {
@@ -49,7 +53,7 @@ public final class IisStrategy {
     swigNext = this.swigValue+1;
   }
 
-  private static IisStrategy[] swigValues = { kIisStrategyMin, kIisStrategyLight, kIisStrategyFromLpRowPriority, kIisStrategyFromLpColPriority, kIisStrategyMax };
+  private static IisStrategy[] swigValues = { kIisStrategyMin, kIisStrategyLight, kIisStrategyFromRay, kIisStrategyFromLp, kIisStrategyIrreducible, kIisStrategyColPriority, kIisStrategyRelaxation, kIisStrategyDefault, kIisStrategyMax };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

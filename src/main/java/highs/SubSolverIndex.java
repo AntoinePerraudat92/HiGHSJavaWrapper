@@ -10,8 +10,10 @@ package highs;
 
 public final class SubSolverIndex {
   public final static SubSolverIndex kSubSolverMip = new SubSolverIndex("kSubSolverMip", highsJNI.kSubSolverMip_get());
-  public final static SubSolverIndex kSubSolverSimplexBasis = new SubSolverIndex("kSubSolverSimplexBasis");
-  public final static SubSolverIndex kSubSolverSimplexNoBasis = new SubSolverIndex("kSubSolverSimplexNoBasis");
+  public final static SubSolverIndex kSubSolverDuSimplexBasis = new SubSolverIndex("kSubSolverDuSimplexBasis");
+  public final static SubSolverIndex kSubSolverDuSimplexNoBasis = new SubSolverIndex("kSubSolverDuSimplexNoBasis");
+  public final static SubSolverIndex kSubSolverPrSimplexBasis = new SubSolverIndex("kSubSolverPrSimplexBasis");
+  public final static SubSolverIndex kSubSolverPrSimplexNoBasis = new SubSolverIndex("kSubSolverPrSimplexNoBasis");
   public final static SubSolverIndex kSubSolverHipo = new SubSolverIndex("kSubSolverHipo");
   public final static SubSolverIndex kSubSolverIpx = new SubSolverIndex("kSubSolverIpx");
   public final static SubSolverIndex kSubSolverHipoAc = new SubSolverIndex("kSubSolverHipoAc");
@@ -55,7 +57,7 @@ public final class SubSolverIndex {
     swigNext = this.swigValue+1;
   }
 
-  private static SubSolverIndex[] swigValues = { kSubSolverMip, kSubSolverSimplexBasis, kSubSolverSimplexNoBasis, kSubSolverHipo, kSubSolverIpx, kSubSolverHipoAc, kSubSolverIpxAc, kSubSolverPdlp, kSubSolverQpAsm, kSubSolverSubMip, kSubSolverCount };
+  private static SubSolverIndex[] swigValues = { kSubSolverMip, kSubSolverDuSimplexBasis, kSubSolverDuSimplexNoBasis, kSubSolverPrSimplexBasis, kSubSolverPrSimplexNoBasis, kSubSolverHipo, kSubSolverIpx, kSubSolverHipoAc, kSubSolverIpxAc, kSubSolverPdlp, kSubSolverQpAsm, kSubSolverSubMip, kSubSolverCount };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

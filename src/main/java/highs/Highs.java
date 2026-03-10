@@ -1026,6 +1026,22 @@ public class Highs {
     highsJNI.Highs_resetGlobalScheduler__SWIG_1();
   }
 
+  public HighsStatus optimizeHighs() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_optimizeHighs(swigCPtr, this));
+  }
+
+  public HighsStatus optimizeModel() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_optimizeModel(swigCPtr, this));
+  }
+
+  public HighsStatus calledOptimizeModel() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_calledOptimizeModel(swigCPtr, this));
+  }
+
+  public HighsStatus optimizeLp() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_optimizeLp(swigCPtr, this));
+  }
+
   public HighsSimplexStats getSimplexStats() {
     return new HighsSimplexStats(highsJNI.Highs_getSimplexStats(swigCPtr, this), false);
   }
@@ -1058,6 +1074,10 @@ public class Highs {
 
   public DoubleVector getPrimalPhase1Dual() {
     return new DoubleVector(highsJNI.Highs_getPrimalPhase1Dual(swigCPtr, this), false);
+  }
+
+  public HighsStatus getColOrRowName(SWIGTYPE_p_HighsLp lp, boolean is_col, long index, SWIGTYPE_p_std__string name) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getColOrRowName(swigCPtr, this, SWIGTYPE_p_HighsLp.getCPtr(lp), is_col, index, SWIGTYPE_p_std__string.getCPtr(name)));
   }
 
   public long defineClock(String name) {
