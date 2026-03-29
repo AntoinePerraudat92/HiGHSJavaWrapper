@@ -2,8 +2,9 @@ package wrapper.model;
 
 
 import org.junit.jupiter.api.Test;
+import wrapper.exceptions.VariableException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;
 
 class ModelVariableTest {
@@ -23,6 +24,23 @@ class ModelVariableTest {
     }
 
     @Test
+    void check() {
+        final Model firstModel = new Model();
+        final Variable firstVariable = firstModel.addBinaryVariable(1.0);
+        final Model secondModel = new Model();
+        final Variable secondVariable = secondModel.addIntegerVariable(0.0, 12.0, 6.9);
+
+        assertDoesNotThrow(() -> firstVariable.check(firstModel));
+        assertDoesNotThrow(() -> secondVariable.check(secondModel));
+        final VariableException firstException = assertThrows(VariableException.class, () -> firstVariable.check(secondModel));
+        assertEquals("Trying to access or modify variable associated with wrong model", firstException.getMessage());
+        final VariableException secondException = assertThrows(VariableException.class, () -> secondVariable.check(firstModel));
+        assertEquals("Trying to access or modify variable associated with wrong model", secondException.getMessage());
+        final VariableException thirdException = assertThrows(VariableException.class, () -> secondVariable.check(null));
+        assertEquals("Trying to access or modify variable associated with wrong model", thirdException.getMessage());
+    }
+
+    @Test
     void updateVariableCostMustChangeObjectiveValue() {
         final Model model = new Model();
         model.addContinuousVariable(1.2, 18.5, 2.3);
@@ -35,6 +53,14 @@ class ModelVariableTest {
 
         final Solution secondSolution = model.maximize().orElseThrow();
         assertEquals(65.55, secondSolution.getObjectiveValue(), EPSILON);
+    }
+
+    @Test
+    void updateVariableCostMustThrowIfModelGCed() {
+        final Variable x = new Variable(9, null);
+
+        final VariableException exception = assertThrows(VariableException.class, () -> x.updateCost(1.8));
+        assertEquals("Related model does not exist", exception.getMessage());
     }
 
     @Test

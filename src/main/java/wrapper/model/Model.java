@@ -110,9 +110,13 @@ public class Model {
         if (nmbVariables < 1) {
             return false;
         }
-        final VariableConsumer variableConsumer = new VariableConsumer(nmbVariables);
+        final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         hint.consumeHints(variableConsumer);
         return this.highs.setSolution(nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()) == HighsStatus.kOk;
+    }
+
+    Highs getHighs() {
+        return this.highs;
     }
 
     private Optional<Solution> solve() {
@@ -127,36 +131,11 @@ public class Model {
         if (nmbVariables < 1) {
             throw new VariableException("Linear expression has no variable");
         }
-        final VariableConsumer variableConsumer = new VariableConsumer(nmbVariables);
+        final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         expression.consumeVariables(variableConsumer);
         this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
         final long constraintIndex = this.highs.getNumRow() - 1;
-        return Constraint.builder()
-                .index(constraintIndex)
-                .onCoefficientUpdatedCallback((variable, scalar) -> {
-                    checkVariable(variable);
-                    this.highs.changeCoeff(constraintIndex, variable.getIndex(), scalar);
-                })
-                .onConstraintRightHandSideUpdatedCallback(newRhs -> {
-                    switch (constraintType) {
-                        case EQUALITY -> this.highs.changeRowBounds(constraintIndex, newRhs, newRhs);
-                        case GREATER_THAN_OR_EQUAL_TO ->
-                                this.highs.changeRowBounds(constraintIndex, newRhs, Double.MAX_VALUE);
-                        case LESS_THAN_OR_EQUAL_TO ->
-                                this.highs.changeRowBounds(constraintIndex, -Double.MAX_VALUE, newRhs);
-                    }
-                })
-                .onGetValueCallback(() -> {
-                    final HighsSolution highsSolution = this.highs.getSolution();
-                    final DoubleVector constraintValues = highsSolution.getRow_value();
-                    return constraintValues.get((int) constraintIndex);
-                })
-                .onGetDualValueCallback(() -> {
-                    final HighsSolution highsSolution = this.highs.getSolution();
-                    final DoubleVector dualValues = highsSolution.getRow_dual();
-                    return dualValues.get((int) constraintIndex);
-                })
-                .build();
+        return new Constraint(constraintIndex, constraintType, this);
     }
 
     private Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
@@ -165,43 +144,25 @@ public class Model {
         if (varType == HighsVarType.kInteger) {
             this.highs.changeColIntegrality(variableIndex, varType);
         }
-        return Variable.builder()
-                .index(variableIndex)
-                .onCostUpdatedCallback(newCost -> this.highs.changeColCost(variableIndex, newCost))
-                .onBoundsUpdateCallback((newLb, newUb) -> this.highs.changeColBounds(variableIndex, newLb, newUb))
-                .onGetValueCallback(() -> {
-                    final HighsSolution highsSolution = this.highs.getSolution();
-                    final DoubleVector variableValues = highsSolution.getCol_value();
-                    return variableValues.get((int) variableIndex);
-                })
-                .onGetDualValueCallback(() -> {
-                    final HighsSolution highsSolution = this.highs.getSolution();
-                    final DoubleVector dualValues = highsSolution.getCol_dual();
-                    return dualValues.get((int) variableIndex);
-                })
-                .build();
+        return new Variable(variableIndex, this);
     }
 
-    private void checkVariable(final Variable variable) throws VariableException {
-        if (variable.getIndex() >= this.highs.getNumCol()) {
-            throw new VariableException(String.format("Variable with index %d does not exist in the model", variable.getIndex()));
-        }
-    }
+    private static class VariableConsumer implements ObjDoubleConsumer<Variable> {
 
-    private class VariableConsumer implements ObjDoubleConsumer<Variable> {
-
+        private final Model model;
         private final DoubleArray values;
         private final LongLongArray indices;
         private long arrayIndex = 0;
 
-        public VariableConsumer(int nmbVariables) {
+        public VariableConsumer(final Model model, int nmbVariables) {
+            this.model = model;
             this.values = new DoubleArray(nmbVariables);
             this.indices = new LongLongArray(nmbVariables);
         }
 
         @Override
         public void accept(final Variable variable, double value) {
-            checkVariable(variable);
+            variable.check(this.model);
             this.values.setitem(this.arrayIndex, value);
             this.indices.setitem(this.arrayIndex, variable.getIndex());
             ++this.arrayIndex;
