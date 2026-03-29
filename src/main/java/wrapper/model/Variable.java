@@ -1,42 +1,67 @@
 package wrapper.model;
 
-import lombok.AccessLevel;
-import lombok.Builder;
+import highs.DoubleVector;
+import highs.HighsSolution;
 import lombok.EqualsAndHashCode;
+import wrapper.exceptions.VariableException;
 
-import java.util.function.BiConsumer;
-import java.util.function.DoubleConsumer;
-import java.util.function.DoubleSupplier;
+import java.lang.ref.WeakReference;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Builder(access = AccessLevel.PACKAGE)
 public class Variable {
 
     @EqualsAndHashCode.Include
     private final long index;
-    private DoubleConsumer onCostUpdatedCallback;
-    private BiConsumer<Double, Double> onBoundsUpdateCallback;
-    private DoubleSupplier onGetValueCallback;
-    private DoubleSupplier onGetDualValueCallback;
+    private final WeakReference<Model> modelWeakReference;
+
+    Variable(long index, final Model model) {
+        this.index = index;
+        this.modelWeakReference = new WeakReference<>(model);
+    }
 
     long getIndex() {
         return this.index;
     }
 
+    void check(final Model otherModel) {
+        final Model thisModel = this.modelWeakReference.get();
+        if (thisModel != otherModel) {
+            throw new VariableException("Trying to access or modify variable associated with wrong model");
+        }
+    }
+
     public void updateCost(double newCost) {
-        this.onCostUpdatedCallback.accept(newCost);
+        final Model model = this.modelWeakReference.get();
+        throwIfModelNull(model);
+        model.getHighs().changeColCost(this.index, newCost);
     }
 
     public void updateBounds(double newLb, double newUb) {
-        this.onBoundsUpdateCallback.accept(newLb, newUb);
+        final Model model = this.modelWeakReference.get();
+        throwIfModelNull(model);
+        model.getHighs().changeColBounds(this.index, newLb, newUb);
     }
 
     public double getValue() {
-        return this.onGetValueCallback.getAsDouble();
+        final Model model = this.modelWeakReference.get();
+        throwIfModelNull(model);
+        final HighsSolution highsSolution = model.getHighs().getSolution();
+        final DoubleVector variableValues = highsSolution.getCol_value();
+        return variableValues.get((int) this.index);
     }
 
     public double getDualValue() {
-        return this.onGetDualValueCallback.getAsDouble();
+        final Model model = this.modelWeakReference.get();
+        throwIfModelNull(model);
+        final HighsSolution highsSolution = model.getHighs().getSolution();
+        final DoubleVector dualValues = highsSolution.getCol_dual();
+        return dualValues.get((int) this.index);
+    }
+
+    private void throwIfModelNull(final Model model) {
+        if (model == null) {
+            throw new VariableException("Related model does not exist");
+        }
     }
 
 }

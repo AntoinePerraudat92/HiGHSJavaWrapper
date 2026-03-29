@@ -1,6 +1,7 @@
 package wrapper.model;
 
 import org.junit.jupiter.api.Test;
+import wrapper.exceptions.ConstraintException;
 import wrapper.exceptions.VariableException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,14 +32,24 @@ class ModelConstraintTest {
     }
 
     @Test
+    void updateCoefficientMustThrowIfModelGCed() {
+        final Constraint constraint = new Constraint(0, Constraint.ConstraintType.EQUALITY, null);
+        final Variable variable = new Variable(12, null);
+
+        final ConstraintException exception = assertThrows(ConstraintException.class, () -> constraint.updateCoefficient(0.5, variable));
+        assertEquals("Related model does not exist", exception.getMessage());
+    }
+
+    @Test
     void updateCoefficientMustThrowForUnknownVariable() {
+        final Model otherModel = new Model();
+        final Variable unknownVariable = otherModel.addBinaryVariable(1.0);
         final Model model = new Model();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Constraint constraint = model.addLessThanOrEqualToConstraint(4.0, LinearExpression.of(new LinearExpression.Term(x1, 0.5)));
-        final Variable unknownVariable = MockObjectCreator.createVariable(12);
 
         final VariableException exception = assertThrows(VariableException.class, () -> constraint.updateCoefficient(0.5, unknownVariable));
-        assertEquals("Variable with index 12 does not exist in the model", exception.getMessage());
+        assertEquals("Trying to access or modify variable associated with wrong model", exception.getMessage());
     }
 
     @Test
@@ -112,12 +123,16 @@ class ModelConstraintTest {
 
     @Test
     void addConstraintMustThrowIfLinearExpressionContainsUnknownVariable() {
+        final Model otherModel = new Model();
         final Model model = new Model();
-        final LinearExpression expression = new LinearExpression();
-        expression.addVariable(MockObjectCreator.createVariable(0), 1.0);
+        final LinearExpression expression = LinearExpression.of(
+                new LinearExpression.Term(model.addBinaryVariable(1.0), 2.0),
+                new LinearExpression.Term(otherModel.addBinaryVariable(1.0), 2.0),
+                new LinearExpression.Term(otherModel.addContinuousVariable(0.0, 2.4, 0.1), 5.0)
+        );
 
         final VariableException exception = assertThrows(VariableException.class, () -> model.addEqualityConstraint(2.4, expression));
-        assertEquals("Variable with index 0 does not exist in the model", exception.getMessage());
+        assertEquals("Trying to access or modify variable associated with wrong model", exception.getMessage());
     }
 
     @Test

@@ -27,7 +27,7 @@ public class LinearExpression {
     public static LinearExpression of(double constant, final Term... terms) {
         final LinearExpression expression = new LinearExpression(constant);
         for (final Term term : terms) {
-            expression.addVariable(term.variable(), term.scalar());
+            expression.addTerm(term);
         }
         return expression;
     }
