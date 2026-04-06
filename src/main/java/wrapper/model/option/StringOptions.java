@@ -1,5 +1,7 @@
 package wrapper.model.option;
 
+import org.jspecify.annotations.NonNull;
+
 public enum StringOptions {
 
     PARALLEL {
@@ -22,7 +24,7 @@ public enum StringOptions {
 
     abstract String getHighsOptionName();
 
-    public Option getOption(final String value) {
+    public Option getOption(@NonNull final String value) {
         return new Option(getHighsOptionName(), value);
     }
 

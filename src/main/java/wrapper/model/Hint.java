@@ -1,7 +1,7 @@
 package wrapper.model;
 
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ public class Hint {
 
     private final Map<Variable, Double> hintByVariable = new HashMap<>();
 
-    public static Hint of(@NonNull final Map<Variable, Double> hintByVariable) {
+    public static Hint of(@NonNull final Map<@NonNull Variable, Double> hintByVariable) {
         final Hint hint = new Hint();
         hintByVariable.forEach(hint::addHint);
         return hint;

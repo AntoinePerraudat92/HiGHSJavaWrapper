@@ -3,6 +3,8 @@ package wrapper.model;
 import highs.DoubleVector;
 import highs.HighsSolution;
 import lombok.EqualsAndHashCode;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import wrapper.exceptions.VariableException;
 
 import java.lang.ref.WeakReference;
@@ -14,7 +16,7 @@ public class Variable {
     private final long index;
     private final WeakReference<Model> modelWeakReference;
 
-    Variable(long index, final Model model) {
+    Variable(long index, @NonNull final Model model) {
         this.index = index;
         this.modelWeakReference = new WeakReference<>(model);
     }
@@ -58,7 +60,7 @@ public class Variable {
         return dualValues.get((int) this.index);
     }
 
-    private void throwIfModelNull(final Model model) {
+    private void throwIfModelNull(@Nullable final Model model) {
         if (model == null) {
             throw new VariableException("Related model does not exist");
         }

@@ -1,5 +1,7 @@
 package wrapper.model.option;
 
+import org.jspecify.annotations.NonNull;
+
 public enum BooleanOptions {
 
     SOLVER_OUTPUT {
@@ -28,7 +30,7 @@ public enum BooleanOptions {
 
     abstract String getHighsOptionName();
 
-    public Option getOption(final Boolean value) {
+    public Option getOption(@NonNull final Boolean value) {
         return new Option(getHighsOptionName(), value);
     }
 

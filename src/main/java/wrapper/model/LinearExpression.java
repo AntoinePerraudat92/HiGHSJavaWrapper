@@ -1,6 +1,6 @@
 package wrapper.model;
 
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,11 +20,11 @@ public class LinearExpression {
         this.constant = constant;
     }
 
-    public static LinearExpression of(final Term... terms) {
+    public static LinearExpression of(@NonNull final Term... terms) {
         return LinearExpression.of(0.0, terms);
     }
 
-    public static LinearExpression of(double constant, final Term... terms) {
+    public static LinearExpression of(double constant, @NonNull final Term... terms) {
         final LinearExpression expression = new LinearExpression(constant);
         for (final Term term : terms) {
             expression.addTerm(term);

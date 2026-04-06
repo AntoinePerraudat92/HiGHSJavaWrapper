@@ -1,7 +1,7 @@
 package wrapper.model;
 
 import highs.*;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
 import wrapper.exceptions.VariableException;
 import wrapper.model.option.BooleanOptions;
 import wrapper.model.option.Option;
@@ -105,7 +105,7 @@ public class Model {
         return solve();
     }
 
-    public boolean parseHint(@NonNull final Hint hint) {
+    public boolean parseHint(@org.jspecify.annotations.NonNull final Hint hint) {
         final int nmbVariables = hint.getNmbHints();
         if (nmbVariables < 1) {
             return false;
@@ -126,7 +126,7 @@ public class Model {
         return Optional.of(new Solution(this.highs.getModelStatus(), this.highs.getObjectiveValue()));
     }
 
-    private Constraint addConstraint(double lhs, double rhs, final LinearExpression expression, final Constraint.ConstraintType constraintType) {
+    private Constraint addConstraint(double lhs, double rhs, @NonNull final LinearExpression expression, final Constraint.@NonNull ConstraintType constraintType) {
         final int nmbVariables = expression.getNmbVariables();
         if (nmbVariables < 1) {
             throw new VariableException("Linear expression has no variable");

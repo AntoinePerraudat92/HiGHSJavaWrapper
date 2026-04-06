@@ -4,7 +4,8 @@ import highs.DoubleVector;
 import highs.Highs;
 import highs.HighsSolution;
 import lombok.EqualsAndHashCode;
-import lombok.NonNull;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import wrapper.exceptions.ConstraintException;
 
 import java.lang.ref.WeakReference;
@@ -67,7 +68,7 @@ public class Constraint {
         return dualValues.get((int) this.index);
     }
 
-    private void throwIfModelNull(final Model model) {
+    private void throwIfModelNull(@Nullable final Model model) {
         if (model == null) {
             throw new ConstraintException("Related model does not exist");
         }
