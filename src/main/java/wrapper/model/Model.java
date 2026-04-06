@@ -1,7 +1,6 @@
 package wrapper.model;
 
 import highs.*;
-import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.NullMarked;
 import wrapper.exceptions.VariableException;
 import wrapper.model.option.BooleanOptions;
@@ -19,7 +18,7 @@ public class Model {
         addOption(BooleanOptions.SOLVER_OUTPUT.getOption(false));
     }
 
-    public boolean addOption(@NonNull final Option option) {
+    public boolean addOption(final Option option) {
         switch (option.getValue()) {
             case String stringValue -> {
                 return this.highs.setOptionValue(option.getName(), stringValue) == HighsStatus.kOk;
