@@ -3,12 +3,13 @@ package wrapper.model;
 import highs.DoubleVector;
 import highs.HighsSolution;
 import lombok.EqualsAndHashCode;
-import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 import wrapper.exceptions.VariableException;
 
 import java.lang.ref.WeakReference;
 
+@NullMarked
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Variable {
 
@@ -16,7 +17,7 @@ public class Variable {
     private final long index;
     private final WeakReference<Model> modelWeakReference;
 
-    Variable(long index, @NonNull final Model model) {
+    Variable(long index, final Model model) {
         this.index = index;
         this.modelWeakReference = new WeakReference<>(model);
     }

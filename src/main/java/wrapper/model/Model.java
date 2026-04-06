@@ -2,6 +2,7 @@ package wrapper.model;
 
 import highs.*;
 import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.NullMarked;
 import wrapper.exceptions.VariableException;
 import wrapper.model.option.BooleanOptions;
 import wrapper.model.option.Option;
@@ -9,7 +10,7 @@ import wrapper.model.option.Option;
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
 
-
+@NullMarked
 public class Model {
 
     private final Highs highs = new Highs();
@@ -53,14 +54,14 @@ public class Model {
     /**
      * Expression = RHS. Example: 2x1 + 5x2 = 4.
      */
-    public Constraint addEqualityConstraint(double rhs, @NonNull final LinearExpression expression) {
+    public Constraint addEqualityConstraint(double rhs, final LinearExpression expression) {
         return addConstraint(rhs, rhs, expression, Constraint.ConstraintType.EQUALITY);
     }
 
     /**
      * Expression = RHS. Example: 2x1 + 5x2 = x3 + 4.
      */
-    public Constraint addEqualityConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
+    public Constraint addEqualityConstraint(final LinearExpression rhs, final LinearExpression expression) {
         final LinearExpression completeExpression = expression.minus(rhs);
         return addEqualityConstraint(-completeExpression.getConstant(), completeExpression);
     }
@@ -68,14 +69,14 @@ public class Model {
     /**
      * Expression <= RHS. Example: 2x1 + 5x2 <= 4.
      */
-    public Constraint addLessThanOrEqualToConstraint(double rhs, @NonNull final LinearExpression expression) {
+    public Constraint addLessThanOrEqualToConstraint(double rhs, final LinearExpression expression) {
         return addConstraint(-Double.MAX_VALUE, rhs, expression, Constraint.ConstraintType.LESS_THAN_OR_EQUAL_TO);
     }
 
     /**
      * Expression <= RHS. Example: 2x1 + 5x2 <= x3 + 4.
      */
-    public Constraint addLessThanOrEqualToConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
+    public Constraint addLessThanOrEqualToConstraint(final LinearExpression rhs, final LinearExpression expression) {
         final LinearExpression completeExpression = expression.minus(rhs);
         return addConstraint(-Double.MAX_VALUE, -completeExpression.getConstant(), completeExpression, Constraint.ConstraintType.LESS_THAN_OR_EQUAL_TO);
     }
@@ -83,14 +84,14 @@ public class Model {
     /**
      * Expression >= RHS. Example: 2x1 + 5x2 >= 4.
      */
-    public Constraint addGreaterThanOrEqualToConstraint(double rhs, @NonNull final LinearExpression expression) {
+    public Constraint addGreaterThanOrEqualToConstraint(double rhs, final LinearExpression expression) {
         return addConstraint(rhs, Double.MAX_VALUE, expression, Constraint.ConstraintType.GREATER_THAN_OR_EQUAL_TO);
     }
 
     /**
      * Expression >= RHS. Example: 2x1 + 5x2 >= x3 + 4.
      */
-    public Constraint addGreaterThanOrEqualToConstraint(@NonNull final LinearExpression rhs, @NonNull final LinearExpression expression) {
+    public Constraint addGreaterThanOrEqualToConstraint(final LinearExpression rhs, final LinearExpression expression) {
         final LinearExpression completeExpression = expression.minus(rhs);
         return addConstraint(-completeExpression.getConstant(), Double.MAX_VALUE, completeExpression, Constraint.ConstraintType.GREATER_THAN_OR_EQUAL_TO);
     }
@@ -105,7 +106,7 @@ public class Model {
         return solve();
     }
 
-    public boolean parseHint(@org.jspecify.annotations.NonNull final Hint hint) {
+    public boolean parseHint(final Hint hint) {
         final int nmbVariables = hint.getNmbHints();
         if (nmbVariables < 1) {
             return false;
@@ -126,7 +127,7 @@ public class Model {
         return Optional.of(new Solution(this.highs.getModelStatus(), this.highs.getObjectiveValue()));
     }
 
-    private Constraint addConstraint(double lhs, double rhs, @NonNull final LinearExpression expression, final Constraint.@NonNull ConstraintType constraintType) {
+    private Constraint addConstraint(double lhs, double rhs, final LinearExpression expression, final Constraint.ConstraintType constraintType) {
         final int nmbVariables = expression.getNmbVariables();
         if (nmbVariables < 1) {
             throw new VariableException("Linear expression has no variable");

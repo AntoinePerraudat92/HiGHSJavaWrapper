@@ -4,7 +4,9 @@ import highs.HighsModelStatus;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class Solution {
 

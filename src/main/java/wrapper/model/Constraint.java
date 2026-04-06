@@ -4,12 +4,13 @@ import highs.DoubleVector;
 import highs.Highs;
 import highs.HighsSolution;
 import lombok.EqualsAndHashCode;
-import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 import wrapper.exceptions.ConstraintException;
 
 import java.lang.ref.WeakReference;
 
+@NullMarked
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Constraint {
 
@@ -34,7 +35,7 @@ public class Constraint {
         LESS_THAN_OR_EQUAL_TO
     }
 
-    public void updateCoefficient(double newCoefficient, @NonNull final Variable variable) {
+    public void updateCoefficient(double newCoefficient, final Variable variable) {
         final Model model = this.modelWeakReference.get();
         throwIfModelNull(model);
         variable.check(model);

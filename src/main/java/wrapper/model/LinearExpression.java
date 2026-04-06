@@ -1,12 +1,13 @@
 package wrapper.model;
 
-import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.ObjDoubleConsumer;
 
 
+@NullMarked
 public class LinearExpression {
 
     private final double constant;
@@ -20,11 +21,11 @@ public class LinearExpression {
         this.constant = constant;
     }
 
-    public static LinearExpression of(@NonNull final Term... terms) {
+    public static LinearExpression of(final Term... terms) {
         return LinearExpression.of(0.0, terms);
     }
 
-    public static LinearExpression of(double constant, @NonNull final Term... terms) {
+    public static LinearExpression of(double constant, final Term... terms) {
         final LinearExpression expression = new LinearExpression(constant);
         for (final Term term : terms) {
             expression.addTerm(term);
@@ -32,15 +33,12 @@ public class LinearExpression {
         return expression;
     }
 
-    public void addVariable(@NonNull final Variable variable, double coefficient) {
+    public void addVariable(final Variable variable, double coefficient) {
         addTerm(new Term(variable, coefficient));
     }
 
-    public void addTerm(@NonNull final Term term) {
+    public void addTerm(final Term term) {
         this.terms.putIfAbsent(term.variable.getIndex(), term);
-    }
-
-    public record Term(@NonNull Variable variable, double scalar) {
     }
 
     void consumeVariables(final ObjDoubleConsumer<Variable> consumer) {
@@ -66,6 +64,9 @@ public class LinearExpression {
 
     int getNmbVariables() {
         return this.terms.size();
+    }
+
+    public record Term(Variable variable, double scalar) {
     }
 
 }
