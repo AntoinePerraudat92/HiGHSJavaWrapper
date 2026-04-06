@@ -1,5 +1,7 @@
 package wrapper.model.option;
 
+import org.jspecify.annotations.NonNull;
+
 public enum DoubleOptions {
 
     MIP_RELATIVE_GAP {
@@ -28,7 +30,7 @@ public enum DoubleOptions {
 
     abstract String getHighsOptionName();
 
-    public Option getOption(final Double value) {
+    public Option getOption(@NonNull final Double value) {
         return new Option(getHighsOptionName(), value);
     }
 

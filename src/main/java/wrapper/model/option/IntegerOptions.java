@@ -1,5 +1,7 @@
 package wrapper.model.option;
 
+import org.jspecify.annotations.NonNull;
+
 public enum IntegerOptions {
 
     NB_THREADS {
@@ -10,7 +12,7 @@ public enum IntegerOptions {
 
     abstract String getHighsOptionName();
 
-    public Option getOption(final Integer value) {
+    public Option getOption(@NonNull final Integer value) {
         return new Option(getHighsOptionName(), value);
     }
 

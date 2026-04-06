@@ -5,7 +5,8 @@ This project uses the following third-party libraries:
 - Mockito (MIT License, https://site.mockito.org/),
 - Jacoco (Eclipse Public License 2.0, https://www.eclemma.org/jacoco/),
 - Lombok (MIT License, https://projectlombok.org),
-- Junit Jupiter (Eclipse Public License 2.0, https://junit.org/).
+- Junit Jupiter (Eclipse Public License 2.0, https://junit.org/),
+- JSpecify (Apache 2.0 License, https://jspecify.dev/).
 
 ----------------------------------------------------------------------------------
 

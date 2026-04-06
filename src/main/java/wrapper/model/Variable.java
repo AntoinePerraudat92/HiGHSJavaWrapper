@@ -3,10 +3,13 @@ package wrapper.model;
 import highs.DoubleVector;
 import highs.HighsSolution;
 import lombok.EqualsAndHashCode;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 import wrapper.exceptions.VariableException;
 
 import java.lang.ref.WeakReference;
 
+@NullMarked
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Variable {
 
@@ -58,7 +61,7 @@ public class Variable {
         return dualValues.get((int) this.index);
     }
 
-    private void throwIfModelNull(final Model model) {
+    private void throwIfModelNull(@Nullable final Model model) {
         if (model == null) {
             throw new VariableException("Related model does not exist");
         }
