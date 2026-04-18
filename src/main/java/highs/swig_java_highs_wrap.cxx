@@ -910,7 +910,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HIGHS_1VERSION_1MINOR_1get(JNIEnv *j
   
   (void)jenv;
   (void)jcls;
-  result = (int)(13);
+  result = (int)(14);
   jresult = (jint)result; 
   return jresult;
 }
@@ -922,7 +922,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HIGHS_1VERSION_1PATCH_1get(JNIEnv *j
   
   (void)jenv;
   (void)jcls;
-  result = (int)(1);
+  result = (int)(0);
   jresult = (jint)result; 
   return jresult;
 }
@@ -5611,6 +5611,18 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_kSubSolverMip_1get(JNIEnv *jenv, jcl
 }
 
 
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kMinimumKktTolerance_1get(JNIEnv *jenv, jclass jcls) {
+  jdouble jresult = 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (double)(double)kMinimumKktTolerance;
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kDefaultKktTolerance_1get(JNIEnv *jenv, jclass jcls) {
   jdouble jresult = 0 ;
   double result;
@@ -5618,6 +5630,54 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kDefaultKktTolerance_1get(JNIEnv 
   (void)jenv;
   (void)jcls;
   result = (double)(double)kDefaultKktTolerance;
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kMinimumMipTolerance_1get(JNIEnv *jenv, jclass jcls) {
+  jdouble jresult = 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (double)(double)kMinimumMipTolerance;
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kDefaultMipTolerance_1get(JNIEnv *jenv, jclass jcls) {
+  jdouble jresult = 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (double)(double)kDefaultMipTolerance;
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kMinimumIpmTolerance_1get(JNIEnv *jenv, jclass jcls) {
+  jdouble jresult = 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (double)(double)kMinimumIpmTolerance;
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kDefaultIpmTolerance_1get(JNIEnv *jenv, jclass jcls) {
+  jdouble jresult = 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (double)(double)kDefaultIpmTolerance;
   jresult = (jdouble)result; 
   return jresult;
 }
@@ -5919,6 +5979,210 @@ SWIGEXPORT jbyte JNICALL Java_highs_highsJNI_kPivotMarkowitz_1get(JNIEnv *jenv, 
   (void)jcls;
   result = (int8_t)(int8_t)kPivotMarkowitz;
   jresult = (jbyte)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_EQ_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  ConstraintType result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (ConstraintType)EQ;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpAllFeaturesOn_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpFeaturesOff result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpFeaturesOff)kPdlpAllFeaturesOn;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpScalingOff_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpFeaturesOff result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpFeaturesOff)kPdlpScalingOff;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpRestartOff_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpFeaturesOff result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpFeaturesOff)kPdlpRestartOff;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpAdaptiveStepSizeOff_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpFeaturesOff result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpFeaturesOff)kPdlpAdaptiveStepSizeOff;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpAllFeaturesOff_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpFeaturesOff result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpFeaturesOff)kPdlpAllFeaturesOff;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpScalingMin_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpScalingBit result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpScalingBit)kPdlpScalingMin;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpScalingRuiz_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpScalingBit result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpScalingBit)kPdlpScalingRuiz;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpScalingL2_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpScalingBit result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpScalingBit)kPdlpScalingL2;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpScalingPC_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpScalingBit result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpScalingBit)kPdlpScalingPC;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpScalingMax_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpScalingBit result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpScalingBit)kPdlpScalingMax;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpStepSizeStrategyFixed_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpStepSizeStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpStepSizeStrategy)kPdlpStepSizeStrategyFixed;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpStepSizeStrategyMin_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpStepSizeStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpStepSizeStrategy)kPdlpStepSizeStrategyMin;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpStepSizeStrategyMax_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpStepSizeStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpStepSizeStrategy)kPdlpStepSizeStrategyMax;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpRestartStrategyOff_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpRestartStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpRestartStrategy)kPdlpRestartStrategyOff;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpRestartStrategyMin_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpRestartStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpRestartStrategy)kPdlpRestartStrategyMin;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpRestartStrategyMax_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PdlpRestartStrategy result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PdlpRestartStrategy)kPdlpRestartStrategyMax;
+  jresult = (jint)result; 
   return jresult;
 }
 
