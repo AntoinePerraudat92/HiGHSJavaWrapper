@@ -22,7 +22,7 @@ class HighsTest {
     void highsVersionMustBeCorrect() {
         final Highs highs = new Highs();
 
-        assertEquals("1.13.1", highs.version());
+        assertEquals("1.14.0", highs.version());
     }
 
 }
