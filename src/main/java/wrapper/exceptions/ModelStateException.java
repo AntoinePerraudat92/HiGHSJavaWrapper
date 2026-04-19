@@ -3,9 +3,9 @@ package wrapper.exceptions;
 import org.jspecify.annotations.NullMarked;
 
 @NullMarked
-public class VariableException extends WrapperException {
+public class ModelStateException extends WrapperException {
 
-    public VariableException(final String message) {
+    public ModelStateException(final String message) {
         super(message);
     }
 

@@ -33,7 +33,7 @@ class ModelConstraintTest {
 
     @Test
     void updateCoefficientMustThrowIfModelGCed() {
-        final Constraint constraint = new Constraint(0, Constraint.ConstraintType.EQUALITY, null);
+        final Constraint constraint = new Constraint(0, ConstraintType.EQUALITY, null);
         final Variable variable = new Variable(12, null);
 
         final ConstraintException exception = assertThrows(ConstraintException.class, () -> constraint.updateCoefficient(0.5, variable));

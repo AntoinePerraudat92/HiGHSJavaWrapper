@@ -10,6 +10,7 @@ import wrapper.exceptions.ConstraintException;
 
 import java.lang.ref.WeakReference;
 
+
 @NullMarked
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Constraint {
@@ -27,12 +28,6 @@ public class Constraint {
 
     long getIndex() {
         return this.index;
-    }
-
-    enum ConstraintType {
-        EQUALITY,
-        GREATER_THAN_OR_EQUAL_TO,
-        LESS_THAN_OR_EQUAL_TO
     }
 
     public void updateCoefficient(double newCoefficient, final Variable variable) {
