@@ -13,12 +13,14 @@ import java.util.function.ObjDoubleConsumer;
 public class Model {
 
     private final Highs highs = new Highs();
+    private final ModelState state = new ModelState();
 
     public Model() {
         addOption(BooleanOptions.SOLVER_OUTPUT.getOption(false));
     }
 
     public boolean addOption(final Option option) {
+        this.state.onModelChangeRequested();
         switch (option.getValue()) {
             case String stringValue -> {
                 return this.highs.setOptionValue(option.getName(), stringValue) == HighsStatus.kOk;
@@ -96,16 +98,19 @@ public class Model {
     }
 
     public Optional<Solution> minimize() {
+        this.state.onModelChangeRequested();
         this.highs.changeObjectiveSense(ObjSense.kMinimize);
         return solve();
     }
 
     public Optional<Solution> maximize() {
+        this.state.onModelChangeRequested();
         this.highs.changeObjectiveSense(ObjSense.kMaximize);
         return solve();
     }
 
     public boolean parseHint(final Hint hint) {
+        this.state.onModelChangeRequested();
         final int nmbVariables = hint.getNmbHints();
         if (nmbVariables < 1) {
             return false;
@@ -120,13 +125,17 @@ public class Model {
     }
 
     private Optional<Solution> solve() {
-        if (this.highs.run() == HighsStatus.kError) {
+        this.state.onSolveRequested();
+        final HighsStatus status = this.highs.run();
+        this.state.onSolveCompleted();
+        if (status == HighsStatus.kError) {
             return Optional.empty();
         }
         return Optional.of(new Solution(this.highs.getModelStatus(), this.highs.getObjectiveValue()));
     }
 
     private Constraint addConstraint(double lhs, double rhs, final LinearExpression expression, final Constraint.ConstraintType constraintType) {
+        this.state.onModelChangeRequested();
         final int nmbVariables = expression.getNmbVariables();
         if (nmbVariables < 1) {
             throw new VariableException("Linear expression has no variable");
@@ -139,6 +148,7 @@ public class Model {
     }
 
     private Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
+        this.state.onModelChangeRequested();
         this.highs.addCol(cost, lb, ub, 0, null, null);
         final long variableIndex = this.highs.getNumCol() - 1;
         if (varType == HighsVarType.kInteger) {
