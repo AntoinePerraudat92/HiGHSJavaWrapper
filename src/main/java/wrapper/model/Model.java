@@ -16,28 +16,7 @@ public class Model {
     private final ModelState state = new ModelState();
 
     public Model() {
-        addOption(BooleanOptions.SOLVER_OUTPUT.getOption(false));
-    }
-
-    public boolean addOption(final Option option) {
-        this.state.onModelChangeRequested();
-        switch (option.getValue()) {
-            case String stringValue -> {
-                return this.highs.setOptionValue(option.getName(), stringValue) == HighsStatus.kOk;
-            }
-            case Boolean booleanValue -> {
-                return this.highs.setOptionValue(option.getName(), booleanValue) == HighsStatus.kOk;
-            }
-            case Double doubleValue -> {
-                return this.highs.setOptionValue(option.getName(), doubleValue) == HighsStatus.kOk;
-            }
-            case Integer integerValue -> {
-                return this.highs.setOptionValue(option.getName(), integerValue) == HighsStatus.kOk;
-            }
-            default -> {
-                return false;
-            }
-        }
+        parseOption(BooleanOptions.SOLVER_OUTPUT.getOption(false));
     }
 
     public Variable addContinuousVariable(double lb, double ub, double cost) {
@@ -114,6 +93,11 @@ public class Model {
         return optimize(ObjSense.kMaximize);
     }
 
+    public boolean parseOption(final Option option) {
+        this.state.onModelChangeRequested();
+        return addOption(option);
+    }
+
     public boolean parseHint(final Hint hint) {
         this.state.onModelChangeRequested();
         return addHint(hint);
@@ -121,6 +105,16 @@ public class Model {
 
     Highs getHighs() {
         return this.highs;
+    }
+
+    protected boolean addOption(final Option option) {
+        return switch (option.getValue()) {
+            case String stringValue -> this.highs.setOptionValue(option.getName(), stringValue) == HighsStatus.kOk;
+            case Boolean booleanValue -> this.highs.setOptionValue(option.getName(), booleanValue) == HighsStatus.kOk;
+            case Double doubleValue -> this.highs.setOptionValue(option.getName(), doubleValue) == HighsStatus.kOk;
+            case Integer integerValue -> this.highs.setOptionValue(option.getName(), integerValue) == HighsStatus.kOk;
+            default -> false;
+        };
     }
 
     protected Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {

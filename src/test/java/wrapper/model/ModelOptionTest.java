@@ -21,7 +21,7 @@ class ModelOptionTest {
     void addStringOption(final String optionValue) {
         final Model model = new Model();
 
-        assertTrue(model.addOption(StringOptions.PARALLEL.getOption(optionValue)));
+        assertTrue(model.parseOption(StringOptions.PARALLEL.getOption(optionValue)));
     }
 
     @ParameterizedTest
@@ -29,7 +29,7 @@ class ModelOptionTest {
     void addBooleanOption(final boolean optionValue) {
         final Model model = new Model();
 
-        assertTrue(model.addOption(BooleanOptions.MIP_ALLOW_RESTART.getOption(optionValue)));
+        assertTrue(model.parseOption(BooleanOptions.MIP_ALLOW_RESTART.getOption(optionValue)));
     }
 
     @ParameterizedTest
@@ -37,7 +37,7 @@ class ModelOptionTest {
     void addDoubleOption(final double optionValue) {
         final Model model = new Model();
 
-        assertTrue(model.addOption(DoubleOptions.TIME_LIMIT.getOption(optionValue)));
+        assertTrue(model.parseOption(DoubleOptions.TIME_LIMIT.getOption(optionValue)));
     }
 
     @ParameterizedTest
@@ -45,7 +45,7 @@ class ModelOptionTest {
     void addIntegerOption(final int optionValue) {
         final Model model = new Model();
 
-        assertTrue(model.addOption(IntegerOptions.NB_THREADS.getOption(optionValue)));
+        assertTrue(model.parseOption(IntegerOptions.NB_THREADS.getOption(optionValue)));
     }
 
 }
