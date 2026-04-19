@@ -38,9 +38,7 @@ class ModelConcurrentUseTest {
 
         private final Semaphore optimizationStartedSemaphore = new Semaphore(0);
         private final Semaphore optimizationDoneSemaphore = new Semaphore(0);
-        private final ExecutorService executorService = Executors.newSingleThreadExecutor();
-        @Nullable
-        private Future<Optional<Solution>> future;
+        private final ExecutorService executorService = Executors.newFixedThreadPool(2);
 
         @Override
         protected Optional<Solution> solve() {
@@ -53,8 +51,8 @@ class ModelConcurrentUseTest {
             return Optional.empty();
         }
 
-        public void startOptimization() {
-            this.future = this.executorService.submit(this::minimize);
+        public Future<Optional<Solution>> startOptimization() {
+            return this.executorService.submit(this::minimize);
         }
 
         public void stopOptimization() {
@@ -65,10 +63,8 @@ class ModelConcurrentUseTest {
             this.optimizationStartedSemaphore.acquire();
         }
 
-        public void waitUntilOptimizationFinished() throws ExecutionException, InterruptedException, TimeoutException {
-            if (this.future != null) {
-                this.future.get(1L, TimeUnit.MINUTES);
-            }
+        public void waitUntilOptimizationFinished(final Future<Optional<Solution>> future) throws ExecutionException, InterruptedException, TimeoutException {
+            future.get(1L, TimeUnit.MINUTES);
         }
 
     }
@@ -77,13 +73,27 @@ class ModelConcurrentUseTest {
     void addVariableToModelWhileSolvingOnGoingIsNotAllowed() throws InterruptedException, ExecutionException, TimeoutException {
         final ExceptionCatcher exceptionCatcher = new ExceptionCatcher();
         final MockSolverModel model = new MockSolverModel();
-        model.startOptimization();
+        final var future = model.startOptimization();
         model.waitUntilOptimizationStarted();
 
         exceptionCatcher.run(() -> model.addBinaryVariable(2.0));
 
         model.stopOptimization();
-        model.waitUntilOptimizationFinished();
+        model.waitUntilOptimizationFinished(future);
+        assertInstanceOf(ModelStateException.class, exceptionCatcher.exception);
+    }
+
+    @Test
+    void startOptimizationTwiceIsNotAllowed() throws InterruptedException, ExecutionException, TimeoutException {
+        final ExceptionCatcher exceptionCatcher = new ExceptionCatcher();
+        final MockSolverModel model = new MockSolverModel();
+        final var future = model.startOptimization();
+        model.waitUntilOptimizationStarted();
+
+        exceptionCatcher.run(model::minimize);
+
+        model.stopOptimization();
+        model.waitUntilOptimizationFinished(future);
         assertInstanceOf(ModelStateException.class, exceptionCatcher.exception);
     }
 
