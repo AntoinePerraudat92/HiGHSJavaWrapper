@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
 
 @NullMarked
-public class Model implements VariableManagement, ConstraintManagement, HintManagement {
+public class Model {
 
     private final Highs highs = new Highs();
     private final ModelState state = new ModelState();

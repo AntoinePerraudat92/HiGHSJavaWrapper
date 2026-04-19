@@ -10,6 +10,7 @@ import wrapper.exceptions.ConstraintException;
 
 import java.lang.ref.WeakReference;
 
+
 @NullMarked
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Constraint {
