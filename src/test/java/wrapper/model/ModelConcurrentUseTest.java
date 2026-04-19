@@ -21,7 +21,7 @@ class ModelConcurrentUseTest {
     private static class ExceptionCatcher {
 
         @Nullable
-        private Exception exception;
+        private Exception exception = null;
 
         void run(final Runnable runnable) {
             try {
