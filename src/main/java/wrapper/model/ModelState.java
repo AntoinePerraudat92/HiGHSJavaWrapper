@@ -1,7 +1,6 @@
 package wrapper.model;
 
 
-import lombok.Getter;
 import org.jspecify.annotations.NullMarked;
 import wrapper.exceptions.ModelStateException;
 
@@ -10,7 +9,6 @@ import java.util.function.Supplier;
 @NullMarked
 class ModelState {
 
-    @Getter
     private State state = State.BUILDING;
 
     void onSolveRequested() {
@@ -35,7 +33,7 @@ class ModelState {
     }
 
     private static void checkTransition(final State currentState, final State nextState) {
-        final Supplier<String> supplier = () -> formatTransitionErrorMessage(currentState, nextState);
+        final Supplier<String> supplier = () -> String.format("Impossible model transition from %s to %s", currentState, nextState);
         if (currentState == State.SOLVING && nextState == State.SOLVING) {
             throw new ModelStateException(supplier.get());
         }
@@ -49,10 +47,6 @@ class ModelState {
             throw new ModelStateException(supplier.get());
         }
         // All other transitions are possible.
-    }
-
-    private static String formatTransitionErrorMessage(final State currentState, final State nextState) {
-        return String.format("Impossible model transition from %s to %s", currentState, nextState);
     }
 
 }
