@@ -109,12 +109,12 @@ public class Model {
 
     protected boolean addOption(final Option option) {
         return switch (option.getValue()) {
-            case String stringValue -> this.highs.setOptionValue(option.getName(), stringValue) == HighsStatus.kOk;
-            case Boolean booleanValue -> this.highs.setOptionValue(option.getName(), booleanValue) == HighsStatus.kOk;
-            case Double doubleValue -> this.highs.setOptionValue(option.getName(), doubleValue) == HighsStatus.kOk;
-            case Integer integerValue -> this.highs.setOptionValue(option.getName(), integerValue) == HighsStatus.kOk;
+            case String stringValue -> this.highs.setOptionValue(option.getName(), stringValue);
+            case Boolean booleanValue -> this.highs.setOptionValue(option.getName(), booleanValue);
+            case Double doubleValue -> this.highs.setOptionValue(option.getName(), doubleValue);
+            case Integer integerValue -> this.highs.setOptionValue(option.getName(), integerValue);
             default -> false;
-        };
+        } == HighsStatus.kOk;
     }
 
     protected Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
