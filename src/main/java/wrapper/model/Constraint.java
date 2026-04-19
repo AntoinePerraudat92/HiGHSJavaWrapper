@@ -29,12 +29,6 @@ public class Constraint {
         return this.index;
     }
 
-    enum ConstraintType {
-        EQUALITY,
-        GREATER_THAN_OR_EQUAL_TO,
-        LESS_THAN_OR_EQUAL_TO
-    }
-
     public void updateCoefficient(double newCoefficient, final Variable variable) {
         final Model model = this.modelWeakReference.get();
         throwIfModelNull(model);
