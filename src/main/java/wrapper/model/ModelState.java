@@ -1,7 +1,6 @@
 package wrapper.model;
 
 
-import lombok.Getter;
 import org.jspecify.annotations.NullMarked;
 import wrapper.exceptions.ModelStateException;
 
@@ -10,7 +9,6 @@ import java.util.function.Supplier;
 @NullMarked
 class ModelState {
 
-    @Getter
     private State state = State.BUILDING;
 
     void onSolveRequested() {
