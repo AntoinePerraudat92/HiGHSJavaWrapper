@@ -38,7 +38,7 @@ class ModelVariableTest {
         final VariableException secondException = assertThrows(VariableException.class, () -> secondVariable.check(firstModel));
         assertEquals("Trying to access or modify variable associated with wrong model", secondException.getMessage());
         final VariableException thirdException = assertThrows(VariableException.class, () -> secondVariable.check(null));
-        assertEquals("Trying to access or modify variable associated with wrong model", thirdException.getMessage());
+        assertEquals("Related model does not exist", thirdException.getMessage());
     }
 
     @Test

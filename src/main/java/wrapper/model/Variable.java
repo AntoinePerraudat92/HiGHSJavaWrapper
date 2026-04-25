@@ -30,6 +30,8 @@ public class Variable {
 
     void check(@Nullable final Model otherModel) {
         final Model thisModel = getModel();
+        throwIfModelNull(thisModel);
+        throwIfModelNull(otherModel);
         if (thisModel != otherModel) {
             throw new VariableException("Trying to access or modify variable associated with wrong model");
         }
