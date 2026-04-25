@@ -10,7 +10,7 @@ public class ObjectCreator {
      */
     public static Model createModel() {
         final Model model = new Model();
-        model.parseOption(BooleanOptions.SOLVER_OUTPUT.getOption(true));
+        model.parseOption(BooleanOptions.SOLVER_OUTPUT.getOption(false));
         return model;
     }
 
