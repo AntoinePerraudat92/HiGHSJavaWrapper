@@ -1,23 +1,20 @@
 package wrapper.model;
 
 import highs.*;
+import lombok.NoArgsConstructor;
 import org.jspecify.annotations.NullMarked;
 import wrapper.exceptions.VariableException;
-import wrapper.model.option.BooleanOptions;
 import wrapper.model.option.Option;
 
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
 
 @NullMarked
+@NoArgsConstructor
 public class Model {
 
     private final Highs highs = new Highs();
     private final ModelState state = new ModelState();
-
-    public Model() {
-        parseOption(BooleanOptions.SOLVER_OUTPUT.getOption(false));
-    }
 
     public Variable addContinuousVariable(double lb, double ub, double cost) {
         this.state.onModelChangeRequested();

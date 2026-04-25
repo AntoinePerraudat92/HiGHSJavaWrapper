@@ -12,6 +12,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wrapper.util.Constants.EPSILON;
+import static wrapper.util.ObjectCreator.createModel;
 
 class FacilityLocationProblemTest {
 
@@ -42,7 +43,7 @@ class FacilityLocationProblemTest {
         }
         final double totalDemand = Arrays.stream(demandPerCustomer).sum();
         // Model creation.
-        final Model model = new Model();
+        final Model model = createModel();
         // x[f] = 1 if facility f must be opened, 0 otherwise.
         final Variable[] x = new Variable[nmbFacilities];
         // y[f][c] = demand served to customer c by facility f.

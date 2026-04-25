@@ -26,22 +26,38 @@ public class Constraint {
         this.modelWeakReference = new WeakReference<>(model);
     }
 
+    @SuppressWarnings("all")
+    Constraint(long index, final ConstraintType constraintType) {
+        this.index = index;
+        this.constraintType = constraintType;
+        this.modelWeakReference = new WeakReference<>(null);
+    }
+
     long getIndex() {
         return this.index;
     }
 
+    ConstraintType getConstraintType() {
+        return this.constraintType;
+    }
+
+    @Nullable
+    Model getModel() {
+        return this.modelWeakReference.get();
+    }
+
     public void updateCoefficient(double newCoefficient, final Variable variable) {
-        final Model model = this.modelWeakReference.get();
+        final Model model = getModel();
         throwIfModelNull(model);
         variable.check(model);
         model.getHighs().changeCoeff(this.index, variable.getIndex(), newCoefficient);
     }
 
     public void updateRightHandSide(double newRhs) {
-        final Model model = this.modelWeakReference.get();
+        final Model model = getModel();
         throwIfModelNull(model);
         final Highs highs = model.getHighs();
-        switch (this.constraintType) {
+        switch (getConstraintType()) {
             case EQUALITY -> highs.changeRowBounds(this.index, newRhs, newRhs);
             case GREATER_THAN_OR_EQUAL_TO -> highs.changeRowBounds(this.index, newRhs, Double.MAX_VALUE);
             case LESS_THAN_OR_EQUAL_TO -> highs.changeRowBounds(this.index, -Double.MAX_VALUE, newRhs);
@@ -49,7 +65,7 @@ public class Constraint {
     }
 
     public double getValue() {
-        final Model model = this.modelWeakReference.get();
+        final Model model = getModel();
         throwIfModelNull(model);
         final HighsSolution highsSolution = model.getHighs().getSolution();
         final DoubleVector constraintValues = highsSolution.getRow_value();
@@ -57,7 +73,7 @@ public class Constraint {
     }
 
     public double getDualValue() {
-        final Model model = this.modelWeakReference.get();
+        final Model model = getModel();
         throwIfModelNull(model);
         final HighsSolution highsSolution = model.getHighs().getSolution();
         final DoubleVector dualValues = highsSolution.getRow_dual();

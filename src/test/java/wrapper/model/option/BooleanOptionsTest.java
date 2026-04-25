@@ -25,4 +25,5 @@ class BooleanOptionsTest {
     void commonBooleanOptionsMustNotHaveDuplicates() {
         assertEquals(BooleanOptions.values().length, computeNmbOptions());
     }
+
 }
