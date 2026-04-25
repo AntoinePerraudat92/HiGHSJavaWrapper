@@ -18,7 +18,6 @@ public class Constraint {
     @EqualsAndHashCode.Include
     private final long index;
     private final ConstraintType constraintType;
-    @Nullable
     private final WeakReference<Model> modelWeakReference;
 
     Constraint(long index, final ConstraintType constraintType, final Model model) {
@@ -27,10 +26,11 @@ public class Constraint {
         this.modelWeakReference = new WeakReference<>(model);
     }
 
+    @SuppressWarnings("all")
     Constraint(long index, final ConstraintType constraintType) {
         this.index = index;
         this.constraintType = constraintType;
-        this.modelWeakReference = null;
+        this.modelWeakReference = new WeakReference<>(null);
     }
 
     long getIndex() {
@@ -43,7 +43,7 @@ public class Constraint {
 
     @Nullable
     Model getModel() {
-        return this.modelWeakReference == null ? null : this.modelWeakReference.get();
+        return this.modelWeakReference.get();
     }
 
     public void updateCoefficient(double newCoefficient, final Variable variable) {

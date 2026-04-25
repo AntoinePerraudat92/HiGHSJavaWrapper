@@ -15,7 +15,6 @@ public class Variable {
 
     @EqualsAndHashCode.Include
     private final long index;
-    @Nullable
     private final WeakReference<Model> modelWeakReference;
 
     Variable(long index, final Model model) {
@@ -23,9 +22,10 @@ public class Variable {
         this.modelWeakReference = new WeakReference<>(model);
     }
 
+    @SuppressWarnings("all")
     Variable(long index) {
         this.index = index;
-        this.modelWeakReference = null;
+        this.modelWeakReference = new WeakReference<>(null);
     }
 
     void check(@Nullable final Model otherModel) {
@@ -43,7 +43,7 @@ public class Variable {
 
     @Nullable
     Model getModel() {
-        return this.modelWeakReference == null ? null : this.modelWeakReference.get();
+        return this.modelWeakReference.get();
     }
 
     public void updateCost(double newCost) {
