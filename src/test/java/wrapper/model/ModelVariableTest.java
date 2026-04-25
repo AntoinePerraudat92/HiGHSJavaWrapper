@@ -58,7 +58,7 @@ class ModelVariableTest {
 
     @Test
     void updateVariableCostMustThrowIfModelGCed() {
-        final Variable x = new Variable(9, null);
+        final Variable x = new Variable(9);
 
         final VariableException exception = assertThrows(VariableException.class, () -> x.updateCost(1.8));
         assertEquals("Related model does not exist", exception.getMessage());

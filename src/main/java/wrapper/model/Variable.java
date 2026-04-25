@@ -15,6 +15,7 @@ public class Variable {
 
     @EqualsAndHashCode.Include
     private final long index;
+    @Nullable
     private final WeakReference<Model> modelWeakReference;
 
     Variable(long index, final Model model) {
@@ -22,8 +23,13 @@ public class Variable {
         this.modelWeakReference = new WeakReference<>(model);
     }
 
-    void check(final Model otherModel) {
-        final Model thisModel = this.modelWeakReference.get();
+    Variable(long index) {
+        this.index = index;
+        this.modelWeakReference = null;
+    }
+
+    void check(@Nullable final Model otherModel) {
+        final Model thisModel = getModel();
         if (thisModel != otherModel) {
             throw new VariableException("Trying to access or modify variable associated with wrong model");
         }
@@ -33,20 +39,25 @@ public class Variable {
         return this.index;
     }
 
+    @Nullable
+    Model getModel() {
+        return this.modelWeakReference == null ? null : this.modelWeakReference.get();
+    }
+
     public void updateCost(double newCost) {
-        final Model model = this.modelWeakReference.get();
+        final Model model = getModel();
         throwIfModelNull(model);
         model.getHighs().changeColCost(this.index, newCost);
     }
 
     public void updateBounds(double newLb, double newUb) {
-        final Model model = this.modelWeakReference.get();
+        final Model model = getModel();
         throwIfModelNull(model);
         model.getHighs().changeColBounds(this.index, newLb, newUb);
     }
 
     public double getValue() {
-        final Model model = this.modelWeakReference.get();
+        final Model model = getModel();
         throwIfModelNull(model);
         final HighsSolution highsSolution = model.getHighs().getSolution();
         final DoubleVector variableValues = highsSolution.getCol_value();
@@ -54,7 +65,7 @@ public class Variable {
     }
 
     public double getDualValue() {
-        final Model model = this.modelWeakReference.get();
+        final Model model = getModel();
         throwIfModelNull(model);
         final HighsSolution highsSolution = model.getHighs().getSolution();
         final DoubleVector dualValues = highsSolution.getCol_dual();

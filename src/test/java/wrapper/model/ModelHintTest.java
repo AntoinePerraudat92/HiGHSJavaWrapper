@@ -19,7 +19,8 @@ class ModelHintTest {
     @Test
     void parseMustThrowForUnknownVariables() {
         final Model model = createModel();
-        final Hint hint = Hint.of(Map.of(new Variable(32, null), -45D));
+        final Model otherModel = createModel();
+        final Hint hint = Hint.of(Map.of(new Variable(32, otherModel), -45D));
 
         final VariableException exception = assertThrows(VariableException.class, () -> model.parseHint(hint));
         assertEquals("Trying to access or modify variable associated with wrong model", exception.getMessage());

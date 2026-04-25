@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static wrapper.model.MockObjectCreator.createVariable;
 import static wrapper.util.Constants.EPSILON;
 
 class LinearExpressionTest {
@@ -14,8 +13,8 @@ class LinearExpressionTest {
     @Test
     void getNmbVariables() {
         final LinearExpression linearExpression = new LinearExpression();
-        linearExpression.addVariable(createVariable(4), 1.0);
-        linearExpression.addVariable(createVariable(12), 0.5);
+        linearExpression.addVariable(new Variable(4), 1.0);
+        linearExpression.addVariable(new Variable(12), 0.5);
 
         assertEquals(2, linearExpression.getNmbVariables());
     }
@@ -23,11 +22,11 @@ class LinearExpressionTest {
     @Test
     void minus() {
         final LinearExpression firstExpression = new LinearExpression(5.0);
-        firstExpression.addVariable(createVariable(0), 1.0);
-        firstExpression.addVariable(createVariable(1), 3.0);
+        firstExpression.addVariable(new Variable(0), 1.0);
+        firstExpression.addVariable(new Variable(1), 3.0);
         final LinearExpression secondExpression = new LinearExpression(3.0);
-        secondExpression.addVariable(createVariable(0), 2.0);
-        secondExpression.addVariable(createVariable(4), 1.0);
+        secondExpression.addVariable(new Variable(0), 2.0);
+        secondExpression.addVariable(new Variable(4), 1.0);
 
         final LinearExpression expression = firstExpression.minus(secondExpression);
 

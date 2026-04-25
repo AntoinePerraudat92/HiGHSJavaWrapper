@@ -34,8 +34,8 @@ class ModelConstraintTest {
 
     @Test
     void updateCoefficientMustThrowIfModelGCed() {
-        final Constraint constraint = new Constraint(0, ConstraintType.EQUALITY, null);
-        final Variable variable = new Variable(12, null);
+        final Constraint constraint = new Constraint(0, ConstraintType.EQUALITY);
+        final Variable variable = new Variable(12);
 
         final ConstraintException exception = assertThrows(ConstraintException.class, () -> constraint.updateCoefficient(0.5, variable));
         assertEquals("Related model does not exist", exception.getMessage());
