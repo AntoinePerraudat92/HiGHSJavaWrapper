@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;
+import static wrapper.util.ObjectCreator.createModel;
 
 class ModelSolveTest {
 
@@ -14,7 +15,7 @@ class ModelSolveTest {
 
     @Test
     void minimize() {
-        final Model model = new Model();
+        final Model model = createModel();
         model.addContinuousVariable(1.2, 7.0, 1.0);
         model.addContinuousVariable(0.5, 4.0, 1.0);
 
@@ -26,7 +27,7 @@ class ModelSolveTest {
 
     @Test
     void maximize() {
-        final Model model = new Model();
+        final Model model = createModel();
         model.addContinuousVariable(0.0, 3.0, 1.0);
         model.addContinuousVariable(0.0, 2.9, 1.0);
 
@@ -38,7 +39,7 @@ class ModelSolveTest {
 
     @Test
     void maximizeWithSimpleConstraint() {
-        final Model model = new Model();
+        final Model model = createModel();
         final LinearExpression linearExpression = LinearExpression.of(
                 new LinearExpression.Term(model.addContinuousVariable(0.0, Double.MAX_VALUE, 5.5), 1.0),
                 new LinearExpression.Term(model.addContinuousVariable(0.5, Double.MAX_VALUE, 1.0), 1.0)
@@ -53,7 +54,7 @@ class ModelSolveTest {
 
     @Test
     void maximizeWithThreeConstraints() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(0.0, 1.0, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, 12.0, 5.0);
         final Variable x3 = model.addContinuousVariable(0.0, 5.0, 14.0);
@@ -68,7 +69,7 @@ class ModelSolveTest {
 
     @Test
     void maximizeWithBinaryVariables() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.2);
         final Variable x2 = model.addBinaryVariable(1.3);
         model.addLessThanOrEqualToConstraint(1.2, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)));
@@ -81,7 +82,7 @@ class ModelSolveTest {
 
     @Test
     void maximizeMustFailDueToInfeasibilityOnIntegralityConstraints() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.5, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)));
@@ -93,7 +94,7 @@ class ModelSolveTest {
 
     @Test
     void binaryVariablesMustHaveTheExpectedValues() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addIntegerVariable(0.0, 3.0, 2.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 8.0);
         final Variable x3 = model.addIntegerVariable(2.0, Double.MAX_VALUE, 15.0);
@@ -113,7 +114,7 @@ class ModelSolveTest {
 
     @Test
     void successiveCallsToSolverMustLeadToDifferentSolutions() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 2.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 1.0);
         model.addLessThanOrEqualToConstraint(5.0, LinearExpression.of(
@@ -144,7 +145,7 @@ class ModelSolveTest {
 
     @Test
     void maximizeWithConstraintsUsingLinearExpressionsForBothSides() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
         final Variable x3 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 1.0);
@@ -165,7 +166,7 @@ class ModelSolveTest {
 
     @Test
     void minimizeWithConstraintsUsingLinearExpressionsForBothSides() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
         model.addGreaterThanOrEqualToConstraint(

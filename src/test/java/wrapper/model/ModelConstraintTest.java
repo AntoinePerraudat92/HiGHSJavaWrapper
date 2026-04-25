@@ -7,6 +7,7 @@ import wrapper.exceptions.VariableException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static wrapper.util.Constants.EPSILON;
+import static wrapper.util.ObjectCreator.createModel;
 
 class ModelConstraintTest {
 
@@ -17,7 +18,7 @@ class ModelConstraintTest {
 
     @Test
     void updateCoefficient() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
         final Constraint constraint = model.addLessThanOrEqualToConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
@@ -42,9 +43,9 @@ class ModelConstraintTest {
 
     @Test
     void updateCoefficientMustThrowForUnknownVariable() {
-        final Model otherModel = new Model();
+        final Model otherModel = createModel();
         final Variable unknownVariable = otherModel.addBinaryVariable(1.0);
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Constraint constraint = model.addLessThanOrEqualToConstraint(4.0, LinearExpression.of(new LinearExpression.Term(x1, 0.5)));
 
@@ -54,7 +55,7 @@ class ModelConstraintTest {
 
     @Test
     void updateConstraintRightHandSidesForEquality() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Constraint constraint = model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)));
@@ -70,7 +71,7 @@ class ModelConstraintTest {
 
     @Test
     void updateConstraintSidesForEqualityConstraint() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Constraint constraint = model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)));
@@ -83,7 +84,7 @@ class ModelConstraintTest {
 
     @Test
     void updateConstraintRightHandSideForLessThanOrEqualTo() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Constraint constraint = model.addLessThanOrEqualToConstraint(10.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)));
@@ -96,7 +97,7 @@ class ModelConstraintTest {
 
     @Test
     void updateConstraintRightHandSideForGreaterThanOrEqualTo() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addIntegerVariable(12.0, Double.MAX_VALUE, 2.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Constraint constraint = model.addGreaterThanOrEqualToConstraint(20.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)));
@@ -109,7 +110,7 @@ class ModelConstraintTest {
 
     @Test
     void addConstraint() {
-        final Model model = new Model();
+        final Model model = createModel();
         final LinearExpression expression = new LinearExpression();
         expression.addVariable(model.addContinuousVariable(1.0, 2.0, 0.0), 1.0);
 
@@ -123,8 +124,8 @@ class ModelConstraintTest {
 
     @Test
     void addConstraintMustThrowIfLinearExpressionContainsUnknownVariable() {
-        final Model otherModel = new Model();
-        final Model model = new Model();
+        final Model otherModel = createModel();
+        final Model model = createModel();
         final LinearExpression expression = LinearExpression.of(
                 new LinearExpression.Term(model.addBinaryVariable(1.0), 2.0),
                 new LinearExpression.Term(otherModel.addBinaryVariable(1.0), 2.0),
@@ -137,7 +138,7 @@ class ModelConstraintTest {
 
     @Test
     void addConstraintMustThrowIfLinearExpressionHasNoVariable() {
-        final Model model = new Model();
+        final Model model = createModel();
         final LinearExpression expression = new LinearExpression();
 
         final VariableException exception = assertThrows(VariableException.class, () -> model.addEqualityConstraint(18.3, expression));

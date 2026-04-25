@@ -9,6 +9,7 @@ import wrapper.model.Variable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wrapper.util.Constants.EPSILON;
+import static wrapper.util.ObjectCreator.createModel;
 
 class KnapsackProblemTest {
 
@@ -25,7 +26,7 @@ class KnapsackProblemTest {
         final double[] values = {1, 2, 3.5, 4.6, 7.2};
         final double[] weights = {0.5, 1, 4.5, 1.0, 4.3};
         // Model creation.
-        final Model model = new Model();
+        final Model model = createModel();
         // x[i] = number of times item i is picked.
         final Variable[] x = new Variable[nmbItems];
         for (int i = 0; i < nmbItems; ++i) {

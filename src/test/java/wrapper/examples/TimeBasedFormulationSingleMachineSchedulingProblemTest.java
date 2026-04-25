@@ -11,6 +11,7 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static wrapper.util.Constants.EPSILON;
+import static wrapper.util.ObjectCreator.createModel;
 
 class TimeBasedFormulationSingleMachineSchedulingProblemTest {
 
@@ -34,7 +35,7 @@ class TimeBasedFormulationSingleMachineSchedulingProblemTest {
             }
         }
         // Model creation.
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable[][] x = new Variable[nmbJobs][nmbPeriods];
         for (int j = 0; j < nmbJobs; ++j) {
             for (int t = 0; t < nmbPeriods; ++t) {

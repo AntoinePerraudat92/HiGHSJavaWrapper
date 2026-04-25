@@ -6,6 +6,7 @@ import wrapper.model.LinearExpression;
 import wrapper.model.Model;
 import wrapper.model.Solution;
 import wrapper.model.Variable;
+import wrapper.util.ObjectCreator;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -83,7 +84,7 @@ class NonLinearWorkloadBalancingProblemTest {
         private final int[][] qualificationPerProductPerMachine = new int[this.nmbProducts][this.nmbMachines];
         private final double[][] processTimePerProductPerMachine = new double[this.nmbProducts][this.nmbMachines];
         // Model and decision variables.
-        private final Model model = new Model();
+        private final Model model = ObjectCreator.createModel();
         private final Variable[][] x = new Variable[this.nmbProducts][this.nmbMachines];
         private final Variable[] w = new Variable[this.nmbMachines];
         private final Variable[] wl = new Variable[this.nmbMachines];

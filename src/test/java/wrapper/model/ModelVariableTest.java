@@ -6,6 +6,7 @@ import wrapper.exceptions.VariableException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;
+import static wrapper.util.ObjectCreator.createModel;
 
 class ModelVariableTest {
 
@@ -16,7 +17,7 @@ class ModelVariableTest {
 
     @Test
     void addVariable() {
-        final Model model = new Model();
+        final Model model = createModel();
 
         assertEquals(0, model.addContinuousVariable(14.2, 18.5, 15.0).getIndex());
         assertEquals(1, model.addIntegerVariable(0.0, 5.2, 1.0).getIndex());
@@ -25,9 +26,9 @@ class ModelVariableTest {
 
     @Test
     void check() {
-        final Model firstModel = new Model();
+        final Model firstModel = createModel();
         final Variable firstVariable = firstModel.addBinaryVariable(1.0);
-        final Model secondModel = new Model();
+        final Model secondModel = createModel();
         final Variable secondVariable = secondModel.addIntegerVariable(0.0, 12.0, 6.9);
 
         assertDoesNotThrow(() -> firstVariable.check(firstModel));
@@ -42,7 +43,7 @@ class ModelVariableTest {
 
     @Test
     void updateVariableCostMustChangeObjectiveValue() {
-        final Model model = new Model();
+        final Model model = createModel();
         model.addContinuousVariable(1.2, 18.5, 2.3);
         final Variable x2 = model.addContinuousVariable(0.0, 10.0, 1.0);
 
@@ -65,7 +66,7 @@ class ModelVariableTest {
 
     @Test
     void updateVariableBoundsMustChangeObjectiveValue() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(1.0, 2.0, 1.0);
 
         final Solution firstSolution = model.minimize().orElseThrow();

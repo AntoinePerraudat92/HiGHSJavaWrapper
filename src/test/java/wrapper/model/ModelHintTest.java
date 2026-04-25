@@ -7,6 +7,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;
+import static wrapper.util.ObjectCreator.createModel;
 
 class ModelHintTest {
 
@@ -17,7 +18,7 @@ class ModelHintTest {
 
     @Test
     void parseMustThrowForUnknownVariables() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Hint hint = Hint.of(Map.of(new Variable(32, null), -45D));
 
         final VariableException exception = assertThrows(VariableException.class, () -> model.parseHint(hint));
@@ -26,7 +27,7 @@ class ModelHintTest {
 
     @Test
     void parseHintMustReturnFalseIfInvalidInitialValue() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
 
@@ -37,7 +38,7 @@ class ModelHintTest {
 
     @Test
     void parseHintMustReturnFalseWhenHintIsEmpty() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
 
@@ -48,7 +49,7 @@ class ModelHintTest {
 
     @Test
     void parseHintMustReturnTrue() {
-        final Model model = new Model();
+        final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
         final Variable x3 = model.addBinaryVariable(1.0);

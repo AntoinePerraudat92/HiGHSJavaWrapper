@@ -22,15 +22,15 @@ public class Variable {
         this.modelWeakReference = new WeakReference<>(model);
     }
 
-    long getIndex() {
-        return this.index;
-    }
-
     void check(final Model otherModel) {
         final Model thisModel = this.modelWeakReference.get();
         if (thisModel != otherModel) {
             throw new VariableException("Trying to access or modify variable associated with wrong model");
         }
+    }
+
+    long getIndex() {
+        return this.index;
     }
 
     public void updateCost(double newCost) {
