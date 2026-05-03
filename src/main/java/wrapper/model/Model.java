@@ -123,7 +123,7 @@ public class Model {
         final Supplier<HighsStatus> newVariableAction = () -> this.highs.addCol(cost, lb, ub, 0, null, null);
         runHighsActionOrElseThrow(newVariableAction, () -> new VariableException("Impossible to add variable"));
         final long variableIndex = this.highs.getNumCol() - 1;
-        final Supplier<HighsStatus> integralityAction = () -> varType == HighsVarType.kInteger ? this.highs.changeColIntegrality(variableIndex, varType) : HighsStatus.kOk;
+        final Supplier<HighsStatus> integralityAction = () -> this.highs.changeColIntegrality(variableIndex, varType);
         runHighsActionOrElseThrow(integralityAction, () -> new VariableException("Impossible to set integrality constraint"));
         return new Variable(variableIndex, this);
     }
