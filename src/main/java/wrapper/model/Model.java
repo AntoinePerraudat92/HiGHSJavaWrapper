@@ -3,6 +3,7 @@ package wrapper.model;
 import highs.*;
 import lombok.NoArgsConstructor;
 import org.jspecify.annotations.NullMarked;
+import wrapper.exceptions.ConstraintException;
 import wrapper.exceptions.VariableException;
 import wrapper.model.option.Option;
 
@@ -115,7 +116,9 @@ public class Model {
     }
 
     protected Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
-        this.highs.addCol(cost, lb, ub, 0, null, null);
+        if (this.highs.addCol(cost, lb, ub, 0, null, null) == HighsStatus.kError) {
+            throw new VariableException("Could not create variable");
+        }
         final long variableIndex = this.highs.getNumCol() - 1;
         if (varType == HighsVarType.kInteger) {
             this.highs.changeColIntegrality(variableIndex, varType);
@@ -130,7 +133,9 @@ public class Model {
         }
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         expression.consumeVariables(variableConsumer);
-        this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
+        if (this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()) == HighsStatus.kError) {
+            throw new ConstraintException("Could not create constraint");
+        }
         final long constraintIndex = this.highs.getNumRow() - 1;
         return new Constraint(constraintIndex, constraintType, this);
     }
