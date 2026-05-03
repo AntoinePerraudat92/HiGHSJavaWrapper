@@ -1,6 +1,7 @@
 package wrapper.model;
 
 import org.junit.jupiter.api.Test;
+import wrapper.exceptions.HintException;
 import wrapper.exceptions.VariableException;
 
 import java.util.Map;
@@ -27,14 +28,14 @@ class ModelHintTest {
     }
 
     @Test
-    void parseHintMustReturnFalseIfInvalidInitialValue() {
+    void parseHintMustThrowIfInvalidInitialValue() {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
+        final Hint hint = Hint.of(Map.of(x1, -1.0));
 
-        assertFalse(model.parseHint(Hint.of(Map.of(x1, -1.0))));
-        final Solution solution = model.maximize().orElseThrow();
-        assertEquals(1.0, solution.getObjectiveValue(), EPSILON);
+        final HintException exception = assertThrows(HintException.class, () -> model.parseHint(hint));
+        assertEquals("Impossible to parse hint", exception.getMessage());
     }
 
     @Test
@@ -42,10 +43,10 @@ class ModelHintTest {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
+        final Hint hint = new Hint();
 
-        assertFalse(model.parseHint(new Hint()));
-        final Solution solution = model.maximize().orElseThrow();
-        assertEquals(1.0, solution.getObjectiveValue(), EPSILON);
+        final HintException exception = assertThrows(HintException.class, () -> model.parseHint(hint));
+        assertEquals("Impossible to parse hint with no variable", exception.getMessage());
     }
 
     @Test
@@ -60,7 +61,7 @@ class ModelHintTest {
                 new LinearExpression.Term(x3, 1.0)
         ));
 
-        assertTrue(model.parseHint(Hint.of(Map.of(x1, 1.0, x2, 0.0, x3, 0.0))));
+        assertDoesNotThrow(() -> model.parseHint(Hint.of(Map.of(x1, 1.0, x2, 0.0, x3, 0.0))));
         final Solution solution = model.maximize().orElseThrow();
         assertEquals(1.0, solution.getObjectiveValue(), EPSILON);
     }

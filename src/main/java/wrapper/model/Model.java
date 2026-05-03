@@ -3,12 +3,15 @@ package wrapper.model;
 import highs.*;
 import lombok.NoArgsConstructor;
 import org.jspecify.annotations.NullMarked;
-import wrapper.exceptions.ConstraintException;
+import wrapper.exceptions.HintException;
+import wrapper.exceptions.OptionException;
 import wrapper.exceptions.VariableException;
+import wrapper.exceptions.WrapperException;
 import wrapper.model.option.Option;
 
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
+import java.util.function.Supplier;
 
 @NullMarked
 @NoArgsConstructor
@@ -91,38 +94,41 @@ public class Model {
         return optimize(ObjSense.kMaximize);
     }
 
-    public boolean parseOption(final Option option) {
+    public void parseOption(final Option option) {
         this.state.onModelChangeRequested();
-        return addOption(option);
+        addOption(option);
     }
 
-    public boolean parseHint(final Hint hint) {
+    public void parseHint(final Hint hint) {
         this.state.onModelChangeRequested();
-        return addHint(hint);
+        addHint(hint);
     }
 
     Highs getHighs() {
         return this.highs;
     }
 
-    protected boolean addOption(final Option option) {
-        return switch (option.getValue()) {
+    protected void addOption(final Option option) {
+        final Supplier<HighsStatus> action = () -> switch (option.getValue()) {
             case String stringValue -> this.highs.setOptionValue(option.getName(), stringValue);
             case Boolean booleanValue -> this.highs.setOptionValue(option.getName(), booleanValue);
             case Double doubleValue -> this.highs.setOptionValue(option.getName(), doubleValue);
             case Integer integerValue -> this.highs.setOptionValue(option.getName(), integerValue);
-            default -> false;
-        } == HighsStatus.kOk;
+            default -> throw new OptionException("Impossible to parse options of incompatible type");
+        };
+        runHighsActionOrElseThrow(action, () -> new OptionException("Impossible to add action"));
     }
 
     protected Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
-        if (this.highs.addCol(cost, lb, ub, 0, null, null) == HighsStatus.kError) {
-            throw new VariableException("Could not create variable");
-        }
+        runHighsActionOrElseThrow(
+                () -> this.highs.addCol(cost, lb, ub, 0, null, null),
+                () -> new VariableException("Impossible to add variable")
+        );
         final long variableIndex = this.highs.getNumCol() - 1;
-        if (varType == HighsVarType.kInteger) {
-            this.highs.changeColIntegrality(variableIndex, varType);
-        }
+        runHighsActionOrElseThrow(
+                () -> varType == HighsVarType.kInteger ? this.highs.changeColIntegrality(variableIndex, varType) : HighsStatus.kOk,
+                () -> new VariableException("Impossible to set integrality constraint")
+        );
         return new Variable(variableIndex, this);
     }
 
@@ -133,11 +139,11 @@ public class Model {
         }
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         expression.consumeVariables(variableConsumer);
-        if (this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()) == HighsStatus.kError) {
-            throw new ConstraintException("Impossible to add constraint");
-        }
-        final long constraintIndex = this.highs.getNumRow() - 1;
-        return new Constraint(constraintIndex, constraintType, this);
+        runHighsActionOrElseThrow(
+                () -> this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()),
+                () -> new VariableException("Impossible to add constraint")
+        );
+        return new Constraint(this.highs.getNumRow() - 1, constraintType, this);
     }
 
     protected Optional<Solution> solve() {
@@ -148,14 +154,17 @@ public class Model {
         return Optional.of(new Solution(this.highs.getModelStatus(), this.highs.getObjectiveValue()));
     }
 
-    protected boolean addHint(final Hint hint) {
+    protected void addHint(final Hint hint) {
         final int nmbVariables = hint.getNmbHints();
         if (nmbVariables < 1) {
-            return false;
+            throw new HintException("Impossible to parse hint with no variable");
         }
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         hint.consumeHints(variableConsumer);
-        return this.highs.setSolution(nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()) == HighsStatus.kOk;
+        runHighsActionOrElseThrow(
+                () -> this.highs.setSolution(nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()),
+                () -> new HintException("Impossible to parse hint")
+        );
     }
 
     private Optional<Solution> optimize(final ObjSense objSense) {
@@ -165,6 +174,12 @@ public class Model {
         final Optional<Solution> solution = solve();
         this.state.onSolveCompleted();
         return solution;
+    }
+
+    private static void runHighsActionOrElseThrow(final Supplier<HighsStatus> action, final Supplier<WrapperException> exception) {
+        if (action.get() == HighsStatus.kError) {
+            throw exception.get();
+        }
     }
 
     private static class VariableConsumer implements ObjDoubleConsumer<Variable> {

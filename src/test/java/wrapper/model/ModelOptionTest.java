@@ -7,7 +7,7 @@ import wrapper.model.option.DoubleOptions;
 import wrapper.model.option.IntegerOptions;
 import wrapper.model.option.StringOptions;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class ModelOptionTest {
 
@@ -21,7 +21,7 @@ class ModelOptionTest {
     void addStringOption(final String optionValue) {
         final Model model = new Model();
 
-        assertTrue(model.parseOption(StringOptions.PARALLEL.getOption(optionValue)));
+        assertDoesNotThrow(() -> model.parseOption(StringOptions.PARALLEL.getOption(optionValue)));
     }
 
     @ParameterizedTest
@@ -29,7 +29,7 @@ class ModelOptionTest {
     void addBooleanOption(final boolean optionValue) {
         final Model model = new Model();
 
-        assertTrue(model.parseOption(BooleanOptions.MIP_ALLOW_RESTART.getOption(optionValue)));
+        assertDoesNotThrow(() -> model.parseOption(BooleanOptions.MIP_ALLOW_RESTART.getOption(optionValue)));
     }
 
     @ParameterizedTest
@@ -37,7 +37,7 @@ class ModelOptionTest {
     void addDoubleOption(final double optionValue) {
         final Model model = new Model();
 
-        assertTrue(model.parseOption(DoubleOptions.TIME_LIMIT.getOption(optionValue)));
+        assertDoesNotThrow(() -> model.parseOption(DoubleOptions.TIME_LIMIT.getOption(optionValue)));
     }
 
     @ParameterizedTest
@@ -45,7 +45,7 @@ class ModelOptionTest {
     void addIntegerOption(final int optionValue) {
         final Model model = new Model();
 
-        assertTrue(model.parseOption(IntegerOptions.NB_THREADS.getOption(optionValue)));
+        assertDoesNotThrow(() -> model.parseOption(IntegerOptions.NB_THREADS.getOption(optionValue)));
     }
 
 }
