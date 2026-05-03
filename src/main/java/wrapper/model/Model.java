@@ -141,8 +141,7 @@ public class Model {
     }
 
     protected Optional<Solution> solve() {
-        final HighsStatus status = this.highs.run();
-        if (status == HighsStatus.kError) {
+        if (this.highs.run() == HighsStatus.kError) {
             return Optional.empty();
         }
         return Optional.of(new Solution(this.highs.getModelStatus(), this.highs.getObjectiveValue()));
