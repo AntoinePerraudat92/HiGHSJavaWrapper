@@ -1,7 +1,5 @@
 # HiGHS Java Wrapper
 
-(In construction)
-
 The scope of this project is to provide a Java wrapper for the open-source [HiGHS solver](https://highs.dev/), which is
 capable of solving linear (LP), mixed-integer (MIP) and quadratic programming (QP) problems.
 
@@ -37,25 +35,24 @@ On Ubuntu systems, one can use `sudo apt install swig`.
 `gcc` or `clang` must be installed. Note that `HiGHS` must have been installed with the same compiler. The environment
 variables `CC` or `CXX` must be defined.
 
-### Build the JNI classes
+## Extending the JNI classes
 
 To build the JNI classes required by the wrapper, `generate_jni_classes` should be used. It builds the JNI classes in
-`src/main/java/highs`,
+`src/main/java/highs`. Running this script is not necessary unless you want to extend the wrapper.
 
-### Build the shared libraries
+## How to use the wrapper?
 
-`generate_shared_libraries` should be used to build the shared libraries required by the wrapper. It automatically
-creates the required shared libraries, `libhighs.so` and
-`libhighswrap.so`, in the base directory.
+Firstly, `HiGHS` must be compiled and `HIGHS_HOME` must be defined.
 
-The following environment variables must be defined for the script to work:
+Secondly, `generate_shared_libraries` must be run to build the shared libraries required by the wrapper. It
+automatically creates the required shared libraries, `libhighs.so` and `libhighswrap.so`, in the base directory. The
+following environment variables must be defined for the script to work:
 
 - `HIGHS_HOME`,
 - `JAVA_HOME`.
 
-## Use
-
-To run the tests or use the wrapper for another project, the JVM argument `-Djava.library.path` must be filled. The
+Then, to run the tests or use the wrapper for another project, the JVM argument `-Djava.library.path` must be filled.
+The
 referred path must contain `libhighs.so` and `libhighswrap.so`. The relevant classes (relying on calls to
 `HiGHS`) then must also contain (or something equivalent):
 
