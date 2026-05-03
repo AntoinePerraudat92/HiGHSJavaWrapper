@@ -134,7 +134,7 @@ public class Model {
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         expression.consumeVariables(variableConsumer);
         if (this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()) == HighsStatus.kError) {
-            throw new ConstraintException("Could not create constraint");
+            throw new ConstraintException("Impossible to add constraint");
         }
         final long constraintIndex = this.highs.getNumRow() - 1;
         return new Constraint(constraintIndex, constraintType, this);
