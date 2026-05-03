@@ -120,15 +120,11 @@ public class Model {
     }
 
     protected Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
-        runHighsActionOrElseThrow(
-                () -> this.highs.addCol(cost, lb, ub, 0, null, null),
-                () -> new VariableException("Impossible to add variable")
-        );
+        final Supplier<HighsStatus> newVariableAction = () -> this.highs.addCol(cost, lb, ub, 0, null, null);
+        runHighsActionOrElseThrow(newVariableAction, () -> new VariableException("Impossible to add variable"));
         final long variableIndex = this.highs.getNumCol() - 1;
-        runHighsActionOrElseThrow(
-                () -> varType == HighsVarType.kInteger ? this.highs.changeColIntegrality(variableIndex, varType) : HighsStatus.kOk,
-                () -> new VariableException("Impossible to set integrality constraint")
-        );
+        final Supplier<HighsStatus> integralityAction = () -> varType == HighsVarType.kInteger ? this.highs.changeColIntegrality(variableIndex, varType) : HighsStatus.kOk;
+        runHighsActionOrElseThrow(integralityAction, () -> new VariableException("Impossible to set integrality constraint"));
         return new Variable(variableIndex, this);
     }
 
@@ -139,10 +135,8 @@ public class Model {
         }
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         expression.consumeVariables(variableConsumer);
-        runHighsActionOrElseThrow(
-                () -> this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()),
-                () -> new VariableException("Impossible to add constraint")
-        );
+        final Supplier<HighsStatus> action = () -> this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
+        runHighsActionOrElseThrow(action, () -> new VariableException("Impossible to add constraint"));
         return new Constraint(this.highs.getNumRow() - 1, constraintType, this);
     }
 
@@ -161,10 +155,8 @@ public class Model {
         }
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         hint.consumeHints(variableConsumer);
-        runHighsActionOrElseThrow(
-                () -> this.highs.setSolution(nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast()),
-                () -> new HintException("Impossible to parse hint")
-        );
+        final Supplier<HighsStatus> action = () -> this.highs.setSolution(nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
+        runHighsActionOrElseThrow(action, () -> new HintException("Impossible to parse hint"));
     }
 
     private Optional<Solution> optimize(final ObjSense objSense) {
