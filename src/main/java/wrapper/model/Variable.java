@@ -27,16 +27,7 @@ public class Variable {
         this.index = index;
         this.modelWeakReference = new WeakReference<>(null);
     }
-
-    void check(@Nullable final Model otherModel) {
-        final Model thisModel = getModel();
-        throwIfModelNull(thisModel);
-        throwIfModelNull(otherModel);
-        if (thisModel != otherModel) {
-            throw new VariableException("Trying to access or modify variable associated with wrong model");
-        }
-    }
-
+    
     long getIndex() {
         return this.index;
     }
@@ -49,13 +40,13 @@ public class Variable {
     public void updateCost(double newCost) {
         final Model model = getModel();
         throwIfModelNull(model);
-        model.getHighs().changeColCost(this.index, newCost);
+        model.updateVariableCost(newCost, this);
     }
 
     public void updateBounds(double newLb, double newUb) {
         final Model model = getModel();
         throwIfModelNull(model);
-        model.getHighs().changeColBounds(this.index, newLb, newUb);
+        model.updateVariableBounds(newLb, newUb, this);
     }
 
     public double getValue() {

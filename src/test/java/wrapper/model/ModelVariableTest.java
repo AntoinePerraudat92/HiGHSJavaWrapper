@@ -4,7 +4,8 @@ package wrapper.model;
 import org.junit.jupiter.api.Test;
 import wrapper.exceptions.VariableException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static wrapper.util.Constants.EPSILON;
 import static wrapper.util.ObjectCreator.createModel;
 
@@ -23,23 +24,6 @@ class ModelVariableTest {
         assertEquals(1, model.addIntegerVariable(0.0, 5.2, 1.0).getIndex());
         assertEquals(2, model.addBinaryVariable(0.0).getIndex());
         assertEquals(3, model.addSemicontinuousVariable(2.0, 7.0, 8.0).getIndex());
-    }
-
-    @Test
-    void check() {
-        final Model firstModel = createModel();
-        final Variable firstVariable = firstModel.addBinaryVariable(1.0);
-        final Model secondModel = createModel();
-        final Variable secondVariable = secondModel.addIntegerVariable(0.0, 12.0, 6.9);
-
-        assertDoesNotThrow(() -> firstVariable.check(firstModel));
-        assertDoesNotThrow(() -> secondVariable.check(secondModel));
-        final VariableException firstException = assertThrows(VariableException.class, () -> firstVariable.check(secondModel));
-        assertEquals("Trying to access or modify variable associated with wrong model", firstException.getMessage());
-        final VariableException secondException = assertThrows(VariableException.class, () -> secondVariable.check(firstModel));
-        assertEquals("Trying to access or modify variable associated with wrong model", secondException.getMessage());
-        final VariableException thirdException = assertThrows(VariableException.class, () -> secondVariable.check(null));
-        assertEquals("Related model does not exist", thirdException.getMessage());
     }
 
     @Test

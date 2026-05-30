@@ -1,7 +1,6 @@
 package wrapper.model;
 
 import highs.DoubleVector;
-import highs.Highs;
 import highs.HighsSolution;
 import lombok.EqualsAndHashCode;
 import org.jspecify.annotations.NullMarked;
@@ -49,19 +48,13 @@ public class Constraint {
     public void updateCoefficient(double newCoefficient, final Variable variable) {
         final Model model = getModel();
         throwIfModelNull(model);
-        variable.check(model);
-        model.getHighs().changeCoeff(this.index, variable.getIndex(), newCoefficient);
+        model.updateConstraintCoefficient(newCoefficient, variable, this);
     }
 
     public void updateRightHandSide(double newRhs) {
         final Model model = getModel();
         throwIfModelNull(model);
-        final Highs highs = model.getHighs();
-        switch (getConstraintType()) {
-            case EQUALITY -> highs.changeRowBounds(this.index, newRhs, newRhs);
-            case GREATER_THAN_OR_EQUAL_TO -> highs.changeRowBounds(this.index, newRhs, Double.MAX_VALUE);
-            case LESS_THAN_OR_EQUAL_TO -> highs.changeRowBounds(this.index, -Double.MAX_VALUE, newRhs);
-        }
+        model.updateRightHandSide(newRhs, this);
     }
 
     public double getValue() {
