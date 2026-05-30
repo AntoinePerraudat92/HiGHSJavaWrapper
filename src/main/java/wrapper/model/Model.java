@@ -25,6 +25,11 @@ public class Model {
         return addVariable(lb, ub, cost, HighsVarType.kContinuous);
     }
 
+    public Variable addSemicontinuousVariable(double lb, double ub, double cost) {
+        this.state.onModelChangeRequested();
+        return addVariable(lb, ub, cost, HighsVarType.kSemiContinuous);
+    }
+
     public Variable addBinaryVariable(double cost) {
         this.state.onModelChangeRequested();
         return addVariable(0.0, 1.0, cost, HighsVarType.kInteger);
@@ -116,15 +121,15 @@ public class Model {
             case Integer integerValue -> this.highs.setOptionValue(option.getName(), integerValue);
             default -> throw new OptionException("Impossible to parse options of incompatible type");
         };
-        runHighsActionOrElseThrow(action, () -> new OptionException("Impossible to add action"));
+        runHighsActionAndThrowOnError(action, () -> new OptionException("Impossible to add action"));
     }
 
     protected Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
         final Supplier<HighsStatus> newVariableAction = () -> this.highs.addCol(cost, lb, ub, 0, null, null);
-        runHighsActionOrElseThrow(newVariableAction, () -> new VariableException("Impossible to add variable"));
+        runHighsActionAndThrowOnError(newVariableAction, () -> new VariableException("Impossible to add variable"));
         final long variableIndex = this.highs.getNumCol() - 1;
         final Supplier<HighsStatus> integralityAction = () -> this.highs.changeColIntegrality(variableIndex, varType);
-        runHighsActionOrElseThrow(integralityAction, () -> new VariableException("Impossible to set integrality constraint"));
+        runHighsActionAndThrowOnError(integralityAction, () -> new VariableException("Impossible to set integrality constraint"));
         return new Variable(variableIndex, this);
     }
 
@@ -136,7 +141,7 @@ public class Model {
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         expression.consumeVariables(variableConsumer);
         final Supplier<HighsStatus> action = () -> this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
-        runHighsActionOrElseThrow(action, () -> new VariableException("Impossible to add constraint"));
+        runHighsActionAndThrowOnError(action, () -> new VariableException("Impossible to add constraint"));
         return new Constraint(this.highs.getNumRow() - 1, constraintType, this);
     }
 
@@ -155,7 +160,7 @@ public class Model {
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         hint.consumeHints(variableConsumer);
         final Supplier<HighsStatus> action = () -> this.highs.setSolution(nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
-        runHighsActionOrElseThrow(action, () -> new HintException("Impossible to parse hint"));
+        runHighsActionAndThrowOnError(action, () -> new HintException("Impossible to parse hint"));
     }
 
     private Optional<Solution> optimize(final ObjSense objSense) {
@@ -167,7 +172,7 @@ public class Model {
         return solution;
     }
 
-    private static void runHighsActionOrElseThrow(final Supplier<HighsStatus> action, final Supplier<WrapperException> exception) {
+    private static void runHighsActionAndThrowOnError(final Supplier<HighsStatus> action, final Supplier<WrapperException> exception) {
         if (action.get() == HighsStatus.kError) {
             throw exception.get();
         }

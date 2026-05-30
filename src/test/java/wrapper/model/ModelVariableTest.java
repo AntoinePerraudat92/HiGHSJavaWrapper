@@ -22,6 +22,7 @@ class ModelVariableTest {
         assertEquals(0, model.addContinuousVariable(14.2, 18.5, 15.0).getIndex());
         assertEquals(1, model.addIntegerVariable(0.0, 5.2, 1.0).getIndex());
         assertEquals(2, model.addBinaryVariable(0.0).getIndex());
+        assertEquals(3, model.addSemicontinuousVariable(2.0, 7.0, 8.0).getIndex());
     }
 
     @Test
