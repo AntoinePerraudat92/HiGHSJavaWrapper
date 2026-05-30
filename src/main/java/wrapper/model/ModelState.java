@@ -11,19 +11,25 @@ class ModelState {
 
     private State state = State.BUILDING;
 
-    void onSolveRequested() {
+    synchronized void onSolveRequested() {
         setNewState(State.SOLVING);
     }
 
-    void onModelChangeRequested() {
+    synchronized void onModelChangeRequested() {
         setNewState(State.BUILDING);
     }
 
-    void onSolveCompleted() {
+    synchronized void onSolutionRequested() {
+        if (this.state != State.SOLVED) {
+            throw new ModelStateException(String.format("Impossible to retrieve solution when model state is %s", this.state));
+        }
+    }
+
+    synchronized void onSolveCompleted() {
         setNewState(State.SOLVED);
     }
 
-    private synchronized void setNewState(final State nextState) {
+    private void setNewState(final State nextState) {
         checkTransition(this.state, nextState);
         this.state = nextState;
     }

@@ -3,10 +3,7 @@ package wrapper.model;
 import highs.*;
 import lombok.NoArgsConstructor;
 import org.jspecify.annotations.NullMarked;
-import wrapper.exceptions.HintException;
-import wrapper.exceptions.OptionException;
-import wrapper.exceptions.VariableException;
-import wrapper.exceptions.WrapperException;
+import wrapper.exceptions.*;
 import wrapper.model.option.Option;
 
 import java.util.Optional;
@@ -109,8 +106,42 @@ public class Model {
         addHint(hint);
     }
 
-    Highs getHighs() {
-        return this.highs;
+    HighsSolution getSolution() {
+        this.state.onSolutionRequested();
+        return this.highs.getSolution();
+    }
+
+    void updateVariableCost(double newCost, final Variable variable) {
+        this.state.onModelChangeRequested();
+        checkVariable(variable);
+        final Supplier<HighsStatus> action = () -> this.highs.changeColCost(variable.getIndex(), newCost);
+        runHighsActionAndThrowOnError(action, () -> new VariableException("Impossible to update cost of variable"));
+    }
+
+    void updateVariableBounds(double newLb, double newUb, final Variable variable) {
+        this.state.onModelChangeRequested();
+        checkVariable(variable);
+        final Supplier<HighsStatus> action = () -> this.highs.changeColBounds(variable.getIndex(), newLb, newUb);
+        runHighsActionAndThrowOnError(action, () -> new VariableException("Impossible to update bounds of variable"));
+    }
+
+    void updateConstraintCoefficient(double newCoefficient, final Variable variable, final Constraint constraint) {
+        this.state.onModelChangeRequested();
+        checkVariable(variable);
+        checkConstraint(constraint);
+        final Supplier<HighsStatus> action = () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient);
+        runHighsActionAndThrowOnError(action, () -> new VariableException("Impossible to update coefficient of constraint"));
+    }
+
+    void updateRightHandSide(double newRhs, final Constraint constraint) {
+        this.state.onModelChangeRequested();
+        checkConstraint(constraint);
+        final Supplier<HighsStatus> action = () -> switch (constraint.getConstraintType()) {
+            case EQUALITY -> highs.changeRowBounds(constraint.getIndex(), newRhs, newRhs);
+            case GREATER_THAN_OR_EQUAL_TO -> highs.changeRowBounds(constraint.getIndex(), newRhs, Double.MAX_VALUE);
+            case LESS_THAN_OR_EQUAL_TO -> highs.changeRowBounds(constraint.getIndex(), -Double.MAX_VALUE, newRhs);
+        };
+        runHighsActionAndThrowOnError(action, () -> new VariableException("Impossible to update right hand side of constraint"));
     }
 
     protected void addOption(final Option option) {
@@ -172,6 +203,20 @@ public class Model {
         return solution;
     }
 
+    private void checkVariable(final Variable variable) {
+        final Model otherModel = variable.getModel();
+        if (this != otherModel) {
+            throw new VariableException("Trying to access or modify variable associated with wrong model");
+        }
+    }
+
+    private void checkConstraint(final Constraint constraint) {
+        final Model otherModel = constraint.getModel();
+        if (this != otherModel) {
+            throw new ConstraintException("Trying to access or modify constraint associated with wrong model");
+        }
+    }
+
     private static void runHighsActionAndThrowOnError(final Supplier<HighsStatus> action, final Supplier<WrapperException> exception) {
         if (action.get() == HighsStatus.kError) {
             throw exception.get();
@@ -193,7 +238,7 @@ public class Model {
 
         @Override
         public void accept(final Variable variable, double value) {
-            variable.check(this.model);
+            this.model.checkVariable(variable);
             this.values.setitem(this.arrayIndex, value);
             this.indices.setitem(this.arrayIndex, variable.getIndex());
             ++this.arrayIndex;

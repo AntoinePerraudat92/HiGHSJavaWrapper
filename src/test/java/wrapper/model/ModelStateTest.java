@@ -25,7 +25,7 @@ class ModelStateTest {
     void modelCannotBeSolvedTwiceInARows() {
         this.modelState.onSolveRequested();
         this.modelState.onSolveCompleted();
-        
+
         assertThrows(ModelStateException.class, () -> this.modelState.onSolveCompleted());
     }
 
@@ -56,6 +56,28 @@ class ModelStateTest {
         this.modelState.onModelChangeRequested();
 
         assertDoesNotThrow(() -> this.modelState.onModelChangeRequested());
+    }
+
+    @Test
+    void requestingSolutionWhenSolvingModelIsNotAllowed() {
+        this.modelState.onSolveRequested();
+
+        assertThrows(ModelStateException.class, () -> this.modelState.onSolutionRequested());
+    }
+
+    @Test
+    void requestingSolutionWhenBuildingModelIsNotAllowed() {
+        this.modelState.onModelChangeRequested();
+
+        assertThrows(ModelStateException.class, () -> this.modelState.onSolutionRequested());
+    }
+
+    @Test
+    void requestingSolutionWhenModelSolvedIsAllowed() {
+        this.modelState.onSolveRequested();
+        this.modelState.onSolveCompleted();
+
+        assertDoesNotThrow(() -> this.modelState.onSolutionRequested());
     }
 
 }
