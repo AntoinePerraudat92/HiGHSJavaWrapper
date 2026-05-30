@@ -113,6 +113,11 @@ public class Model {
         return this.highs;
     }
 
+    HighsSolution getSolution() {
+        this.state.onSolutionRequested();
+        return this.highs.getSolution();
+    }
+
     protected void addOption(final Option option) {
         final Supplier<HighsStatus> action = () -> switch (option.getValue()) {
             case String stringValue -> this.highs.setOptionValue(option.getName(), stringValue);

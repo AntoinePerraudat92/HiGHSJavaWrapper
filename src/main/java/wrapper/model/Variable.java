@@ -61,7 +61,7 @@ public class Variable {
     public double getValue() {
         final Model model = getModel();
         throwIfModelNull(model);
-        final HighsSolution highsSolution = model.getHighs().getSolution();
+        final HighsSolution highsSolution = model.getSolution();
         final DoubleVector variableValues = highsSolution.getCol_value();
         return variableValues.get((int) this.index);
     }
@@ -69,7 +69,7 @@ public class Variable {
     public double getDualValue() {
         final Model model = getModel();
         throwIfModelNull(model);
-        final HighsSolution highsSolution = model.getHighs().getSolution();
+        final HighsSolution highsSolution = model.getSolution();
         final DoubleVector dualValues = highsSolution.getCol_dual();
         return dualValues.get((int) this.index);
     }
