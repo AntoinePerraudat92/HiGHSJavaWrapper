@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class HighsUseTest {
 
-
     @Test
     void model_should_be_the_only_class_depending_on_highs() {
         final JavaClasses importedClasses = new ClassFileImporter()
@@ -38,6 +37,5 @@ class HighsUseTest {
                 .should().be(Model.class);
         rule.check(importedClasses);
     }
-
 
 }
