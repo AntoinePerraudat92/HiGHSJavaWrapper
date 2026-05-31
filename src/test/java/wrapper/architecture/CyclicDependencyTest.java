@@ -22,7 +22,8 @@ class CyclicDependencyTest {
         assertFalse(importedClasses.isEmpty());
         SlicesRuleDefinition.slices()
                 .matching("..(*)..")
-                .should().beFreeOfCycles()
+                .should()
+                .beFreeOfCycles()
                 .check(importedClasses);
     }
 
