@@ -15,10 +15,7 @@ class DoubleOptionsTest {
     }
 
     private static int computeNmbOptions() {
-        return Arrays.stream(DoubleOptions.values())
-                .map(DoubleOptions::getHighsOptionName)
-                .collect(Collectors.toSet())
-                .size();
+        return Arrays.stream(DoubleOptions.values()).map(DoubleOptions::getHighsOptionName).collect(Collectors.toSet()).size();
     }
 
     @Test

@@ -40,8 +40,7 @@ public class Constraint {
         return this.constraintType;
     }
 
-    @Nullable
-    Model getModel() {
+    @Nullable Model getModel() {
         return this.modelWeakReference.get();
     }
 

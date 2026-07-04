@@ -15,10 +15,7 @@ class BooleanOptionsTest {
     }
 
     private static int computeNmbOptions() {
-        return Arrays.stream(BooleanOptions.values())
-                .map(BooleanOptions::getHighsOptionName)
-                .collect(Collectors.toSet())
-                .size();
+        return Arrays.stream(BooleanOptions.values()).map(BooleanOptions::getHighsOptionName).collect(Collectors.toSet()).size();
     }
 
     @Test

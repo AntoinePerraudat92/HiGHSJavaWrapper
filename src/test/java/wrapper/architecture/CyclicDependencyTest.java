@@ -15,16 +15,10 @@ class CyclicDependencyTest {
 
     @Test
     void wrapperPackageMustBeFreeOfCycles() {
-        final JavaClasses importedClasses = new ClassFileImporter()
-                .withImportOption(new ImportOption.DoNotIncludeTests())
-                .importPackages(List.of("..wrapper.."));
+        final JavaClasses importedClasses = new ClassFileImporter().withImportOption(new ImportOption.DoNotIncludeTests()).importPackages(List.of("..wrapper.."));
 
         assertFalse(importedClasses.isEmpty());
-        SlicesRuleDefinition.slices()
-                .matching("..(*)..")
-                .should()
-                .beFreeOfCycles()
-                .check(importedClasses);
+        SlicesRuleDefinition.slices().matching("..(*)..").should().beFreeOfCycles().check(importedClasses);
     }
 
 }

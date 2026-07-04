@@ -19,22 +19,17 @@ class HighsUseTest {
 
     @Test
     void model_should_be_the_only_class_depending_on_highs() {
-        final JavaClasses importedClasses = new ClassFileImporter()
-                .withImportOption(new ImportOption.DoNotIncludeTests())
-                .importPackages(List.of("..wrapper.."));
+        final JavaClasses importedClasses = new ClassFileImporter().withImportOption(new ImportOption.DoNotIncludeTests()).importPackages(List.of("..wrapper.."));
 
         final DescribedPredicate<JavaClass> dependsOnHighsPredicates = new DescribedPredicate<>("depend on Highs") {
             @Override
             public boolean test(final JavaClass javaClass) {
-                return javaClass.getDirectDependenciesFromSelf().stream()
-                        .anyMatch(dep -> dep.getTargetClass().isAssignableTo(Highs.class));
+                return javaClass.getDirectDependenciesFromSelf().stream().anyMatch(dep -> dep.getTargetClass().isAssignableTo(Highs.class));
             }
         };
 
         assertFalse(importedClasses.isEmpty());
-        final ArchRule rule = classes()
-                .that(dependsOnHighsPredicates)
-                .should().be(Model.class);
+        final ArchRule rule = classes().that(dependsOnHighsPredicates).should().be(Model.class);
         rule.check(importedClasses);
     }
 

@@ -35,14 +35,16 @@ class SolutionTest {
     }
 
     private static HighsModelStatus[] getFeasibleModelStatuses() {
-        return new HighsModelStatus[]{highs.HighsModelStatus.kOptimal,
+        return new HighsModelStatus[]{
+                highs.HighsModelStatus.kOptimal,
                 HighsModelStatus.kObjectiveBound,
                 HighsModelStatus.kObjectiveTarget,
                 HighsModelStatus.kTimeLimit,
                 HighsModelStatus.kIterationLimit,
                 HighsModelStatus.kSolutionLimit,
                 HighsModelStatus.kMemoryLimit,
-                HighsModelStatus.kInterrupt};
+                HighsModelStatus.kInterrupt
+        };
     }
 
     @ParameterizedTest
@@ -63,7 +65,11 @@ class SolutionTest {
 
 
     @ParameterizedTest
-    @ValueSource(doubles = {0.1, -5.6, 14.5})
+    @ValueSource(doubles = {
+            0.1,
+            -5.6,
+            14.5
+    })
     void getObjectiveValue(final double objectiveValue) {
         final Solution solution = new Solution(HighsModelStatus.kOptimal, objectiveValue);
 
