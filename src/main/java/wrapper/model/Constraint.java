@@ -1,7 +1,5 @@
 package wrapper.model;
 
-import highs.DoubleVector;
-import highs.HighsSolution;
 import lombok.EqualsAndHashCode;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
@@ -12,7 +10,7 @@ import java.lang.ref.WeakReference;
 
 @NullMarked
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Constraint {
+public class Constraint implements ModelObject {
 
     @EqualsAndHashCode.Include
     private final long index;
@@ -59,17 +57,13 @@ public class Constraint {
     public double getValue() {
         final Model model = getModel();
         throwIfModelNull(model);
-        final HighsSolution highsSolution = model.getSolution();
-        final DoubleVector constraintValues = highsSolution.getRow_value();
-        return constraintValues.get((int) this.index);
+        return model.getValue(this);
     }
 
     public double getDualValue() {
         final Model model = getModel();
         throwIfModelNull(model);
-        final HighsSolution highsSolution = model.getSolution();
-        final DoubleVector dualValues = highsSolution.getRow_dual();
-        return dualValues.get((int) this.index);
+        return model.getDualValue(this);
     }
 
     private void throwIfModelNull(@Nullable final Model model) {
