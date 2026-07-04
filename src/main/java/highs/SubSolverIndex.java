@@ -9,6 +9,7 @@
 package highs;
 
 public final class SubSolverIndex {
+  public final static SubSolverIndex kFromSubSolver = new SubSolverIndex("kFromSubSolver", highsJNI.kFromSubSolver_get());
   public final static SubSolverIndex kSubSolverMip = new SubSolverIndex("kSubSolverMip", highsJNI.kSubSolverMip_get());
   public final static SubSolverIndex kSubSolverDuSimplexBasis = new SubSolverIndex("kSubSolverDuSimplexBasis");
   public final static SubSolverIndex kSubSolverDuSimplexNoBasis = new SubSolverIndex("kSubSolverDuSimplexNoBasis");
@@ -21,7 +22,8 @@ public final class SubSolverIndex {
   public final static SubSolverIndex kSubSolverPdlp = new SubSolverIndex("kSubSolverPdlp");
   public final static SubSolverIndex kSubSolverQpAsm = new SubSolverIndex("kSubSolverQpAsm");
   public final static SubSolverIndex kSubSolverSubMip = new SubSolverIndex("kSubSolverSubMip");
-  public final static SubSolverIndex kSubSolverCount = new SubSolverIndex("kSubSolverCount");
+  public final static SubSolverIndex kLastSubSolver = new SubSolverIndex("kLastSubSolver", highsJNI.kLastSubSolver_get());
+  public final static SubSolverIndex kToSubSolver = new SubSolverIndex("kToSubSolver", highsJNI.kToSubSolver_get());
 
   public final int swigValue() {
     return swigValue;
@@ -57,7 +59,7 @@ public final class SubSolverIndex {
     swigNext = this.swigValue+1;
   }
 
-  private static SubSolverIndex[] swigValues = { kSubSolverMip, kSubSolverDuSimplexBasis, kSubSolverDuSimplexNoBasis, kSubSolverPrSimplexBasis, kSubSolverPrSimplexNoBasis, kSubSolverHipo, kSubSolverIpx, kSubSolverHipoAc, kSubSolverIpxAc, kSubSolverPdlp, kSubSolverQpAsm, kSubSolverSubMip, kSubSolverCount };
+  private static SubSolverIndex[] swigValues = { kFromSubSolver, kSubSolverMip, kSubSolverDuSimplexBasis, kSubSolverDuSimplexNoBasis, kSubSolverPrSimplexBasis, kSubSolverPrSimplexNoBasis, kSubSolverHipo, kSubSolverIpx, kSubSolverHipoAc, kSubSolverIpxAc, kSubSolverPdlp, kSubSolverQpAsm, kSubSolverSubMip, kLastSubSolver, kToSubSolver };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;

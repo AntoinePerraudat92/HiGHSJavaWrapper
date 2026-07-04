@@ -18,6 +18,7 @@ public final class HighsAnalysisLevel {
   public final static HighsAnalysisLevel kHighsAnalysisLevelNlaTime = new HighsAnalysisLevel("kHighsAnalysisLevelNlaTime", highsJNI.kHighsAnalysisLevelNlaTime_get());
   public final static HighsAnalysisLevel kHighsAnalysisLevelMipData = new HighsAnalysisLevel("kHighsAnalysisLevelMipData", highsJNI.kHighsAnalysisLevelMipData_get());
   public final static HighsAnalysisLevel kHighsAnalysisLevelMipTime = new HighsAnalysisLevel("kHighsAnalysisLevelMipTime", highsJNI.kHighsAnalysisLevelMipTime_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelPresolveTime = new HighsAnalysisLevel("kHighsAnalysisLevelPresolveTime", highsJNI.kHighsAnalysisLevelPresolveTime_get());
   public final static HighsAnalysisLevel kHighsAnalysisLevelMin = new HighsAnalysisLevel("kHighsAnalysisLevelMin", highsJNI.kHighsAnalysisLevelMin_get());
   public final static HighsAnalysisLevel kHighsAnalysisLevelMax = new HighsAnalysisLevel("kHighsAnalysisLevelMax", highsJNI.kHighsAnalysisLevelMax_get());
 
@@ -55,7 +56,7 @@ public final class HighsAnalysisLevel {
     swigNext = this.swigValue+1;
   }
 
-  private static HighsAnalysisLevel[] swigValues = { kHighsAnalysisLevelNone, kHighsAnalysisLevelModelData, kHighsAnalysisLevelSolverSummaryData, kHighsAnalysisLevelSolverRuntimeData, kHighsAnalysisLevelSolverTime, kHighsAnalysisLevelNlaData, kHighsAnalysisLevelNlaTime, kHighsAnalysisLevelMipData, kHighsAnalysisLevelMipTime, kHighsAnalysisLevelMin, kHighsAnalysisLevelMax };
+  private static HighsAnalysisLevel[] swigValues = { kHighsAnalysisLevelNone, kHighsAnalysisLevelModelData, kHighsAnalysisLevelSolverSummaryData, kHighsAnalysisLevelSolverRuntimeData, kHighsAnalysisLevelSolverTime, kHighsAnalysisLevelNlaData, kHighsAnalysisLevelNlaTime, kHighsAnalysisLevelMipData, kHighsAnalysisLevelMipTime, kHighsAnalysisLevelPresolveTime, kHighsAnalysisLevelMin, kHighsAnalysisLevelMax };
   private static int swigNext = 0;
   private final int swigValue;
   private final String swigName;
