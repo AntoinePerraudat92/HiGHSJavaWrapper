@@ -124,6 +124,10 @@ public class HighsSolution {
     highsJNI.HighsSolution_print__SWIG_2(swigCPtr, this);
   }
 
+  public boolean isModelRow(long row) {
+    return highsJNI.HighsSolution_isModelRow(swigCPtr, this, row);
+  }
+
   public HighsSolution() {
     this(highsJNI.new_HighsSolution(), true);
   }

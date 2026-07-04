@@ -72,6 +72,10 @@ public class Highs {
     return highsJNI.Highs_githash(swigCPtr, this);
   }
 
+  public String getThirdPartyNotice() {
+    return highsJNI.Highs_getThirdPartyNotice(swigCPtr, this);
+  }
+
   public HighsStatus clear() {
     return HighsStatus.swigToEnum(highsJNI.Highs_clear(swigCPtr, this));
   }
@@ -86,6 +90,10 @@ public class Highs {
 
   public HighsStatus clearSolverDualData() {
     return HighsStatus.swigToEnum(highsJNI.Highs_clearSolverDualData(swigCPtr, this));
+  }
+
+  public HighsStatus releaseMemory() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_releaseMemory(swigCPtr, this));
   }
 
   public HighsStatus passModel(HighsModel model) {
@@ -162,6 +170,14 @@ public class Highs {
 
   public HighsStatus readBasis(String filename) {
     return HighsStatus.swigToEnum(highsJNI.Highs_readBasis(swigCPtr, this, filename));
+  }
+
+  public HighsStatus matrixImage(String matrix_image_filename, String hessian_image_filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_matrixImage__SWIG_0(swigCPtr, this, matrix_image_filename, hessian_image_filename));
+  }
+
+  public HighsStatus matrixImage(String matrix_image_filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_matrixImage__SWIG_1(swigCPtr, this, matrix_image_filename));
   }
 
   public HighsStatus presolve() {
@@ -334,6 +350,30 @@ public class Highs {
 
   public HighsStatus getStringOptionValues(String option) {
     return HighsStatus.swigToEnum(highsJNI.Highs_getStringOptionValues__SWIG_2(swigCPtr, this, option));
+  }
+
+  public SWIGTYPE_p_HighsRunData getRunData() {
+    return new SWIGTYPE_p_HighsRunData(highsJNI.Highs_getRunData(swigCPtr, this), false);
+  }
+
+  public HighsStatus getRunDataValue(String run_data, SWIGTYPE_p_long_long value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRunDataValue__SWIG_0(swigCPtr, this, run_data, SWIGTYPE_p_long_long.getCPtr(value)));
+  }
+
+  public HighsStatus getRunDataValue(String run_data, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRunDataValue__SWIG_1(swigCPtr, this, run_data, SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getRunDataType(String run_data, SWIGTYPE_p_HighsRunDataType type) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRunDataType(swigCPtr, this, run_data, SWIGTYPE_p_HighsRunDataType.getCPtr(type)));
+  }
+
+  public HighsStatus writeRunData(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeRunData__SWIG_0(swigCPtr, this, filename));
+  }
+
+  public HighsStatus writeRunData() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeRunData__SWIG_1(swigCPtr, this));
   }
 
   public SWIGTYPE_p_HighsInfo getInfo() {
@@ -966,16 +1006,8 @@ public class Highs {
     return HighsStatus.swigToEnum(highsJNI.Highs_setBasis__SWIG_2(swigCPtr, this));
   }
 
-  public HighsSubSolverCallTime getSubSolverCallTime() {
-    return new HighsSubSolverCallTime(highsJNI.Highs_getSubSolverCallTime(swigCPtr, this), false);
-  }
-
-  public void reportSubSolverCallTime() {
-    highsJNI.Highs_reportSubSolverCallTime(swigCPtr, this);
-  }
-
-  public void initialiseSubSolverCallTime() {
-    highsJNI.Highs_initialiseSubSolverCallTime(swigCPtr, this);
+  public void reportProfiling() {
+    highsJNI.Highs_reportProfiling(swigCPtr, this);
   }
 
   public HighsStatus crossover(HighsSolution user_solution) {
@@ -1018,12 +1050,36 @@ public class Highs {
     return highsJNI.Highs_presolveRuleTypeToString(swigCPtr, this, presolve_rule);
   }
 
+  public HighsStatus initializeMultiThreading() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_initializeMultiThreading(swigCPtr, this));
+  }
+
   public static void resetGlobalScheduler(boolean blocking) {
     highsJNI.Highs_resetGlobalScheduler__SWIG_0(blocking);
   }
 
   public static void resetGlobalScheduler() {
     highsJNI.Highs_resetGlobalScheduler__SWIG_1();
+  }
+
+  public void initializeProfiling(HighsProfiling profiling) {
+    highsJNI.Highs_initializeProfiling(swigCPtr, this, HighsProfiling.getCPtr(profiling), profiling);
+  }
+
+  public void initializeSingleThreadedProfiling(HighsProfiling profiling) {
+    highsJNI.Highs_initializeSingleThreadedProfiling(swigCPtr, this, HighsProfiling.getCPtr(profiling), profiling);
+  }
+
+  public void resetProfiling() {
+    highsJNI.Highs_resetProfiling(swigCPtr, this);
+  }
+
+  public void clearProfiling() {
+    highsJNI.Highs_clearProfiling(swigCPtr, this);
+  }
+
+  public void setProfiling(HighsProfiling profiling) {
+    highsJNI.Highs_setProfiling(swigCPtr, this, HighsProfiling.getCPtr(profiling), profiling);
   }
 
   public HighsStatus optimizeHighs() {
