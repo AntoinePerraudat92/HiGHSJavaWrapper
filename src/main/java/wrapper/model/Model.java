@@ -17,6 +17,12 @@ public class Model {
     private final Highs highs = new Highs();
     private final ModelState state = new ModelState();
 
+    private static void runHighsActionAndThrowOnError(final Supplier<HighsStatus> action, final Supplier<WrapperException> exception) {
+        if (action.get() == HighsStatus.kError) {
+            throw exception.get();
+        }
+    }
+
     public Variable addContinuousVariable(double lb, double ub, double cost) {
         this.state.onModelChangeRequested();
         return addVariable(lb, ub, cost, HighsVarType.kContinuous);
@@ -214,12 +220,6 @@ public class Model {
         final Model otherModel = constraint.getModel();
         if (this != otherModel) {
             throw new ConstraintException("Trying to access or modify constraint associated with wrong model");
-        }
-    }
-
-    private static void runHighsActionAndThrowOnError(final Supplier<HighsStatus> action, final Supplier<WrapperException> exception) {
-        if (action.get() == HighsStatus.kError) {
-            throw exception.get();
         }
     }
 

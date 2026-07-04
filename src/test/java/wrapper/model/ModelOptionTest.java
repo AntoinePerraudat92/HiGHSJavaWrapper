@@ -17,7 +17,10 @@ class ModelOptionTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"on", "off"})
+    @ValueSource(strings = {
+            "on",
+            "off"
+    })
     void addStringOption(final String optionValue) {
         final Model model = new Model();
 
@@ -25,7 +28,10 @@ class ModelOptionTest {
     }
 
     @ParameterizedTest
-    @ValueSource(booleans = {true, false})
+    @ValueSource(booleans = {
+            true,
+            false
+    })
     void addBooleanOption(final boolean optionValue) {
         final Model model = new Model();
 
@@ -33,7 +39,10 @@ class ModelOptionTest {
     }
 
     @ParameterizedTest
-    @ValueSource(doubles = {12.4, 65.4})
+    @ValueSource(doubles = {
+            12.4,
+            65.4
+    })
     void addDoubleOption(final double optionValue) {
         final Model model = new Model();
 
@@ -41,7 +50,13 @@ class ModelOptionTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1, 2, 3, 4, 5})
+    @ValueSource(ints = {
+            1,
+            2,
+            3,
+            4,
+            5
+    })
     void addIntegerOption(final int optionValue) {
         final Model model = new Model();
 

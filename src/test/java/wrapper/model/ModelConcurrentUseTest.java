@@ -17,6 +17,34 @@ class ModelConcurrentUseTest {
         System.loadLibrary("highswrap");
     }
 
+    @Test
+    void addVariableToModelWhileSolvingOnGoingIsNotAllowed() throws InterruptedException, ExecutionException, TimeoutException {
+        final ExceptionCatcher exceptionCatcher = new ExceptionCatcher();
+        final MockSolverModel model = new MockSolverModel();
+        final var future = model.startOptimization();
+        model.waitUntilOptimizationStarted();
+
+        exceptionCatcher.run(() -> model.addBinaryVariable(2.0));
+
+        model.stopOptimization();
+        model.waitUntilOptimizationFinished(future);
+        assertInstanceOf(ModelStateException.class, exceptionCatcher.exception);
+    }
+
+    @Test
+    void startOptimizationTwiceIsNotAllowed() throws InterruptedException, ExecutionException, TimeoutException {
+        final ExceptionCatcher exceptionCatcher = new ExceptionCatcher();
+        final MockSolverModel model = new MockSolverModel();
+        final var future = model.startOptimization();
+        model.waitUntilOptimizationStarted();
+
+        exceptionCatcher.run(model::minimize);
+
+        model.stopOptimization();
+        model.waitUntilOptimizationFinished(future);
+        assertInstanceOf(ModelStateException.class, exceptionCatcher.exception);
+    }
+
     @NullMarked
     private static class ExceptionCatcher {
 
@@ -67,34 +95,6 @@ class ModelConcurrentUseTest {
             future.get(1L, TimeUnit.MINUTES);
         }
 
-    }
-
-    @Test
-    void addVariableToModelWhileSolvingOnGoingIsNotAllowed() throws InterruptedException, ExecutionException, TimeoutException {
-        final ExceptionCatcher exceptionCatcher = new ExceptionCatcher();
-        final MockSolverModel model = new MockSolverModel();
-        final var future = model.startOptimization();
-        model.waitUntilOptimizationStarted();
-
-        exceptionCatcher.run(() -> model.addBinaryVariable(2.0));
-
-        model.stopOptimization();
-        model.waitUntilOptimizationFinished(future);
-        assertInstanceOf(ModelStateException.class, exceptionCatcher.exception);
-    }
-
-    @Test
-    void startOptimizationTwiceIsNotAllowed() throws InterruptedException, ExecutionException, TimeoutException {
-        final ExceptionCatcher exceptionCatcher = new ExceptionCatcher();
-        final MockSolverModel model = new MockSolverModel();
-        final var future = model.startOptimization();
-        model.waitUntilOptimizationStarted();
-
-        exceptionCatcher.run(model::minimize);
-
-        model.stopOptimization();
-        model.waitUntilOptimizationFinished(future);
-        assertInstanceOf(ModelStateException.class, exceptionCatcher.exception);
     }
 
 }

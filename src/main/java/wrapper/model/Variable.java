@@ -27,13 +27,12 @@ public class Variable {
         this.index = index;
         this.modelWeakReference = new WeakReference<>(null);
     }
-    
+
     long getIndex() {
         return this.index;
     }
 
-    @Nullable
-    Model getModel() {
+    @Nullable Model getModel() {
         return this.modelWeakReference.get();
     }
 

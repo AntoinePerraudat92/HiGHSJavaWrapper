@@ -66,7 +66,6 @@ public class LinearExpression {
         return this.terms.size();
     }
 
-    public record Term(Variable variable, double scalar) {
-    }
+    public record Term(Variable variable, double scalar) {}
 
 }

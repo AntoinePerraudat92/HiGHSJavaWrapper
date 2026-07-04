@@ -15,14 +15,7 @@ public class Solution {
     private final double objectiveValue;
 
     public boolean isFeasible() {
-        return this.highsModelStatus == HighsModelStatus.kOptimal
-                || this.highsModelStatus == HighsModelStatus.kObjectiveBound
-                || this.highsModelStatus == HighsModelStatus.kObjectiveTarget
-                || this.highsModelStatus == HighsModelStatus.kTimeLimit
-                || this.highsModelStatus == HighsModelStatus.kIterationLimit
-                || this.highsModelStatus == HighsModelStatus.kSolutionLimit
-                || this.highsModelStatus == HighsModelStatus.kMemoryLimit
-                || this.highsModelStatus == HighsModelStatus.kInterrupt;
+        return this.highsModelStatus == HighsModelStatus.kOptimal || this.highsModelStatus == HighsModelStatus.kObjectiveBound || this.highsModelStatus == HighsModelStatus.kObjectiveTarget || this.highsModelStatus == HighsModelStatus.kTimeLimit || this.highsModelStatus == HighsModelStatus.kIterationLimit || this.highsModelStatus == HighsModelStatus.kSolutionLimit || this.highsModelStatus == HighsModelStatus.kMemoryLimit || this.highsModelStatus == HighsModelStatus.kInterrupt;
     }
 
 }
