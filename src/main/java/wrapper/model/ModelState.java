@@ -19,10 +19,10 @@ class ModelState {
         if (currentState == State.SOLVING && nextState == State.BUILDING) {
             throw new ModelStateException(supplier.get());
         }
-        if (currentState == State.SOLVED && nextState == State.SOLVED) {
+        if ((currentState == State.SOLVE_SUCCESSFUL || currentState == State.SOLVE_FAILED) && (nextState == State.SOLVE_SUCCESSFUL || nextState == State.SOLVE_FAILED)) {
             throw new ModelStateException(supplier.get());
         }
-        if (currentState == State.BUILDING && nextState == State.SOLVED) {
+        if (currentState == State.BUILDING && (nextState == State.SOLVE_SUCCESSFUL || nextState == State.SOLVE_FAILED)) {
             throw new ModelStateException(supplier.get());
         }
         // All other transitions are possible.
@@ -37,13 +37,17 @@ class ModelState {
     }
 
     synchronized void onSolutionRequested() {
-        if (this.state != State.SOLVED) {
+        if (this.state != State.SOLVE_SUCCESSFUL) {
             throw new ModelStateException(String.format("Impossible to retrieve solution when model state is %s", this.state));
         }
     }
 
-    synchronized void onSolveCompleted() {
-        setNewState(State.SOLVED);
+    synchronized void onSolveSuccessful() {
+        setNewState(State.SOLVE_SUCCESSFUL);
+    }
+
+    synchronized void onSolveFailed() {
+        setNewState(State.SOLVE_FAILED);
     }
 
     private void setNewState(final State nextState) {
@@ -53,7 +57,8 @@ class ModelState {
 
     private enum State {
         BUILDING,
-        SOLVED,
+        SOLVE_SUCCESSFUL,
+        SOLVE_FAILED,
         SOLVING
     }
 

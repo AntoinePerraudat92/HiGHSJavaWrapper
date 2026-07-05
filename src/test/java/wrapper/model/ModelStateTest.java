@@ -18,15 +18,8 @@ class ModelStateTest {
 
     @Test
     void modelCannotBeSolvedBeforeSolveRequested() {
-        assertThrows(ModelStateException.class, () -> this.modelState.onSolveCompleted());
-    }
-
-    @Test
-    void modelCannotBeSolvedTwiceInARows() {
-        this.modelState.onSolveRequested();
-        this.modelState.onSolveCompleted();
-
-        assertThrows(ModelStateException.class, () -> this.modelState.onSolveCompleted());
+        assertThrows(ModelStateException.class, () -> this.modelState.onSolveSuccessful());
+        assertThrows(ModelStateException.class, () -> this.modelState.onSolveFailed());
     }
 
     @Test
@@ -44,9 +37,17 @@ class ModelStateTest {
     }
 
     @Test
-    void requestingModelChangeAfterSolveIsAllowed() {
+    void requestingModelChangeAfterSuccessfulSolveIsAllowed() {
         this.modelState.onSolveRequested();
-        this.modelState.onSolveCompleted();
+        this.modelState.onSolveSuccessful();
+
+        assertDoesNotThrow(() -> this.modelState.onModelChangeRequested());
+    }
+
+    @Test
+    void requestingModelChangeAfterSolveFailsIsAllowed() {
+        this.modelState.onSolveRequested();
+        this.modelState.onSolveFailed();
 
         assertDoesNotThrow(() -> this.modelState.onModelChangeRequested());
     }
@@ -73,11 +74,51 @@ class ModelStateTest {
     }
 
     @Test
-    void requestingSolutionWhenModelSolvedIsAllowed() {
+    void requestingSolutionWhenModelSolveSuccessfulIsAllowed() {
         this.modelState.onSolveRequested();
-        this.modelState.onSolveCompleted();
+        this.modelState.onSolveSuccessful();
 
         assertDoesNotThrow(() -> this.modelState.onSolutionRequested());
+    }
+
+    @Test
+    void requestingSolutionWhenModelSolveFailsIsNotAllowed() {
+        this.modelState.onSolveRequested();
+        this.modelState.onSolveFailed();
+
+        assertThrows(ModelStateException.class, () -> this.modelState.onSolutionRequested());
+    }
+
+    @Test
+    void twoConsecutiveSolveFailsIsNotAllowed() {
+        this.modelState.onSolveRequested();
+        this.modelState.onSolveFailed();
+
+        assertThrows(ModelStateException.class, () -> this.modelState.onSolveFailed());
+    }
+
+    @Test
+    void failedSolveThenSuccessfulSolveIsNotAllowed() {
+        this.modelState.onSolveRequested();
+        this.modelState.onSolveFailed();
+
+        assertThrows(ModelStateException.class, () -> this.modelState.onSolveSuccessful());
+    }
+
+    @Test
+    void successfulSolveThenFailedSolveIsNotAllowed() {
+        this.modelState.onSolveRequested();
+        this.modelState.onSolveSuccessful();
+
+        assertThrows(ModelStateException.class, () -> this.modelState.onSolveFailed());
+    }
+
+    @Test
+    void twoConsecutiveSuccessfulSolveIsNotAllowed() {
+        this.modelState.onSolveRequested();
+        this.modelState.onSolveSuccessful();
+
+        assertThrows(ModelStateException.class, () -> this.modelState.onSolveSuccessful());
     }
 
 }

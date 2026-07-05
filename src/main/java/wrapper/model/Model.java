@@ -112,11 +112,6 @@ public class Model {
         addHint(hint);
     }
 
-    HighsSolution getSolution() {
-        this.state.onSolutionRequested();
-        return this.highs.getSolution();
-    }
-
     void updateVariableCost(double newCost, final Variable variable) {
         this.state.onModelChangeRequested();
         checkVariable(variable);
@@ -148,6 +143,28 @@ public class Model {
             case LESS_THAN_OR_EQUAL_TO -> highs.changeRowBounds(constraint.getIndex(), -Double.MAX_VALUE, newRhs);
         };
         runHighsActionAndThrowOnError(action, () -> new VariableException("Impossible to update right hand side of constraint"));
+    }
+
+    double getValue(final ModelObject modelObject) {
+        final HighsSolution highsSolution = getSolution();
+        if (modelObject instanceof Variable variable) {
+            final DoubleVector variableValues = highsSolution.getCol_value();
+            return variableValues.get((int) variable.getIndex());
+        }
+        final Constraint constraint = (Constraint) modelObject;
+        final DoubleVector constraintValues = highsSolution.getRow_value();
+        return constraintValues.get((int) constraint.getIndex());
+    }
+
+    double getDualValue(final ModelObject modelObject) {
+        final HighsSolution highsSolution = getSolution();
+        if (modelObject instanceof Variable variable) {
+            final DoubleVector dualValues = highsSolution.getCol_dual();
+            return dualValues.get((int) variable.getIndex());
+        }
+        final Constraint constraint = (Constraint) modelObject;
+        final DoubleVector dualValues = highsSolution.getRow_dual();
+        return dualValues.get((int) constraint.getIndex());
     }
 
     protected void addOption(final Option option) {
@@ -205,8 +222,13 @@ public class Model {
         this.highs.changeObjectiveSense(objSense);
         this.state.onSolveRequested();
         final Optional<Solution> solution = solve();
-        this.state.onSolveCompleted();
+        solution.ifPresentOrElse(presentSolution -> this.state.onSolveSuccessful(), this.state::onSolveFailed);
         return solution;
+    }
+
+    private HighsSolution getSolution() {
+        this.state.onSolutionRequested();
+        return this.highs.getSolution();
     }
 
     private void checkVariable(final Variable variable) {
