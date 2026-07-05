@@ -183,4 +183,14 @@ class ModelSolveTest {
         assertEquals(5.0, x2.getValue(), EPSILON);
     }
 
+    @Test
+    void maximizeWithInfiniteCostMustGiveFeasibleSolution() {
+        final Model model = createModel();
+        model.addBinaryVariable(Double.MAX_VALUE);
+
+        final Solution solution = model.maximize().orElseThrow();
+
+        assertTrue(solution.isFeasible());
+    }
+
 }
