@@ -376,8 +376,8 @@ public class Highs {
     return HighsStatus.swigToEnum(highsJNI.Highs_writeRunData__SWIG_1(swigCPtr, this));
   }
 
-  public SWIGTYPE_p_HighsInfo getInfo() {
-    return new SWIGTYPE_p_HighsInfo(highsJNI.Highs_getInfo(swigCPtr, this), false);
+  public HighsInfo getInfo() {
+    return new HighsInfo(highsJNI.Highs_getInfo(swigCPtr, this), false);
   }
 
   public HighsStatus getInfoValue(String info, SWIGTYPE_p_long_long value) {
@@ -1256,8 +1256,8 @@ public class Highs {
     return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOutput__SWIG_1(swigCPtr, this));
   }
 
-  public SWIGTYPE_p_HighsInfo getHighsInfo() {
-    return new SWIGTYPE_p_HighsInfo(highsJNI.Highs_getHighsInfo(swigCPtr, this), false);
+  public HighsInfo getHighsInfo() {
+    return new HighsInfo(highsJNI.Highs_getHighsInfo(swigCPtr, this), false);
   }
 
   public HighsStatus getHighsInfoValue(String info, SWIGTYPE_p_long_long value) {
