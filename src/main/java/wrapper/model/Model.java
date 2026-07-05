@@ -23,6 +23,20 @@ public class Model {
         }
     }
 
+    private static boolean isFeasible(final HighsInfo highsInfo) {
+        final int feasibleSolutionStatus = SolutionStatus.kSolutionStatusFeasible.swigValue();
+        final long primalSolutionStatus = highsInfo.getPrimal_solution_status();
+        if (primalSolutionStatus != feasibleSolutionStatus) {
+            return false;
+        }
+        final int noneSolutionStatus = SolutionStatus.kSolutionStatusNone.swigValue();
+        final long dualSolutionStatus = highsInfo.getDual_solution_status();
+        if (dualSolutionStatus == noneSolutionStatus) {
+            return true;
+        }
+        return dualSolutionStatus == feasibleSolutionStatus;
+    }
+
     public Variable addContinuousVariable(double lb, double ub, double cost) {
         this.state.onModelChangeRequested();
         return addVariable(lb, ub, cost, HighsVarType.kContinuous);
@@ -203,7 +217,7 @@ public class Model {
         if (this.highs.run() == HighsStatus.kError) {
             return Optional.empty();
         }
-        return Optional.of(new Solution(this.highs.getModelStatus(), this.highs.getObjectiveValue()));
+        return Optional.of(Solution.builder().objectiveValue(this.highs.getObjectiveValue()).isFeasible(isFeasible(this.highs.getHighsInfo())).build());
     }
 
     protected void addHint(final Hint hint) {

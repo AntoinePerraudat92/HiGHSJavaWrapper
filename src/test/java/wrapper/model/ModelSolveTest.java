@@ -193,4 +193,14 @@ class ModelSolveTest {
         assertTrue(solution.isFeasible());
     }
 
+    @Test
+    void unboundedModelMustGiveInfeasibleSolution() {
+        final Model model = createModel();
+        model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
+
+        final Solution solution = model.maximize().orElseThrow();
+
+        assertFalse(solution.isFeasible());
+    }
+
 }
