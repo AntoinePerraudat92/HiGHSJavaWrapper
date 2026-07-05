@@ -222,7 +222,7 @@ public class Model {
         this.highs.changeObjectiveSense(objSense);
         this.state.onSolveRequested();
         final Optional<Solution> solution = solve();
-        this.state.onSolveCompleted();
+        solution.ifPresentOrElse(emptySolution -> this.state.onSolveSuccessful(), this.state::onSolveFailed);
         return solution;
     }
 

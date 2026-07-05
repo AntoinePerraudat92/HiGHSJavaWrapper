@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 import wrapper.exceptions.ConstraintException;
 import wrapper.exceptions.VariableException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;
 import static wrapper.util.ObjectCreator.createModel;
 
@@ -144,5 +143,22 @@ class ModelConstraintTest {
         final VariableException exception = assertThrows(VariableException.class, () -> model.addEqualityConstraint(18.3, expression));
         assertEquals("Linear expression has no variable", exception.getMessage());
     }
+
+    @Test
+    void requestingConstraintValuesForInfeasibleModelMustBePossible() {
+        final Model model = createModel();
+        final Variable x1 = model.addBinaryVariable(1.0);
+        final Variable x2 = model.addBinaryVariable(1.0);
+        final Variable x3 = model.addBinaryVariable(1.0);
+        final Constraint constraint = model.addEqualityConstraint(
+                5.0,
+                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0), new LinearExpression.Term(x3, 1.0))
+        );
+
+        model.maximize().orElseThrow();
+
+        assertDoesNotThrow(constraint::getValue);
+    }
+
 
 }

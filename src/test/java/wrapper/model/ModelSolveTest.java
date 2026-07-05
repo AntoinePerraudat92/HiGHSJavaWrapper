@@ -136,6 +136,22 @@ class ModelSolveTest {
     }
 
     @Test
+    void successiveCallsToSolverWithoutModelChangeMustLeadToDifferentSolutions() {
+        final Model model = createModel();
+        final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 2.0);
+        final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 1.0);
+        model.addLessThanOrEqualToConstraint(5.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)));
+
+        final Solution firstSolution = model.maximize().orElseThrow();
+        assertTrue(firstSolution.isFeasible());
+        assertEquals(10.0, firstSolution.getObjectiveValue(), EPSILON);
+
+        final Solution secondSolution = model.maximize().orElseThrow();
+        assertTrue(secondSolution.isFeasible());
+        assertEquals(10.0, secondSolution.getObjectiveValue(), EPSILON);
+    }
+
+    @Test
     void maximizeWithConstraintsUsingLinearExpressionsForBothSides() {
         final Model model = createModel();
         final Variable x1 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);

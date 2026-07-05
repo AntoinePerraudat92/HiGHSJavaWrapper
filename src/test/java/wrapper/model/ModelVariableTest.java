@@ -4,8 +4,7 @@ package wrapper.model;
 import org.junit.jupiter.api.Test;
 import wrapper.exceptions.VariableException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;
 import static wrapper.util.ObjectCreator.createModel;
 
@@ -61,6 +60,21 @@ class ModelVariableTest {
 
         final Solution secondSolution = model.minimize().orElseThrow();
         assertEquals(15.0, secondSolution.getObjectiveValue(), EPSILON);
+    }
+
+    @Test
+    void requestingVariableValuesForInfeasibleModelMustBePossible() {
+        final Model model = createModel();
+        final Variable x1 = model.addBinaryVariable(1.0);
+        final Variable x2 = model.addBinaryVariable(1.0);
+        final Variable x3 = model.addBinaryVariable(1.0);
+        model.addEqualityConstraint(5.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0), new LinearExpression.Term(x3, 1.0)));
+
+        model.maximize().orElseThrow();
+
+        assertDoesNotThrow(x1::getValue);
+        assertDoesNotThrow(x2::getValue);
+        assertDoesNotThrow(x3::getValue);
     }
 
 }
