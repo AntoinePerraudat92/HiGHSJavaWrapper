@@ -18,7 +18,8 @@ class ModelConcurrentUseTest {
     }
 
     @Test
-    void addVariableToModelWhileSolvingOnGoingIsNotAllowed() throws InterruptedException, ExecutionException, TimeoutException {
+    void addVariableToModelWhileSolvingOnGoingIsNotAllowed() throws InterruptedException, ExecutionException,
+            TimeoutException {
         final ExceptionCatcher exceptionCatcher = new ExceptionCatcher();
         final MockSolverModel model = new MockSolverModel();
         final var future = model.startOptimization();
@@ -91,7 +92,8 @@ class ModelConcurrentUseTest {
             this.optimizationStartedSemaphore.acquire();
         }
 
-        public void waitUntilOptimizationFinished(final Future<Optional<Solution>> future) throws ExecutionException, InterruptedException, TimeoutException {
+        public void waitUntilOptimizationFinished(final Future<Optional<Solution>> future) throws ExecutionException,
+                InterruptedException, TimeoutException {
             future.get(1L, TimeUnit.MINUTES);
         }
 

@@ -79,7 +79,10 @@ class FacilityLocationProblemTest {
             for (int c = 0; c < nmbCustomers; ++c) {
                 expression.addVariable(y[f][c], 1.0);
             }
-            model.addLessThanOrEqualToConstraint(LinearExpression.of(new LinearExpression.Term(x[f], totalDemand)), expression);
+            model.addLessThanOrEqualToConstraint(
+                    LinearExpression.of(new LinearExpression.Term(x[f], totalDemand)),
+                    expression
+            );
         }
 
         final Solution solution = model.minimize().orElseThrow();

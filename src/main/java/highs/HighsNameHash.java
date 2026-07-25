@@ -9,71 +9,82 @@
 package highs;
 
 public class HighsNameHash {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsNameHash(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsNameHash obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsNameHash obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsNameHash(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsNameHash(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsNameHash() {
+        this(highsJNI.new_HighsNameHash(), true);
     }
-  }
 
-  public void setName2index(SWIGTYPE_p_std__unordered_mapT_std__string_int_t value) {
-    highsJNI.HighsNameHash_name2index_set(swigCPtr, this, SWIGTYPE_p_std__unordered_mapT_std__string_int_t.getCPtr(value));
-  }
+    protected static long getCPtr(HighsNameHash obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public SWIGTYPE_p_std__unordered_mapT_std__string_int_t getName2index() {
-    return new SWIGTYPE_p_std__unordered_mapT_std__string_int_t(highsJNI.HighsNameHash_name2index_get(swigCPtr, this), true);
-  }
+    protected static long swigRelease(HighsNameHash obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void form(SWIGTYPE_p_std__vectorT_std__string_t name) {
-    highsJNI.HighsNameHash_form(swigCPtr, this, SWIGTYPE_p_std__vectorT_std__string_t.getCPtr(name));
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public boolean hasDuplicate(SWIGTYPE_p_std__vectorT_std__string_t name) {
-    return highsJNI.HighsNameHash_hasDuplicate(swigCPtr, this, SWIGTYPE_p_std__vectorT_std__string_t.getCPtr(name));
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsNameHash(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void update(int index, String old_name, String new_name) {
-    highsJNI.HighsNameHash_update(swigCPtr, this, index, old_name, new_name);
-  }
+    public SWIGTYPE_p_std__unordered_mapT_std__string_int_t getName2index() {
+        return new SWIGTYPE_p_std__unordered_mapT_std__string_int_t(
+                highsJNI.HighsNameHash_name2index_get(
+                        swigCPtr,
+                        this
+        ), true
+        );
+    }
 
-  public void clear() {
-    highsJNI.HighsNameHash_clear(swigCPtr, this);
-  }
+    public void setName2index(SWIGTYPE_p_std__unordered_mapT_std__string_int_t value) {
+        highsJNI.HighsNameHash_name2index_set(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_std__unordered_mapT_std__string_int_t.getCPtr(value)
+        );
+    }
 
-  public HighsNameHash() {
-    this(highsJNI.new_HighsNameHash(), true);
-  }
+    public void form(SWIGTYPE_p_std__vectorT_std__string_t name) {
+        highsJNI.HighsNameHash_form(swigCPtr, this, SWIGTYPE_p_std__vectorT_std__string_t.getCPtr(name));
+    }
+
+    public boolean hasDuplicate(SWIGTYPE_p_std__vectorT_std__string_t name) {
+        return highsJNI.HighsNameHash_hasDuplicate(swigCPtr, this, SWIGTYPE_p_std__vectorT_std__string_t.getCPtr(name));
+    }
+
+    public void update(int index, String old_name, String new_name) {
+        highsJNI.HighsNameHash_update(swigCPtr, this, index, old_name, new_name);
+    }
+
+    public void clear() {
+        highsJNI.HighsNameHash_clear(swigCPtr, this);
+    }
 
 }

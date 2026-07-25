@@ -9,73 +9,75 @@
 package highs;
 
 public class HotStart {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HotStart(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HotStart obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HotStart obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HotStart(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HotStart(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HotStart() {
+        this(highsJNI.new_HotStart(), true);
     }
-  }
 
-  public void setValid(boolean value) {
-    highsJNI.HotStart_valid_set(swigCPtr, this, value);
-  }
+    protected static long getCPtr(HotStart obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public boolean getValid() {
-    return highsJNI.HotStart_valid_get(swigCPtr, this);
-  }
+    protected static long swigRelease(HotStart obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setRefactor_info(RefactorInfo value) {
-    highsJNI.HotStart_refactor_info_set(swigCPtr, this, RefactorInfo.getCPtr(value), value);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public RefactorInfo getRefactor_info() {
-    long cPtr = highsJNI.HotStart_refactor_info_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new RefactorInfo(cPtr, false);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HotStart(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setNonbasicMove(SWIGTYPE_p_std__vectorT_signed_char_t value) {
-    highsJNI.HotStart_nonbasicMove_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_signed_char_t.getCPtr(value));
-  }
+    public boolean getValid() {
+        return highsJNI.HotStart_valid_get(swigCPtr, this);
+    }
 
-  public SWIGTYPE_p_std__vectorT_signed_char_t getNonbasicMove() {
-    long cPtr = highsJNI.HotStart_nonbasicMove_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_signed_char_t(cPtr, false);
-  }
+    public void setValid(boolean value) {
+        highsJNI.HotStart_valid_set(swigCPtr, this, value);
+    }
 
-  public HotStart() {
-    this(highsJNI.new_HotStart(), true);
-  }
+    public RefactorInfo getRefactor_info() {
+        long cPtr = highsJNI.HotStart_refactor_info_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new RefactorInfo(cPtr, false);
+    }
+
+    public void setRefactor_info(RefactorInfo value) {
+        highsJNI.HotStart_refactor_info_set(swigCPtr, this, RefactorInfo.getCPtr(value), value);
+    }
+
+    public SWIGTYPE_p_std__vectorT_signed_char_t getNonbasicMove() {
+        long cPtr = highsJNI.HotStart_nonbasicMove_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_signed_char_t(cPtr, false);
+    }
+
+    public void setNonbasicMove(SWIGTYPE_p_std__vectorT_signed_char_t value) {
+        highsJNI.HotStart_nonbasicMove_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_signed_char_t.getCPtr(value));
+    }
 
 }

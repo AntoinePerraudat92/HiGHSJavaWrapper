@@ -9,22 +9,22 @@
 package highs;
 
 public class SWIGTYPE_p_HighsRunData {
-  private transient long swigCPtr;
+    private transient long swigCPtr;
 
-  protected SWIGTYPE_p_HighsRunData(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
-    swigCPtr = cPtr;
-  }
+    protected SWIGTYPE_p_HighsRunData(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
+        swigCPtr = cPtr;
+    }
 
-  protected SWIGTYPE_p_HighsRunData() {
-    swigCPtr = 0;
-  }
+    protected SWIGTYPE_p_HighsRunData() {
+        swigCPtr = 0;
+    }
 
-  protected static long getCPtr(SWIGTYPE_p_HighsRunData obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+    protected static long getCPtr(SWIGTYPE_p_HighsRunData obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  protected static long swigRelease(SWIGTYPE_p_HighsRunData obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
+    protected static long swigRelease(SWIGTYPE_p_HighsRunData obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 }
 

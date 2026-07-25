@@ -17,7 +17,10 @@ public class Model {
     private final Highs highs = new Highs();
     private final ModelState state = new ModelState();
 
-    private static void runHighsActionAndThrowOnError(final Supplier<HighsStatus> action, final Supplier<WrapperException> exception) {
+    private static void runHighsActionAndThrowOnError(
+            final Supplier<HighsStatus> action,
+            final Supplier<WrapperException> exception
+    ) {
         if (action.get() == HighsStatus.kError) {
             throw exception.get();
         }
@@ -88,7 +91,12 @@ public class Model {
     public Constraint addLessThanOrEqualToConstraint(final LinearExpression rhs, final LinearExpression expression) {
         this.state.onModelChangeRequested();
         final LinearExpression completeExpression = expression.minus(rhs);
-        return addConstraint(-Double.MAX_VALUE, -completeExpression.getConstant(), completeExpression, ConstraintType.LESS_THAN_OR_EQUAL_TO);
+        return addConstraint(
+                -Double.MAX_VALUE,
+                -completeExpression.getConstant(),
+                completeExpression,
+                ConstraintType.LESS_THAN_OR_EQUAL_TO
+        );
     }
 
     /**
@@ -105,7 +113,12 @@ public class Model {
     public Constraint addGreaterThanOrEqualToConstraint(final LinearExpression rhs, final LinearExpression expression) {
         this.state.onModelChangeRequested();
         final LinearExpression completeExpression = expression.minus(rhs);
-        return addConstraint(-completeExpression.getConstant(), Double.MAX_VALUE, completeExpression, ConstraintType.GREATER_THAN_OR_EQUAL_TO);
+        return addConstraint(
+                -completeExpression.getConstant(),
+                Double.MAX_VALUE,
+                completeExpression,
+                ConstraintType.GREATER_THAN_OR_EQUAL_TO
+        );
     }
 
     public Optional<Solution> minimize() {
@@ -129,34 +142,43 @@ public class Model {
     void updateVariableCost(double newCost, final Variable variable) {
         this.state.onModelChangeRequested();
         checkVariable(variable);
-        final Supplier<HighsStatus> action = () -> this.highs.changeColCost(variable.getIndex(), newCost);
-        runHighsActionAndThrowOnError(action, () -> new VariableException("Impossible to update cost of variable"));
+        runHighsActionAndThrowOnError(
+                () -> this.highs.changeColCost(variable.getIndex(), newCost),
+                () -> new VariableException("Impossible to update cost of variable")
+        );
     }
 
     void updateVariableBounds(double newLb, double newUb, final Variable variable) {
         this.state.onModelChangeRequested();
         checkVariable(variable);
-        final Supplier<HighsStatus> action = () -> this.highs.changeColBounds(variable.getIndex(), newLb, newUb);
-        runHighsActionAndThrowOnError(action, () -> new VariableException("Impossible to update bounds of variable"));
+        runHighsActionAndThrowOnError(
+                () -> this.highs.changeColBounds(variable.getIndex(), newLb, newUb),
+                () -> new VariableException("Impossible to update bounds of variable")
+        );
     }
 
     void updateConstraintCoefficient(double newCoefficient, final Variable variable, final Constraint constraint) {
         this.state.onModelChangeRequested();
         checkVariable(variable);
         checkConstraint(constraint);
-        final Supplier<HighsStatus> action = () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient);
-        runHighsActionAndThrowOnError(action, () -> new VariableException("Impossible to update coefficient of constraint"));
+        runHighsActionAndThrowOnError(
+                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
+                () -> new VariableException("Impossible to update coefficient of constraint")
+        );
     }
 
     void updateRightHandSide(double newRhs, final Constraint constraint) {
         this.state.onModelChangeRequested();
         checkConstraint(constraint);
-        final Supplier<HighsStatus> action = () -> switch (constraint.getConstraintType()) {
-            case EQUALITY -> highs.changeRowBounds(constraint.getIndex(), newRhs, newRhs);
-            case GREATER_THAN_OR_EQUAL_TO -> highs.changeRowBounds(constraint.getIndex(), newRhs, Double.MAX_VALUE);
-            case LESS_THAN_OR_EQUAL_TO -> highs.changeRowBounds(constraint.getIndex(), -Double.MAX_VALUE, newRhs);
-        };
-        runHighsActionAndThrowOnError(action, () -> new VariableException("Impossible to update right hand side of constraint"));
+        runHighsActionAndThrowOnError(
+                () -> switch (constraint.getConstraintType()) {
+                    case EQUALITY -> highs.changeRowBounds(constraint.getIndex(), newRhs, newRhs);
+                    case GREATER_THAN_OR_EQUAL_TO ->
+                            highs.changeRowBounds(constraint.getIndex(), newRhs, Double.MAX_VALUE);
+                    case LESS_THAN_OR_EQUAL_TO ->
+                            highs.changeRowBounds(constraint.getIndex(), -Double.MAX_VALUE, newRhs);
+                }, () -> new VariableException("Impossible to update right hand side of constraint")
+        );
     }
 
     double getValue(final ModelObject modelObject) {
@@ -182,34 +204,52 @@ public class Model {
     }
 
     protected void addOption(final Option option) {
-        final Supplier<HighsStatus> action = () -> switch (option.getValue()) {
-            case String stringValue -> this.highs.setOptionValue(option.getName(), stringValue);
-            case Boolean booleanValue -> this.highs.setOptionValue(option.getName(), booleanValue);
-            case Double doubleValue -> this.highs.setOptionValue(option.getName(), doubleValue);
-            case Integer integerValue -> this.highs.setOptionValue(option.getName(), integerValue);
-            default -> throw new OptionException("Impossible to parse options of incompatible type");
-        };
-        runHighsActionAndThrowOnError(action, () -> new OptionException("Impossible to add option"));
+        runHighsActionAndThrowOnError(
+                () -> switch (option.getValue()) {
+                    case String stringValue -> this.highs.setOptionValue(option.getName(), stringValue);
+                    case Boolean booleanValue -> this.highs.setOptionValue(option.getName(), booleanValue);
+                    case Double doubleValue -> this.highs.setOptionValue(option.getName(), doubleValue);
+                    case Integer integerValue -> this.highs.setOptionValue(option.getName(), integerValue);
+                    default -> throw new OptionException("Impossible to parse options of incompatible type");
+                }, () -> new OptionException("Impossible to add option")
+        );
     }
 
     protected Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
-        final Supplier<HighsStatus> newVariableAction = () -> this.highs.addCol(cost, lb, ub, 0, null, null);
-        runHighsActionAndThrowOnError(newVariableAction, () -> new VariableException("Impossible to add variable"));
+        runHighsActionAndThrowOnError(
+                () -> this.highs.addCol(cost, lb, ub, 0, null, null),
+                () -> new VariableException("Impossible to add variable")
+        );
         final long variableIndex = this.highs.getNumCol() - 1;
-        final Supplier<HighsStatus> integralityAction = () -> this.highs.changeColIntegrality(variableIndex, varType);
-        runHighsActionAndThrowOnError(integralityAction, () -> new VariableException("Impossible to set integrality constraint"));
+        runHighsActionAndThrowOnError(
+                () -> this.highs.changeColIntegrality(variableIndex, varType),
+                () -> new VariableException("Impossible to set integrality constraint")
+        );
         return new Variable(variableIndex, this);
     }
 
-    protected Constraint addConstraint(double lhs, double rhs, final LinearExpression expression, final ConstraintType constraintType) {
+    protected Constraint addConstraint(
+            double lhs,
+            double rhs,
+            final LinearExpression expression,
+            final ConstraintType constraintType
+    ) {
         final int nmbVariables = expression.getNmbVariables();
         if (nmbVariables < 1) {
             throw new VariableException("Linear expression has no variable");
         }
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         expression.consumeVariables(variableConsumer);
-        final Supplier<HighsStatus> action = () -> this.highs.addRow(lhs, rhs, nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
-        runHighsActionAndThrowOnError(action, () -> new VariableException("Impossible to add constraint"));
+        runHighsActionAndThrowOnError(
+                () -> this.highs.addRow(
+                        lhs,
+                        rhs,
+                        nmbVariables,
+                        variableConsumer.indices.cast(),
+                        variableConsumer.values.cast()
+                ),
+                () -> new VariableException("Impossible to add constraint")
+        );
         return new Constraint(this.highs.getNumRow() - 1, constraintType, this);
     }
 
@@ -217,7 +257,10 @@ public class Model {
         if (this.highs.run() == HighsStatus.kError) {
             return Optional.empty();
         }
-        return Optional.of(Solution.builder().objectiveValue(this.highs.getObjectiveValue()).isFeasible(isFeasible(this.highs.getHighsInfo())).build());
+        return Optional.of(Solution.builder()
+                .objectiveValue(this.highs.getObjectiveValue())
+                .isFeasible(isFeasible(this.highs.getHighsInfo()))
+                .build());
     }
 
     protected void addHint(final Hint hint) {
@@ -227,8 +270,14 @@ public class Model {
         }
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
         hint.consumeHints(variableConsumer);
-        final Supplier<HighsStatus> action = () -> this.highs.setSolution(nmbVariables, variableConsumer.indices.cast(), variableConsumer.values.cast());
-        runHighsActionAndThrowOnError(action, () -> new HintException("Impossible to parse hint"));
+        runHighsActionAndThrowOnError(
+                () -> this.highs.setSolution(
+                        nmbVariables,
+                        variableConsumer.indices.cast(),
+                        variableConsumer.values.cast()
+                ),
+                () -> new HintException("Impossible to parse hint")
+        );
     }
 
     private Optional<Solution> optimize(final ObjSense objSense) {

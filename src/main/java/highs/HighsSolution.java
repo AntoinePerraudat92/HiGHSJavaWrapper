@@ -9,127 +9,129 @@
 package highs;
 
 public class HighsSolution {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsSolution(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsSolution obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsSolution obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsSolution(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsSolution(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsSolution() {
+        this(highsJNI.new_HighsSolution(), true);
     }
-  }
 
-  public void setValue_valid(boolean value) {
-    highsJNI.HighsSolution_value_valid_set(swigCPtr, this, value);
-  }
+    protected static long getCPtr(HighsSolution obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public boolean getValue_valid() {
-    return highsJNI.HighsSolution_value_valid_get(swigCPtr, this);
-  }
+    protected static long swigRelease(HighsSolution obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setDual_valid(boolean value) {
-    highsJNI.HighsSolution_dual_valid_set(swigCPtr, this, value);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public boolean getDual_valid() {
-    return highsJNI.HighsSolution_dual_valid_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsSolution(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setCol_value(DoubleVector value) {
-    highsJNI.HighsSolution_col_value_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public boolean getValue_valid() {
+        return highsJNI.HighsSolution_value_valid_get(swigCPtr, this);
+    }
 
-  public DoubleVector getCol_value() {
-    long cPtr = highsJNI.HighsSolution_col_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setValue_valid(boolean value) {
+        highsJNI.HighsSolution_value_valid_set(swigCPtr, this, value);
+    }
 
-  public void setCol_dual(DoubleVector value) {
-    highsJNI.HighsSolution_col_dual_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public boolean getDual_valid() {
+        return highsJNI.HighsSolution_dual_valid_get(swigCPtr, this);
+    }
 
-  public DoubleVector getCol_dual() {
-    long cPtr = highsJNI.HighsSolution_col_dual_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setDual_valid(boolean value) {
+        highsJNI.HighsSolution_dual_valid_set(swigCPtr, this, value);
+    }
 
-  public void setRow_value(DoubleVector value) {
-    highsJNI.HighsSolution_row_value_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public DoubleVector getCol_value() {
+        long cPtr = highsJNI.HighsSolution_col_value_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
 
-  public DoubleVector getRow_value() {
-    long cPtr = highsJNI.HighsSolution_row_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setCol_value(DoubleVector value) {
+        highsJNI.HighsSolution_col_value_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
 
-  public void setRow_dual(DoubleVector value) {
-    highsJNI.HighsSolution_row_dual_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public DoubleVector getCol_dual() {
+        long cPtr = highsJNI.HighsSolution_col_dual_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
 
-  public DoubleVector getRow_dual() {
-    long cPtr = highsJNI.HighsSolution_row_dual_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setCol_dual(DoubleVector value) {
+        highsJNI.HighsSolution_col_dual_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
 
-  public boolean hasUndefined() {
-    return highsJNI.HighsSolution_hasUndefined(swigCPtr, this);
-  }
+    public DoubleVector getRow_value() {
+        long cPtr = highsJNI.HighsSolution_row_value_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
 
-  public void invalidate() {
-    highsJNI.HighsSolution_invalidate(swigCPtr, this);
-  }
+    public void setRow_value(DoubleVector value) {
+        highsJNI.HighsSolution_row_value_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
 
-  public void clear() {
-    highsJNI.HighsSolution_clear(swigCPtr, this);
-  }
+    public DoubleVector getRow_dual() {
+        long cPtr = highsJNI.HighsSolution_row_dual_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
 
-  public void print(String prefix, String message) {
-    highsJNI.HighsSolution_print__SWIG_0(swigCPtr, this, prefix, message);
-  }
+    public void setRow_dual(DoubleVector value) {
+        highsJNI.HighsSolution_row_dual_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
 
-  public void print(String prefix) {
-    highsJNI.HighsSolution_print__SWIG_1(swigCPtr, this, prefix);
-  }
+    public boolean hasUndefined() {
+        return highsJNI.HighsSolution_hasUndefined(swigCPtr, this);
+    }
 
-  public void print() {
-    highsJNI.HighsSolution_print__SWIG_2(swigCPtr, this);
-  }
+    public void invalidate() {
+        highsJNI.HighsSolution_invalidate(swigCPtr, this);
+    }
 
-  public boolean isModelRow(long row) {
-    return highsJNI.HighsSolution_isModelRow(swigCPtr, this, row);
-  }
+    public void clear() {
+        highsJNI.HighsSolution_clear(swigCPtr, this);
+    }
 
-  public HighsSolution() {
-    this(highsJNI.new_HighsSolution(), true);
-  }
+    public void print(String prefix, String message) {
+        highsJNI.HighsSolution_print__SWIG_0(swigCPtr, this, prefix, message);
+    }
+
+    public void print(String prefix) {
+        highsJNI.HighsSolution_print__SWIG_1(swigCPtr, this, prefix);
+    }
+
+    public void print() {
+        highsJNI.HighsSolution_print__SWIG_2(swigCPtr, this);
+    }
+
+    public boolean isModelRow(long row) {
+        return highsJNI.HighsSolution_isModelRow(swigCPtr, this, row);
+    }
 
 }

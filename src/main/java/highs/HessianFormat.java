@@ -9,46 +9,50 @@
 package highs;
 
 public final class HessianFormat {
-  public final static HessianFormat kTriangular = new HessianFormat("kTriangular", highsJNI.HessianFormat_kTriangular_get());
-  public final static HessianFormat kSquare = new HessianFormat("kSquare");
+    public final static HessianFormat kTriangular = new HessianFormat(
+            "kTriangular",
+            highsJNI.HessianFormat_kTriangular_get()
+    );
+    public final static HessianFormat kSquare = new HessianFormat("kSquare");
+    private static HessianFormat[] swigValues = {
+            kTriangular,
+            kSquare
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private HessianFormat(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private HessianFormat(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static HessianFormat swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + HessianFormat.class + " with value " + swigValue);
-  }
+    private HessianFormat(String swigName, HessianFormat swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private HessianFormat(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static HessianFormat swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + HessianFormat.class + " with value " + swigValue);
+    }
 
-  private HessianFormat(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private HessianFormat(String swigName, HessianFormat swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static HessianFormat[] swigValues = { kTriangular, kSquare };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

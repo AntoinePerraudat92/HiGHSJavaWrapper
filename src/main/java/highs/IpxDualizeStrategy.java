@@ -9,51 +9,74 @@
 package highs;
 
 public final class IpxDualizeStrategy {
-  public final static IpxDualizeStrategy kIpxDualizeStrategyOff = new IpxDualizeStrategy("kIpxDualizeStrategyOff", highsJNI.kIpxDualizeStrategyOff_get());
-  public final static IpxDualizeStrategy kIpxDualizeStrategyChoose = new IpxDualizeStrategy("kIpxDualizeStrategyChoose", highsJNI.kIpxDualizeStrategyChoose_get());
-  public final static IpxDualizeStrategy kIpxDualizeStrategyOn = new IpxDualizeStrategy("kIpxDualizeStrategyOn", highsJNI.kIpxDualizeStrategyOn_get());
-  public final static IpxDualizeStrategy kIpxDualizeStrategyLukas = new IpxDualizeStrategy("kIpxDualizeStrategyLukas");
-  public final static IpxDualizeStrategy kIpxDualizeStrategyFilippo = new IpxDualizeStrategy("kIpxDualizeStrategyFilippo");
-  public final static IpxDualizeStrategy kIpxDualizeStrategyMin = new IpxDualizeStrategy("kIpxDualizeStrategyMin", highsJNI.kIpxDualizeStrategyMin_get());
-  public final static IpxDualizeStrategy kIpxDualizeStrategyMax = new IpxDualizeStrategy("kIpxDualizeStrategyMax", highsJNI.kIpxDualizeStrategyMax_get());
+    public final static IpxDualizeStrategy kIpxDualizeStrategyOff = new IpxDualizeStrategy(
+            "kIpxDualizeStrategyOff",
+            highsJNI.kIpxDualizeStrategyOff_get()
+    );
+    public final static IpxDualizeStrategy kIpxDualizeStrategyChoose = new IpxDualizeStrategy(
+            "kIpxDualizeStrategyChoose",
+            highsJNI.kIpxDualizeStrategyChoose_get()
+    );
+    public final static IpxDualizeStrategy kIpxDualizeStrategyOn = new IpxDualizeStrategy(
+            "kIpxDualizeStrategyOn",
+            highsJNI.kIpxDualizeStrategyOn_get()
+    );
+    public final static IpxDualizeStrategy kIpxDualizeStrategyLukas = new IpxDualizeStrategy(
+            "kIpxDualizeStrategyLukas");
+    public final static IpxDualizeStrategy kIpxDualizeStrategyFilippo = new IpxDualizeStrategy(
+            "kIpxDualizeStrategyFilippo");
+    public final static IpxDualizeStrategy kIpxDualizeStrategyMin = new IpxDualizeStrategy(
+            "kIpxDualizeStrategyMin",
+            highsJNI.kIpxDualizeStrategyMin_get()
+    );
+    public final static IpxDualizeStrategy kIpxDualizeStrategyMax = new IpxDualizeStrategy(
+            "kIpxDualizeStrategyMax",
+            highsJNI.kIpxDualizeStrategyMax_get()
+    );
+    private static IpxDualizeStrategy[] swigValues = {
+            kIpxDualizeStrategyOff,
+            kIpxDualizeStrategyChoose,
+            kIpxDualizeStrategyOn,
+            kIpxDualizeStrategyLukas,
+            kIpxDualizeStrategyFilippo,
+            kIpxDualizeStrategyMin,
+            kIpxDualizeStrategyMax
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private IpxDualizeStrategy(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private IpxDualizeStrategy(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static IpxDualizeStrategy swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + IpxDualizeStrategy.class + " with value " + swigValue);
-  }
+    private IpxDualizeStrategy(String swigName, IpxDualizeStrategy swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private IpxDualizeStrategy(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static IpxDualizeStrategy swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + IpxDualizeStrategy.class + " with value " + swigValue);
+    }
 
-  private IpxDualizeStrategy(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private IpxDualizeStrategy(String swigName, IpxDualizeStrategy swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static IpxDualizeStrategy[] swigValues = { kIpxDualizeStrategyOff, kIpxDualizeStrategyChoose, kIpxDualizeStrategyOn, kIpxDualizeStrategyLukas, kIpxDualizeStrategyFilippo, kIpxDualizeStrategyMin, kIpxDualizeStrategyMax };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

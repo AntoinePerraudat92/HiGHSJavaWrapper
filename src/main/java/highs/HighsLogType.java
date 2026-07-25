@@ -9,49 +9,53 @@
 package highs;
 
 public final class HighsLogType {
-  public final static HighsLogType kInfo = new HighsLogType("kInfo", highsJNI.HighsLogType_kInfo_get());
-  public final static HighsLogType kDetailed = new HighsLogType("kDetailed");
-  public final static HighsLogType kVerbose = new HighsLogType("kVerbose");
-  public final static HighsLogType kWarning = new HighsLogType("kWarning");
-  public final static HighsLogType kError = new HighsLogType("kError");
+    public final static HighsLogType kInfo = new HighsLogType("kInfo", highsJNI.HighsLogType_kInfo_get());
+    public final static HighsLogType kDetailed = new HighsLogType("kDetailed");
+    public final static HighsLogType kVerbose = new HighsLogType("kVerbose");
+    public final static HighsLogType kWarning = new HighsLogType("kWarning");
+    public final static HighsLogType kError = new HighsLogType("kError");
+    private static HighsLogType[] swigValues = {
+            kInfo,
+            kDetailed,
+            kVerbose,
+            kWarning,
+            kError
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private HighsLogType(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private HighsLogType(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static HighsLogType swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + HighsLogType.class + " with value " + swigValue);
-  }
+    private HighsLogType(String swigName, HighsLogType swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private HighsLogType(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static HighsLogType swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + HighsLogType.class + " with value " + swigValue);
+    }
 
-  private HighsLogType(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private HighsLogType(String swigName, HighsLogType swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static HighsLogType[] swigValues = { kInfo, kDetailed, kVerbose, kWarning, kError };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

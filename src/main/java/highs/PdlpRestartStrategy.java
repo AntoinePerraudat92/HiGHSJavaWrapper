@@ -9,50 +9,67 @@
 package highs;
 
 public final class PdlpRestartStrategy {
-  public final static PdlpRestartStrategy kPdlpRestartStrategyOff = new PdlpRestartStrategy("kPdlpRestartStrategyOff", highsJNI.kPdlpRestartStrategyOff_get());
-  public final static PdlpRestartStrategy kPdlpRestartStrategyMin = new PdlpRestartStrategy("kPdlpRestartStrategyMin", highsJNI.kPdlpRestartStrategyMin_get());
-  public final static PdlpRestartStrategy kPdlpRestartStrategyFixed = new PdlpRestartStrategy("kPdlpRestartStrategyFixed");
-  public final static PdlpRestartStrategy kPdlpRestartStrategyAdaptive = new PdlpRestartStrategy("kPdlpRestartStrategyAdaptive");
-  public final static PdlpRestartStrategy kPdlpRestartStrategyHalpern = new PdlpRestartStrategy("kPdlpRestartStrategyHalpern");
-  public final static PdlpRestartStrategy kPdlpRestartStrategyMax = new PdlpRestartStrategy("kPdlpRestartStrategyMax", highsJNI.kPdlpRestartStrategyMax_get());
+    public final static PdlpRestartStrategy kPdlpRestartStrategyOff = new PdlpRestartStrategy(
+            "kPdlpRestartStrategyOff",
+            highsJNI.kPdlpRestartStrategyOff_get()
+    );
+    public final static PdlpRestartStrategy kPdlpRestartStrategyMin = new PdlpRestartStrategy(
+            "kPdlpRestartStrategyMin",
+            highsJNI.kPdlpRestartStrategyMin_get()
+    );
+    public final static PdlpRestartStrategy kPdlpRestartStrategyFixed = new PdlpRestartStrategy(
+            "kPdlpRestartStrategyFixed");
+    public final static PdlpRestartStrategy kPdlpRestartStrategyAdaptive = new PdlpRestartStrategy(
+            "kPdlpRestartStrategyAdaptive");
+    public final static PdlpRestartStrategy kPdlpRestartStrategyHalpern = new PdlpRestartStrategy(
+            "kPdlpRestartStrategyHalpern");
+    public final static PdlpRestartStrategy kPdlpRestartStrategyMax = new PdlpRestartStrategy(
+            "kPdlpRestartStrategyMax",
+            highsJNI.kPdlpRestartStrategyMax_get()
+    );
+    private static PdlpRestartStrategy[] swigValues = {
+            kPdlpRestartStrategyOff,
+            kPdlpRestartStrategyMin,
+            kPdlpRestartStrategyFixed,
+            kPdlpRestartStrategyAdaptive,
+            kPdlpRestartStrategyHalpern,
+            kPdlpRestartStrategyMax
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private PdlpRestartStrategy(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private PdlpRestartStrategy(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static PdlpRestartStrategy swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + PdlpRestartStrategy.class + " with value " + swigValue);
-  }
+    private PdlpRestartStrategy(String swigName, PdlpRestartStrategy swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private PdlpRestartStrategy(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static PdlpRestartStrategy swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + PdlpRestartStrategy.class + " with value " + swigValue);
+    }
 
-  private PdlpRestartStrategy(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private PdlpRestartStrategy(String swigName, PdlpRestartStrategy swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static PdlpRestartStrategy[] swigValues = { kPdlpRestartStrategyOff, kPdlpRestartStrategyMin, kPdlpRestartStrategyFixed, kPdlpRestartStrategyAdaptive, kPdlpRestartStrategyHalpern, kPdlpRestartStrategyMax };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

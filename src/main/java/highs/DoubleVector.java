@@ -9,156 +9,158 @@
 package highs;
 
 public class DoubleVector extends java.util.AbstractList<Double> implements java.util.RandomAccess {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected DoubleVector(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(DoubleVector obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(DoubleVector obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected DoubleVector(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
+    public DoubleVector(double[] initialElements) {
+        this();
+        reserve(initialElements.length);
 
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_DoubleVector(swigCPtr);
-      }
-      swigCPtr = 0;
+        for (double element : initialElements) {
+            add(element);
+        }
     }
-  }
 
-  public DoubleVector(double[] initialElements) {
-    this();
-    reserve(initialElements.length);
-
-    for (double element : initialElements) {
-      add(element);
+    public DoubleVector(Iterable<Double> initialElements) {
+        this();
+        for (double element : initialElements) {
+            add(element);
+        }
     }
-  }
 
-  public DoubleVector(Iterable<Double> initialElements) {
-    this();
-    for (double element : initialElements) {
-      add(element);
+    public DoubleVector() {
+        this(highsJNI.new_DoubleVector__SWIG_0(), true);
     }
-  }
 
-  public Double get(int index) {
-    return doGet(index);
-  }
+    public DoubleVector(DoubleVector other) {
+        this(highsJNI.new_DoubleVector__SWIG_1(DoubleVector.getCPtr(other), other), true);
+    }
 
-  public Double set(int index, Double e) {
-    return doSet(index, e);
-  }
+    public DoubleVector(int count, double value) {
+        this(highsJNI.new_DoubleVector__SWIG_2(count, value), true);
+    }
 
-  public boolean add(Double e) {
-    modCount++;
-    doAdd(e);
-    return true;
-  }
+    protected static long getCPtr(DoubleVector obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void add(int index, Double e) {
-    modCount++;
-    doAdd(index, e);
-  }
+    protected static long swigRelease(DoubleVector obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public Double remove(int index) {
-    modCount++;
-    return doRemove(index);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  protected void removeRange(int fromIndex, int toIndex) {
-    modCount++;
-    doRemoveRange(fromIndex, toIndex);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_DoubleVector(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public int size() {
-    return doSize();
-  }
+    public Double get(int index) {
+        return doGet(index);
+    }
 
-  public int capacity() {
-    return doCapacity();
-  }
+    public Double set(int index, Double e) {
+        return doSet(index, e);
+    }
 
-  public void reserve(int n) {
-    doReserve(n);
-  }
+    public boolean add(Double e) {
+        modCount++;
+        doAdd(e);
+        return true;
+    }
 
-  public DoubleVector() {
-    this(highsJNI.new_DoubleVector__SWIG_0(), true);
-  }
+    public void add(int index, Double e) {
+        modCount++;
+        doAdd(index, e);
+    }
 
-  public DoubleVector(DoubleVector other) {
-    this(highsJNI.new_DoubleVector__SWIG_1(DoubleVector.getCPtr(other), other), true);
-  }
+    public Double remove(int index) {
+        modCount++;
+        return doRemove(index);
+    }
 
-  public boolean isEmpty() {
-    return highsJNI.DoubleVector_isEmpty(swigCPtr, this);
-  }
+    protected void removeRange(int fromIndex, int toIndex) {
+        modCount++;
+        doRemoveRange(fromIndex, toIndex);
+    }
 
-  public void clear() {
-    highsJNI.DoubleVector_clear(swigCPtr, this);
-  }
+    public int size() {
+        return doSize();
+    }
 
-  public DoubleVector(int count, double value) {
-    this(highsJNI.new_DoubleVector__SWIG_2(count, value), true);
-  }
+    public int capacity() {
+        return doCapacity();
+    }
 
-  private int doCapacity() {
-    return highsJNI.DoubleVector_doCapacity(swigCPtr, this);
-  }
+    public void reserve(int n) {
+        doReserve(n);
+    }
 
-  private void doReserve(int n) {
-    highsJNI.DoubleVector_doReserve(swigCPtr, this, n);
-  }
+    public boolean isEmpty() {
+        return highsJNI.DoubleVector_isEmpty(swigCPtr, this);
+    }
 
-  private int doSize() {
-    return highsJNI.DoubleVector_doSize(swigCPtr, this);
-  }
+    public void clear() {
+        highsJNI.DoubleVector_clear(swigCPtr, this);
+    }
 
-  private void doAdd(double x) {
-    highsJNI.DoubleVector_doAdd__SWIG_0(swigCPtr, this, x);
-  }
+    private int doCapacity() {
+        return highsJNI.DoubleVector_doCapacity(swigCPtr, this);
+    }
 
-  private void doAdd(int index, double x) {
-    highsJNI.DoubleVector_doAdd__SWIG_1(swigCPtr, this, index, x);
-  }
+    private void doReserve(int n) {
+        highsJNI.DoubleVector_doReserve(swigCPtr, this, n);
+    }
 
-  private double doRemove(int index) {
-    return highsJNI.DoubleVector_doRemove(swigCPtr, this, index);
-  }
+    private int doSize() {
+        return highsJNI.DoubleVector_doSize(swigCPtr, this);
+    }
 
-  private double doGet(int index) {
-    return highsJNI.DoubleVector_doGet(swigCPtr, this, index);
-  }
+    private void doAdd(double x) {
+        highsJNI.DoubleVector_doAdd__SWIG_0(swigCPtr, this, x);
+    }
 
-  private double doSet(int index, double val) {
-    return highsJNI.DoubleVector_doSet(swigCPtr, this, index, val);
-  }
+    private void doAdd(int index, double x) {
+        highsJNI.DoubleVector_doAdd__SWIG_1(swigCPtr, this, index, x);
+    }
 
-  private void doRemoveRange(int fromIndex, int toIndex) {
-    highsJNI.DoubleVector_doRemoveRange(swigCPtr, this, fromIndex, toIndex);
-  }
+    private double doRemove(int index) {
+        return highsJNI.DoubleVector_doRemove(swigCPtr, this, index);
+    }
+
+    private double doGet(int index) {
+        return highsJNI.DoubleVector_doGet(swigCPtr, this, index);
+    }
+
+    private double doSet(int index, double val) {
+        return highsJNI.DoubleVector_doSet(swigCPtr, this, index, val);
+    }
+
+    private void doRemoveRange(int fromIndex, int toIndex) {
+        highsJNI.DoubleVector_doRemoveRange(swigCPtr, this, fromIndex, toIndex);
+    }
 
 }
