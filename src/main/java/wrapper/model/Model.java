@@ -189,7 +189,7 @@ public class Model {
             case Integer integerValue -> this.highs.setOptionValue(option.getName(), integerValue);
             default -> throw new OptionException("Impossible to parse options of incompatible type");
         };
-        runHighsActionAndThrowOnError(action, () -> new OptionException("Impossible to add action"));
+        runHighsActionAndThrowOnError(action, () -> new OptionException("Impossible to add option"));
     }
 
     protected Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
