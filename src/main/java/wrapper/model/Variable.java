@@ -1,6 +1,7 @@
 package wrapper.model;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 import wrapper.exceptions.VariableException;
@@ -11,6 +12,7 @@ import java.lang.ref.WeakReference;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Variable implements ModelObject {
 
+    @Getter
     @EqualsAndHashCode.Include
     private final long index;
     private final WeakReference<Model> modelWeakReference;
@@ -24,10 +26,6 @@ public class Variable implements ModelObject {
     Variable(long index) {
         this.index = index;
         this.modelWeakReference = new WeakReference<>(null);
-    }
-
-    long getIndex() {
-        return this.index;
     }
 
     @Nullable Model getModel() {

@@ -1,6 +1,7 @@
 package wrapper.model;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 import wrapper.exceptions.ConstraintException;
@@ -13,6 +14,7 @@ import java.lang.ref.WeakReference;
 public class Constraint implements ModelObject {
 
     @EqualsAndHashCode.Include
+    @Getter
     private final long index;
     private final ConstraintType constraintType;
     private final WeakReference<Model> modelWeakReference;
@@ -28,10 +30,6 @@ public class Constraint implements ModelObject {
         this.index = index;
         this.constraintType = constraintType;
         this.modelWeakReference = new WeakReference<>(null);
-    }
-
-    long getIndex() {
-        return this.index;
     }
 
     ConstraintType getConstraintType() {
