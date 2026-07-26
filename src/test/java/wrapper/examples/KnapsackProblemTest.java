@@ -55,6 +55,7 @@ class KnapsackProblemTest {
 
         assertTrue(solution.isFeasible());
         assertEquals(230.0, solution.getObjectiveValue(), EPSILON);
+        assertEquals(0.0, solution.getMipGap(), EPSILON);
         assertEquals(0.0, x[0].getValue(), EPSILON);
         assertEquals(0.0, x[1].getValue(), EPSILON);
         assertEquals(0.0, x[2].getValue(), EPSILON);

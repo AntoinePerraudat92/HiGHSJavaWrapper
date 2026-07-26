@@ -89,6 +89,7 @@ class FacilityLocationProblemTest {
 
         assertTrue(solution.isFeasible());
         assertEquals(52969.0, solution.getObjectiveValue(), EPSILON);
+        assertEquals(0.0, solution.getMipGap(), EPSILON);
     }
 
 }

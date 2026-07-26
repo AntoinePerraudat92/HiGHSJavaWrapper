@@ -66,6 +66,7 @@ class TimeBasedFormulationSingleMachineSchedulingProblemTest {
 
         assertTrue(solution.isFeasible());
         assertEquals(113.0, solution.getObjectiveValue(), EPSILON);
+        assertEquals(0.0, solution.getMipGap(), EPSILON);
         int nmbScheduledJobs = 0;
         for (int j = 0; j < nmbJobs; ++j) {
             for (int t = 0; t < nmbPeriods; ++t) {
