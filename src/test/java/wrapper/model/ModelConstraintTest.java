@@ -1,7 +1,6 @@
 package wrapper.model;
 
 import org.junit.jupiter.api.Test;
-import wrapper.exceptions.ConstraintException;
 import wrapper.exceptions.VariableException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,18 +31,6 @@ class ModelConstraintTest {
 
         final Solution secondSolution = model.maximize().orElseThrow();
         assertEquals(1.0, secondSolution.getObjectiveValue(), EPSILON);
-    }
-
-    @Test
-    void updateCoefficientMustThrowIfModelGCed() {
-        final Constraint constraint = new Constraint(0, ConstraintType.EQUALITY);
-        final Variable variable = new Variable(12);
-
-        final ConstraintException exception = assertThrows(
-                ConstraintException.class,
-                () -> constraint.updateCoefficient(0.5, variable)
-        );
-        assertEquals("Related model does not exist", exception.getMessage());
     }
 
     @Test

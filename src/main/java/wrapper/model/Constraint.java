@@ -1,73 +1,39 @@
 package wrapper.model;
 
-import lombok.EqualsAndHashCode;
+import lombok.AccessLevel;
 import lombok.Getter;
 import org.jspecify.annotations.NullMarked;
-import org.jspecify.annotations.Nullable;
-import wrapper.exceptions.ConstraintException;
-
-import java.lang.ref.WeakReference;
 
 
 @NullMarked
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Constraint implements ModelObject {
+public class Constraint extends ModelObject {
 
-    @EqualsAndHashCode.Include
-    @Getter
-    private final long index;
+    @Getter(AccessLevel.PACKAGE)
     private final ConstraintType constraintType;
-    private final WeakReference<Model> modelWeakReference;
 
-    Constraint(long index, final ConstraintType constraintType, final Model model) {
-        this.index = index;
+    Constraint(long index, final Model model, final ConstraintType constraintType) {
+        super(index, model);
         this.constraintType = constraintType;
-        this.modelWeakReference = new WeakReference<>(model);
-    }
-
-    @SuppressWarnings("all")
-    Constraint(long index, final ConstraintType constraintType) {
-        this.index = index;
-        this.constraintType = constraintType;
-        this.modelWeakReference = new WeakReference<>(null);
-    }
-
-    ConstraintType getConstraintType() {
-        return this.constraintType;
-    }
-
-    @Nullable Model getModel() {
-        return this.modelWeakReference.get();
     }
 
     public void updateCoefficient(double newCoefficient, final Variable variable) {
         final Model model = getModel();
-        throwIfModelNull(model);
         model.updateConstraintCoefficient(newCoefficient, variable, this);
     }
 
     public void updateRightHandSide(double newRhs) {
         final Model model = getModel();
-        throwIfModelNull(model);
         model.updateRightHandSide(newRhs, this);
     }
 
     public double getValue() {
         final Model model = getModel();
-        throwIfModelNull(model);
         return model.getValue(this);
     }
 
     public double getDualValue() {
         final Model model = getModel();
-        throwIfModelNull(model);
         return model.getDualValue(this);
-    }
-
-    private void throwIfModelNull(@Nullable final Model model) {
-        if (model == null) {
-            throw new ConstraintException("Related model does not exist");
-        }
     }
 
 }

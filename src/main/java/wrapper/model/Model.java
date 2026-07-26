@@ -162,7 +162,11 @@ public class Model {
         checkVariable(variable);
         checkConstraint(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
+                () -> this.highs.changeCoeff(
+                        constraint.getIndex(),
+                        variable.getIndex(),
+                        newCoefficient
+                ),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -244,7 +248,7 @@ public class Model {
                 ),
                 () -> new VariableException("Impossible to add constraint")
         );
-        return new Constraint(this.highs.getNumRow() - 1, constraintType, this);
+        return new Constraint(this.highs.getNumRow() - 1, this, constraintType);
     }
 
     protected Optional<Solution> solve() {

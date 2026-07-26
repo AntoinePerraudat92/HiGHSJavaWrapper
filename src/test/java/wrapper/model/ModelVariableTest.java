@@ -2,9 +2,9 @@ package wrapper.model;
 
 
 import org.junit.jupiter.api.Test;
-import wrapper.exceptions.VariableException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static wrapper.util.Constants.EPSILON;
 import static wrapper.util.ObjectCreator.createModel;
 
@@ -38,14 +38,6 @@ class ModelVariableTest {
 
         final Solution secondSolution = model.maximize().orElseThrow();
         assertEquals(65.55, secondSolution.getObjectiveValue(), EPSILON);
-    }
-
-    @Test
-    void updateVariableCostMustThrowIfModelGCed() {
-        final Variable x = new Variable(9);
-
-        final VariableException exception = assertThrows(VariableException.class, () -> x.updateCost(1.8));
-        assertEquals("Related model does not exist", exception.getMessage());
     }
 
     @Test
