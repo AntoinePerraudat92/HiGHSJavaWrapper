@@ -9,74 +9,76 @@
 package highs;
 
 public class HighsProfilingRecord {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsProfilingRecord(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsProfilingRecord obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsProfilingRecord obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsProfilingRecord(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsProfilingRecord(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsProfilingRecord() {
+        this(highsJNI.new_HighsProfilingRecord(), true);
     }
-  }
 
-  public void setNum_call(SWIGTYPE_p_std__vectorT_long_long_t value) {
-    highsJNI.HighsProfilingRecord_num_call_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
-  }
+    protected static long getCPtr(HighsProfilingRecord obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public SWIGTYPE_p_std__vectorT_long_long_t getNum_call() {
-    long cPtr = highsJNI.HighsProfilingRecord_num_call_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
-  }
+    protected static long swigRelease(HighsProfilingRecord obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setRun_time(DoubleVector value) {
-    highsJNI.HighsProfilingRecord_run_time_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public DoubleVector getRun_time() {
-    long cPtr = highsJNI.HighsProfilingRecord_run_time_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsProfilingRecord(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setStart_time(DoubleVector value) {
-    highsJNI.HighsProfilingRecord_start_time_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public SWIGTYPE_p_std__vectorT_long_long_t getNum_call() {
+        long cPtr = highsJNI.HighsProfilingRecord_num_call_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
+    }
 
-  public DoubleVector getStart_time() {
-    long cPtr = highsJNI.HighsProfilingRecord_start_time_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setNum_call(SWIGTYPE_p_std__vectorT_long_long_t value) {
+        highsJNI.HighsProfilingRecord_num_call_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
+    }
 
-  public HighsProfilingRecord() {
-    this(highsJNI.new_HighsProfilingRecord(), true);
-  }
+    public DoubleVector getRun_time() {
+        long cPtr = highsJNI.HighsProfilingRecord_run_time_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
+
+    public void setRun_time(DoubleVector value) {
+        highsJNI.HighsProfilingRecord_run_time_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
+
+    public DoubleVector getStart_time() {
+        long cPtr = highsJNI.HighsProfilingRecord_start_time_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
+
+    public void setStart_time(DoubleVector value) {
+        highsJNI.HighsProfilingRecord_start_time_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
 
 }

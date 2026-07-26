@@ -9,60 +9,66 @@
 package highs;
 
 public class HighsPresolveLog {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsPresolveLog(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsPresolveLog obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsPresolveLog obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsPresolveLog(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsPresolveLog(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsPresolveLog() {
+        this(highsJNI.new_HighsPresolveLog(), true);
     }
-  }
 
-  public void setRule(SWIGTYPE_p_std__vectorT_HighsPresolveRuleLog_t value) {
-    highsJNI.HighsPresolveLog_rule_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_HighsPresolveRuleLog_t.getCPtr(value));
-  }
+    protected static long getCPtr(HighsPresolveLog obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public SWIGTYPE_p_std__vectorT_HighsPresolveRuleLog_t getRule() {
-    long cPtr = highsJNI.HighsPresolveLog_rule_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsPresolveRuleLog_t(cPtr, false);
-  }
+    protected static long swigRelease(HighsPresolveLog obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void clear() {
-    highsJNI.HighsPresolveLog_clear(swigCPtr, this);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public HighsPresolveLog() {
-    this(highsJNI.new_HighsPresolveLog(), true);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsPresolveLog(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
+
+    public SWIGTYPE_p_std__vectorT_HighsPresolveRuleLog_t getRule() {
+        long cPtr = highsJNI.HighsPresolveLog_rule_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsPresolveRuleLog_t(cPtr, false);
+    }
+
+    public void setRule(SWIGTYPE_p_std__vectorT_HighsPresolveRuleLog_t value) {
+        highsJNI.HighsPresolveLog_rule_set(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_std__vectorT_HighsPresolveRuleLog_t.getCPtr(value)
+        );
+    }
+
+    public void clear() {
+        highsJNI.HighsPresolveLog_clear(swigCPtr, this);
+    }
 
 }

@@ -19,7 +19,10 @@ class ModelValueTest {
         final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(0.0, 12.0, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, 5.6, 2.6);
-        final Constraint constraint = model.addLessThanOrEqualToConstraint(3.5, LinearExpression.of(new LinearExpression.Term(x1, 2.0), new LinearExpression.Term(x2, 3.0)));
+        final Constraint constraint = model.addLessThanOrEqualToConstraint(
+                3.5,
+                LinearExpression.of(new LinearExpression.Term(x1, 2.0), new LinearExpression.Term(x2, 3.0))
+        );
 
         final Solution solution = model.maximize().orElseThrow();
 

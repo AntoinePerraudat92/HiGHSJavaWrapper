@@ -9,49 +9,68 @@
 package highs;
 
 public final class PdlpFeaturesOff {
-  public final static PdlpFeaturesOff kPdlpAllFeaturesOn = new PdlpFeaturesOff("kPdlpAllFeaturesOn", highsJNI.kPdlpAllFeaturesOn_get());
-  public final static PdlpFeaturesOff kPdlpScalingOff = new PdlpFeaturesOff("kPdlpScalingOff", highsJNI.kPdlpScalingOff_get());
-  public final static PdlpFeaturesOff kPdlpRestartOff = new PdlpFeaturesOff("kPdlpRestartOff", highsJNI.kPdlpRestartOff_get());
-  public final static PdlpFeaturesOff kPdlpAdaptiveStepSizeOff = new PdlpFeaturesOff("kPdlpAdaptiveStepSizeOff", highsJNI.kPdlpAdaptiveStepSizeOff_get());
-  public final static PdlpFeaturesOff kPdlpAllFeaturesOff = new PdlpFeaturesOff("kPdlpAllFeaturesOff", highsJNI.kPdlpAllFeaturesOff_get());
+    public final static PdlpFeaturesOff kPdlpAllFeaturesOn = new PdlpFeaturesOff(
+            "kPdlpAllFeaturesOn",
+            highsJNI.kPdlpAllFeaturesOn_get()
+    );
+    public final static PdlpFeaturesOff kPdlpScalingOff = new PdlpFeaturesOff(
+            "kPdlpScalingOff",
+            highsJNI.kPdlpScalingOff_get()
+    );
+    public final static PdlpFeaturesOff kPdlpRestartOff = new PdlpFeaturesOff(
+            "kPdlpRestartOff",
+            highsJNI.kPdlpRestartOff_get()
+    );
+    public final static PdlpFeaturesOff kPdlpAdaptiveStepSizeOff = new PdlpFeaturesOff(
+            "kPdlpAdaptiveStepSizeOff",
+            highsJNI.kPdlpAdaptiveStepSizeOff_get()
+    );
+    public final static PdlpFeaturesOff kPdlpAllFeaturesOff = new PdlpFeaturesOff(
+            "kPdlpAllFeaturesOff",
+            highsJNI.kPdlpAllFeaturesOff_get()
+    );
+    private static PdlpFeaturesOff[] swigValues = {
+            kPdlpAllFeaturesOn,
+            kPdlpScalingOff,
+            kPdlpRestartOff,
+            kPdlpAdaptiveStepSizeOff,
+            kPdlpAllFeaturesOff
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private PdlpFeaturesOff(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private PdlpFeaturesOff(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static PdlpFeaturesOff swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + PdlpFeaturesOff.class + " with value " + swigValue);
-  }
+    private PdlpFeaturesOff(String swigName, PdlpFeaturesOff swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private PdlpFeaturesOff(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static PdlpFeaturesOff swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + PdlpFeaturesOff.class + " with value " + swigValue);
+    }
 
-  private PdlpFeaturesOff(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private PdlpFeaturesOff(String swigName, PdlpFeaturesOff swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static PdlpFeaturesOff[] swigValues = { kPdlpAllFeaturesOn, kPdlpScalingOff, kPdlpRestartOff, kPdlpAdaptiveStepSizeOff, kPdlpAllFeaturesOff };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

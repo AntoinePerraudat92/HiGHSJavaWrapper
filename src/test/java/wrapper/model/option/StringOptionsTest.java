@@ -15,7 +15,10 @@ class StringOptionsTest {
     }
 
     private static int computeNmbOptions() {
-        return Arrays.stream(StringOptions.values()).map(StringOptions::getHighsOptionName).collect(Collectors.toSet()).size();
+        return Arrays.stream(StringOptions.values())
+                .map(StringOptions::getHighsOptionName)
+                .collect(Collectors.toSet())
+                .size();
     }
 
     @Test

@@ -9,48 +9,59 @@
 package highs;
 
 public final class GlpsolCostRowLocation {
-  public final static GlpsolCostRowLocation kGlpsolCostRowLocationLast = new GlpsolCostRowLocation("kGlpsolCostRowLocationLast", highsJNI.kGlpsolCostRowLocationLast_get());
-  public final static GlpsolCostRowLocation kGlpsolCostRowLocationNone = new GlpsolCostRowLocation("kGlpsolCostRowLocationNone");
-  public final static GlpsolCostRowLocation kGlpsolCostRowLocationNoneIfEmpty = new GlpsolCostRowLocation("kGlpsolCostRowLocationNoneIfEmpty");
-  public final static GlpsolCostRowLocation kGlpsolCostRowLocationMin = new GlpsolCostRowLocation("kGlpsolCostRowLocationMin", highsJNI.kGlpsolCostRowLocationMin_get());
+    public final static GlpsolCostRowLocation kGlpsolCostRowLocationLast = new GlpsolCostRowLocation(
+            "kGlpsolCostRowLocationLast",
+            highsJNI.kGlpsolCostRowLocationLast_get()
+    );
+    public final static GlpsolCostRowLocation kGlpsolCostRowLocationNone = new GlpsolCostRowLocation(
+            "kGlpsolCostRowLocationNone");
+    public final static GlpsolCostRowLocation kGlpsolCostRowLocationNoneIfEmpty = new GlpsolCostRowLocation(
+            "kGlpsolCostRowLocationNoneIfEmpty");
+    public final static GlpsolCostRowLocation kGlpsolCostRowLocationMin = new GlpsolCostRowLocation(
+            "kGlpsolCostRowLocationMin",
+            highsJNI.kGlpsolCostRowLocationMin_get()
+    );
+    private static GlpsolCostRowLocation[] swigValues = {
+            kGlpsolCostRowLocationLast,
+            kGlpsolCostRowLocationNone,
+            kGlpsolCostRowLocationNoneIfEmpty,
+            kGlpsolCostRowLocationMin
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private GlpsolCostRowLocation(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private GlpsolCostRowLocation(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static GlpsolCostRowLocation swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + GlpsolCostRowLocation.class + " with value " + swigValue);
-  }
+    private GlpsolCostRowLocation(String swigName, GlpsolCostRowLocation swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private GlpsolCostRowLocation(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static GlpsolCostRowLocation swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + GlpsolCostRowLocation.class + " with value " + swigValue);
+    }
 
-  private GlpsolCostRowLocation(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private GlpsolCostRowLocation(String swigName, GlpsolCostRowLocation swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static GlpsolCostRowLocation[] swigValues = { kGlpsolCostRowLocationLast, kGlpsolCostRowLocationNone, kGlpsolCostRowLocationNoneIfEmpty, kGlpsolCostRowLocationMin };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

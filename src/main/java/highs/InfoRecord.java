@@ -9,79 +9,81 @@
 package highs;
 
 public class InfoRecord {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected InfoRecord(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(InfoRecord obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(InfoRecord obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected InfoRecord(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_InfoRecord(swigCPtr);
-      }
-      swigCPtr = 0;
+    public InfoRecord(HighsInfoType Xtype, String Xname, String Xdescription, boolean Xadvanced) {
+        this(highsJNI.new_InfoRecord(Xtype.swigValue(), Xname, Xdescription, Xadvanced), true);
     }
-  }
 
-  public void setType(HighsInfoType value) {
-    highsJNI.InfoRecord_type_set(swigCPtr, this, value.swigValue());
-  }
+    protected static long getCPtr(InfoRecord obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public HighsInfoType getType() {
-    return HighsInfoType.swigToEnum(highsJNI.InfoRecord_type_get(swigCPtr, this));
-  }
+    protected static long swigRelease(InfoRecord obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setName(String value) {
-    highsJNI.InfoRecord_name_set(swigCPtr, this, value);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public String getName() {
-    return highsJNI.InfoRecord_name_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_InfoRecord(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setDescription(String value) {
-    highsJNI.InfoRecord_description_set(swigCPtr, this, value);
-  }
+    public HighsInfoType getType() {
+        return HighsInfoType.swigToEnum(highsJNI.InfoRecord_type_get(swigCPtr, this));
+    }
 
-  public String getDescription() {
-    return highsJNI.InfoRecord_description_get(swigCPtr, this);
-  }
+    public void setType(HighsInfoType value) {
+        highsJNI.InfoRecord_type_set(swigCPtr, this, value.swigValue());
+    }
 
-  public void setAdvanced(boolean value) {
-    highsJNI.InfoRecord_advanced_set(swigCPtr, this, value);
-  }
+    public String getName() {
+        return highsJNI.InfoRecord_name_get(swigCPtr, this);
+    }
 
-  public boolean getAdvanced() {
-    return highsJNI.InfoRecord_advanced_get(swigCPtr, this);
-  }
+    public void setName(String value) {
+        highsJNI.InfoRecord_name_set(swigCPtr, this, value);
+    }
 
-  public InfoRecord(HighsInfoType Xtype, String Xname, String Xdescription, boolean Xadvanced) {
-    this(highsJNI.new_InfoRecord(Xtype.swigValue(), Xname, Xdescription, Xadvanced), true);
-  }
+    public String getDescription() {
+        return highsJNI.InfoRecord_description_get(swigCPtr, this);
+    }
+
+    public void setDescription(String value) {
+        highsJNI.InfoRecord_description_set(swigCPtr, this, value);
+    }
+
+    public boolean getAdvanced() {
+        return highsJNI.InfoRecord_advanced_get(swigCPtr, this);
+    }
+
+    public void setAdvanced(boolean value) {
+        highsJNI.InfoRecord_advanced_set(swigCPtr, this, value);
+    }
 
 }

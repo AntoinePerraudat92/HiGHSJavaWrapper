@@ -20,7 +20,10 @@ class ModelConstraintTest {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
-        final Constraint constraint = model.addLessThanOrEqualToConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
+        final Constraint constraint = model.addLessThanOrEqualToConstraint(
+                1.0,
+                LinearExpression.of(new LinearExpression.Term(x1, 1.0))
+        );
 
         final Solution firstSolution = model.maximize().orElseThrow();
         assertEquals(2.0, firstSolution.getObjectiveValue(), EPSILON);
@@ -36,7 +39,10 @@ class ModelConstraintTest {
         final Constraint constraint = new Constraint(0, ConstraintType.EQUALITY);
         final Variable variable = new Variable(12);
 
-        final ConstraintException exception = assertThrows(ConstraintException.class, () -> constraint.updateCoefficient(0.5, variable));
+        final ConstraintException exception = assertThrows(
+                ConstraintException.class,
+                () -> constraint.updateCoefficient(0.5, variable)
+        );
         assertEquals("Related model does not exist", exception.getMessage());
     }
 
@@ -46,9 +52,15 @@ class ModelConstraintTest {
         final Variable unknownVariable = otherModel.addBinaryVariable(1.0);
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
-        final Constraint constraint = model.addLessThanOrEqualToConstraint(4.0, LinearExpression.of(new LinearExpression.Term(x1, 0.5)));
+        final Constraint constraint = model.addLessThanOrEqualToConstraint(
+                4.0,
+                LinearExpression.of(new LinearExpression.Term(x1, 0.5))
+        );
 
-        final VariableException exception = assertThrows(VariableException.class, () -> constraint.updateCoefficient(0.5, unknownVariable));
+        final VariableException exception = assertThrows(
+                VariableException.class,
+                () -> constraint.updateCoefficient(0.5, unknownVariable)
+        );
         assertEquals("Trying to access or modify variable associated with wrong model", exception.getMessage());
     }
 
@@ -57,7 +69,10 @@ class ModelConstraintTest {
         final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)));
+        final Constraint constraint = model.addEqualityConstraint(
+                1.0,
+                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+        );
         constraint.updateRightHandSide(18.0);
 
         final Solution firstSolution = model.maximize().orElseThrow();
@@ -73,7 +88,10 @@ class ModelConstraintTest {
         final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)));
+        final Constraint constraint = model.addEqualityConstraint(
+                1.0,
+                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+        );
         constraint.updateRightHandSide(8.0);
 
         final Solution solution = model.maximize().orElseThrow();
@@ -86,7 +104,10 @@ class ModelConstraintTest {
         final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addLessThanOrEqualToConstraint(10.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)));
+        final Constraint constraint = model.addLessThanOrEqualToConstraint(
+                10.0,
+                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+        );
         constraint.updateRightHandSide(37.0);
 
         final Solution solution = model.maximize().orElseThrow();
@@ -99,7 +120,10 @@ class ModelConstraintTest {
         final Model model = createModel();
         final Variable x1 = model.addIntegerVariable(12.0, Double.MAX_VALUE, 2.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addGreaterThanOrEqualToConstraint(20.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)));
+        final Constraint constraint = model.addGreaterThanOrEqualToConstraint(
+                20.0,
+                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+        );
         constraint.updateRightHandSide(12.0);
 
         final Solution solution = model.minimize().orElseThrow();
@@ -131,7 +155,10 @@ class ModelConstraintTest {
                 new LinearExpression.Term(otherModel.addContinuousVariable(0.0, 2.4, 0.1), 5.0)
         );
 
-        final VariableException exception = assertThrows(VariableException.class, () -> model.addEqualityConstraint(2.4, expression));
+        final VariableException exception = assertThrows(
+                VariableException.class,
+                () -> model.addEqualityConstraint(2.4, expression)
+        );
         assertEquals("Trying to access or modify variable associated with wrong model", exception.getMessage());
     }
 
@@ -140,7 +167,10 @@ class ModelConstraintTest {
         final Model model = createModel();
         final LinearExpression expression = new LinearExpression();
 
-        final VariableException exception = assertThrows(VariableException.class, () -> model.addEqualityConstraint(18.3, expression));
+        final VariableException exception = assertThrows(
+                VariableException.class,
+                () -> model.addEqualityConstraint(18.3, expression)
+        );
         assertEquals("Linear expression has no variable", exception.getMessage());
     }
 
@@ -151,8 +181,11 @@ class ModelConstraintTest {
         final Variable x2 = model.addBinaryVariable(1.0);
         final Variable x3 = model.addBinaryVariable(1.0);
         final Constraint constraint = model.addEqualityConstraint(
-                5.0,
-                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0), new LinearExpression.Term(x3, 1.0))
+                5.0, LinearExpression.of(
+                        new LinearExpression.Term(x1, 1.0),
+                        new LinearExpression.Term(x2, 1.0),
+                        new LinearExpression.Term(x3, 1.0)
+                )
         );
 
         model.maximize().orElseThrow();

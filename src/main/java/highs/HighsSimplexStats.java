@@ -9,135 +9,137 @@
 package highs;
 
 public class HighsSimplexStats {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsSimplexStats(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsSimplexStats obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsSimplexStats obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsSimplexStats(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsSimplexStats(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsSimplexStats() {
+        this(highsJNI.new_HighsSimplexStats(), true);
     }
-  }
 
-  public void setValid(boolean value) {
-    highsJNI.HighsSimplexStats_valid_set(swigCPtr, this, value);
-  }
+    protected static long getCPtr(HighsSimplexStats obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public boolean getValid() {
-    return highsJNI.HighsSimplexStats_valid_get(swigCPtr, this);
-  }
+    protected static long swigRelease(HighsSimplexStats obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setIteration_count(long value) {
-    highsJNI.HighsSimplexStats_iteration_count_set(swigCPtr, this, value);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public long getIteration_count() {
-    return highsJNI.HighsSimplexStats_iteration_count_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsSimplexStats(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setNum_invert(long value) {
-    highsJNI.HighsSimplexStats_num_invert_set(swigCPtr, this, value);
-  }
+    public boolean getValid() {
+        return highsJNI.HighsSimplexStats_valid_get(swigCPtr, this);
+    }
 
-  public long getNum_invert() {
-    return highsJNI.HighsSimplexStats_num_invert_get(swigCPtr, this);
-  }
+    public void setValid(boolean value) {
+        highsJNI.HighsSimplexStats_valid_set(swigCPtr, this, value);
+    }
 
-  public void setLast_invert_num_el(long value) {
-    highsJNI.HighsSimplexStats_last_invert_num_el_set(swigCPtr, this, value);
-  }
+    public long getIteration_count() {
+        return highsJNI.HighsSimplexStats_iteration_count_get(swigCPtr, this);
+    }
 
-  public long getLast_invert_num_el() {
-    return highsJNI.HighsSimplexStats_last_invert_num_el_get(swigCPtr, this);
-  }
+    public void setIteration_count(long value) {
+        highsJNI.HighsSimplexStats_iteration_count_set(swigCPtr, this, value);
+    }
 
-  public void setLast_factored_basis_num_el(long value) {
-    highsJNI.HighsSimplexStats_last_factored_basis_num_el_set(swigCPtr, this, value);
-  }
+    public long getNum_invert() {
+        return highsJNI.HighsSimplexStats_num_invert_get(swigCPtr, this);
+    }
 
-  public long getLast_factored_basis_num_el() {
-    return highsJNI.HighsSimplexStats_last_factored_basis_num_el_get(swigCPtr, this);
-  }
+    public void setNum_invert(long value) {
+        highsJNI.HighsSimplexStats_num_invert_set(swigCPtr, this, value);
+    }
 
-  public void setCol_aq_density(double value) {
-    highsJNI.HighsSimplexStats_col_aq_density_set(swigCPtr, this, value);
-  }
+    public long getLast_invert_num_el() {
+        return highsJNI.HighsSimplexStats_last_invert_num_el_get(swigCPtr, this);
+    }
 
-  public double getCol_aq_density() {
-    return highsJNI.HighsSimplexStats_col_aq_density_get(swigCPtr, this);
-  }
+    public void setLast_invert_num_el(long value) {
+        highsJNI.HighsSimplexStats_last_invert_num_el_set(swigCPtr, this, value);
+    }
 
-  public void setRow_ep_density(double value) {
-    highsJNI.HighsSimplexStats_row_ep_density_set(swigCPtr, this, value);
-  }
+    public long getLast_factored_basis_num_el() {
+        return highsJNI.HighsSimplexStats_last_factored_basis_num_el_get(swigCPtr, this);
+    }
 
-  public double getRow_ep_density() {
-    return highsJNI.HighsSimplexStats_row_ep_density_get(swigCPtr, this);
-  }
+    public void setLast_factored_basis_num_el(long value) {
+        highsJNI.HighsSimplexStats_last_factored_basis_num_el_set(swigCPtr, this, value);
+    }
 
-  public void setRow_ap_density(double value) {
-    highsJNI.HighsSimplexStats_row_ap_density_set(swigCPtr, this, value);
-  }
+    public double getCol_aq_density() {
+        return highsJNI.HighsSimplexStats_col_aq_density_get(swigCPtr, this);
+    }
 
-  public double getRow_ap_density() {
-    return highsJNI.HighsSimplexStats_row_ap_density_get(swigCPtr, this);
-  }
+    public void setCol_aq_density(double value) {
+        highsJNI.HighsSimplexStats_col_aq_density_set(swigCPtr, this, value);
+    }
 
-  public void setRow_DSE_density(double value) {
-    highsJNI.HighsSimplexStats_row_DSE_density_set(swigCPtr, this, value);
-  }
+    public double getRow_ep_density() {
+        return highsJNI.HighsSimplexStats_row_ep_density_get(swigCPtr, this);
+    }
 
-  public double getRow_DSE_density() {
-    return highsJNI.HighsSimplexStats_row_DSE_density_get(swigCPtr, this);
-  }
+    public void setRow_ep_density(double value) {
+        highsJNI.HighsSimplexStats_row_ep_density_set(swigCPtr, this, value);
+    }
 
-  public void report(SWIGTYPE_p_FILE file, String message) {
-    highsJNI.HighsSimplexStats_report__SWIG_0(swigCPtr, this, SWIGTYPE_p_FILE.getCPtr(file), message);
-  }
+    public double getRow_ap_density() {
+        return highsJNI.HighsSimplexStats_row_ap_density_get(swigCPtr, this);
+    }
 
-  public void report(SWIGTYPE_p_FILE file) {
-    highsJNI.HighsSimplexStats_report__SWIG_1(swigCPtr, this, SWIGTYPE_p_FILE.getCPtr(file));
-  }
+    public void setRow_ap_density(double value) {
+        highsJNI.HighsSimplexStats_row_ap_density_set(swigCPtr, this, value);
+    }
 
-  public void initialise(long iteration_count_) {
-    highsJNI.HighsSimplexStats_initialise__SWIG_0(swigCPtr, this, iteration_count_);
-  }
+    public double getRow_DSE_density() {
+        return highsJNI.HighsSimplexStats_row_DSE_density_get(swigCPtr, this);
+    }
 
-  public void initialise() {
-    highsJNI.HighsSimplexStats_initialise__SWIG_1(swigCPtr, this);
-  }
+    public void setRow_DSE_density(double value) {
+        highsJNI.HighsSimplexStats_row_DSE_density_set(swigCPtr, this, value);
+    }
 
-  public HighsSimplexStats() {
-    this(highsJNI.new_HighsSimplexStats(), true);
-  }
+    public void report(SWIGTYPE_p_FILE file, String message) {
+        highsJNI.HighsSimplexStats_report__SWIG_0(swigCPtr, this, SWIGTYPE_p_FILE.getCPtr(file), message);
+    }
+
+    public void report(SWIGTYPE_p_FILE file) {
+        highsJNI.HighsSimplexStats_report__SWIG_1(swigCPtr, this, SWIGTYPE_p_FILE.getCPtr(file));
+    }
+
+    public void initialise(long iteration_count_) {
+        highsJNI.HighsSimplexStats_initialise__SWIG_0(swigCPtr, this, iteration_count_);
+    }
+
+    public void initialise() {
+        highsJNI.HighsSimplexStats_initialise__SWIG_1(swigCPtr, this);
+    }
 
 }

@@ -155,7 +155,8 @@ class NonLinearWorkloadBalancingProblemTest {
                 for (int m = 0; m < this.nmbMachines; ++m) {
                     final double ub = this.demandPerProduct[p] * this.qualificationPerProductPerMachine[p][m];
                     // The upper bound is used for qualification constraints.
-                    // For product p and machine m: x_{p,m} <= demandPerProduct_{p} * qualificationPerProductPerMachine_{p,m}.
+                    // For product p and machine m: x_{p,m} <= demandPerProduct_{p} *
+                    // qualificationPerProductPerMachine_{p,m}.
                     this.x[p][m] = this.model.addContinuousVariable(0.0, ub, 0.0);
                 }
             }
@@ -164,14 +165,22 @@ class NonLinearWorkloadBalancingProblemTest {
                 this.wl[m] = this.model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
             }
             // Workload computation constraints.
-            // For machine m: \sum_{p}(qualificationPerProductPerMachine_{p,m} * this.processTimePerProductPerMachine[p][m] * x_{p,m}) = capacityPerMachine_{m} * w_{m}.
+            // For machine m: \sum_{p}(qualificationPerProductPerMachine_{p,m} * this
+            // .processTimePerProductPerMachine[p][m] * x_{p,m}) = capacityPerMachine_{m} * w_{m}.
             for (int m = 0; m < this.nmbMachines; ++m) {
                 final LinearExpression expression = new LinearExpression();
                 for (int p = 0; p < this.nmbProducts; ++p) {
-                    final double coefficient = this.qualificationPerProductPerMachine[p][m] * this.processTimePerProductPerMachine[p][m];
+                    final double coefficient =
+                            this.qualificationPerProductPerMachine[p][m] * this.processTimePerProductPerMachine[p][m];
                     expression.addVariable(this.x[p][m], coefficient);
                 }
-                this.model.addEqualityConstraint(LinearExpression.of(new LinearExpression.Term(this.w[m], this.capacityPerMachine[m])), expression);
+                this.model.addEqualityConstraint(
+                        LinearExpression.of(new LinearExpression.Term(
+                                this.w[m],
+                                this.capacityPerMachine[m]
+                        )),
+                        expression
+                );
             }
             // Demand satisfaction constraints.
             // For product p: \sum_{p}(qualificationPerProductPerMachine_{p,m} * x_{p,m}) = demandPerProduct_{p}.

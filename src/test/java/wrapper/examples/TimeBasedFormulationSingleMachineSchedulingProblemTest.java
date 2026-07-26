@@ -50,7 +50,8 @@ class TimeBasedFormulationSingleMachineSchedulingProblemTest {
             }
             model.addLessThanOrEqualToConstraint(1.0, expression);
         }
-        // The machine can only process one job at a time: For period t, \sum_{j}\sum_{s}^{min(nmbPeriods, t + p_{j} - 1)}x_{j,s} <= 1.0.
+        // The machine can only process one job at a time: For period t, \sum_{j}\sum_{s}^{min(nmbPeriods, t + p_{j}
+        // - 1)}x_{j,s} <= 1.0.
         for (int t = 0; t < nmbPeriods; ++t) {
             final LinearExpression expression = new LinearExpression();
             for (int j = 0; j < nmbJobs; ++j) {

@@ -12,7 +12,11 @@ class ModelState {
     private State state = State.BUILDING;
 
     private static void checkTransition(final State currentState, final State nextState) {
-        final Supplier<String> supplier = () -> String.format("Impossible model transition from %s to %s", currentState, nextState);
+        final Supplier<String> supplier = () -> String.format(
+                "Impossible model transition from %s to %s",
+                currentState,
+                nextState
+        );
         if (currentState == State.SOLVING && nextState == State.SOLVING) {
             throw new ModelStateException(supplier.get());
         }
@@ -38,7 +42,10 @@ class ModelState {
 
     synchronized void onSolutionRequested() {
         if (this.state != State.SOLVE_SUCCESSFUL) {
-            throw new ModelStateException(String.format("Impossible to retrieve solution when model state is %s", this.state));
+            throw new ModelStateException(String.format(
+                    "Impossible to retrieve solution when model state is %s",
+                    this.state
+            ));
         }
     }
 

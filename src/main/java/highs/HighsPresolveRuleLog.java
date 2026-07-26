@@ -9,71 +9,73 @@
 package highs;
 
 public class HighsPresolveRuleLog {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsPresolveRuleLog(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsPresolveRuleLog obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsPresolveRuleLog obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsPresolveRuleLog(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsPresolveRuleLog(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsPresolveRuleLog() {
+        this(highsJNI.new_HighsPresolveRuleLog(), true);
     }
-  }
 
-  public void setCall(long value) {
-    highsJNI.HighsPresolveRuleLog_call_set(swigCPtr, this, value);
-  }
+    protected static long getCPtr(HighsPresolveRuleLog obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public long getCall() {
-    return highsJNI.HighsPresolveRuleLog_call_get(swigCPtr, this);
-  }
+    protected static long swigRelease(HighsPresolveRuleLog obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setCol_removed(long value) {
-    highsJNI.HighsPresolveRuleLog_col_removed_set(swigCPtr, this, value);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public long getCol_removed() {
-    return highsJNI.HighsPresolveRuleLog_col_removed_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsPresolveRuleLog(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setRow_removed(long value) {
-    highsJNI.HighsPresolveRuleLog_row_removed_set(swigCPtr, this, value);
-  }
+    public long getCall() {
+        return highsJNI.HighsPresolveRuleLog_call_get(swigCPtr, this);
+    }
 
-  public long getRow_removed() {
-    return highsJNI.HighsPresolveRuleLog_row_removed_get(swigCPtr, this);
-  }
+    public void setCall(long value) {
+        highsJNI.HighsPresolveRuleLog_call_set(swigCPtr, this, value);
+    }
 
-  public HighsPresolveRuleLog() {
-    this(highsJNI.new_HighsPresolveRuleLog(), true);
-  }
+    public long getCol_removed() {
+        return highsJNI.HighsPresolveRuleLog_col_removed_get(swigCPtr, this);
+    }
+
+    public void setCol_removed(long value) {
+        highsJNI.HighsPresolveRuleLog_col_removed_set(swigCPtr, this, value);
+    }
+
+    public long getRow_removed() {
+        return highsJNI.HighsPresolveRuleLog_row_removed_get(swigCPtr, this);
+    }
+
+    public void setRow_removed(long value) {
+        highsJNI.HighsPresolveRuleLog_row_removed_set(swigCPtr, this, value);
+    }
 
 }

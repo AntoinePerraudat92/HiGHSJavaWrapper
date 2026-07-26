@@ -9,105 +9,107 @@
 package highs;
 
 public class HighsScale {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsScale(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsScale obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsScale obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsScale(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsScale(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsScale() {
+        this(highsJNI.new_HighsScale(), true);
     }
-  }
 
-  public void setStrategy(long value) {
-    highsJNI.HighsScale_strategy_set(swigCPtr, this, value);
-  }
+    protected static long getCPtr(HighsScale obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public long getStrategy() {
-    return highsJNI.HighsScale_strategy_get(swigCPtr, this);
-  }
+    protected static long swigRelease(HighsScale obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setHas_scaling(boolean value) {
-    highsJNI.HighsScale_has_scaling_set(swigCPtr, this, value);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public boolean getHas_scaling() {
-    return highsJNI.HighsScale_has_scaling_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsScale(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setNum_col(long value) {
-    highsJNI.HighsScale_num_col_set(swigCPtr, this, value);
-  }
+    public long getStrategy() {
+        return highsJNI.HighsScale_strategy_get(swigCPtr, this);
+    }
 
-  public long getNum_col() {
-    return highsJNI.HighsScale_num_col_get(swigCPtr, this);
-  }
+    public void setStrategy(long value) {
+        highsJNI.HighsScale_strategy_set(swigCPtr, this, value);
+    }
 
-  public void setNum_row(long value) {
-    highsJNI.HighsScale_num_row_set(swigCPtr, this, value);
-  }
+    public boolean getHas_scaling() {
+        return highsJNI.HighsScale_has_scaling_get(swigCPtr, this);
+    }
 
-  public long getNum_row() {
-    return highsJNI.HighsScale_num_row_get(swigCPtr, this);
-  }
+    public void setHas_scaling(boolean value) {
+        highsJNI.HighsScale_has_scaling_set(swigCPtr, this, value);
+    }
 
-  public void setCost(double value) {
-    highsJNI.HighsScale_cost_set(swigCPtr, this, value);
-  }
+    public long getNum_col() {
+        return highsJNI.HighsScale_num_col_get(swigCPtr, this);
+    }
 
-  public double getCost() {
-    return highsJNI.HighsScale_cost_get(swigCPtr, this);
-  }
+    public void setNum_col(long value) {
+        highsJNI.HighsScale_num_col_set(swigCPtr, this, value);
+    }
 
-  public void setCol(DoubleVector value) {
-    highsJNI.HighsScale_col_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public long getNum_row() {
+        return highsJNI.HighsScale_num_row_get(swigCPtr, this);
+    }
 
-  public DoubleVector getCol() {
-    long cPtr = highsJNI.HighsScale_col_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setNum_row(long value) {
+        highsJNI.HighsScale_num_row_set(swigCPtr, this, value);
+    }
 
-  public void setRow(DoubleVector value) {
-    highsJNI.HighsScale_row_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public double getCost() {
+        return highsJNI.HighsScale_cost_get(swigCPtr, this);
+    }
 
-  public DoubleVector getRow() {
-    long cPtr = highsJNI.HighsScale_row_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setCost(double value) {
+        highsJNI.HighsScale_cost_set(swigCPtr, this, value);
+    }
 
-  public HighsScale() {
-    this(highsJNI.new_HighsScale(), true);
-  }
+    public DoubleVector getCol() {
+        long cPtr = highsJNI.HighsScale_col_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
+
+    public void setCol(DoubleVector value) {
+        highsJNI.HighsScale_col_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
+
+    public DoubleVector getRow() {
+        long cPtr = highsJNI.HighsScale_row_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
+
+    public void setRow(DoubleVector value) {
+        highsJNI.HighsScale_row_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
 
 }

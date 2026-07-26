@@ -68,7 +68,13 @@ class ModelVariableTest {
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
         final Variable x3 = model.addBinaryVariable(1.0);
-        model.addEqualityConstraint(5.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0), new LinearExpression.Term(x3, 1.0)));
+        model.addEqualityConstraint(
+                5.0, LinearExpression.of(
+                        new LinearExpression.Term(x1, 1.0),
+                        new LinearExpression.Term(x2, 1.0),
+                        new LinearExpression.Term(x3, 1.0)
+                )
+        );
 
         model.maximize().orElseThrow();
 

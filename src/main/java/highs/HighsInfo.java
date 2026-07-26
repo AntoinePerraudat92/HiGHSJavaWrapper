@@ -9,80 +9,82 @@
 package highs;
 
 public class HighsInfo extends HighsInfoStruct {
-  private transient long swigCPtr;
+    private transient long swigCPtr;
 
-  protected HighsInfo(long cPtr, boolean cMemoryOwn) {
-    super(highsJNI.HighsInfo_SWIGUpcast(cPtr), cMemoryOwn);
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsInfo obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsInfo obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsInfo(long cPtr, boolean cMemoryOwn) {
+        super(highsJNI.HighsInfo_SWIGUpcast(cPtr), cMemoryOwn);
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsInfo(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsInfo() {
+        this(highsJNI.new_HighsInfo__SWIG_0(), true);
     }
-    super.delete();
-  }
 
-  public HighsInfo() {
-    this(highsJNI.new_HighsInfo__SWIG_0(), true);
-  }
+    public HighsInfo(HighsInfo info) {
+        this(highsJNI.new_HighsInfo__SWIG_1(HighsInfo.getCPtr(info), info), true);
+    }
 
-  public HighsInfo(HighsInfo info) {
-    this(highsJNI.new_HighsInfo__SWIG_1(HighsInfo.getCPtr(info), info), true);
-  }
+    protected static long getCPtr(HighsInfo obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void invalidate() {
-    highsJNI.HighsInfo_invalidate(swigCPtr, this);
-  }
+    protected static long swigRelease(HighsInfo obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void invalidateKkt() {
-    highsJNI.HighsInfo_invalidateKkt(swigCPtr, this);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public void invalidatePrimalKkt() {
-    highsJNI.HighsInfo_invalidatePrimalKkt(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsInfo(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+        super.delete();
+    }
 
-  public void invalidateDualKkt() {
-    highsJNI.HighsInfo_invalidateDualKkt(swigCPtr, this);
-  }
+    public void invalidate() {
+        highsJNI.HighsInfo_invalidate(swigCPtr, this);
+    }
 
-  public boolean equal(HighsInfo info_) {
-    return highsJNI.HighsInfo_equal(swigCPtr, this, HighsInfo.getCPtr(info_), info_);
-  }
+    public void invalidateKkt() {
+        highsJNI.HighsInfo_invalidateKkt(swigCPtr, this);
+    }
 
-  public void setRecords(SWIGTYPE_p_std__vectorT_InfoRecord_p_t value) {
-    highsJNI.HighsInfo_records_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_InfoRecord_p_t.getCPtr(value));
-  }
+    public void invalidatePrimalKkt() {
+        highsJNI.HighsInfo_invalidatePrimalKkt(swigCPtr, this);
+    }
 
-  public SWIGTYPE_p_std__vectorT_InfoRecord_p_t getRecords() {
-    long cPtr = highsJNI.HighsInfo_records_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_InfoRecord_p_t(cPtr, false);
-  }
+    public void invalidateDualKkt() {
+        highsJNI.HighsInfo_invalidateDualKkt(swigCPtr, this);
+    }
+
+    public boolean equal(HighsInfo info_) {
+        return highsJNI.HighsInfo_equal(swigCPtr, this, HighsInfo.getCPtr(info_), info_);
+    }
+
+    public SWIGTYPE_p_std__vectorT_InfoRecord_p_t getRecords() {
+        long cPtr = highsJNI.HighsInfo_records_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_InfoRecord_p_t(cPtr, false);
+    }
+
+    public void setRecords(SWIGTYPE_p_std__vectorT_InfoRecord_p_t value) {
+        highsJNI.HighsInfo_records_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_InfoRecord_p_t.getCPtr(value));
+    }
 
 }

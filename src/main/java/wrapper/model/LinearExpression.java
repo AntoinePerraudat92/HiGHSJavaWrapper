@@ -52,7 +52,10 @@ public class LinearExpression {
             final Variable variable = term.variable();
             final long variableIndex = variable.getIndex();
             final double scalar = term.scalar();
-            newLinearExpression.terms.computeIfPresent(variableIndex, (index, otherTerm) -> new Term(variable, otherTerm.scalar() - scalar));
+            newLinearExpression.terms.computeIfPresent(
+                    variableIndex,
+                    (index, otherTerm) -> new Term(variable, otherTerm.scalar() - scalar)
+            );
             newLinearExpression.terms.putIfAbsent(variableIndex, new Term(variable, -scalar));
         }
         return newLinearExpression;
