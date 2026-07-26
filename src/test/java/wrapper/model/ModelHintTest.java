@@ -2,7 +2,7 @@ package wrapper.model;
 
 import org.junit.jupiter.api.Test;
 import wrapper.exceptions.HintException;
-import wrapper.exceptions.VariableException;
+import wrapper.exceptions.ModelStateException;
 
 import java.util.Map;
 
@@ -23,8 +23,11 @@ class ModelHintTest {
         final Model otherModel = createModel();
         final Hint hint = Hint.of(Map.of(new Variable(32, otherModel), -45D));
 
-        final VariableException exception = assertThrows(VariableException.class, () -> model.parseHint(hint));
-        assertEquals("Trying to access or modify variable associated with wrong model", exception.getMessage());
+        final ModelStateException exception = assertThrows(ModelStateException.class, () -> model.parseHint(hint));
+        assertEquals(
+                "Trying to access or modify variable/constraint associated with wrong model",
+                exception.getMessage()
+        );
     }
 
     @Test

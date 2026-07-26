@@ -127,7 +127,7 @@ public class Model {
 
     void updateVariableCost(double newCost, final Variable variable) {
         this.state.onModelChangeRequested();
-        checkVariable(variable);
+        check(variable);
         runHighsActionAndThrowOnError(
                 () -> this.highs.changeColCost(variable.getIndex(), newCost),
                 () -> new VariableException("Impossible to update cost of variable")
@@ -136,7 +136,7 @@ public class Model {
 
     void updateVariableBounds(double newLb, double newUb, final Variable variable) {
         this.state.onModelChangeRequested();
-        checkVariable(variable);
+        check(variable);
         runHighsActionAndThrowOnError(
                 () -> this.highs.changeColBounds(variable.getIndex(), newLb, newUb),
                 () -> new VariableException("Impossible to update bounds of variable")
@@ -145,17 +145,21 @@ public class Model {
 
     void updateConstraintCoefficient(double newCoefficient, final Variable variable, final Constraint constraint) {
         this.state.onModelChangeRequested();
-        checkVariable(variable);
-        checkConstraint(constraint);
+        check(variable);
+        check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
+                () -> this.highs.changeCoeff(
+                        constraint.getIndex(),
+                        variable.getIndex(),
+                        newCoefficient
+                ),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
 
     void updateRightHandSide(double newRhs, final Constraint constraint) {
         this.state.onModelChangeRequested();
-        checkConstraint(constraint);
+        check(constraint);
         runHighsActionAndThrowOnError(
                 () -> switch (constraint.getConstraintType()) {
                     case EQUALITY -> highs.changeRowBounds(constraint.getIndex(), newRhs, newRhs);
@@ -270,17 +274,10 @@ public class Model {
         return this.highs.getSolution();
     }
 
-    private void checkVariable(final Variable variable) {
-        final Model otherModel = variable.getModel();
+    private void check(final ModelObject modelObject) {
+        final Model otherModel = modelObject.getModel();
         if (this != otherModel) {
-            throw new VariableException("Trying to access or modify variable associated with wrong model");
-        }
-    }
-
-    private void checkConstraint(final Constraint constraint) {
-        final Model otherModel = constraint.getModel();
-        if (this != otherModel) {
-            throw new ConstraintException("Trying to access or modify constraint associated with wrong model");
+            throw new ModelStateException("Trying to access or modify variable/constraint associated with wrong model");
         }
     }
 
@@ -299,7 +296,7 @@ public class Model {
 
         @Override
         public void accept(final Variable variable, double value) {
-            this.model.checkVariable(variable);
+            this.model.check(variable);
             this.values.setitem(this.arrayIndex, value);
             this.indices.setitem(this.arrayIndex, variable.getIndex());
             ++this.arrayIndex;
