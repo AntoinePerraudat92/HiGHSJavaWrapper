@@ -1,6 +1,7 @@
 package wrapper.model;
 
 import org.junit.jupiter.api.Test;
+import wrapper.exceptions.ModelStateException;
 import wrapper.exceptions.VariableException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,11 +45,14 @@ class ModelConstraintTest {
                 LinearExpression.of(new LinearExpression.Term(x1, 0.5))
         );
 
-        final VariableException exception = assertThrows(
-                VariableException.class,
+        final ModelStateException exception = assertThrows(
+                ModelStateException.class,
                 () -> constraint.updateCoefficient(0.5, unknownVariable)
         );
-        assertEquals("Trying to access or modify variable associated with wrong model", exception.getMessage());
+        assertEquals(
+                "Trying to access or modify variable/constraint associated with wrong model",
+                exception.getMessage()
+        );
     }
 
     @Test
@@ -142,11 +146,14 @@ class ModelConstraintTest {
                 new LinearExpression.Term(otherModel.addContinuousVariable(0.0, 2.4, 0.1), 5.0)
         );
 
-        final VariableException exception = assertThrows(
-                VariableException.class,
+        final ModelStateException exception = assertThrows(
+                ModelStateException.class,
                 () -> model.addEqualityConstraint(2.4, expression)
         );
-        assertEquals("Trying to access or modify variable associated with wrong model", exception.getMessage());
+        assertEquals(
+                "Trying to access or modify variable/constraint associated with wrong model",
+                exception.getMessage()
+        );
     }
 
     @Test
