@@ -9,11 +9,8 @@ import org.jspecify.annotations.NullMarked;
 @NullMarked
 public class Solution {
 
-    @Getter
     private final double objectiveValue;
-    @Getter
     private final boolean isFeasible;
-    @Getter
     private final double mipGap;
 
     Solution(final HighsInfo highsInfo) {
