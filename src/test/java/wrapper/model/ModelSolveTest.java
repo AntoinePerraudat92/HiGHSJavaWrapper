@@ -41,7 +41,13 @@ class ModelSolveTest {
     void maximizeWithSimpleConstraint() {
         final Model model = createModel();
         final LinearExpression linearExpression = LinearExpression.of(
-                new LinearExpression.Term(model.addContinuousVariable(0.0, Double.MAX_VALUE, 5.5), 1.0),
+                new LinearExpression.Term(
+                        model.addContinuousVariable(
+                                0.0,
+                                Double.MAX_VALUE,
+                                5.5
+                        ), 1.0
+                ),
                 new LinearExpression.Term(model.addContinuousVariable(0.5, Double.MAX_VALUE, 1.0), 1.0)
         );
         model.addEqualityConstraint(1.0, linearExpression);
@@ -160,7 +166,7 @@ class ModelSolveTest {
     }
 
     @Test
-    void successiveCallsToSolverWithoutModelChangeMustLeadToDifferentSolutions() {
+    void successiveCallsToSolverWithoutModelChangeMustLeadToSameSolutions() {
         final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 2.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 1.0);
