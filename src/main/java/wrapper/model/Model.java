@@ -162,7 +162,11 @@ public class Model {
         checkVariable(variable);
         checkConstraint(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
+                () -> this.highs.changeCoeff(
+                        constraint.getIndex(),
+                        variable.getIndex(),
+                        newCoefficient
+                ),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -183,24 +187,18 @@ public class Model {
 
     double getValue(final ModelObject modelObject) {
         final HighsSolution highsSolution = getSolution();
-        if (modelObject instanceof Variable variable) {
-            final DoubleVector variableValues = highsSolution.getCol_value();
-            return variableValues.get((int) variable.getIndex());
-        }
-        final Constraint constraint = (Constraint) modelObject;
-        final DoubleVector constraintValues = highsSolution.getRow_value();
-        return constraintValues.get((int) constraint.getIndex());
+        final DoubleVector values = modelObject instanceof Variable
+                ? highsSolution.getCol_value()
+                : highsSolution.getRow_value();
+        return values.get((int) modelObject.getIndex());
     }
 
     double getDualValue(final ModelObject modelObject) {
         final HighsSolution highsSolution = getSolution();
-        if (modelObject instanceof Variable variable) {
-            final DoubleVector dualValues = highsSolution.getCol_dual();
-            return dualValues.get((int) variable.getIndex());
-        }
-        final Constraint constraint = (Constraint) modelObject;
-        final DoubleVector dualValues = highsSolution.getRow_dual();
-        return dualValues.get((int) constraint.getIndex());
+        final DoubleVector dualValues = modelObject instanceof Variable
+                ? highsSolution.getCol_dual()
+                : highsSolution.getRow_dual();
+        return dualValues.get((int) modelObject.getIndex());
     }
 
     protected void addOption(final Option option) {
@@ -250,7 +248,7 @@ public class Model {
                 ),
                 () -> new VariableException("Impossible to add constraint")
         );
-        return new Constraint(this.highs.getNumRow() - 1, constraintType, this);
+        return new Constraint(this.highs.getNumRow() - 1, this, constraintType);
     }
 
     protected Optional<Solution> solve() {
