@@ -27,8 +27,14 @@ abstract class ModelObject {
         return model;
     }
 
-    public abstract double getValue();
+    public double getValue() {
+        final Model model = getModel();
+        return model.getValue(this);
+    }
 
-    public abstract double getDualValue();
+    public double getDualValue() {
+        final Model model = getModel();
+        return model.getDualValue(this);
+    }
 
 }

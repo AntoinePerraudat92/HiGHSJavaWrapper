@@ -19,14 +19,4 @@ public class Variable extends ModelObject {
         model.updateVariableBounds(newLb, newUb, this);
     }
 
-    public double getValue() {
-        final Model model = getModel();
-        return model.getValue(this);
-    }
-
-    public double getDualValue() {
-        final Model model = getModel();
-        return model.getDualValue(this);
-    }
-
 }

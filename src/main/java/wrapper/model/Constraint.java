@@ -26,14 +26,4 @@ public class Constraint extends ModelObject {
         model.updateRightHandSide(newRhs, this);
     }
 
-    public double getValue() {
-        final Model model = getModel();
-        return model.getValue(this);
-    }
-
-    public double getDualValue() {
-        final Model model = getModel();
-        return model.getDualValue(this);
-    }
-
 }
