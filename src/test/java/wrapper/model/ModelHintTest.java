@@ -28,9 +28,9 @@ class ModelHintTest {
     @Test
     void hintsMustBeClearedAfterFirstSolveEvenIfNotSuccessful() {
         final Model model = createModel();
-        final Variable x1 = model.addBinaryVariable(1.0);
-        model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
-        x1.setHint(-2.0);
+        final Variable x1 = model.addIntegerVariable(5.0, 12.0, 1.0);
+        model.addEqualityConstraint(11.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
+        x1.setHint(-3.0);
 
         assertThrows(HintException.class, model::maximize);
         assertDoesNotThrow(model::maximize);
