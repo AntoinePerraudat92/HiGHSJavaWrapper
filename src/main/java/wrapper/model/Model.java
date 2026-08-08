@@ -146,7 +146,11 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
+                () -> this.highs.changeCoeff(
+                        constraint.getIndex(),
+                        variable.getIndex(),
+                        newCoefficient
+                ),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -241,7 +245,7 @@ public class Model {
                 : Optional.of(new Solution(this.highs.getHighsInfo()));
     }
 
-    protected void addHints() {
+    protected void setHints() {
         if (!this.hintManager.hasHints()) {
             return;
         }
@@ -257,7 +261,7 @@ public class Model {
 
     private Optional<Solution> optimize(final ObjSense objSense) {
         this.state.onModelChangeRequested();
-        addHints();
+        setHints();
         this.highs.changeObjectiveSense(objSense);
         this.state.onSolveRequested();
         final Optional<Solution> solution = solve();
