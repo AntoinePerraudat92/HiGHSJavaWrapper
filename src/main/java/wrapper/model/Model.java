@@ -6,6 +6,8 @@ import org.jspecify.annotations.NullMarked;
 import wrapper.exceptions.*;
 import wrapper.model.option.Option;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.ObjDoubleConsumer;
 import java.util.function.Supplier;
@@ -16,6 +18,7 @@ public class Model {
 
     private final Highs highs = new Highs();
     private final ModelState state = new ModelState();
+    private final HintManager hintManager = new HintManager();
 
     private static void runHighsActionAndThrowOnError(
             final Supplier<HighsStatus> action,
@@ -148,11 +151,7 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(
-                        constraint.getIndex(),
-                        variable.getIndex(),
-                        newCoefficient
-                ),
+                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -185,6 +184,10 @@ public class Model {
                 ? highsSolution.getCol_dual()
                 : highsSolution.getRow_dual();
         return dualValues.get((int) modelObject.getIndex());
+    }
+
+    void setHint(double hint, final Variable variable) {
+        this.hintManager.setHint(hint, variable);
     }
 
     protected void addOption(final Option option) {
@@ -243,30 +246,27 @@ public class Model {
                 : Optional.of(new Solution(this.highs.getHighsInfo()));
     }
 
-    protected void addHint(final Hint hint) {
-        final int nmbVariables = hint.getNmbHints();
-        if (nmbVariables < 1) {
-            throw new HintException("Impossible to parse hint with no variable");
-        }
-        final VariableConsumer variableConsumer = new VariableConsumer(this, nmbVariables);
-        hint.consumeHints(variableConsumer);
-        runHighsActionAndThrowOnError(
-                () -> this.highs.setSolution(
-                        nmbVariables,
-                        variableConsumer.indices.cast(),
-                        variableConsumer.values.cast()
-                ),
-                () -> new HintException("Impossible to parse hint")
-        );
-    }
-
     private Optional<Solution> optimize(final ObjSense objSense) {
         this.state.onModelChangeRequested();
+        addHints();
         this.highs.changeObjectiveSense(objSense);
         this.state.onSolveRequested();
         final Optional<Solution> solution = solve();
         solution.ifPresentOrElse(presentSolution -> this.state.onSolveSuccessful(), this.state::onSolveFailed);
         return solution;
+    }
+
+    private void addHints() {
+        if (!this.hintManager.hasHints()) {
+            return;
+        }
+        final int nmbHints = this.hintManager.getNmbHints();
+        final VariableConsumer variableConsumer = new VariableConsumer(this, nmbHints);
+        this.hintManager.consumeHints(variableConsumer);
+        runHighsActionAndThrowOnError(
+                () -> this.highs.setSolution(nmbHints, variableConsumer.indices.cast(), variableConsumer.values.cast()),
+                () -> new HintException("Impossible to parse hint")
+        );
     }
 
     private HighsSolution getSolution() {
@@ -281,6 +281,7 @@ public class Model {
         }
     }
 
+    @NullMarked
     private static class VariableConsumer implements ObjDoubleConsumer<Variable> {
 
         private final Model model;
@@ -300,6 +301,34 @@ public class Model {
             this.values.setitem(this.arrayIndex, value);
             this.indices.setitem(this.arrayIndex, variable.getIndex());
             ++this.arrayIndex;
+        }
+
+    }
+
+    @NullMarked
+    @NoArgsConstructor
+    private static class HintManager {
+
+        private final Map<Variable, Double> hints = new HashMap<>();
+
+        public void clearHints() {
+            this.hints.clear();
+        }
+
+        public void setHint(double hint, final Variable variable) {
+            this.hints.put(variable, hint);
+        }
+
+        void consumeHints(final ObjDoubleConsumer<Variable> consumer) {
+            this.hints.forEach(consumer::accept);
+        }
+
+        int getNmbHints() {
+            return this.hints.size();
+        }
+
+        boolean hasHints() {
+            return !this.hints.isEmpty();
         }
 
     }
