@@ -146,11 +146,7 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(
-                        constraint.getIndex(),
-                        variable.getIndex(),
-                        newCoefficient
-                ),
+                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -252,11 +248,11 @@ public class Model {
         final int nmbHints = this.hintManager.getNmbHints();
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbHints);
         this.hintManager.consumeHints(variableConsumer);
+        this.hintManager.clearHints();
         runHighsActionAndThrowOnError(
                 () -> this.highs.setSolution(nmbHints, variableConsumer.indices.cast(), variableConsumer.values.cast()),
                 () -> new HintException("Impossible to parse hints")
         );
-        this.hintManager.clearHints();
     }
 
     private Optional<Solution> optimize(final ObjSense objSense) {

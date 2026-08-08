@@ -26,6 +26,17 @@ class ModelHintTest {
     }
 
     @Test
+    void hintsMustBeClearedAfterFirstSolveE() {
+        final Model model = createModel();
+        final Variable x1 = model.addBinaryVariable(1.0);
+        model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
+        x1.setHint(-1.0);
+
+        assertThrows(HintException.class, model::maximize);
+        assertDoesNotThrow(model::maximize);
+    }
+
+    @Test
     void maximizeMustNotThrowIfNoHint() {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
