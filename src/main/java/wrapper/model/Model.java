@@ -123,11 +123,6 @@ public class Model {
         addOption(option);
     }
 
-    public void parseHint(final Hint hint) {
-        this.state.onModelChangeRequested();
-        addHint(hint);
-    }
-
     void updateVariableCost(double newCost, final Variable variable) {
         this.state.onModelChangeRequested();
         check(variable);
@@ -151,7 +146,11 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
+                () -> this.highs.changeCoeff(
+                        constraint.getIndex(),
+                        variable.getIndex(),
+                        newCoefficient
+                ),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -246,17 +245,7 @@ public class Model {
                 : Optional.of(new Solution(this.highs.getHighsInfo()));
     }
 
-    private Optional<Solution> optimize(final ObjSense objSense) {
-        this.state.onModelChangeRequested();
-        addHints();
-        this.highs.changeObjectiveSense(objSense);
-        this.state.onSolveRequested();
-        final Optional<Solution> solution = solve();
-        solution.ifPresentOrElse(presentSolution -> this.state.onSolveSuccessful(), this.state::onSolveFailed);
-        return solution;
-    }
-
-    private void addHints() {
+    protected void addHints() {
         if (!this.hintManager.hasHints()) {
             return;
         }
@@ -265,8 +254,19 @@ public class Model {
         this.hintManager.consumeHints(variableConsumer);
         runHighsActionAndThrowOnError(
                 () -> this.highs.setSolution(nmbHints, variableConsumer.indices.cast(), variableConsumer.values.cast()),
-                () -> new HintException("Impossible to parse hint")
+                () -> new HintException("Impossible to parse hints")
         );
+        this.hintManager.clearHints();
+    }
+
+    private Optional<Solution> optimize(final ObjSense objSense) {
+        this.state.onModelChangeRequested();
+        addHints();
+        this.highs.changeObjectiveSense(objSense);
+        this.state.onSolveRequested();
+        final Optional<Solution> solution = solve();
+        solution.ifPresentOrElse(presentSolution -> this.state.onSolveSuccessful(), this.state::onSolveFailed);
+        return solution;
     }
 
     private HighsSolution getSolution() {

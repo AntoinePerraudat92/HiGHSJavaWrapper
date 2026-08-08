@@ -2,9 +2,6 @@ package wrapper.model;
 
 import org.junit.jupiter.api.Test;
 import wrapper.exceptions.HintException;
-import wrapper.exceptions.ModelStateException;
-
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;
@@ -18,42 +15,27 @@ class ModelHintTest {
     }
 
     @Test
-    void parseMustThrowForUnknownVariables() {
-        final Model model = createModel();
-        final Model otherModel = createModel();
-        final Hint hint = Hint.of(Map.of(new Variable(32, otherModel), -45D));
-
-        final ModelStateException exception = assertThrows(ModelStateException.class, () -> model.parseHint(hint));
-        assertEquals(
-                "Trying to access or modify variable/constraint associated with wrong model",
-                exception.getMessage()
-        );
-    }
-
-    @Test
-    void parseHintMustThrowIfInvalidInitialValue() {
+    void maximizeMustThrowIfInvalidInitialValue() {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
-        final Hint hint = Hint.of(Map.of(x1, -1.0));
+        x1.setHint(-1.0);
 
-        final HintException exception = assertThrows(HintException.class, () -> model.parseHint(hint));
-        assertEquals("Impossible to parse hint", exception.getMessage());
+        final HintException hintException = assertThrows(HintException.class, model::maximize);
+        assertEquals("Impossible to parse hints", hintException.getMessage());
     }
 
     @Test
-    void parseHintMustReturnFalseWhenHintIsEmpty() {
+    void maximizeMustNotThrowIfNoHint() {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
-        final Hint hint = new Hint();
 
-        final HintException exception = assertThrows(HintException.class, () -> model.parseHint(hint));
-        assertEquals("Impossible to parse hint with no variable", exception.getMessage());
+        assertDoesNotThrow(model::maximize);
     }
 
     @Test
-    void parseHintMustReturnTrue() {
+    void maximizeMustReturnOneIfHintsSetForAllVariables() {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
@@ -66,7 +48,10 @@ class ModelHintTest {
                 )
         );
 
-        assertDoesNotThrow(() -> model.parseHint(Hint.of(Map.of(x1, 1.0, x2, 0.0, x3, 0.0))));
+        x1.setHint(1.0);
+        x2.setHint(0.0);
+        x3.setHint(0.0);
+
         final Solution solution = model.maximize().orElseThrow();
         assertEquals(1.0, solution.getObjectiveValue(), EPSILON);
     }
