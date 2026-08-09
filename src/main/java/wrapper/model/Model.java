@@ -146,11 +146,7 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(
-                        constraint.getIndex(),
-                        variable.getIndex(),
-                        newCoefficient
-                ),
+                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -189,7 +185,13 @@ public class Model {
         this.hintManager.setHint(hint, variable);
     }
 
-    protected void addOption(final Option option) {
+    protected Optional<Solution> solve() {
+        return this.highs.run() == HighsStatus.kError
+                ? Optional.empty()
+                : Optional.of(new Solution(this.highs.getHighsInfo()));
+    }
+
+    private void addOption(final Option option) {
         runHighsActionAndThrowOnError(
                 () -> switch (option.getValue()) {
                     case String stringValue -> this.highs.setOptionValue(option.getName(), stringValue);
@@ -201,7 +203,7 @@ public class Model {
         );
     }
 
-    protected Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
+    private Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
         runHighsActionAndThrowOnError(
                 () -> this.highs.addCol(cost, lb, ub, 0, null, null),
                 () -> new VariableException("Impossible to add variable")
@@ -214,7 +216,7 @@ public class Model {
         return new Variable(variableIndex, this);
     }
 
-    protected Constraint addConstraint(
+    private Constraint addConstraint(
             double lhs,
             double rhs,
             final LinearExpression expression,
@@ -239,13 +241,7 @@ public class Model {
         return new Constraint(this.highs.getNumRow() - 1, this, constraintType);
     }
 
-    protected Optional<Solution> solve() {
-        return this.highs.run() == HighsStatus.kError
-                ? Optional.empty()
-                : Optional.of(new Solution(this.highs.getHighsInfo()));
-    }
-
-    protected void setHints() {
+    private void setHints() {
         if (!this.hintManager.hasHints()) {
             return;
         }
