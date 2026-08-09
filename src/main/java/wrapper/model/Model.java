@@ -146,7 +146,11 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
+                () -> this.highs.changeCoeff(
+                        constraint.getIndex(),
+                        variable.getIndex(),
+                        newCoefficient
+                ),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -161,7 +165,7 @@ public class Model {
                             highs.changeRowBounds(constraint.getIndex(), newRhs, Double.MAX_VALUE);
                     case LESS_THAN_OR_EQUAL_TO ->
                             highs.changeRowBounds(constraint.getIndex(), -Double.MAX_VALUE, newRhs);
-                }, () -> new VariableException("Impossible to update right hand side of constraint")
+                }, () -> new ConstraintException("Impossible to update right hand side of constraint")
         );
     }
 
