@@ -1,4 +1,4 @@
- package wrapper.model;
+package wrapper.model;
 
 import highs.*;
 import lombok.NoArgsConstructor;
