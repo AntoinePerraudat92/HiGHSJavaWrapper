@@ -19,7 +19,7 @@ abstract class ModelObject {
         this.modelWeakReference = new WeakReference<>(model);
     }
 
-    Model getModel() {
+    private Model getModel() {
         final Model model = modelWeakReference.get();
         if (model == null) {
             throw new ModelStateException("Related model does not exist");
