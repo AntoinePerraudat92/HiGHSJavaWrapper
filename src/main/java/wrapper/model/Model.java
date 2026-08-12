@@ -1,4 +1,4 @@
-package wrapper.model;
+ package wrapper.model;
 
 import highs.*;
 import lombok.NoArgsConstructor;
@@ -141,6 +141,10 @@ public class Model {
         );
     }
 
+    void setHint(double hint, final Variable variable) {
+        this.hintManager.setHint(hint, variable);
+    }
+
     void updateConstraintCoefficient(double newCoefficient, final Variable variable, final Constraint constraint) {
         this.state.onModelChangeRequested();
         check(variable);
@@ -183,10 +187,6 @@ public class Model {
                 ? highsSolution.getCol_dual()
                 : highsSolution.getRow_dual();
         return dualValues.get((int) modelObject.getIndex());
-    }
-
-    void setHint(double hint, final Variable variable) {
-        this.hintManager.setHint(hint, variable);
     }
 
     protected Optional<Solution> solve() {
