@@ -21,7 +21,7 @@ class ModelConcurrentUseTest {
     void addVariableToModelWhileSolvingOnGoingIsNotAllowed() throws InterruptedException, ExecutionException,
             TimeoutException {
         final ExceptionCatcher exceptionCatcher = new ExceptionCatcher();
-        final MockSolverModel model = new MockSolverModel();
+        final FakeModel model = new FakeModel();
         final var future = model.startOptimization();
         model.waitUntilOptimizationStarted();
 
@@ -33,9 +33,25 @@ class ModelConcurrentUseTest {
     }
 
     @Test
+    void modifyingVariableCostWhileSolvingOnGoingIsNotAllowed() throws InterruptedException, ExecutionException,
+            TimeoutException {
+        final ExceptionCatcher exceptionCatcher = new ExceptionCatcher();
+        final FakeModel model = new FakeModel();
+        final Variable x = model.addBinaryVariable(2.0);
+        final var future = model.startOptimization();
+        model.waitUntilOptimizationStarted();
+
+        exceptionCatcher.run(() -> x.updateCost(5.0));
+
+        model.stopOptimization();
+        model.waitUntilOptimizationFinished(future);
+        assertInstanceOf(ModelStateException.class, exceptionCatcher.exception);
+    }
+
+    @Test
     void startOptimizationTwiceIsNotAllowed() throws InterruptedException, ExecutionException, TimeoutException {
         final ExceptionCatcher exceptionCatcher = new ExceptionCatcher();
-        final MockSolverModel model = new MockSolverModel();
+        final FakeModel model = new FakeModel();
         final var future = model.startOptimization();
         model.waitUntilOptimizationStarted();
 
@@ -63,7 +79,7 @@ class ModelConcurrentUseTest {
     }
 
     @NullMarked
-    private static class MockSolverModel extends Model {
+    private static class FakeModel extends Model {
 
         private final Semaphore optimizationStartedSemaphore = new Semaphore(0);
         private final Semaphore optimizationDoneSemaphore = new Semaphore(0);
