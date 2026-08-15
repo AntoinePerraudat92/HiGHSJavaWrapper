@@ -1,0 +1,67 @@
+name: Windows Latest
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        java: [ '21', '23', '24', '25' ]
+        compiler: [ 'msvc' ]
+        os: [ windows-latest ]
+
+    name: Build with JDK ${{ matrix.java }} and ${{ matrix.compiler }}
+
+    steps:
+      - name: Set up MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Install SWIG
+        run: |
+          choco install swig -y
+
+      - name: Checkout HiGHS
+        uses: actions/checkout@v4
+        with:
+          repository: ERGO-Code/HiGHS
+          ref: v1.15.1
+          path: HiGHS
+
+      - name: Build HiGHS
+        shell: pwsh
+        run: |
+          echo "HIGHS_HOME=$pwd\HiGHS" >> $env:GITHUB_ENV
+          cd HiGHS
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DHIGHSINT64=on
+          cmake --build build --config Release --parallel
+          cd build
+          ctest
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'temurin'
+
+      - name: Checkout project
+        uses: actions/checkout@v4
+        with:
+          path: Wrapper
+
+      - name: Generate shared libraries
+        shell: pwsh
+        run: |
+          cd Wrapper
+          cl
+          ./generate_shared_libraries
+
+      - name: Run Tests
+        shell: pwsh
+        run: |
+          cd Wrapper
+          mvn test
