@@ -58,7 +58,7 @@ jobs:
           cmake -S . -B build -DCMAKE_BUILD_TYPE=RELEASE -DHIGHSINT64=on
           cmake --build build --parallel --config RELEASE
           cd build
-          ctest
+          ctest --output-on-failure
 
       - name: Set up JDK
         uses: actions/setup-java@v3
