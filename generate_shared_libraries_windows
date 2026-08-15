@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+cp "${HIGHS_HOME}/build/bin/highs.dll" ./
+cp "${HIGHS_HOME}/build/lib/highs.lib" ./
+
+cd src/main/java/highs
+
+cl \
+    /O2 \
+    /EHsc \
+    /I"${JAVA_HOME}/include" \
+    /I"${JAVA_HOME}/include/win32" \
+    /I"${HIGHS_HOME}/highs" \
+    /I"${HIGHS_HOME}/build" \
+    /c swig_java_highs_wrap.cxx
+
+link \
+    /DLL \
+    /OUT:../../../../highswrap.dll \
+    swig_java_highs_wrap.obj \
+    highs.lib

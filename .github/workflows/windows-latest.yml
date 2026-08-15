@@ -54,11 +54,10 @@ jobs:
           path: Wrapper
 
       - name: Generate shared libraries
-        shell: pwsh
+        shell: bash
         run: |
           cd Wrapper
-          cl
-          ./generate_shared_libraries
+          ./generate_shared_libraries_windows
 
       - name: Run Tests
         shell: pwsh
