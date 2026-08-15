@@ -1,9 +1,9 @@
 package wrapper.model;
 
 import org.junit.jupiter.api.Test;
+import wrapper.exceptions.ModelStateException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;
 import static wrapper.util.ObjectCreator.createModel;
 
@@ -12,6 +12,28 @@ class ModelValueTest {
     static {
         System.loadLibrary("highs");
         System.loadLibrary("highswrap");
+    }
+
+    @Test
+    void requestingVariableValuesWhenModelNotSolvedMustThrow() {
+        final Model model = createModel();
+        final Variable x = model.addBinaryVariable(5.0);
+
+        assertThrows(ModelStateException.class, x::getValue);
+        assertThrows(ModelStateException.class, x::getDualValue);
+    }
+
+    @Test
+    void requestingConstraintValuesWhenModelNotSolvedMustThrow() {
+        final Model model = createModel();
+        final Variable x = model.addBinaryVariable(1.0);
+        final Constraint constraint = model.addEqualityConstraint(
+                0.0,
+                LinearExpression.of(new LinearExpression.Term(x, 1.0))
+        );
+
+        assertThrows(ModelStateException.class, constraint::getValue);
+        assertThrows(ModelStateException.class, constraint::getDualValue);
     }
 
     @Test
