@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ '21' ]
+        java: [ '21', '23', '24', '25' ]
         compiler: [ 'msvc' ]
         os: [ windows-latest ]
 
@@ -42,13 +42,6 @@ jobs:
           cd build
           ctest -C Release
 
-      - name: Inspect HiGHS build output
-        shell: bash
-        run: |
-          echo "HIGHS_HOME=$HIGHS_HOME"
-          find "$HIGHS_HOME/build" -iname "*.dll"
-          find "$HIGHS_HOME/build" -iname "*.lib"
-
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
@@ -65,14 +58,6 @@ jobs:
         run: |
           cd Wrapper
           ./generate_shared_libraries_windows.bat
-
-      - name: Inspect Wrapper build output
-        shell: bash
-        run: |
-          cd Wrapper
-          echo "HIGHS_HOME=$HIGHS_HOME"
-          find "./" -iname "*.dll"
-          find "./" -iname "*.lib"
 
       - name: Run Tests
         shell: pwsh
