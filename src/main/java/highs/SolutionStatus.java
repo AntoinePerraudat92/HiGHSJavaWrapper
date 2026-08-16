@@ -9,62 +9,49 @@
 package highs;
 
 public final class SolutionStatus {
-    public final static SolutionStatus kSolutionStatusNone = new SolutionStatus(
-            "kSolutionStatusNone",
-            highsJNI.kSolutionStatusNone_get()
-    );
-    public final static SolutionStatus kSolutionStatusInfeasible = new SolutionStatus("kSolutionStatusInfeasible");
-    public final static SolutionStatus kSolutionStatusFeasible = new SolutionStatus("kSolutionStatusFeasible");
-    public final static SolutionStatus kSolutionStatusMin = new SolutionStatus(
-            "kSolutionStatusMin",
-            highsJNI.kSolutionStatusMin_get()
-    );
-    public final static SolutionStatus kSolutionStatusMax = new SolutionStatus(
-            "kSolutionStatusMax",
-            highsJNI.kSolutionStatusMax_get()
-    );
-    private static SolutionStatus[] swigValues = {
-            kSolutionStatusNone,
-            kSolutionStatusInfeasible,
-            kSolutionStatusFeasible,
-            kSolutionStatusMin,
-            kSolutionStatusMax
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static SolutionStatus kSolutionStatusNone = new SolutionStatus("kSolutionStatusNone", highsJNI.kSolutionStatusNone_get());
+  public final static SolutionStatus kSolutionStatusInfeasible = new SolutionStatus("kSolutionStatusInfeasible");
+  public final static SolutionStatus kSolutionStatusFeasible = new SolutionStatus("kSolutionStatusFeasible");
+  public final static SolutionStatus kSolutionStatusMin = new SolutionStatus("kSolutionStatusMin", highsJNI.kSolutionStatusMin_get());
+  public final static SolutionStatus kSolutionStatusMax = new SolutionStatus("kSolutionStatusMax", highsJNI.kSolutionStatusMax_get());
 
-    private SolutionStatus(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private SolutionStatus(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private SolutionStatus(String swigName, SolutionStatus swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static SolutionStatus swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + SolutionStatus.class + " with value " + swigValue);
+  }
 
-    public static SolutionStatus swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + SolutionStatus.class + " with value " + swigValue);
-    }
+  private SolutionStatus(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private SolutionStatus(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private SolutionStatus(String swigName, SolutionStatus swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static SolutionStatus[] swigValues = { kSolutionStatusNone, kSolutionStatusInfeasible, kSolutionStatusFeasible, kSolutionStatusMin, kSolutionStatusMax };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

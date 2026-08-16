@@ -9,49 +9,47 @@
 package highs;
 
 public final class MatrixFormat {
-    public final static MatrixFormat kColwise = new MatrixFormat("kColwise", highsJNI.MatrixFormat_kColwise_get());
-    public final static MatrixFormat kRowwise = new MatrixFormat("kRowwise");
-    public final static MatrixFormat kRowwisePartitioned = new MatrixFormat("kRowwisePartitioned");
-    private static MatrixFormat[] swigValues = {
-            kColwise,
-            kRowwise,
-            kRowwisePartitioned
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static MatrixFormat kColwise = new MatrixFormat("kColwise", highsJNI.MatrixFormat_kColwise_get());
+  public final static MatrixFormat kRowwise = new MatrixFormat("kRowwise");
+  public final static MatrixFormat kRowwisePartitioned = new MatrixFormat("kRowwisePartitioned");
 
-    private MatrixFormat(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private MatrixFormat(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private MatrixFormat(String swigName, MatrixFormat swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static MatrixFormat swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + MatrixFormat.class + " with value " + swigValue);
+  }
 
-    public static MatrixFormat swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + MatrixFormat.class + " with value " + swigValue);
-    }
+  private MatrixFormat(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private MatrixFormat(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private MatrixFormat(String swigName, MatrixFormat swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static MatrixFormat[] swigValues = { kColwise, kRowwise, kRowwisePartitioned };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

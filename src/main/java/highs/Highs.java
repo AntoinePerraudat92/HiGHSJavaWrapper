@@ -9,2631 +9,1307 @@
 package highs;
 
 public class Highs {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
-
-    protected Highs(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
-
-    public Highs() {
-        this(highsJNI.new_Highs(), true);
-    }
-
-    protected static long getCPtr(Highs obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
-
-    protected static long swigRelease(Highs obj) {
-        long ptr = 0;
-        if (obj != null) {
-            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
-            ptr = obj.swigCPtr;
-            obj.swigCMemOwn = false;
-            obj.delete();
-        }
-        return ptr;
-    }
-
-    public static void resetGlobalScheduler(boolean blocking) {
-        highsJNI.Highs_resetGlobalScheduler__SWIG_0(blocking);
-    }
-
-    public static void resetGlobalScheduler() {
-        highsJNI.Highs_resetGlobalScheduler__SWIG_1();
-    }
-
-    @SuppressWarnings({
-            "deprecation",
-            "removal"
-    })
-    protected void finalize() {
-        delete();
-    }
-
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                highsJNI.delete_Highs(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
-
-    public String version() {
-        return highsJNI.Highs_version(swigCPtr, this);
-    }
-
-    public long versionMajor() {
-        return highsJNI.Highs_versionMajor(swigCPtr, this);
-    }
-
-    public long versionMinor() {
-        return highsJNI.Highs_versionMinor(swigCPtr, this);
-    }
-
-    public long versionPatch() {
-        return highsJNI.Highs_versionPatch(swigCPtr, this);
-    }
-
-    public String githash() {
-        return highsJNI.Highs_githash(swigCPtr, this);
-    }
-
-    public String getThirdPartyNotice() {
-        return highsJNI.Highs_getThirdPartyNotice(swigCPtr, this);
-    }
-
-    public HighsStatus clear() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_clear(swigCPtr, this));
-    }
-
-    public HighsStatus clearModel() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_clearModel(swigCPtr, this));
-    }
-
-    public HighsStatus clearSolver() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_clearSolver(swigCPtr, this));
-    }
-
-    public HighsStatus clearSolverDualData() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_clearSolverDualData(swigCPtr, this));
-    }
-
-    public HighsStatus releaseMemory() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_releaseMemory(swigCPtr, this));
-    }
-
-    public HighsStatus passModel(HighsModel model) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_0(
-                swigCPtr,
-                this,
-                HighsModel.getCPtr(model),
-                model
-        ));
-    }
-
-    public HighsStatus passModel(SWIGTYPE_p_HighsLp lp) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_1(swigCPtr, this, SWIGTYPE_p_HighsLp.getCPtr(lp)));
-    }
-
-    public HighsStatus passModel(
-            long num_col,
-            long num_row,
-            long num_nz,
-            long q_num_nz,
-            long a_format,
-            long q_format,
-            long sense,
-            double offset,
-            SWIGTYPE_p_double col_cost,
-            SWIGTYPE_p_double col_lower,
-            SWIGTYPE_p_double col_upper,
-            SWIGTYPE_p_double row_lower,
-            SWIGTYPE_p_double row_upper,
-            SWIGTYPE_p_long_long a_start,
-            SWIGTYPE_p_long_long a_index,
-            SWIGTYPE_p_double a_value,
-            SWIGTYPE_p_long_long q_start,
-            SWIGTYPE_p_long_long q_index,
-            SWIGTYPE_p_double q_value,
-            SWIGTYPE_p_long_long integrality
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_2(
-                swigCPtr,
-                this,
-                num_col,
-                num_row,
-                num_nz,
-                q_num_nz,
-                a_format,
-                q_format,
-                sense,
-                offset,
-                SWIGTYPE_p_double.getCPtr(col_cost),
-                SWIGTYPE_p_double.getCPtr(col_lower),
-                SWIGTYPE_p_double.getCPtr(col_upper),
-                SWIGTYPE_p_double.getCPtr(row_lower),
-                SWIGTYPE_p_double.getCPtr(row_upper),
-                SWIGTYPE_p_long_long.getCPtr(a_start),
-                SWIGTYPE_p_long_long.getCPtr(a_index),
-                SWIGTYPE_p_double.getCPtr(a_value),
-                SWIGTYPE_p_long_long.getCPtr(q_start),
-                SWIGTYPE_p_long_long.getCPtr(q_index),
-                SWIGTYPE_p_double.getCPtr(q_value),
-                SWIGTYPE_p_long_long.getCPtr(integrality)
-        ));
-    }
-
-    public HighsStatus passModel(
-            long num_col,
-            long num_row,
-            long num_nz,
-            long q_num_nz,
-            long a_format,
-            long q_format,
-            long sense,
-            double offset,
-            SWIGTYPE_p_double col_cost,
-            SWIGTYPE_p_double col_lower,
-            SWIGTYPE_p_double col_upper,
-            SWIGTYPE_p_double row_lower,
-            SWIGTYPE_p_double row_upper,
-            SWIGTYPE_p_long_long a_start,
-            SWIGTYPE_p_long_long a_index,
-            SWIGTYPE_p_double a_value,
-            SWIGTYPE_p_long_long q_start,
-            SWIGTYPE_p_long_long q_index,
-            SWIGTYPE_p_double q_value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_3(
-                swigCPtr,
-                this,
-                num_col,
-                num_row,
-                num_nz,
-                q_num_nz,
-                a_format,
-                q_format,
-                sense,
-                offset,
-                SWIGTYPE_p_double.getCPtr(col_cost),
-                SWIGTYPE_p_double.getCPtr(col_lower),
-                SWIGTYPE_p_double.getCPtr(col_upper),
-                SWIGTYPE_p_double.getCPtr(row_lower),
-                SWIGTYPE_p_double.getCPtr(row_upper),
-                SWIGTYPE_p_long_long.getCPtr(a_start),
-                SWIGTYPE_p_long_long.getCPtr(a_index),
-                SWIGTYPE_p_double.getCPtr(a_value),
-                SWIGTYPE_p_long_long.getCPtr(q_start),
-                SWIGTYPE_p_long_long.getCPtr(q_index),
-                SWIGTYPE_p_double.getCPtr(q_value)
-        ));
-    }
-
-    public HighsStatus passModel(
-            long num_col,
-            long num_row,
-            long num_nz,
-            long a_format,
-            long sense,
-            double offset,
-            SWIGTYPE_p_double col_cost,
-            SWIGTYPE_p_double col_lower,
-            SWIGTYPE_p_double col_upper,
-            SWIGTYPE_p_double row_lower,
-            SWIGTYPE_p_double row_upper,
-            SWIGTYPE_p_long_long a_start,
-            SWIGTYPE_p_long_long a_index,
-            SWIGTYPE_p_double a_value,
-            SWIGTYPE_p_long_long integrality
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_4(
-                swigCPtr,
-                this,
-                num_col,
-                num_row,
-                num_nz,
-                a_format,
-                sense,
-                offset,
-                SWIGTYPE_p_double.getCPtr(col_cost),
-                SWIGTYPE_p_double.getCPtr(col_lower),
-                SWIGTYPE_p_double.getCPtr(col_upper),
-                SWIGTYPE_p_double.getCPtr(row_lower),
-                SWIGTYPE_p_double.getCPtr(row_upper),
-                SWIGTYPE_p_long_long.getCPtr(a_start),
-                SWIGTYPE_p_long_long.getCPtr(a_index),
-                SWIGTYPE_p_double.getCPtr(a_value),
-                SWIGTYPE_p_long_long.getCPtr(integrality)
-        ));
-    }
-
-    public HighsStatus passModel(
-            long num_col,
-            long num_row,
-            long num_nz,
-            long a_format,
-            long sense,
-            double offset,
-            SWIGTYPE_p_double col_cost,
-            SWIGTYPE_p_double col_lower,
-            SWIGTYPE_p_double col_upper,
-            SWIGTYPE_p_double row_lower,
-            SWIGTYPE_p_double row_upper,
-            SWIGTYPE_p_long_long a_start,
-            SWIGTYPE_p_long_long a_index,
-            SWIGTYPE_p_double a_value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_5(
-                swigCPtr,
-                this,
-                num_col,
-                num_row,
-                num_nz,
-                a_format,
-                sense,
-                offset,
-                SWIGTYPE_p_double.getCPtr(col_cost),
-                SWIGTYPE_p_double.getCPtr(col_lower),
-                SWIGTYPE_p_double.getCPtr(col_upper),
-                SWIGTYPE_p_double.getCPtr(row_lower),
-                SWIGTYPE_p_double.getCPtr(row_upper),
-                SWIGTYPE_p_long_long.getCPtr(a_start),
-                SWIGTYPE_p_long_long.getCPtr(a_index),
-                SWIGTYPE_p_double.getCPtr(a_value)
-        ));
-    }
-
-    public HighsStatus passHessian(SWIGTYPE_p_HighsHessian hessian_) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passHessian__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_HighsHessian.getCPtr(hessian_)
-        ));
-    }
-
-    public HighsStatus passHessian(
-            long dim,
-            long num_nz,
-            long format,
-            SWIGTYPE_p_long_long start,
-            SWIGTYPE_p_long_long index,
-            SWIGTYPE_p_double value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passHessian__SWIG_1(
-                swigCPtr,
-                this,
-                dim,
-                num_nz,
-                format,
-                SWIGTYPE_p_long_long.getCPtr(start),
-                SWIGTYPE_p_long_long.getCPtr(index),
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus passLinearObjectives(long num_linear_objective, HighsLinearObjective linear_objective) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passLinearObjectives(
-                swigCPtr,
-                this,
-                num_linear_objective,
-                HighsLinearObjective.getCPtr(linear_objective),
-                linear_objective
-        ));
-    }
-
-    public HighsStatus addLinearObjective(HighsLinearObjective linear_objective, long iObj) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_addLinearObjective__SWIG_0(
-                swigCPtr,
-                this,
-                HighsLinearObjective.getCPtr(linear_objective),
-                linear_objective,
-                iObj
-        ));
-    }
-
-    public HighsStatus addLinearObjective(HighsLinearObjective linear_objective) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_addLinearObjective__SWIG_1(
-                swigCPtr,
-                this,
-                HighsLinearObjective.getCPtr(linear_objective),
-                linear_objective
-        ));
-    }
-
-    public long getNumLinearObjectives() {
-        return highsJNI.Highs_getNumLinearObjectives(swigCPtr, this);
-    }
-
-    public HighsLinearObjective getLinearObjective(long idx) {
-        return new HighsLinearObjective(highsJNI.Highs_getLinearObjective(swigCPtr, this, idx), false);
-    }
-
-    public HighsStatus clearLinearObjectives() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_clearLinearObjectives(swigCPtr, this));
-    }
-
-    public HighsStatus passColName(long col, String name) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passColName(swigCPtr, this, col, name));
-    }
-
-    public HighsStatus passRowName(long row, String name) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passRowName(swigCPtr, this, row, name));
-    }
-
-    public HighsStatus passModelName(String name) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passModelName(swigCPtr, this, name));
-    }
-
-    public HighsStatus readModel(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_readModel(swigCPtr, this, filename));
-    }
-
-    public HighsStatus readBasis(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_readBasis(swigCPtr, this, filename));
-    }
-
-    public HighsStatus matrixImage(String matrix_image_filename, String hessian_image_filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_matrixImage__SWIG_0(
-                swigCPtr,
-                this,
-                matrix_image_filename,
-                hessian_image_filename
-        ));
-    }
-
-    public HighsStatus matrixImage(String matrix_image_filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_matrixImage__SWIG_1(swigCPtr, this, matrix_image_filename));
-    }
-
-    public HighsStatus presolve() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_presolve(swigCPtr, this));
-    }
-
-    public HighsStatus run() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_run(swigCPtr, this));
-    }
-
-    public HighsStatus postsolve(HighsSolution solution) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_postsolve__SWIG_0(
-                swigCPtr,
-                this,
-                HighsSolution.getCPtr(solution),
-                solution
-        ));
-    }
-
-    public HighsStatus postsolve(HighsSolution solution, HighsBasis basis) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_postsolve__SWIG_1(
-                swigCPtr,
-                this,
-                HighsSolution.getCPtr(solution),
-                solution,
-                HighsBasis.getCPtr(basis),
-                basis
-        ));
-    }
-
-    public HighsStatus writeSolution(String filename, long style) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeSolution__SWIG_0(swigCPtr, this, filename, style));
-    }
-
-    public HighsStatus writeSolution(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeSolution__SWIG_1(swigCPtr, this, filename));
-    }
-
-    public HighsStatus readSolution(String filename, long style) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_readSolution__SWIG_0(swigCPtr, this, filename, style));
-    }
-
-    public HighsStatus readSolution(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_readSolution__SWIG_1(swigCPtr, this, filename));
-    }
-
-    public HighsStatus assessPrimalSolution(SWIGTYPE_p_bool valid, SWIGTYPE_p_bool integral, SWIGTYPE_p_bool feasible) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_assessPrimalSolution(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_bool.getCPtr(valid),
-                SWIGTYPE_p_bool.getCPtr(integral),
-                SWIGTYPE_p_bool.getCPtr(feasible)
-        ));
-    }
-
-    public HighsStatus setOptionValue(String option, boolean value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setOptionValue__SWIG_0(swigCPtr, this, option, value));
-    }
-
-    public HighsStatus setOptionValue(String option, long value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setOptionValue__SWIG_1(swigCPtr, this, option, value));
-    }
-
-    public HighsStatus setOptionValue(String option, int value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setOptionValue__SWIG_2(swigCPtr, this, option, value));
-    }
-
-    public HighsStatus setOptionValue(String option, double value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setOptionValue__SWIG_3(swigCPtr, this, option, value));
-    }
-
-    public HighsStatus setOptionValue(String option, String value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setOptionValue__SWIG_4(swigCPtr, this, option, value));
-    }
-
-    public HighsStatus readOptions(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_readOptions(swigCPtr, this, filename));
-    }
-
-    public HighsStatus passOptions(SWIGTYPE_p_HighsOptions options) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passOptions(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_HighsOptions.getCPtr(options)
-        ));
-    }
-
-    public SWIGTYPE_p_HighsOptions getOptions() {
-        return new SWIGTYPE_p_HighsOptions(highsJNI.Highs_getOptions(swigCPtr, this), false);
-    }
-
-    public HighsStatus getOptionValue(String option, SWIGTYPE_p_bool value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getOptionValue__SWIG_0(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_bool.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getOptionValue(String option, SWIGTYPE_p_long_long value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getOptionValue__SWIG_1(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_long_long.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getOptionValue(String option, SWIGTYPE_p_double value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getOptionValue__SWIG_2(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getOptionValue(String option, SWIGTYPE_p_std__string value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getOptionValue__SWIG_3(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_std__string.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getOptionType(String option, SWIGTYPE_p_HighsOptionType type) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getOptionType__SWIG_0(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_HighsOptionType.getCPtr(type)
-        ));
-    }
-
-    public HighsStatus resetOptions() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_resetOptions(swigCPtr, this));
-    }
-
-    public HighsStatus writeOptions(String filename, boolean report_only_deviations) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeOptions__SWIG_0(
-                swigCPtr,
-                this,
-                filename,
-                report_only_deviations
-        ));
-    }
-
-    public HighsStatus writeOptions(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeOptions__SWIG_1(swigCPtr, this, filename));
-    }
-
-    public long getNumOptions() {
-        return highsJNI.Highs_getNumOptions(swigCPtr, this);
-    }
-
-    public HighsStatus getOptionName(long index, SWIGTYPE_p_std__string name) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getOptionName(
-                swigCPtr,
-                this,
-                index,
-                SWIGTYPE_p_std__string.getCPtr(name)
-        ));
-    }
-
-    public HighsStatus getBoolOptionValues(
-            String option,
-            SWIGTYPE_p_bool current_value,
-            SWIGTYPE_p_bool default_value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBoolOptionValues__SWIG_0(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_bool.getCPtr(current_value),
-                SWIGTYPE_p_bool.getCPtr(default_value)
-        ));
-    }
-
-    public HighsStatus getBoolOptionValues(String option, SWIGTYPE_p_bool current_value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBoolOptionValues__SWIG_1(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_bool.getCPtr(current_value)
-        ));
-    }
-
-    public HighsStatus getBoolOptionValues(String option) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBoolOptionValues__SWIG_2(swigCPtr, this, option));
-    }
-
-    public HighsStatus getIntOptionValues(
-            String option,
-            SWIGTYPE_p_long_long current_value,
-            SWIGTYPE_p_long_long min_value,
-            SWIGTYPE_p_long_long max_value,
-            SWIGTYPE_p_long_long default_value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getIntOptionValues__SWIG_0(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_long_long.getCPtr(current_value),
-                SWIGTYPE_p_long_long.getCPtr(min_value),
-                SWIGTYPE_p_long_long.getCPtr(max_value),
-                SWIGTYPE_p_long_long.getCPtr(default_value)
-        ));
-    }
-
-    public HighsStatus getIntOptionValues(
-            String option,
-            SWIGTYPE_p_long_long current_value,
-            SWIGTYPE_p_long_long min_value,
-            SWIGTYPE_p_long_long max_value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getIntOptionValues__SWIG_1(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_long_long.getCPtr(current_value),
-                SWIGTYPE_p_long_long.getCPtr(min_value),
-                SWIGTYPE_p_long_long.getCPtr(max_value)
-        ));
-    }
-
-    public HighsStatus getIntOptionValues(
-            String option,
-            SWIGTYPE_p_long_long current_value,
-            SWIGTYPE_p_long_long min_value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getIntOptionValues__SWIG_2(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_long_long.getCPtr(current_value),
-                SWIGTYPE_p_long_long.getCPtr(min_value)
-        ));
-    }
-
-    public HighsStatus getIntOptionValues(String option, SWIGTYPE_p_long_long current_value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getIntOptionValues__SWIG_3(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_long_long.getCPtr(current_value)
-        ));
-    }
-
-    public HighsStatus getIntOptionValues(String option) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getIntOptionValues__SWIG_4(swigCPtr, this, option));
-    }
-
-    public HighsStatus getDoubleOptionValues(
-            String option,
-            SWIGTYPE_p_double current_value,
-            SWIGTYPE_p_double min_value,
-            SWIGTYPE_p_double max_value,
-            SWIGTYPE_p_double default_value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getDoubleOptionValues__SWIG_0(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_double.getCPtr(current_value),
-                SWIGTYPE_p_double.getCPtr(min_value),
-                SWIGTYPE_p_double.getCPtr(max_value),
-                SWIGTYPE_p_double.getCPtr(default_value)
-        ));
-    }
-
-    public HighsStatus getDoubleOptionValues(
-            String option,
-            SWIGTYPE_p_double current_value,
-            SWIGTYPE_p_double min_value,
-            SWIGTYPE_p_double max_value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getDoubleOptionValues__SWIG_1(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_double.getCPtr(current_value),
-                SWIGTYPE_p_double.getCPtr(min_value),
-                SWIGTYPE_p_double.getCPtr(max_value)
-        ));
-    }
-
-    public HighsStatus getDoubleOptionValues(
-            String option,
-            SWIGTYPE_p_double current_value,
-            SWIGTYPE_p_double min_value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getDoubleOptionValues__SWIG_2(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_double.getCPtr(current_value),
-                SWIGTYPE_p_double.getCPtr(min_value)
-        ));
-    }
-
-    public HighsStatus getDoubleOptionValues(String option, SWIGTYPE_p_double current_value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getDoubleOptionValues__SWIG_3(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_double.getCPtr(current_value)
-        ));
-    }
-
-    public HighsStatus getDoubleOptionValues(String option) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getDoubleOptionValues__SWIG_4(swigCPtr, this, option));
-    }
-
-    public HighsStatus getStringOptionValues(
-            String option,
-            SWIGTYPE_p_std__string current_value,
-            SWIGTYPE_p_std__string default_value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getStringOptionValues__SWIG_0(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_std__string.getCPtr(current_value),
-                SWIGTYPE_p_std__string.getCPtr(default_value)
-        ));
-    }
-
-    public HighsStatus getStringOptionValues(String option, SWIGTYPE_p_std__string current_value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getStringOptionValues__SWIG_1(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_std__string.getCPtr(current_value)
-        ));
-    }
-
-    public HighsStatus getStringOptionValues(String option) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getStringOptionValues__SWIG_2(swigCPtr, this, option));
-    }
-
-    public SWIGTYPE_p_HighsRunData getRunData() {
-        return new SWIGTYPE_p_HighsRunData(highsJNI.Highs_getRunData(swigCPtr, this), false);
-    }
-
-    public HighsStatus getRunDataValue(String run_data, SWIGTYPE_p_long_long value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getRunDataValue__SWIG_0(
-                swigCPtr,
-                this,
-                run_data,
-                SWIGTYPE_p_long_long.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getRunDataValue(String run_data, SWIGTYPE_p_double value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getRunDataValue__SWIG_1(
-                swigCPtr,
-                this,
-                run_data,
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getRunDataType(String run_data, SWIGTYPE_p_HighsRunDataType type) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getRunDataType(
-                swigCPtr,
-                this,
-                run_data,
-                SWIGTYPE_p_HighsRunDataType.getCPtr(type)
-        ));
-    }
-
-    public HighsStatus writeRunData(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeRunData__SWIG_0(swigCPtr, this, filename));
-    }
-
-    public HighsStatus writeRunData() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeRunData__SWIG_1(swigCPtr, this));
-    }
-
-    public HighsInfo getInfo() {
-        return new HighsInfo(highsJNI.Highs_getInfo(swigCPtr, this), false);
-    }
-
-    public HighsStatus getInfoValue(String info, SWIGTYPE_p_long_long value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getInfoValue__SWIG_0(
-                swigCPtr,
-                this,
-                info,
-                SWIGTYPE_p_long_long.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getInfoValue(String info, SWIGTYPE_p_double value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getInfoValue__SWIG_1(
-                swigCPtr,
-                this,
-                info,
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getInfoType(String info, SWIGTYPE_p_HighsInfoType type) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getInfoType(
-                swigCPtr,
-                this,
-                info,
-                SWIGTYPE_p_HighsInfoType.getCPtr(type)
-        ));
-    }
-
-    public HighsStatus writeInfo(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeInfo__SWIG_0(swigCPtr, this, filename));
-    }
-
-    public HighsStatus writeInfo() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeInfo__SWIG_1(swigCPtr, this));
-    }
-
-    public double getInfinity() {
-        return highsJNI.Highs_getInfinity(swigCPtr, this);
-    }
-
-    public long getSizeofHighsInt() {
-        return highsJNI.Highs_getSizeofHighsInt(swigCPtr, this);
-    }
-
-    public double getRunTime() {
-        return highsJNI.Highs_getRunTime(swigCPtr, this);
-    }
-
-    public HighsStatus getStandardFormLp(
-            SWIGTYPE_p_long_long num_col,
-            SWIGTYPE_p_long_long num_row,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_double offset,
-            SWIGTYPE_p_double cost,
-            SWIGTYPE_p_double rhs,
-            SWIGTYPE_p_long_long start,
-            SWIGTYPE_p_long_long index,
-            SWIGTYPE_p_double value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(num_col),
-                SWIGTYPE_p_long_long.getCPtr(num_row),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_double.getCPtr(offset),
-                SWIGTYPE_p_double.getCPtr(cost),
-                SWIGTYPE_p_double.getCPtr(rhs),
-                SWIGTYPE_p_long_long.getCPtr(start),
-                SWIGTYPE_p_long_long.getCPtr(index),
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getStandardFormLp(
-            SWIGTYPE_p_long_long num_col,
-            SWIGTYPE_p_long_long num_row,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_double offset,
-            SWIGTYPE_p_double cost,
-            SWIGTYPE_p_double rhs,
-            SWIGTYPE_p_long_long start,
-            SWIGTYPE_p_long_long index
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_1(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(num_col),
-                SWIGTYPE_p_long_long.getCPtr(num_row),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_double.getCPtr(offset),
-                SWIGTYPE_p_double.getCPtr(cost),
-                SWIGTYPE_p_double.getCPtr(rhs),
-                SWIGTYPE_p_long_long.getCPtr(start),
-                SWIGTYPE_p_long_long.getCPtr(index)
-        ));
-    }
-
-    public HighsStatus getStandardFormLp(
-            SWIGTYPE_p_long_long num_col,
-            SWIGTYPE_p_long_long num_row,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_double offset,
-            SWIGTYPE_p_double cost,
-            SWIGTYPE_p_double rhs,
-            SWIGTYPE_p_long_long start
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(num_col),
-                SWIGTYPE_p_long_long.getCPtr(num_row),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_double.getCPtr(offset),
-                SWIGTYPE_p_double.getCPtr(cost),
-                SWIGTYPE_p_double.getCPtr(rhs),
-                SWIGTYPE_p_long_long.getCPtr(start)
-        ));
-    }
-
-    public HighsStatus getStandardFormLp(
-            SWIGTYPE_p_long_long num_col,
-            SWIGTYPE_p_long_long num_row,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_double offset,
-            SWIGTYPE_p_double cost,
-            SWIGTYPE_p_double rhs
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_3(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(num_col),
-                SWIGTYPE_p_long_long.getCPtr(num_row),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_double.getCPtr(offset),
-                SWIGTYPE_p_double.getCPtr(cost),
-                SWIGTYPE_p_double.getCPtr(rhs)
-        ));
-    }
-
-    public HighsStatus getStandardFormLp(
-            SWIGTYPE_p_long_long num_col,
-            SWIGTYPE_p_long_long num_row,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_double offset,
-            SWIGTYPE_p_double cost
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_4(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(num_col),
-                SWIGTYPE_p_long_long.getCPtr(num_row),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_double.getCPtr(offset),
-                SWIGTYPE_p_double.getCPtr(cost)
-        ));
-    }
-
-    public HighsStatus getStandardFormLp(
-            SWIGTYPE_p_long_long num_col,
-            SWIGTYPE_p_long_long num_row,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_double offset
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_5(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(num_col),
-                SWIGTYPE_p_long_long.getCPtr(num_row),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_double.getCPtr(offset)
-        ));
-    }
-
-    public SWIGTYPE_p_HighsLp getPresolvedLp() {
-        return new SWIGTYPE_p_HighsLp(highsJNI.Highs_getPresolvedLp(swigCPtr, this), false);
-    }
-
-    public HighsModel getPresolvedModel() {
-        return new HighsModel(highsJNI.Highs_getPresolvedModel(swigCPtr, this), false);
-    }
-
-    public HighsPresolveLog getPresolveLog() {
-        return new HighsPresolveLog(highsJNI.Highs_getPresolveLog(swigCPtr, this), false);
-    }
-
-    public SWIGTYPE_p_long_long getPresolveOrigColsIndex() {
-        long cPtr = highsJNI.Highs_getPresolveOrigColsIndex(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_long_long(cPtr, false);
-    }
-
-    public SWIGTYPE_p_long_long getPresolveOrigRowsIndex() {
-        long cPtr = highsJNI.Highs_getPresolveOrigRowsIndex(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_long_long(cPtr, false);
-    }
-
-    public HighsStatus getFixedLp(SWIGTYPE_p_HighsLp lp) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getFixedLp(swigCPtr, this, SWIGTYPE_p_HighsLp.getCPtr(lp)));
-    }
-
-    public SWIGTYPE_p_HighsLp getLp() {
-        return new SWIGTYPE_p_HighsLp(highsJNI.Highs_getLp(swigCPtr, this), false);
-    }
-
-    public HighsModel getModel() {
-        return new HighsModel(highsJNI.Highs_getModel(swigCPtr, this), false);
-    }
-
-    public HighsSolution getSolution() {
-        return new HighsSolution(highsJNI.Highs_getSolution(swigCPtr, this), false);
-    }
-
-    public SWIGTYPE_p_HighsLp getIisLp() {
-        return new SWIGTYPE_p_HighsLp(highsJNI.Highs_getIisLp(swigCPtr, this), false);
-    }
-
-    public void zeroAllClocks() {
-        highsJNI.Highs_zeroAllClocks(swigCPtr, this);
-    }
-
-    public SWIGTYPE_p_std__vectorT_HighsObjectiveSolution_t getSavedMipSolutions() {
-        return new SWIGTYPE_p_std__vectorT_HighsObjectiveSolution_t(
-                highsJNI.Highs_getSavedMipSolutions(swigCPtr, this),
-                false
-        );
-    }
-
-    public SWIGTYPE_p_ICrashInfo getICrashInfo() {
-        return new SWIGTYPE_p_ICrashInfo(highsJNI.Highs_getICrashInfo(swigCPtr, this), false);
-    }
-
-    public HighsBasis getBasis() {
-        return new HighsBasis(highsJNI.Highs_getBasis(swigCPtr, this), false);
-    }
-
-    public HighsModelStatus getModelStatus() {
-        return HighsModelStatus.swigToEnum(highsJNI.Highs_getModelStatus__SWIG_0(swigCPtr, this));
-    }
-
-    public HighsPresolveStatus getModelPresolveStatus() {
-        return HighsPresolveStatus.swigToEnum(highsJNI.Highs_getModelPresolveStatus(swigCPtr, this));
-    }
-
-    public HighsStatus getDualRay(SWIGTYPE_p_bool has_dual_ray, SWIGTYPE_p_double dual_ray_value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getDualRay__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_bool.getCPtr(has_dual_ray),
-                SWIGTYPE_p_double.getCPtr(dual_ray_value)
-        ));
-    }
-
-    public HighsStatus getDualRay(SWIGTYPE_p_bool has_dual_ray) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getDualRay__SWIG_1(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_bool.getCPtr(has_dual_ray)
-        ));
-    }
-
-    public HighsStatus getDualRaySparse(SWIGTYPE_p_bool has_dual_ray, SWIGTYPE_p_HVector row_ep_buffer) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getDualRaySparse(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_bool.getCPtr(has_dual_ray),
-                SWIGTYPE_p_HVector.getCPtr(row_ep_buffer)
-        ));
-    }
-
-    public HighsStatus getDualUnboundednessDirection(
-            SWIGTYPE_p_bool has_dual_unboundedness_direction,
-            SWIGTYPE_p_double dual_unboundedness_direction_value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getDualUnboundednessDirection__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_bool.getCPtr(has_dual_unboundedness_direction),
-                SWIGTYPE_p_double.getCPtr(dual_unboundedness_direction_value)
-        ));
-    }
-
-    public HighsStatus getDualUnboundednessDirection(SWIGTYPE_p_bool has_dual_unboundedness_direction) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getDualUnboundednessDirection__SWIG_1(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_bool.getCPtr(has_dual_unboundedness_direction)
-        ));
-    }
-
-    public HighsStatus getPrimalRay(SWIGTYPE_p_bool has_primal_ray, SWIGTYPE_p_double primal_ray_value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getPrimalRay__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_bool.getCPtr(has_primal_ray),
-                SWIGTYPE_p_double.getCPtr(primal_ray_value)
-        ));
-    }
-
-    public HighsStatus getPrimalRay(SWIGTYPE_p_bool has_primal_ray) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getPrimalRay__SWIG_1(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_bool.getCPtr(has_primal_ray)
-        ));
-    }
-
-    public HighsStatus getRanging(SWIGTYPE_p_HighsRanging ranging) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getRanging(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_HighsRanging.getCPtr(ranging)
-        ));
-    }
-
-    public HighsStatus feasibilityRelaxation(
-            double global_lower_penalty,
-            double global_upper_penalty,
-            double global_rhs_penalty,
-            SWIGTYPE_p_double local_lower_penalty,
-            SWIGTYPE_p_double local_upper_penalty,
-            SWIGTYPE_p_double local_rhs_penalty
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_feasibilityRelaxation__SWIG_0(
-                swigCPtr,
-                this,
-                global_lower_penalty,
-                global_upper_penalty,
-                global_rhs_penalty,
-                SWIGTYPE_p_double.getCPtr(local_lower_penalty),
-                SWIGTYPE_p_double.getCPtr(local_upper_penalty),
-                SWIGTYPE_p_double.getCPtr(local_rhs_penalty)
-        ));
-    }
-
-    public HighsStatus feasibilityRelaxation(
-            double global_lower_penalty,
-            double global_upper_penalty,
-            double global_rhs_penalty,
-            SWIGTYPE_p_double local_lower_penalty,
-            SWIGTYPE_p_double local_upper_penalty
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_feasibilityRelaxation__SWIG_1(
-                swigCPtr,
-                this,
-                global_lower_penalty,
-                global_upper_penalty,
-                global_rhs_penalty,
-                SWIGTYPE_p_double.getCPtr(local_lower_penalty),
-                SWIGTYPE_p_double.getCPtr(local_upper_penalty)
-        ));
-    }
-
-    public HighsStatus feasibilityRelaxation(
-            double global_lower_penalty,
-            double global_upper_penalty,
-            double global_rhs_penalty,
-            SWIGTYPE_p_double local_lower_penalty
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_feasibilityRelaxation__SWIG_2(
-                swigCPtr,
-                this,
-                global_lower_penalty,
-                global_upper_penalty,
-                global_rhs_penalty,
-                SWIGTYPE_p_double.getCPtr(local_lower_penalty)
-        ));
-    }
-
-    public HighsStatus feasibilityRelaxation(
-            double global_lower_penalty,
-            double global_upper_penalty,
-            double global_rhs_penalty
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_feasibilityRelaxation__SWIG_3(
-                swigCPtr,
-                this,
-                global_lower_penalty,
-                global_upper_penalty,
-                global_rhs_penalty
-        ));
-    }
-
-    public HighsStatus getIllConditioning(
-            HighsIllConditioning ill_conditioning,
-            boolean constraint,
-            long method,
-            double ill_conditioning_bound
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getIllConditioning__SWIG_0(
-                swigCPtr,
-                this,
-                HighsIllConditioning.getCPtr(ill_conditioning),
-                ill_conditioning,
-                constraint,
-                method,
-                ill_conditioning_bound
-        ));
-    }
-
-    public HighsStatus getIllConditioning(HighsIllConditioning ill_conditioning, boolean constraint, long method) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getIllConditioning__SWIG_1(
-                swigCPtr,
-                this,
-                HighsIllConditioning.getCPtr(ill_conditioning),
-                ill_conditioning,
-                constraint,
-                method
-        ));
-    }
-
-    public HighsStatus getIllConditioning(HighsIllConditioning ill_conditioning, boolean constraint) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getIllConditioning__SWIG_2(
-                swigCPtr,
-                this,
-                HighsIllConditioning.getCPtr(ill_conditioning),
-                ill_conditioning,
-                constraint
-        ));
-    }
-
-    public HighsStatus getObjectiveBoundScaling(
-            SWIGTYPE_p_long_long suggested_objective_scale,
-            SWIGTYPE_p_long_long suggested_bound_scale
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getObjectiveBoundScaling(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(suggested_objective_scale),
-                SWIGTYPE_p_long_long.getCPtr(suggested_bound_scale)
-        ));
-    }
-
-    public HighsStatus getIis(SWIGTYPE_p_HighsIis iis) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getIis(swigCPtr, this, SWIGTYPE_p_HighsIis.getCPtr(iis)));
-    }
-
-    public double getObjectiveValue() {
-        return highsJNI.Highs_getObjectiveValue(swigCPtr, this);
-    }
-
-    public HighsStatus getDualObjectiveValue(SWIGTYPE_p_double dual_objective_value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getDualObjectiveValue(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_double.getCPtr(dual_objective_value)
-        ));
-    }
-
-    public boolean hasInvert() {
-        return highsJNI.Highs_hasInvert(swigCPtr, this);
-    }
-
-    public HighsStatus getBasicVariables(SWIGTYPE_p_long_long basic_variables) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasicVariables(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(basic_variables)
-        ));
-    }
-
-    public HighsStatus getBasisInverseRow(
-            long row,
-            SWIGTYPE_p_double row_vector,
-            SWIGTYPE_p_long_long row_num_nz,
-            SWIGTYPE_p_long_long row_indices
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseRow__SWIG_0(
-                swigCPtr,
-                this,
-                row,
-                SWIGTYPE_p_double.getCPtr(row_vector),
-                SWIGTYPE_p_long_long.getCPtr(row_num_nz),
-                SWIGTYPE_p_long_long.getCPtr(row_indices)
-        ));
-    }
-
-    public HighsStatus getBasisInverseRow(long row, SWIGTYPE_p_double row_vector, SWIGTYPE_p_long_long row_num_nz) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseRow__SWIG_1(
-                swigCPtr,
-                this,
-                row,
-                SWIGTYPE_p_double.getCPtr(row_vector),
-                SWIGTYPE_p_long_long.getCPtr(row_num_nz)
-        ));
-    }
-
-    public HighsStatus getBasisInverseRow(long row, SWIGTYPE_p_double row_vector) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseRow__SWIG_2(
-                swigCPtr,
-                this,
-                row,
-                SWIGTYPE_p_double.getCPtr(row_vector)
-        ));
-    }
-
-    public HighsStatus getBasisInverseCol(
-            long col,
-            SWIGTYPE_p_double col_vector,
-            SWIGTYPE_p_long_long col_num_nz,
-            SWIGTYPE_p_long_long col_indices
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseCol__SWIG_0(
-                swigCPtr,
-                this,
-                col,
-                SWIGTYPE_p_double.getCPtr(col_vector),
-                SWIGTYPE_p_long_long.getCPtr(col_num_nz),
-                SWIGTYPE_p_long_long.getCPtr(col_indices)
-        ));
-    }
-
-    public HighsStatus getBasisInverseCol(long col, SWIGTYPE_p_double col_vector, SWIGTYPE_p_long_long col_num_nz) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseCol__SWIG_1(
-                swigCPtr,
-                this,
-                col,
-                SWIGTYPE_p_double.getCPtr(col_vector),
-                SWIGTYPE_p_long_long.getCPtr(col_num_nz)
-        ));
-    }
-
-    public HighsStatus getBasisInverseCol(long col, SWIGTYPE_p_double col_vector) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseCol__SWIG_2(
-                swigCPtr,
-                this,
-                col,
-                SWIGTYPE_p_double.getCPtr(col_vector)
-        ));
-    }
-
-    public HighsStatus getBasisSolve(
-            SWIGTYPE_p_double rhs,
-            SWIGTYPE_p_double solution_vector,
-            SWIGTYPE_p_long_long solution_num_nz,
-            SWIGTYPE_p_long_long solution_indices
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisSolve__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_double.getCPtr(rhs),
-                SWIGTYPE_p_double.getCPtr(solution_vector),
-                SWIGTYPE_p_long_long.getCPtr(solution_num_nz),
-                SWIGTYPE_p_long_long.getCPtr(solution_indices)
-        ));
-    }
-
-    public HighsStatus getBasisSolve(
-            SWIGTYPE_p_double rhs,
-            SWIGTYPE_p_double solution_vector,
-            SWIGTYPE_p_long_long solution_num_nz
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisSolve__SWIG_1(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_double.getCPtr(rhs),
-                SWIGTYPE_p_double.getCPtr(solution_vector),
-                SWIGTYPE_p_long_long.getCPtr(solution_num_nz)
-        ));
-    }
-
-    public HighsStatus getBasisSolve(SWIGTYPE_p_double rhs, SWIGTYPE_p_double solution_vector) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisSolve__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_double.getCPtr(rhs),
-                SWIGTYPE_p_double.getCPtr(solution_vector)
-        ));
-    }
-
-    public HighsStatus getBasisTransposeSolve(
-            SWIGTYPE_p_double rhs,
-            SWIGTYPE_p_double solution_vector,
-            SWIGTYPE_p_long_long solution_num_nz,
-            SWIGTYPE_p_long_long solution_indices
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisTransposeSolve__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_double.getCPtr(rhs),
-                SWIGTYPE_p_double.getCPtr(solution_vector),
-                SWIGTYPE_p_long_long.getCPtr(solution_num_nz),
-                SWIGTYPE_p_long_long.getCPtr(solution_indices)
-        ));
-    }
-
-    public HighsStatus getBasisTransposeSolve(
-            SWIGTYPE_p_double rhs,
-            SWIGTYPE_p_double solution_vector,
-            SWIGTYPE_p_long_long solution_num_nz
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisTransposeSolve__SWIG_1(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_double.getCPtr(rhs),
-                SWIGTYPE_p_double.getCPtr(solution_vector),
-                SWIGTYPE_p_long_long.getCPtr(solution_num_nz)
-        ));
-    }
-
-    public HighsStatus getBasisTransposeSolve(SWIGTYPE_p_double rhs, SWIGTYPE_p_double solution_vector) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisTransposeSolve__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_double.getCPtr(rhs),
-                SWIGTYPE_p_double.getCPtr(solution_vector)
-        ));
-    }
-
-    public HighsStatus getReducedRow(
-            long row,
-            SWIGTYPE_p_double row_vector,
-            SWIGTYPE_p_long_long row_num_nz,
-            SWIGTYPE_p_long_long row_indices,
-            SWIGTYPE_p_double pass_basis_inverse_row_vector
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getReducedRow__SWIG_0(
-                swigCPtr,
-                this,
-                row,
-                SWIGTYPE_p_double.getCPtr(row_vector),
-                SWIGTYPE_p_long_long.getCPtr(row_num_nz),
-                SWIGTYPE_p_long_long.getCPtr(row_indices),
-                SWIGTYPE_p_double.getCPtr(pass_basis_inverse_row_vector)
-        ));
-    }
-
-    public HighsStatus getReducedRow(
-            long row,
-            SWIGTYPE_p_double row_vector,
-            SWIGTYPE_p_long_long row_num_nz,
-            SWIGTYPE_p_long_long row_indices
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getReducedRow__SWIG_1(
-                swigCPtr,
-                this,
-                row,
-                SWIGTYPE_p_double.getCPtr(row_vector),
-                SWIGTYPE_p_long_long.getCPtr(row_num_nz),
-                SWIGTYPE_p_long_long.getCPtr(row_indices)
-        ));
-    }
-
-    public HighsStatus getReducedRow(long row, SWIGTYPE_p_double row_vector, SWIGTYPE_p_long_long row_num_nz) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getReducedRow__SWIG_2(
-                swigCPtr,
-                this,
-                row,
-                SWIGTYPE_p_double.getCPtr(row_vector),
-                SWIGTYPE_p_long_long.getCPtr(row_num_nz)
-        ));
-    }
-
-    public HighsStatus getReducedRow(long row, SWIGTYPE_p_double row_vector) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getReducedRow__SWIG_3(
-                swigCPtr,
-                this,
-                row,
-                SWIGTYPE_p_double.getCPtr(row_vector)
-        ));
-    }
-
-    public HighsStatus getReducedColumn(
-            long col,
-            SWIGTYPE_p_double col_vector,
-            SWIGTYPE_p_long_long col_num_nz,
-            SWIGTYPE_p_long_long col_indices
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getReducedColumn__SWIG_0(
-                swigCPtr,
-                this,
-                col,
-                SWIGTYPE_p_double.getCPtr(col_vector),
-                SWIGTYPE_p_long_long.getCPtr(col_num_nz),
-                SWIGTYPE_p_long_long.getCPtr(col_indices)
-        ));
-    }
-
-    public HighsStatus getReducedColumn(long col, SWIGTYPE_p_double col_vector, SWIGTYPE_p_long_long col_num_nz) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getReducedColumn__SWIG_1(
-                swigCPtr,
-                this,
-                col,
-                SWIGTYPE_p_double.getCPtr(col_vector),
-                SWIGTYPE_p_long_long.getCPtr(col_num_nz)
-        ));
-    }
-
-    public HighsStatus getReducedColumn(long col, SWIGTYPE_p_double col_vector) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getReducedColumn__SWIG_2(
-                swigCPtr,
-                this,
-                col,
-                SWIGTYPE_p_double.getCPtr(col_vector)
-        ));
-    }
-
-    public HighsStatus getKappa(SWIGTYPE_p_double kappa, boolean exact, boolean report) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getKappa__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_double.getCPtr(kappa),
-                exact,
-                report
-        ));
-    }
-
-    public HighsStatus getKappa(SWIGTYPE_p_double kappa, boolean exact) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getKappa__SWIG_1(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_double.getCPtr(kappa),
-                exact
-        ));
-    }
-
-    public HighsStatus getKappa(SWIGTYPE_p_double kappa) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getKappa__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_double.getCPtr(kappa)
-        ));
-    }
-
-    public long getNumCol() {
-        return highsJNI.Highs_getNumCol(swigCPtr, this);
-    }
-
-    public long getNumRow() {
-        return highsJNI.Highs_getNumRow(swigCPtr, this);
-    }
-
-    public long getNumNz() {
-        return highsJNI.Highs_getNumNz(swigCPtr, this);
-    }
-
-    public long getHessianNumNz() {
-        return highsJNI.Highs_getHessianNumNz(swigCPtr, this);
-    }
-
-    public HighsStatus getObjectiveSense(SWIGTYPE_p_ObjSense sense) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getObjectiveSense(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_ObjSense.getCPtr(sense)
-        ));
-    }
-
-    public HighsStatus getObjectiveOffset(SWIGTYPE_p_double offset) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getObjectiveOffset(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_double.getCPtr(offset)
-        ));
-    }
-
-    public HighsStatus getCols(
-            long from_col,
-            long to_col,
-            SWIGTYPE_p_long_long num_col,
-            SWIGTYPE_p_double cost,
-            SWIGTYPE_p_double lower,
-            SWIGTYPE_p_double upper,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_long_long start,
-            SWIGTYPE_p_long_long index,
-            SWIGTYPE_p_double value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getCols__SWIG_0(
-                swigCPtr,
-                this,
-                from_col,
-                to_col,
-                SWIGTYPE_p_long_long.getCPtr(num_col),
-                SWIGTYPE_p_double.getCPtr(cost),
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_long_long.getCPtr(start),
-                SWIGTYPE_p_long_long.getCPtr(index),
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getCols(
-            long num_set_entries,
-            SWIGTYPE_p_long_long set,
-            SWIGTYPE_p_long_long num_col,
-            SWIGTYPE_p_double cost,
-            SWIGTYPE_p_double lower,
-            SWIGTYPE_p_double upper,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_long_long start,
-            SWIGTYPE_p_long_long index,
-            SWIGTYPE_p_double value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getCols__SWIG_1(
-                swigCPtr,
-                this,
-                num_set_entries,
-                SWIGTYPE_p_long_long.getCPtr(set),
-                SWIGTYPE_p_long_long.getCPtr(num_col),
-                SWIGTYPE_p_double.getCPtr(cost),
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_long_long.getCPtr(start),
-                SWIGTYPE_p_long_long.getCPtr(index),
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getCols(
-            SWIGTYPE_p_long_long mask,
-            SWIGTYPE_p_long_long num_col,
-            SWIGTYPE_p_double cost,
-            SWIGTYPE_p_double lower,
-            SWIGTYPE_p_double upper,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_long_long start,
-            SWIGTYPE_p_long_long index,
-            SWIGTYPE_p_double value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getCols__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(mask),
-                SWIGTYPE_p_long_long.getCPtr(num_col),
-                SWIGTYPE_p_double.getCPtr(cost),
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_long_long.getCPtr(start),
-                SWIGTYPE_p_long_long.getCPtr(index),
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getColName(long col, SWIGTYPE_p_std__string name) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getColName(
-                swigCPtr,
-                this,
-                col,
-                SWIGTYPE_p_std__string.getCPtr(name)
-        ));
-    }
-
-    public HighsStatus getColByName(String name, SWIGTYPE_p_long_long col) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getColByName(
-                swigCPtr,
-                this,
-                name,
-                SWIGTYPE_p_long_long.getCPtr(col)
-        ));
-    }
-
-    public HighsStatus getColIntegrality(long col, SWIGTYPE_p_HighsVarType integrality) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getColIntegrality(
-                swigCPtr,
-                this,
-                col,
-                SWIGTYPE_p_HighsVarType.getCPtr(integrality)
-        ));
-    }
-
-    public HighsStatus getRows(
-            long from_row,
-            long to_row,
-            SWIGTYPE_p_long_long num_row,
-            SWIGTYPE_p_double lower,
-            SWIGTYPE_p_double upper,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_long_long start,
-            SWIGTYPE_p_long_long index,
-            SWIGTYPE_p_double value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getRows__SWIG_0(
-                swigCPtr,
-                this,
-                from_row,
-                to_row,
-                SWIGTYPE_p_long_long.getCPtr(num_row),
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_long_long.getCPtr(start),
-                SWIGTYPE_p_long_long.getCPtr(index),
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getRows(
-            long num_set_entries,
-            SWIGTYPE_p_long_long set,
-            SWIGTYPE_p_long_long num_row,
-            SWIGTYPE_p_double lower,
-            SWIGTYPE_p_double upper,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_long_long start,
-            SWIGTYPE_p_long_long index,
-            SWIGTYPE_p_double value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getRows__SWIG_1(
-                swigCPtr,
-                this,
-                num_set_entries,
-                SWIGTYPE_p_long_long.getCPtr(set),
-                SWIGTYPE_p_long_long.getCPtr(num_row),
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_long_long.getCPtr(start),
-                SWIGTYPE_p_long_long.getCPtr(index),
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getRows(
-            SWIGTYPE_p_long_long mask,
-            SWIGTYPE_p_long_long num_row,
-            SWIGTYPE_p_double lower,
-            SWIGTYPE_p_double upper,
-            SWIGTYPE_p_long_long num_nz,
-            SWIGTYPE_p_long_long start,
-            SWIGTYPE_p_long_long index,
-            SWIGTYPE_p_double value
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getRows__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(mask),
-                SWIGTYPE_p_long_long.getCPtr(num_row),
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper),
-                SWIGTYPE_p_long_long.getCPtr(num_nz),
-                SWIGTYPE_p_long_long.getCPtr(start),
-                SWIGTYPE_p_long_long.getCPtr(index),
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getRowName(long row, SWIGTYPE_p_std__string name) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getRowName(
-                swigCPtr,
-                this,
-                row,
-                SWIGTYPE_p_std__string.getCPtr(name)
-        ));
-    }
-
-    public HighsStatus getRowByName(String name, SWIGTYPE_p_long_long row) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getRowByName(
-                swigCPtr,
-                this,
-                name,
-                SWIGTYPE_p_long_long.getCPtr(row)
-        ));
-    }
-
-    public HighsStatus getCoeff(long row, long col, SWIGTYPE_p_double value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getCoeff(
-                swigCPtr,
-                this,
-                row,
-                col,
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus writeModel(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeModel__SWIG_0(swigCPtr, this, filename));
-    }
-
-    public HighsStatus writeModel() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeModel__SWIG_1(swigCPtr, this));
-    }
-
-    public HighsStatus writePresolvedModel(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writePresolvedModel__SWIG_0(swigCPtr, this, filename));
-    }
-
-    public HighsStatus writePresolvedModel() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writePresolvedModel__SWIG_1(swigCPtr, this));
-    }
-
-    public HighsStatus writeIisModel(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeIisModel__SWIG_0(swigCPtr, this, filename));
-    }
-
-    public HighsStatus writeIisModel() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeIisModel__SWIG_1(swigCPtr, this));
-    }
-
-    public HighsStatus writeLocalModel(HighsModel model, String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeLocalModel__SWIG_0(
-                swigCPtr,
-                this,
-                HighsModel.getCPtr(model),
-                model,
-                filename
-        ));
-    }
-
-    public HighsStatus writeLocalModel(HighsModel model) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeLocalModel__SWIG_1(
-                swigCPtr,
-                this,
-                HighsModel.getCPtr(model),
-                model
-        ));
-    }
-
-    public HighsStatus writeBasis(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeBasis__SWIG_0(swigCPtr, this, filename));
-    }
-
-    public HighsStatus writeBasis() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeBasis__SWIG_1(swigCPtr, this));
-    }
-
-    public HighsStatus changeObjectiveSense(ObjSense sense) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeObjectiveSense(swigCPtr, this, sense.swigValue()));
-    }
-
-    public HighsStatus changeObjectiveOffset(double offset) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeObjectiveOffset(swigCPtr, this, offset));
-    }
-
-    public HighsStatus changeColIntegrality(long col, HighsVarType integrality) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColIntegrality(
-                swigCPtr,
-                this,
-                col,
-                integrality.swigValue()
-        ));
-    }
-
-    public HighsStatus changeColsIntegrality(long from_col, long to_col, SWIGTYPE_p_HighsVarType integrality) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColsIntegrality__SWIG_0(
-                swigCPtr,
-                this,
-                from_col,
-                to_col,
-                SWIGTYPE_p_HighsVarType.getCPtr(integrality)
-        ));
-    }
-
-    public HighsStatus changeColsIntegrality(
-            long num_set_entries,
-            SWIGTYPE_p_long_long set,
-            SWIGTYPE_p_HighsVarType integrality
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColsIntegrality__SWIG_1(
-                swigCPtr,
-                this,
-                num_set_entries,
-                SWIGTYPE_p_long_long.getCPtr(set),
-                SWIGTYPE_p_HighsVarType.getCPtr(integrality)
-        ));
-    }
-
-    public HighsStatus changeColsIntegrality(SWIGTYPE_p_long_long mask, SWIGTYPE_p_HighsVarType integrality) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColsIntegrality__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(mask),
-                SWIGTYPE_p_HighsVarType.getCPtr(integrality)
-        ));
-    }
-
-    public HighsStatus clearIntegrality() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_clearIntegrality(swigCPtr, this));
-    }
-
-    public HighsStatus changeColCost(long col, double cost) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColCost(swigCPtr, this, col, cost));
-    }
-
-    public HighsStatus changeColsCost(long from_col, long to_col, SWIGTYPE_p_double cost) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColsCost__SWIG_0(
-                swigCPtr,
-                this,
-                from_col,
-                to_col,
-                SWIGTYPE_p_double.getCPtr(cost)
-        ));
-    }
-
-    public HighsStatus changeColsCost(long num_set_entries, SWIGTYPE_p_long_long set, SWIGTYPE_p_double cost) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColsCost__SWIG_1(
-                swigCPtr,
-                this,
-                num_set_entries,
-                SWIGTYPE_p_long_long.getCPtr(set),
-                SWIGTYPE_p_double.getCPtr(cost)
-        ));
-    }
-
-    public HighsStatus changeColsCost(SWIGTYPE_p_long_long mask, SWIGTYPE_p_double cost) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColsCost__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(mask),
-                SWIGTYPE_p_double.getCPtr(cost)
-        ));
-    }
-
-    public HighsStatus changeColBounds(long col, double lower, double upper) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColBounds(swigCPtr, this, col, lower, upper));
-    }
-
-    public HighsStatus changeColsBounds(long from_col, long to_col, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColsBounds__SWIG_0(
-                swigCPtr,
-                this,
-                from_col,
-                to_col,
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper)
-        ));
-    }
-
-    public HighsStatus changeColsBounds(
-            long num_set_entries,
-            SWIGTYPE_p_long_long set,
-            SWIGTYPE_p_double lower,
-            SWIGTYPE_p_double upper
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColsBounds__SWIG_1(
-                swigCPtr,
-                this,
-                num_set_entries,
-                SWIGTYPE_p_long_long.getCPtr(set),
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper)
-        ));
-    }
-
-    public HighsStatus changeColsBounds(SWIGTYPE_p_long_long mask, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeColsBounds__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(mask),
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper)
-        ));
-    }
-
-    public HighsStatus changeRowBounds(long row, double lower, double upper) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeRowBounds(swigCPtr, this, row, lower, upper));
-    }
-
-    public HighsStatus changeRowsBounds(long from_row, long to_row, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeRowsBounds__SWIG_0(
-                swigCPtr,
-                this,
-                from_row,
-                to_row,
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper)
-        ));
-    }
-
-    public HighsStatus changeRowsBounds(
-            long num_set_entries,
-            SWIGTYPE_p_long_long set,
-            SWIGTYPE_p_double lower,
-            SWIGTYPE_p_double upper
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeRowsBounds__SWIG_1(
-                swigCPtr,
-                this,
-                num_set_entries,
-                SWIGTYPE_p_long_long.getCPtr(set),
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper)
-        ));
-    }
-
-    public HighsStatus changeRowsBounds(SWIGTYPE_p_long_long mask, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeRowsBounds__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(mask),
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper)
-        ));
-    }
-
-    public HighsStatus changeCoeff(long row, long col, double value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_changeCoeff(swigCPtr, this, row, col, value));
-    }
-
-    public HighsStatus setMatrixFormat(MatrixFormat desired_format) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setMatrixFormat(swigCPtr, this, desired_format.swigValue()));
-    }
-
-    public HighsStatus addCol(
-            double cost,
-            double lower,
-            double upper,
-            long num_new_nz,
-            SWIGTYPE_p_long_long indices,
-            SWIGTYPE_p_double values
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_addCol(
-                swigCPtr,
-                this,
-                cost,
-                lower,
-                upper,
-                num_new_nz,
-                SWIGTYPE_p_long_long.getCPtr(indices),
-                SWIGTYPE_p_double.getCPtr(values)
-        ));
-    }
-
-    public HighsStatus addCols(
-            long num_new_col,
-            SWIGTYPE_p_double cost,
-            SWIGTYPE_p_double lower,
-            SWIGTYPE_p_double upper,
-            long num_new_nz,
-            SWIGTYPE_p_long_long starts,
-            SWIGTYPE_p_long_long indices,
-            SWIGTYPE_p_double values
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_addCols(
-                swigCPtr,
-                this,
-                num_new_col,
-                SWIGTYPE_p_double.getCPtr(cost),
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper),
-                num_new_nz,
-                SWIGTYPE_p_long_long.getCPtr(starts),
-                SWIGTYPE_p_long_long.getCPtr(indices),
-                SWIGTYPE_p_double.getCPtr(values)
-        ));
-    }
-
-    public HighsStatus addVar(double lower, double upper) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_addVar__SWIG_0(swigCPtr, this, lower, upper));
-    }
-
-    public HighsStatus addVar(double lower) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_addVar__SWIG_1(swigCPtr, this, lower));
-    }
-
-    public HighsStatus addVar() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_addVar__SWIG_2(swigCPtr, this));
-    }
-
-    public HighsStatus addVars(long num_new_var, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_addVars(
-                swigCPtr,
-                this,
-                num_new_var,
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper)
-        ));
-    }
-
-    public HighsStatus addRow(
-            double lower,
-            double upper,
-            long num_new_nz,
-            SWIGTYPE_p_long_long indices,
-            SWIGTYPE_p_double values
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_addRow(
-                swigCPtr,
-                this,
-                lower,
-                upper,
-                num_new_nz,
-                SWIGTYPE_p_long_long.getCPtr(indices),
-                SWIGTYPE_p_double.getCPtr(values)
-        ));
-    }
-
-    public HighsStatus addRows(
-            long num_new_row,
-            SWIGTYPE_p_double lower,
-            SWIGTYPE_p_double upper,
-            long num_new_nz,
-            SWIGTYPE_p_long_long starts,
-            SWIGTYPE_p_long_long indices,
-            SWIGTYPE_p_double values
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_addRows(
-                swigCPtr,
-                this,
-                num_new_row,
-                SWIGTYPE_p_double.getCPtr(lower),
-                SWIGTYPE_p_double.getCPtr(upper),
-                num_new_nz,
-                SWIGTYPE_p_long_long.getCPtr(starts),
-                SWIGTYPE_p_long_long.getCPtr(indices),
-                SWIGTYPE_p_double.getCPtr(values)
-        ));
-    }
-
-    public HighsStatus ensureColwise() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_ensureColwise(swigCPtr, this));
-    }
-
-    public HighsStatus ensureRowwise() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_ensureRowwise(swigCPtr, this));
-    }
-
-    public HighsStatus deleteCols(long from_col, long to_col) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_deleteCols__SWIG_0(swigCPtr, this, from_col, to_col));
-    }
-
-    public HighsStatus deleteCols(long num_set_entries, SWIGTYPE_p_long_long set) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_deleteCols__SWIG_1(
-                swigCPtr,
-                this,
-                num_set_entries,
-                SWIGTYPE_p_long_long.getCPtr(set)
-        ));
-    }
-
-    public HighsStatus deleteCols(SWIGTYPE_p_long_long mask) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_deleteCols__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(mask)
-        ));
-    }
-
-    public HighsStatus deleteVars(long from_var, long to_var) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_deleteVars__SWIG_0(swigCPtr, this, from_var, to_var));
-    }
-
-    public HighsStatus deleteVars(long num_set_entries, SWIGTYPE_p_long_long set) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_deleteVars__SWIG_1(
-                swigCPtr,
-                this,
-                num_set_entries,
-                SWIGTYPE_p_long_long.getCPtr(set)
-        ));
-    }
-
-    public HighsStatus deleteVars(SWIGTYPE_p_long_long mask) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_deleteVars__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(mask)
-        ));
-    }
-
-    public HighsStatus deleteRows(long from_row, long to_row) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_deleteRows__SWIG_0(swigCPtr, this, from_row, to_row));
-    }
-
-    public HighsStatus deleteRows(long num_set_entries, SWIGTYPE_p_long_long set) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_deleteRows__SWIG_1(
-                swigCPtr,
-                this,
-                num_set_entries,
-                SWIGTYPE_p_long_long.getCPtr(set)
-        ));
-    }
-
-    public HighsStatus deleteRows(SWIGTYPE_p_long_long mask) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_deleteRows__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(mask)
-        ));
-    }
-
-    public HighsStatus scaleCol(long col, double scale_value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_scaleCol(swigCPtr, this, col, scale_value));
-    }
-
-    public HighsStatus scaleRow(long row, double scale_value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_scaleRow(swigCPtr, this, row, scale_value));
-    }
-
-    public HighsStatus setSolution(HighsSolution solution) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setSolution__SWIG_0(
-                swigCPtr,
-                this,
-                HighsSolution.getCPtr(solution),
-                solution
-        ));
-    }
-
-    public HighsStatus setSolution(long num_entries, SWIGTYPE_p_long_long index, SWIGTYPE_p_double value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setSolution__SWIG_1(
-                swigCPtr,
-                this,
-                num_entries,
-                SWIGTYPE_p_long_long.getCPtr(index),
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus setCallback(
-            SWIGTYPE_p_HighsCallbackFunctionType user_callback,
-            SWIGTYPE_p_void user_callback_data
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setCallback__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_HighsCallbackFunctionType.getCPtr(user_callback),
-                SWIGTYPE_p_void.getCPtr(user_callback_data)
-        ));
-    }
-
-    public HighsStatus setCallback(SWIGTYPE_p_HighsCallbackFunctionType user_callback) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setCallback__SWIG_1(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_HighsCallbackFunctionType.getCPtr(user_callback)
-        ));
-    }
-
-    public HighsStatus setCallback(SWIGTYPE_p_HighsCCallbackType c_callback, SWIGTYPE_p_void user_callback_data) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setCallback__SWIG_2(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_HighsCCallbackType.getCPtr(c_callback),
-                SWIGTYPE_p_void.getCPtr(user_callback_data)
-        ));
-    }
-
-    public HighsStatus setCallback(SWIGTYPE_p_HighsCCallbackType c_callback) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setCallback__SWIG_3(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_HighsCCallbackType.getCPtr(c_callback)
-        ));
-    }
-
-    public HighsStatus startCallback(int callback_type) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_startCallback__SWIG_0(swigCPtr, this, callback_type));
-    }
-
-    public HighsStatus startCallback(HighsCallbackType callback_type) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_startCallback__SWIG_1(swigCPtr, this, callback_type.swigValue()));
-    }
-
-    public HighsStatus stopCallback(int callback_type) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_stopCallback__SWIG_0(swigCPtr, this, callback_type));
-    }
-
-    public HighsStatus stopCallback(HighsCallbackType callback_type) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_stopCallback__SWIG_1(swigCPtr, this, callback_type.swigValue()));
-    }
-
-    public HighsStatus setBasis(HighsBasis basis, String origin) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setBasis__SWIG_0(
-                swigCPtr,
-                this,
-                HighsBasis.getCPtr(basis),
-                basis,
-                origin
-        ));
-    }
-
-    public HighsStatus setBasis(HighsBasis basis) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setBasis__SWIG_1(
-                swigCPtr,
-                this,
-                HighsBasis.getCPtr(basis),
-                basis
-        ));
-    }
-
-    public HighsStatus setBasis() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setBasis__SWIG_2(swigCPtr, this));
-    }
-
-    public void reportProfiling() {
-        highsJNI.Highs_reportProfiling(swigCPtr, this);
-    }
-
-    public HighsStatus crossover(HighsSolution user_solution) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_crossover(
-                swigCPtr,
-                this,
-                HighsSolution.getCPtr(user_solution),
-                user_solution
-        ));
-    }
-
-    public HighsStatus openLogFile(String log_file) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_openLogFile__SWIG_0(swigCPtr, this, log_file));
-    }
-
-    public HighsStatus openLogFile() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_openLogFile__SWIG_1(swigCPtr, this));
-    }
-
-    public HighsStatus closeLogFile() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_closeLogFile(swigCPtr, this));
-    }
-
-    public String presolveStatusToString(HighsPresolveStatus presolve_status) {
-        return highsJNI.Highs_presolveStatusToString(swigCPtr, this, presolve_status.swigValue());
-    }
-
-    public String modelStatusToString(HighsModelStatus model_status) {
-        return highsJNI.Highs_modelStatusToString(swigCPtr, this, model_status.swigValue());
-    }
-
-    public String solutionStatusToString(long solution_status) {
-        return highsJNI.Highs_solutionStatusToString(swigCPtr, this, solution_status);
-    }
-
-    public String basisStatusToString(HighsBasisStatus basis_status) {
-        return highsJNI.Highs_basisStatusToString(swigCPtr, this, basis_status.swigValue());
-    }
-
-    public String basisValidityToString(long basis_validity) {
-        return highsJNI.Highs_basisValidityToString(swigCPtr, this, basis_validity);
-    }
-
-    public String presolveRuleTypeToString(long presolve_rule) {
-        return highsJNI.Highs_presolveRuleTypeToString(swigCPtr, this, presolve_rule);
-    }
-
-    public HighsStatus initializeMultiThreading() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_initializeMultiThreading(swigCPtr, this));
-    }
-
-    public void initializeProfiling(HighsProfiling profiling) {
-        highsJNI.Highs_initializeProfiling(swigCPtr, this, HighsProfiling.getCPtr(profiling), profiling);
-    }
-
-    public void initializeSingleThreadedProfiling(HighsProfiling profiling) {
-        highsJNI.Highs_initializeSingleThreadedProfiling(swigCPtr, this, HighsProfiling.getCPtr(profiling), profiling);
-    }
-
-    public void resetProfiling() {
-        highsJNI.Highs_resetProfiling(swigCPtr, this);
-    }
-
-    public void clearProfiling() {
-        highsJNI.Highs_clearProfiling(swigCPtr, this);
-    }
-
-    public void setProfiling(HighsProfiling profiling) {
-        highsJNI.Highs_setProfiling(swigCPtr, this, HighsProfiling.getCPtr(profiling), profiling);
-    }
-
-    public HighsStatus optimizeHighs() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_optimizeHighs(swigCPtr, this));
-    }
-
-    public HighsStatus optimizeModel() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_optimizeModel(swigCPtr, this));
-    }
-
-    public HighsStatus calledOptimizeModel() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_calledOptimizeModel(swigCPtr, this));
-    }
-
-    public HighsStatus optimizeLp() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_optimizeLp(swigCPtr, this));
-    }
-
-    public HighsSimplexStats getSimplexStats() {
-        return new HighsSimplexStats(highsJNI.Highs_getSimplexStats(swigCPtr, this), false);
-    }
-
-    public void reportSimplexStats(SWIGTYPE_p_FILE file) {
-        highsJNI.Highs_reportSimplexStats(swigCPtr, this, SWIGTYPE_p_FILE.getCPtr(file));
-    }
-
-    public HighsStatus putIterate() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_putIterate(swigCPtr, this));
-    }
-
-    public HighsStatus getIterate() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getIterate(swigCPtr, this));
-    }
-
-    public SWIGTYPE_p_double getDualEdgeWeights() {
-        long cPtr = highsJNI.Highs_getDualEdgeWeights(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_double(cPtr, false);
-    }
-
-    public SWIGTYPE_p_long_long getBasicVariablesArray() {
-        long cPtr = highsJNI.Highs_getBasicVariablesArray(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_long_long(cPtr, false);
-    }
-
-    public HighsStatus getBasisInverseRowSparse(long row, SWIGTYPE_p_HVector row_ep_buffer) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseRowSparse(
-                swigCPtr,
-                this,
-                row,
-                SWIGTYPE_p_HVector.getCPtr(row_ep_buffer)
-        ));
-    }
-
-    public DoubleVector getPrimalPhase1Dual() {
-        return new DoubleVector(highsJNI.Highs_getPrimalPhase1Dual(swigCPtr, this), false);
-    }
-
-    public HighsStatus getColOrRowName(SWIGTYPE_p_HighsLp lp, boolean is_col, long index, SWIGTYPE_p_std__string name) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getColOrRowName(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_HighsLp.getCPtr(lp),
-                is_col,
-                index,
-                SWIGTYPE_p_std__string.getCPtr(name)
-        ));
-    }
-
-    public long defineClock(String name) {
-        return highsJNI.Highs_defineClock(swigCPtr, this, name);
-    }
-
-    public void writeAllClocks() {
-        highsJNI.Highs_writeAllClocks(swigCPtr, this);
-    }
-
-    public HighsStatus clearModelNames() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_clearModelNames(swigCPtr, this));
-    }
-
-    public String compilationDate() {
-        return highsJNI.Highs_compilationDate(swigCPtr, this);
-    }
-
-    public HighsStatus setLogCallback(
-            SWIGTYPE_p_f_enum_HighsLogType_p_q_const__char_p_void__void user_log_callback,
-            SWIGTYPE_p_void user_log_callback_data
-    ) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setLogCallback__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_f_enum_HighsLogType_p_q_const__char_p_void__void.getCPtr(user_log_callback),
-                SWIGTYPE_p_void.getCPtr(user_log_callback_data)
-        ));
-    }
-
-    public HighsStatus setLogCallback(SWIGTYPE_p_f_enum_HighsLogType_p_q_const__char_p_void__void user_log_callback) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setLogCallback__SWIG_1(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_f_enum_HighsLogType_p_q_const__char_p_void__void.getCPtr(user_log_callback)
-        ));
-    }
-
-    public long getNumCols() {
-        return highsJNI.Highs_getNumCols(swigCPtr, this);
-    }
-
-    public long getNumRows() {
-        return highsJNI.Highs_getNumRows(swigCPtr, this);
-    }
-
-    public long getNumEntries() {
-        return highsJNI.Highs_getNumEntries(swigCPtr, this);
-    }
-
-    public HighsStatus setHighsOptionValue(String option, boolean value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOptionValue__SWIG_0(swigCPtr, this, option, value));
-    }
-
-    public HighsStatus setHighsOptionValue(String option, long value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOptionValue__SWIG_1(swigCPtr, this, option, value));
-    }
-
-    public HighsStatus setHighsOptionValue(String option, int value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOptionValue__SWIG_2(swigCPtr, this, option, value));
-    }
-
-    public HighsStatus setHighsOptionValue(String option, double value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOptionValue__SWIG_3(swigCPtr, this, option, value));
-    }
-
-    public HighsStatus setHighsOptionValue(String option, String value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOptionValue__SWIG_4(swigCPtr, this, option, value));
-    }
-
-    public HighsStatus readHighsOptions(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_readHighsOptions(swigCPtr, this, filename));
-    }
-
-    public HighsStatus passHighsOptions(SWIGTYPE_p_HighsOptions options) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_passHighsOptions(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_HighsOptions.getCPtr(options)
-        ));
-    }
-
-    public HighsStatus getHighsOptionValue(String option, SWIGTYPE_p_bool value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getHighsOptionValue__SWIG_0(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_bool.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getHighsOptionValue(String option, SWIGTYPE_p_long_long value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getHighsOptionValue__SWIG_1(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_long_long.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getHighsOptionValue(String option, SWIGTYPE_p_double value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getHighsOptionValue__SWIG_2(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getHighsOptionValue(String option, SWIGTYPE_p_std__string value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getHighsOptionValue__SWIG_3(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_std__string.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getHighsOptionType(String option, SWIGTYPE_p_HighsOptionType type) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getHighsOptionType(
-                swigCPtr,
-                this,
-                option,
-                SWIGTYPE_p_HighsOptionType.getCPtr(type)
-        ));
-    }
-
-    public SWIGTYPE_p_HighsOptions getHighsOptions() {
-        return new SWIGTYPE_p_HighsOptions(highsJNI.Highs_getHighsOptions(swigCPtr, this), false);
-    }
-
-    public HighsStatus resetHighsOptions() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_resetHighsOptions(swigCPtr, this));
-    }
-
-    public HighsStatus writeHighsOptions(String filename, boolean report_only_deviations) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeHighsOptions__SWIG_0(
-                swigCPtr,
-                this,
-                filename,
-                report_only_deviations
-        ));
-    }
-
-    public HighsStatus writeHighsOptions(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeHighsOptions__SWIG_1(swigCPtr, this, filename));
-    }
-
-    public long getSimplexIterationCount() {
-        return highsJNI.Highs_getSimplexIterationCount(swigCPtr, this);
-    }
-
-    public HighsStatus setHighsLogfile(SWIGTYPE_p_FILE logfile) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setHighsLogfile__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_FILE.getCPtr(logfile)
-        ));
-    }
-
-    public HighsStatus setHighsLogfile() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setHighsLogfile__SWIG_1(swigCPtr, this));
-    }
-
-    public HighsStatus setHighsOutput(SWIGTYPE_p_FILE output) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOutput__SWIG_0(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_FILE.getCPtr(output)
-        ));
-    }
-
-    public HighsStatus setHighsOutput() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOutput__SWIG_1(swigCPtr, this));
-    }
-
-    public HighsInfo getHighsInfo() {
-        return new HighsInfo(highsJNI.Highs_getHighsInfo(swigCPtr, this), false);
-    }
-
-    public HighsStatus getHighsInfoValue(String info, SWIGTYPE_p_long_long value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getHighsInfoValue__SWIG_0(
-                swigCPtr,
-                this,
-                info,
-                SWIGTYPE_p_long_long.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus getHighsInfoValue(String info, SWIGTYPE_p_double value) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_getHighsInfoValue__SWIG_1(
-                swigCPtr,
-                this,
-                info,
-                SWIGTYPE_p_double.getCPtr(value)
-        ));
-    }
-
-    public HighsStatus writeHighsInfo(String filename) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_writeHighsInfo(swigCPtr, this, filename));
-    }
-
-    public double getHighsInfinity() {
-        return highsJNI.Highs_getHighsInfinity(swigCPtr, this);
-    }
-
-    public double getHighsRunTime() {
-        return highsJNI.Highs_getHighsRunTime(swigCPtr, this);
-    }
-
-    public HighsModelStatus getModelStatus(boolean scaled_model) {
-        return HighsModelStatus.swigToEnum(highsJNI.Highs_getModelStatus__SWIG_1(swigCPtr, this, scaled_model));
-    }
-
-    public void logHeader() {
-        highsJNI.Highs_logHeader(swigCPtr, this);
-    }
-
-    public void deprecationMessage(String method_name, String alt_method_name) {
-        highsJNI.Highs_deprecationMessage(swigCPtr, this, method_name, alt_method_name);
-    }
-
-    public HotStart getHotStart() {
-        return new HotStart(highsJNI.Highs_getHotStart(swigCPtr, this), false);
-    }
-
-    public HighsStatus setHotStart(HotStart hot_start) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_setHotStart(
-                swigCPtr,
-                this,
-                HotStart.getCPtr(hot_start),
-                hot_start
-        ));
-    }
-
-    public HighsStatus freezeBasis(SWIGTYPE_p_long_long frozen_basis_id) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_freezeBasis(
-                swigCPtr,
-                this,
-                SWIGTYPE_p_long_long.getCPtr(frozen_basis_id)
-        ));
-    }
-
-    public HighsStatus unfreezeBasis(long frozen_basis_id) {
-        return HighsStatus.swigToEnum(highsJNI.Highs_unfreezeBasis(swigCPtr, this, frozen_basis_id));
-    }
-
-    public HighsStatus frozenBasisAllDataClear() {
-        return HighsStatus.swigToEnum(highsJNI.Highs_frozenBasisAllDataClear(swigCPtr, this));
-    }
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
+
+  protected Highs(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
+
+  protected static long getCPtr(Highs obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
+
+  protected static long swigRelease(Highs obj) {
+    long ptr = 0;
+    if (obj != null) {
+      if (!obj.swigCMemOwn)
+        throw new RuntimeException("Cannot release ownership as memory is not owned");
+      ptr = obj.swigCPtr;
+      obj.swigCMemOwn = false;
+      obj.delete();
+    }
+    return ptr;
+  }
+
+  @SuppressWarnings({"deprecation", "removal"})
+  protected void finalize() {
+    delete();
+  }
+
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        highsJNI.delete_Highs(swigCPtr);
+      }
+      swigCPtr = 0;
+    }
+  }
+
+  public Highs() {
+    this(highsJNI.new_Highs(), true);
+  }
+
+  public String version() {
+    return highsJNI.Highs_version(swigCPtr, this);
+  }
+
+  public long versionMajor() {
+    return highsJNI.Highs_versionMajor(swigCPtr, this);
+  }
+
+  public long versionMinor() {
+    return highsJNI.Highs_versionMinor(swigCPtr, this);
+  }
+
+  public long versionPatch() {
+    return highsJNI.Highs_versionPatch(swigCPtr, this);
+  }
+
+  public String githash() {
+    return highsJNI.Highs_githash(swigCPtr, this);
+  }
+
+  public String getThirdPartyNotice() {
+    return highsJNI.Highs_getThirdPartyNotice(swigCPtr, this);
+  }
+
+  public HighsStatus clear() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_clear(swigCPtr, this));
+  }
+
+  public HighsStatus clearModel() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_clearModel(swigCPtr, this));
+  }
+
+  public HighsStatus clearSolver() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_clearSolver(swigCPtr, this));
+  }
+
+  public HighsStatus clearSolverDualData() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_clearSolverDualData(swigCPtr, this));
+  }
+
+  public HighsStatus releaseMemory() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_releaseMemory(swigCPtr, this));
+  }
+
+  public HighsStatus passModel(HighsModel model) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_0(swigCPtr, this, HighsModel.getCPtr(model), model));
+  }
+
+  public HighsStatus passModel(SWIGTYPE_p_HighsLp lp) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_1(swigCPtr, this, SWIGTYPE_p_HighsLp.getCPtr(lp)));
+  }
+
+  public HighsStatus passModel(long num_col, long num_row, long num_nz, long q_num_nz, long a_format, long q_format, long sense, double offset, SWIGTYPE_p_double col_cost, SWIGTYPE_p_double col_lower, SWIGTYPE_p_double col_upper, SWIGTYPE_p_double row_lower, SWIGTYPE_p_double row_upper, SWIGTYPE_p_long_long a_start, SWIGTYPE_p_long_long a_index, SWIGTYPE_p_double a_value, SWIGTYPE_p_long_long q_start, SWIGTYPE_p_long_long q_index, SWIGTYPE_p_double q_value, SWIGTYPE_p_long_long integrality) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_2(swigCPtr, this, num_col, num_row, num_nz, q_num_nz, a_format, q_format, sense, offset, SWIGTYPE_p_double.getCPtr(col_cost), SWIGTYPE_p_double.getCPtr(col_lower), SWIGTYPE_p_double.getCPtr(col_upper), SWIGTYPE_p_double.getCPtr(row_lower), SWIGTYPE_p_double.getCPtr(row_upper), SWIGTYPE_p_long_long.getCPtr(a_start), SWIGTYPE_p_long_long.getCPtr(a_index), SWIGTYPE_p_double.getCPtr(a_value), SWIGTYPE_p_long_long.getCPtr(q_start), SWIGTYPE_p_long_long.getCPtr(q_index), SWIGTYPE_p_double.getCPtr(q_value), SWIGTYPE_p_long_long.getCPtr(integrality)));
+  }
+
+  public HighsStatus passModel(long num_col, long num_row, long num_nz, long q_num_nz, long a_format, long q_format, long sense, double offset, SWIGTYPE_p_double col_cost, SWIGTYPE_p_double col_lower, SWIGTYPE_p_double col_upper, SWIGTYPE_p_double row_lower, SWIGTYPE_p_double row_upper, SWIGTYPE_p_long_long a_start, SWIGTYPE_p_long_long a_index, SWIGTYPE_p_double a_value, SWIGTYPE_p_long_long q_start, SWIGTYPE_p_long_long q_index, SWIGTYPE_p_double q_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_3(swigCPtr, this, num_col, num_row, num_nz, q_num_nz, a_format, q_format, sense, offset, SWIGTYPE_p_double.getCPtr(col_cost), SWIGTYPE_p_double.getCPtr(col_lower), SWIGTYPE_p_double.getCPtr(col_upper), SWIGTYPE_p_double.getCPtr(row_lower), SWIGTYPE_p_double.getCPtr(row_upper), SWIGTYPE_p_long_long.getCPtr(a_start), SWIGTYPE_p_long_long.getCPtr(a_index), SWIGTYPE_p_double.getCPtr(a_value), SWIGTYPE_p_long_long.getCPtr(q_start), SWIGTYPE_p_long_long.getCPtr(q_index), SWIGTYPE_p_double.getCPtr(q_value)));
+  }
+
+  public HighsStatus passModel(long num_col, long num_row, long num_nz, long a_format, long sense, double offset, SWIGTYPE_p_double col_cost, SWIGTYPE_p_double col_lower, SWIGTYPE_p_double col_upper, SWIGTYPE_p_double row_lower, SWIGTYPE_p_double row_upper, SWIGTYPE_p_long_long a_start, SWIGTYPE_p_long_long a_index, SWIGTYPE_p_double a_value, SWIGTYPE_p_long_long integrality) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_4(swigCPtr, this, num_col, num_row, num_nz, a_format, sense, offset, SWIGTYPE_p_double.getCPtr(col_cost), SWIGTYPE_p_double.getCPtr(col_lower), SWIGTYPE_p_double.getCPtr(col_upper), SWIGTYPE_p_double.getCPtr(row_lower), SWIGTYPE_p_double.getCPtr(row_upper), SWIGTYPE_p_long_long.getCPtr(a_start), SWIGTYPE_p_long_long.getCPtr(a_index), SWIGTYPE_p_double.getCPtr(a_value), SWIGTYPE_p_long_long.getCPtr(integrality)));
+  }
+
+  public HighsStatus passModel(long num_col, long num_row, long num_nz, long a_format, long sense, double offset, SWIGTYPE_p_double col_cost, SWIGTYPE_p_double col_lower, SWIGTYPE_p_double col_upper, SWIGTYPE_p_double row_lower, SWIGTYPE_p_double row_upper, SWIGTYPE_p_long_long a_start, SWIGTYPE_p_long_long a_index, SWIGTYPE_p_double a_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_5(swigCPtr, this, num_col, num_row, num_nz, a_format, sense, offset, SWIGTYPE_p_double.getCPtr(col_cost), SWIGTYPE_p_double.getCPtr(col_lower), SWIGTYPE_p_double.getCPtr(col_upper), SWIGTYPE_p_double.getCPtr(row_lower), SWIGTYPE_p_double.getCPtr(row_upper), SWIGTYPE_p_long_long.getCPtr(a_start), SWIGTYPE_p_long_long.getCPtr(a_index), SWIGTYPE_p_double.getCPtr(a_value)));
+  }
+
+  public HighsStatus passHessian(SWIGTYPE_p_HighsHessian hessian_) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passHessian__SWIG_0(swigCPtr, this, SWIGTYPE_p_HighsHessian.getCPtr(hessian_)));
+  }
+
+  public HighsStatus passHessian(long dim, long num_nz, long format, SWIGTYPE_p_long_long start, SWIGTYPE_p_long_long index, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passHessian__SWIG_1(swigCPtr, this, dim, num_nz, format, SWIGTYPE_p_long_long.getCPtr(start), SWIGTYPE_p_long_long.getCPtr(index), SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus passLinearObjectives(long num_linear_objective, HighsLinearObjective linear_objective) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passLinearObjectives(swigCPtr, this, num_linear_objective, HighsLinearObjective.getCPtr(linear_objective), linear_objective));
+  }
+
+  public HighsStatus addLinearObjective(HighsLinearObjective linear_objective, long iObj) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_addLinearObjective__SWIG_0(swigCPtr, this, HighsLinearObjective.getCPtr(linear_objective), linear_objective, iObj));
+  }
+
+  public HighsStatus addLinearObjective(HighsLinearObjective linear_objective) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_addLinearObjective__SWIG_1(swigCPtr, this, HighsLinearObjective.getCPtr(linear_objective), linear_objective));
+  }
+
+  public long getNumLinearObjectives() {
+    return highsJNI.Highs_getNumLinearObjectives(swigCPtr, this);
+  }
+
+  public HighsLinearObjective getLinearObjective(long idx) {
+    return new HighsLinearObjective(highsJNI.Highs_getLinearObjective(swigCPtr, this, idx), false);
+  }
+
+  public HighsStatus clearLinearObjectives() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_clearLinearObjectives(swigCPtr, this));
+  }
+
+  public HighsStatus passColName(long col, String name) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passColName(swigCPtr, this, col, name));
+  }
+
+  public HighsStatus passRowName(long row, String name) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passRowName(swigCPtr, this, row, name));
+  }
+
+  public HighsStatus passModelName(String name) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passModelName(swigCPtr, this, name));
+  }
+
+  public HighsStatus readModel(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_readModel(swigCPtr, this, filename));
+  }
+
+  public HighsStatus readBasis(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_readBasis(swigCPtr, this, filename));
+  }
+
+  public HighsStatus matrixImage(String matrix_image_filename, String hessian_image_filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_matrixImage__SWIG_0(swigCPtr, this, matrix_image_filename, hessian_image_filename));
+  }
+
+  public HighsStatus matrixImage(String matrix_image_filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_matrixImage__SWIG_1(swigCPtr, this, matrix_image_filename));
+  }
+
+  public HighsStatus presolve() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_presolve(swigCPtr, this));
+  }
+
+  public HighsStatus run() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_run(swigCPtr, this));
+  }
+
+  public HighsStatus postsolve(HighsSolution solution) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_postsolve__SWIG_0(swigCPtr, this, HighsSolution.getCPtr(solution), solution));
+  }
+
+  public HighsStatus postsolve(HighsSolution solution, HighsBasis basis) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_postsolve__SWIG_1(swigCPtr, this, HighsSolution.getCPtr(solution), solution, HighsBasis.getCPtr(basis), basis));
+  }
+
+  public HighsStatus writeSolution(String filename, long style) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeSolution__SWIG_0(swigCPtr, this, filename, style));
+  }
+
+  public HighsStatus writeSolution(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeSolution__SWIG_1(swigCPtr, this, filename));
+  }
+
+  public HighsStatus readSolution(String filename, long style) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_readSolution__SWIG_0(swigCPtr, this, filename, style));
+  }
+
+  public HighsStatus readSolution(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_readSolution__SWIG_1(swigCPtr, this, filename));
+  }
+
+  public HighsStatus assessPrimalSolution(SWIGTYPE_p_bool valid, SWIGTYPE_p_bool integral, SWIGTYPE_p_bool feasible) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_assessPrimalSolution(swigCPtr, this, SWIGTYPE_p_bool.getCPtr(valid), SWIGTYPE_p_bool.getCPtr(integral), SWIGTYPE_p_bool.getCPtr(feasible)));
+  }
+
+  public HighsStatus setOptionValue(String option, boolean value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setOptionValue__SWIG_0(swigCPtr, this, option, value));
+  }
+
+  public HighsStatus setOptionValue(String option, long value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setOptionValue__SWIG_1(swigCPtr, this, option, value));
+  }
+
+  public HighsStatus setOptionValue(String option, int value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setOptionValue__SWIG_2(swigCPtr, this, option, value));
+  }
+
+  public HighsStatus setOptionValue(String option, double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setOptionValue__SWIG_3(swigCPtr, this, option, value));
+  }
+
+  public HighsStatus setOptionValue(String option, String value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setOptionValue__SWIG_4(swigCPtr, this, option, value));
+  }
+
+  public HighsStatus readOptions(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_readOptions(swigCPtr, this, filename));
+  }
+
+  public HighsStatus passOptions(SWIGTYPE_p_HighsOptions options) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passOptions(swigCPtr, this, SWIGTYPE_p_HighsOptions.getCPtr(options)));
+  }
+
+  public SWIGTYPE_p_HighsOptions getOptions() {
+    return new SWIGTYPE_p_HighsOptions(highsJNI.Highs_getOptions(swigCPtr, this), false);
+  }
+
+  public HighsStatus getOptionValue(String option, SWIGTYPE_p_bool value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getOptionValue__SWIG_0(swigCPtr, this, option, SWIGTYPE_p_bool.getCPtr(value)));
+  }
+
+  public HighsStatus getOptionValue(String option, SWIGTYPE_p_long_long value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getOptionValue__SWIG_1(swigCPtr, this, option, SWIGTYPE_p_long_long.getCPtr(value)));
+  }
+
+  public HighsStatus getOptionValue(String option, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getOptionValue__SWIG_2(swigCPtr, this, option, SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getOptionValue(String option, SWIGTYPE_p_std__string value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getOptionValue__SWIG_3(swigCPtr, this, option, SWIGTYPE_p_std__string.getCPtr(value)));
+  }
+
+  public HighsStatus getOptionType(String option, SWIGTYPE_p_HighsOptionType type) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getOptionType__SWIG_0(swigCPtr, this, option, SWIGTYPE_p_HighsOptionType.getCPtr(type)));
+  }
+
+  public HighsStatus resetOptions() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_resetOptions(swigCPtr, this));
+  }
+
+  public HighsStatus writeOptions(String filename, boolean report_only_deviations) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeOptions__SWIG_0(swigCPtr, this, filename, report_only_deviations));
+  }
+
+  public HighsStatus writeOptions(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeOptions__SWIG_1(swigCPtr, this, filename));
+  }
+
+  public long getNumOptions() {
+    return highsJNI.Highs_getNumOptions(swigCPtr, this);
+  }
+
+  public HighsStatus getOptionName(long index, SWIGTYPE_p_std__string name) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getOptionName(swigCPtr, this, index, SWIGTYPE_p_std__string.getCPtr(name)));
+  }
+
+  public HighsStatus getBoolOptionValues(String option, SWIGTYPE_p_bool current_value, SWIGTYPE_p_bool default_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBoolOptionValues__SWIG_0(swigCPtr, this, option, SWIGTYPE_p_bool.getCPtr(current_value), SWIGTYPE_p_bool.getCPtr(default_value)));
+  }
+
+  public HighsStatus getBoolOptionValues(String option, SWIGTYPE_p_bool current_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBoolOptionValues__SWIG_1(swigCPtr, this, option, SWIGTYPE_p_bool.getCPtr(current_value)));
+  }
+
+  public HighsStatus getBoolOptionValues(String option) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBoolOptionValues__SWIG_2(swigCPtr, this, option));
+  }
+
+  public HighsStatus getIntOptionValues(String option, SWIGTYPE_p_long_long current_value, SWIGTYPE_p_long_long min_value, SWIGTYPE_p_long_long max_value, SWIGTYPE_p_long_long default_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getIntOptionValues__SWIG_0(swigCPtr, this, option, SWIGTYPE_p_long_long.getCPtr(current_value), SWIGTYPE_p_long_long.getCPtr(min_value), SWIGTYPE_p_long_long.getCPtr(max_value), SWIGTYPE_p_long_long.getCPtr(default_value)));
+  }
+
+  public HighsStatus getIntOptionValues(String option, SWIGTYPE_p_long_long current_value, SWIGTYPE_p_long_long min_value, SWIGTYPE_p_long_long max_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getIntOptionValues__SWIG_1(swigCPtr, this, option, SWIGTYPE_p_long_long.getCPtr(current_value), SWIGTYPE_p_long_long.getCPtr(min_value), SWIGTYPE_p_long_long.getCPtr(max_value)));
+  }
+
+  public HighsStatus getIntOptionValues(String option, SWIGTYPE_p_long_long current_value, SWIGTYPE_p_long_long min_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getIntOptionValues__SWIG_2(swigCPtr, this, option, SWIGTYPE_p_long_long.getCPtr(current_value), SWIGTYPE_p_long_long.getCPtr(min_value)));
+  }
+
+  public HighsStatus getIntOptionValues(String option, SWIGTYPE_p_long_long current_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getIntOptionValues__SWIG_3(swigCPtr, this, option, SWIGTYPE_p_long_long.getCPtr(current_value)));
+  }
+
+  public HighsStatus getIntOptionValues(String option) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getIntOptionValues__SWIG_4(swigCPtr, this, option));
+  }
+
+  public HighsStatus getDoubleOptionValues(String option, SWIGTYPE_p_double current_value, SWIGTYPE_p_double min_value, SWIGTYPE_p_double max_value, SWIGTYPE_p_double default_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getDoubleOptionValues__SWIG_0(swigCPtr, this, option, SWIGTYPE_p_double.getCPtr(current_value), SWIGTYPE_p_double.getCPtr(min_value), SWIGTYPE_p_double.getCPtr(max_value), SWIGTYPE_p_double.getCPtr(default_value)));
+  }
+
+  public HighsStatus getDoubleOptionValues(String option, SWIGTYPE_p_double current_value, SWIGTYPE_p_double min_value, SWIGTYPE_p_double max_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getDoubleOptionValues__SWIG_1(swigCPtr, this, option, SWIGTYPE_p_double.getCPtr(current_value), SWIGTYPE_p_double.getCPtr(min_value), SWIGTYPE_p_double.getCPtr(max_value)));
+  }
+
+  public HighsStatus getDoubleOptionValues(String option, SWIGTYPE_p_double current_value, SWIGTYPE_p_double min_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getDoubleOptionValues__SWIG_2(swigCPtr, this, option, SWIGTYPE_p_double.getCPtr(current_value), SWIGTYPE_p_double.getCPtr(min_value)));
+  }
+
+  public HighsStatus getDoubleOptionValues(String option, SWIGTYPE_p_double current_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getDoubleOptionValues__SWIG_3(swigCPtr, this, option, SWIGTYPE_p_double.getCPtr(current_value)));
+  }
+
+  public HighsStatus getDoubleOptionValues(String option) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getDoubleOptionValues__SWIG_4(swigCPtr, this, option));
+  }
+
+  public HighsStatus getStringOptionValues(String option, SWIGTYPE_p_std__string current_value, SWIGTYPE_p_std__string default_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getStringOptionValues__SWIG_0(swigCPtr, this, option, SWIGTYPE_p_std__string.getCPtr(current_value), SWIGTYPE_p_std__string.getCPtr(default_value)));
+  }
+
+  public HighsStatus getStringOptionValues(String option, SWIGTYPE_p_std__string current_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getStringOptionValues__SWIG_1(swigCPtr, this, option, SWIGTYPE_p_std__string.getCPtr(current_value)));
+  }
+
+  public HighsStatus getStringOptionValues(String option) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getStringOptionValues__SWIG_2(swigCPtr, this, option));
+  }
+
+  public SWIGTYPE_p_HighsRunData getRunData() {
+    return new SWIGTYPE_p_HighsRunData(highsJNI.Highs_getRunData(swigCPtr, this), false);
+  }
+
+  public HighsStatus getRunDataValue(String run_data, SWIGTYPE_p_long_long value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRunDataValue__SWIG_0(swigCPtr, this, run_data, SWIGTYPE_p_long_long.getCPtr(value)));
+  }
+
+  public HighsStatus getRunDataValue(String run_data, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRunDataValue__SWIG_1(swigCPtr, this, run_data, SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getRunDataType(String run_data, SWIGTYPE_p_HighsRunDataType type) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRunDataType(swigCPtr, this, run_data, SWIGTYPE_p_HighsRunDataType.getCPtr(type)));
+  }
+
+  public HighsStatus writeRunData(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeRunData__SWIG_0(swigCPtr, this, filename));
+  }
+
+  public HighsStatus writeRunData() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeRunData__SWIG_1(swigCPtr, this));
+  }
+
+  public HighsInfo getInfo() {
+    return new HighsInfo(highsJNI.Highs_getInfo(swigCPtr, this), false);
+  }
+
+  public HighsStatus getInfoValue(String info, SWIGTYPE_p_long_long value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getInfoValue__SWIG_0(swigCPtr, this, info, SWIGTYPE_p_long_long.getCPtr(value)));
+  }
+
+  public HighsStatus getInfoValue(String info, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getInfoValue__SWIG_1(swigCPtr, this, info, SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getInfoType(String info, SWIGTYPE_p_HighsInfoType type) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getInfoType(swigCPtr, this, info, SWIGTYPE_p_HighsInfoType.getCPtr(type)));
+  }
+
+  public HighsStatus writeInfo(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeInfo__SWIG_0(swigCPtr, this, filename));
+  }
+
+  public HighsStatus writeInfo() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeInfo__SWIG_1(swigCPtr, this));
+  }
+
+  public double getInfinity() {
+    return highsJNI.Highs_getInfinity(swigCPtr, this);
+  }
+
+  public long getSizeofHighsInt() {
+    return highsJNI.Highs_getSizeofHighsInt(swigCPtr, this);
+  }
+
+  public double getRunTime() {
+    return highsJNI.Highs_getRunTime(swigCPtr, this);
+  }
+
+  public HighsStatus getStandardFormLp(SWIGTYPE_p_long_long num_col, SWIGTYPE_p_long_long num_row, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_double offset, SWIGTYPE_p_double cost, SWIGTYPE_p_double rhs, SWIGTYPE_p_long_long start, SWIGTYPE_p_long_long index, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_0(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(num_col), SWIGTYPE_p_long_long.getCPtr(num_row), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_double.getCPtr(offset), SWIGTYPE_p_double.getCPtr(cost), SWIGTYPE_p_double.getCPtr(rhs), SWIGTYPE_p_long_long.getCPtr(start), SWIGTYPE_p_long_long.getCPtr(index), SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getStandardFormLp(SWIGTYPE_p_long_long num_col, SWIGTYPE_p_long_long num_row, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_double offset, SWIGTYPE_p_double cost, SWIGTYPE_p_double rhs, SWIGTYPE_p_long_long start, SWIGTYPE_p_long_long index) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_1(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(num_col), SWIGTYPE_p_long_long.getCPtr(num_row), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_double.getCPtr(offset), SWIGTYPE_p_double.getCPtr(cost), SWIGTYPE_p_double.getCPtr(rhs), SWIGTYPE_p_long_long.getCPtr(start), SWIGTYPE_p_long_long.getCPtr(index)));
+  }
+
+  public HighsStatus getStandardFormLp(SWIGTYPE_p_long_long num_col, SWIGTYPE_p_long_long num_row, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_double offset, SWIGTYPE_p_double cost, SWIGTYPE_p_double rhs, SWIGTYPE_p_long_long start) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_2(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(num_col), SWIGTYPE_p_long_long.getCPtr(num_row), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_double.getCPtr(offset), SWIGTYPE_p_double.getCPtr(cost), SWIGTYPE_p_double.getCPtr(rhs), SWIGTYPE_p_long_long.getCPtr(start)));
+  }
+
+  public HighsStatus getStandardFormLp(SWIGTYPE_p_long_long num_col, SWIGTYPE_p_long_long num_row, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_double offset, SWIGTYPE_p_double cost, SWIGTYPE_p_double rhs) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_3(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(num_col), SWIGTYPE_p_long_long.getCPtr(num_row), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_double.getCPtr(offset), SWIGTYPE_p_double.getCPtr(cost), SWIGTYPE_p_double.getCPtr(rhs)));
+  }
+
+  public HighsStatus getStandardFormLp(SWIGTYPE_p_long_long num_col, SWIGTYPE_p_long_long num_row, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_double offset, SWIGTYPE_p_double cost) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_4(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(num_col), SWIGTYPE_p_long_long.getCPtr(num_row), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_double.getCPtr(offset), SWIGTYPE_p_double.getCPtr(cost)));
+  }
+
+  public HighsStatus getStandardFormLp(SWIGTYPE_p_long_long num_col, SWIGTYPE_p_long_long num_row, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_double offset) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getStandardFormLp__SWIG_5(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(num_col), SWIGTYPE_p_long_long.getCPtr(num_row), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_double.getCPtr(offset)));
+  }
+
+  public SWIGTYPE_p_HighsLp getPresolvedLp() {
+    return new SWIGTYPE_p_HighsLp(highsJNI.Highs_getPresolvedLp(swigCPtr, this), false);
+  }
+
+  public HighsModel getPresolvedModel() {
+    return new HighsModel(highsJNI.Highs_getPresolvedModel(swigCPtr, this), false);
+  }
+
+  public HighsPresolveLog getPresolveLog() {
+    return new HighsPresolveLog(highsJNI.Highs_getPresolveLog(swigCPtr, this), false);
+  }
+
+  public SWIGTYPE_p_long_long getPresolveOrigColsIndex() {
+    long cPtr = highsJNI.Highs_getPresolveOrigColsIndex(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_long_long(cPtr, false);
+  }
+
+  public SWIGTYPE_p_long_long getPresolveOrigRowsIndex() {
+    long cPtr = highsJNI.Highs_getPresolveOrigRowsIndex(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_long_long(cPtr, false);
+  }
+
+  public HighsStatus getFixedLp(SWIGTYPE_p_HighsLp lp) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getFixedLp(swigCPtr, this, SWIGTYPE_p_HighsLp.getCPtr(lp)));
+  }
+
+  public SWIGTYPE_p_HighsLp getLp() {
+    return new SWIGTYPE_p_HighsLp(highsJNI.Highs_getLp(swigCPtr, this), false);
+  }
+
+  public HighsModel getModel() {
+    return new HighsModel(highsJNI.Highs_getModel(swigCPtr, this), false);
+  }
+
+  public HighsSolution getSolution() {
+    return new HighsSolution(highsJNI.Highs_getSolution(swigCPtr, this), false);
+  }
+
+  public SWIGTYPE_p_HighsLp getIisLp() {
+    return new SWIGTYPE_p_HighsLp(highsJNI.Highs_getIisLp(swigCPtr, this), false);
+  }
+
+  public void zeroAllClocks() {
+    highsJNI.Highs_zeroAllClocks(swigCPtr, this);
+  }
+
+  public SWIGTYPE_p_std__vectorT_HighsObjectiveSolution_t getSavedMipSolutions() {
+    return new SWIGTYPE_p_std__vectorT_HighsObjectiveSolution_t(highsJNI.Highs_getSavedMipSolutions(swigCPtr, this), false);
+  }
+
+  public SWIGTYPE_p_ICrashInfo getICrashInfo() {
+    return new SWIGTYPE_p_ICrashInfo(highsJNI.Highs_getICrashInfo(swigCPtr, this), false);
+  }
+
+  public HighsBasis getBasis() {
+    return new HighsBasis(highsJNI.Highs_getBasis(swigCPtr, this), false);
+  }
+
+  public HighsModelStatus getModelStatus() {
+    return HighsModelStatus.swigToEnum(highsJNI.Highs_getModelStatus__SWIG_0(swigCPtr, this));
+  }
+
+  public HighsPresolveStatus getModelPresolveStatus() {
+    return HighsPresolveStatus.swigToEnum(highsJNI.Highs_getModelPresolveStatus(swigCPtr, this));
+  }
+
+  public HighsStatus getDualRay(SWIGTYPE_p_bool has_dual_ray, SWIGTYPE_p_double dual_ray_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getDualRay__SWIG_0(swigCPtr, this, SWIGTYPE_p_bool.getCPtr(has_dual_ray), SWIGTYPE_p_double.getCPtr(dual_ray_value)));
+  }
+
+  public HighsStatus getDualRay(SWIGTYPE_p_bool has_dual_ray) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getDualRay__SWIG_1(swigCPtr, this, SWIGTYPE_p_bool.getCPtr(has_dual_ray)));
+  }
+
+  public HighsStatus getDualRaySparse(SWIGTYPE_p_bool has_dual_ray, SWIGTYPE_p_HVector row_ep_buffer) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getDualRaySparse(swigCPtr, this, SWIGTYPE_p_bool.getCPtr(has_dual_ray), SWIGTYPE_p_HVector.getCPtr(row_ep_buffer)));
+  }
+
+  public HighsStatus getDualUnboundednessDirection(SWIGTYPE_p_bool has_dual_unboundedness_direction, SWIGTYPE_p_double dual_unboundedness_direction_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getDualUnboundednessDirection__SWIG_0(swigCPtr, this, SWIGTYPE_p_bool.getCPtr(has_dual_unboundedness_direction), SWIGTYPE_p_double.getCPtr(dual_unboundedness_direction_value)));
+  }
+
+  public HighsStatus getDualUnboundednessDirection(SWIGTYPE_p_bool has_dual_unboundedness_direction) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getDualUnboundednessDirection__SWIG_1(swigCPtr, this, SWIGTYPE_p_bool.getCPtr(has_dual_unboundedness_direction)));
+  }
+
+  public HighsStatus getPrimalRay(SWIGTYPE_p_bool has_primal_ray, SWIGTYPE_p_double primal_ray_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getPrimalRay__SWIG_0(swigCPtr, this, SWIGTYPE_p_bool.getCPtr(has_primal_ray), SWIGTYPE_p_double.getCPtr(primal_ray_value)));
+  }
+
+  public HighsStatus getPrimalRay(SWIGTYPE_p_bool has_primal_ray) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getPrimalRay__SWIG_1(swigCPtr, this, SWIGTYPE_p_bool.getCPtr(has_primal_ray)));
+  }
+
+  public HighsStatus getRanging(SWIGTYPE_p_HighsRanging ranging) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRanging(swigCPtr, this, SWIGTYPE_p_HighsRanging.getCPtr(ranging)));
+  }
+
+  public HighsStatus feasibilityRelaxation(double global_lower_penalty, double global_upper_penalty, double global_rhs_penalty, SWIGTYPE_p_double local_lower_penalty, SWIGTYPE_p_double local_upper_penalty, SWIGTYPE_p_double local_rhs_penalty) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_feasibilityRelaxation__SWIG_0(swigCPtr, this, global_lower_penalty, global_upper_penalty, global_rhs_penalty, SWIGTYPE_p_double.getCPtr(local_lower_penalty), SWIGTYPE_p_double.getCPtr(local_upper_penalty), SWIGTYPE_p_double.getCPtr(local_rhs_penalty)));
+  }
+
+  public HighsStatus feasibilityRelaxation(double global_lower_penalty, double global_upper_penalty, double global_rhs_penalty, SWIGTYPE_p_double local_lower_penalty, SWIGTYPE_p_double local_upper_penalty) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_feasibilityRelaxation__SWIG_1(swigCPtr, this, global_lower_penalty, global_upper_penalty, global_rhs_penalty, SWIGTYPE_p_double.getCPtr(local_lower_penalty), SWIGTYPE_p_double.getCPtr(local_upper_penalty)));
+  }
+
+  public HighsStatus feasibilityRelaxation(double global_lower_penalty, double global_upper_penalty, double global_rhs_penalty, SWIGTYPE_p_double local_lower_penalty) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_feasibilityRelaxation__SWIG_2(swigCPtr, this, global_lower_penalty, global_upper_penalty, global_rhs_penalty, SWIGTYPE_p_double.getCPtr(local_lower_penalty)));
+  }
+
+  public HighsStatus feasibilityRelaxation(double global_lower_penalty, double global_upper_penalty, double global_rhs_penalty) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_feasibilityRelaxation__SWIG_3(swigCPtr, this, global_lower_penalty, global_upper_penalty, global_rhs_penalty));
+  }
+
+  public HighsStatus getIllConditioning(HighsIllConditioning ill_conditioning, boolean constraint, long method, double ill_conditioning_bound) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getIllConditioning__SWIG_0(swigCPtr, this, HighsIllConditioning.getCPtr(ill_conditioning), ill_conditioning, constraint, method, ill_conditioning_bound));
+  }
+
+  public HighsStatus getIllConditioning(HighsIllConditioning ill_conditioning, boolean constraint, long method) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getIllConditioning__SWIG_1(swigCPtr, this, HighsIllConditioning.getCPtr(ill_conditioning), ill_conditioning, constraint, method));
+  }
+
+  public HighsStatus getIllConditioning(HighsIllConditioning ill_conditioning, boolean constraint) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getIllConditioning__SWIG_2(swigCPtr, this, HighsIllConditioning.getCPtr(ill_conditioning), ill_conditioning, constraint));
+  }
+
+  public HighsStatus getObjectiveBoundScaling(SWIGTYPE_p_long_long suggested_objective_scale, SWIGTYPE_p_long_long suggested_bound_scale) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getObjectiveBoundScaling(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(suggested_objective_scale), SWIGTYPE_p_long_long.getCPtr(suggested_bound_scale)));
+  }
+
+  public HighsStatus getIis(SWIGTYPE_p_HighsIis iis) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getIis(swigCPtr, this, SWIGTYPE_p_HighsIis.getCPtr(iis)));
+  }
+
+  public double getObjectiveValue() {
+    return highsJNI.Highs_getObjectiveValue(swigCPtr, this);
+  }
+
+  public HighsStatus getDualObjectiveValue(SWIGTYPE_p_double dual_objective_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getDualObjectiveValue(swigCPtr, this, SWIGTYPE_p_double.getCPtr(dual_objective_value)));
+  }
+
+  public boolean hasInvert() {
+    return highsJNI.Highs_hasInvert(swigCPtr, this);
+  }
+
+  public HighsStatus getBasicVariables(SWIGTYPE_p_long_long basic_variables) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasicVariables(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(basic_variables)));
+  }
+
+  public HighsStatus getBasisInverseRow(long row, SWIGTYPE_p_double row_vector, SWIGTYPE_p_long_long row_num_nz, SWIGTYPE_p_long_long row_indices) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseRow__SWIG_0(swigCPtr, this, row, SWIGTYPE_p_double.getCPtr(row_vector), SWIGTYPE_p_long_long.getCPtr(row_num_nz), SWIGTYPE_p_long_long.getCPtr(row_indices)));
+  }
+
+  public HighsStatus getBasisInverseRow(long row, SWIGTYPE_p_double row_vector, SWIGTYPE_p_long_long row_num_nz) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseRow__SWIG_1(swigCPtr, this, row, SWIGTYPE_p_double.getCPtr(row_vector), SWIGTYPE_p_long_long.getCPtr(row_num_nz)));
+  }
+
+  public HighsStatus getBasisInverseRow(long row, SWIGTYPE_p_double row_vector) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseRow__SWIG_2(swigCPtr, this, row, SWIGTYPE_p_double.getCPtr(row_vector)));
+  }
+
+  public HighsStatus getBasisInverseCol(long col, SWIGTYPE_p_double col_vector, SWIGTYPE_p_long_long col_num_nz, SWIGTYPE_p_long_long col_indices) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseCol__SWIG_0(swigCPtr, this, col, SWIGTYPE_p_double.getCPtr(col_vector), SWIGTYPE_p_long_long.getCPtr(col_num_nz), SWIGTYPE_p_long_long.getCPtr(col_indices)));
+  }
+
+  public HighsStatus getBasisInverseCol(long col, SWIGTYPE_p_double col_vector, SWIGTYPE_p_long_long col_num_nz) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseCol__SWIG_1(swigCPtr, this, col, SWIGTYPE_p_double.getCPtr(col_vector), SWIGTYPE_p_long_long.getCPtr(col_num_nz)));
+  }
+
+  public HighsStatus getBasisInverseCol(long col, SWIGTYPE_p_double col_vector) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseCol__SWIG_2(swigCPtr, this, col, SWIGTYPE_p_double.getCPtr(col_vector)));
+  }
+
+  public HighsStatus getBasisSolve(SWIGTYPE_p_double rhs, SWIGTYPE_p_double solution_vector, SWIGTYPE_p_long_long solution_num_nz, SWIGTYPE_p_long_long solution_indices) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisSolve__SWIG_0(swigCPtr, this, SWIGTYPE_p_double.getCPtr(rhs), SWIGTYPE_p_double.getCPtr(solution_vector), SWIGTYPE_p_long_long.getCPtr(solution_num_nz), SWIGTYPE_p_long_long.getCPtr(solution_indices)));
+  }
+
+  public HighsStatus getBasisSolve(SWIGTYPE_p_double rhs, SWIGTYPE_p_double solution_vector, SWIGTYPE_p_long_long solution_num_nz) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisSolve__SWIG_1(swigCPtr, this, SWIGTYPE_p_double.getCPtr(rhs), SWIGTYPE_p_double.getCPtr(solution_vector), SWIGTYPE_p_long_long.getCPtr(solution_num_nz)));
+  }
+
+  public HighsStatus getBasisSolve(SWIGTYPE_p_double rhs, SWIGTYPE_p_double solution_vector) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisSolve__SWIG_2(swigCPtr, this, SWIGTYPE_p_double.getCPtr(rhs), SWIGTYPE_p_double.getCPtr(solution_vector)));
+  }
+
+  public HighsStatus getBasisTransposeSolve(SWIGTYPE_p_double rhs, SWIGTYPE_p_double solution_vector, SWIGTYPE_p_long_long solution_num_nz, SWIGTYPE_p_long_long solution_indices) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisTransposeSolve__SWIG_0(swigCPtr, this, SWIGTYPE_p_double.getCPtr(rhs), SWIGTYPE_p_double.getCPtr(solution_vector), SWIGTYPE_p_long_long.getCPtr(solution_num_nz), SWIGTYPE_p_long_long.getCPtr(solution_indices)));
+  }
+
+  public HighsStatus getBasisTransposeSolve(SWIGTYPE_p_double rhs, SWIGTYPE_p_double solution_vector, SWIGTYPE_p_long_long solution_num_nz) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisTransposeSolve__SWIG_1(swigCPtr, this, SWIGTYPE_p_double.getCPtr(rhs), SWIGTYPE_p_double.getCPtr(solution_vector), SWIGTYPE_p_long_long.getCPtr(solution_num_nz)));
+  }
+
+  public HighsStatus getBasisTransposeSolve(SWIGTYPE_p_double rhs, SWIGTYPE_p_double solution_vector) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisTransposeSolve__SWIG_2(swigCPtr, this, SWIGTYPE_p_double.getCPtr(rhs), SWIGTYPE_p_double.getCPtr(solution_vector)));
+  }
+
+  public HighsStatus getReducedRow(long row, SWIGTYPE_p_double row_vector, SWIGTYPE_p_long_long row_num_nz, SWIGTYPE_p_long_long row_indices, SWIGTYPE_p_double pass_basis_inverse_row_vector) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getReducedRow__SWIG_0(swigCPtr, this, row, SWIGTYPE_p_double.getCPtr(row_vector), SWIGTYPE_p_long_long.getCPtr(row_num_nz), SWIGTYPE_p_long_long.getCPtr(row_indices), SWIGTYPE_p_double.getCPtr(pass_basis_inverse_row_vector)));
+  }
+
+  public HighsStatus getReducedRow(long row, SWIGTYPE_p_double row_vector, SWIGTYPE_p_long_long row_num_nz, SWIGTYPE_p_long_long row_indices) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getReducedRow__SWIG_1(swigCPtr, this, row, SWIGTYPE_p_double.getCPtr(row_vector), SWIGTYPE_p_long_long.getCPtr(row_num_nz), SWIGTYPE_p_long_long.getCPtr(row_indices)));
+  }
+
+  public HighsStatus getReducedRow(long row, SWIGTYPE_p_double row_vector, SWIGTYPE_p_long_long row_num_nz) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getReducedRow__SWIG_2(swigCPtr, this, row, SWIGTYPE_p_double.getCPtr(row_vector), SWIGTYPE_p_long_long.getCPtr(row_num_nz)));
+  }
+
+  public HighsStatus getReducedRow(long row, SWIGTYPE_p_double row_vector) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getReducedRow__SWIG_3(swigCPtr, this, row, SWIGTYPE_p_double.getCPtr(row_vector)));
+  }
+
+  public HighsStatus getReducedColumn(long col, SWIGTYPE_p_double col_vector, SWIGTYPE_p_long_long col_num_nz, SWIGTYPE_p_long_long col_indices) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getReducedColumn__SWIG_0(swigCPtr, this, col, SWIGTYPE_p_double.getCPtr(col_vector), SWIGTYPE_p_long_long.getCPtr(col_num_nz), SWIGTYPE_p_long_long.getCPtr(col_indices)));
+  }
+
+  public HighsStatus getReducedColumn(long col, SWIGTYPE_p_double col_vector, SWIGTYPE_p_long_long col_num_nz) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getReducedColumn__SWIG_1(swigCPtr, this, col, SWIGTYPE_p_double.getCPtr(col_vector), SWIGTYPE_p_long_long.getCPtr(col_num_nz)));
+  }
+
+  public HighsStatus getReducedColumn(long col, SWIGTYPE_p_double col_vector) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getReducedColumn__SWIG_2(swigCPtr, this, col, SWIGTYPE_p_double.getCPtr(col_vector)));
+  }
+
+  public HighsStatus getKappa(SWIGTYPE_p_double kappa, boolean exact, boolean report) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getKappa__SWIG_0(swigCPtr, this, SWIGTYPE_p_double.getCPtr(kappa), exact, report));
+  }
+
+  public HighsStatus getKappa(SWIGTYPE_p_double kappa, boolean exact) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getKappa__SWIG_1(swigCPtr, this, SWIGTYPE_p_double.getCPtr(kappa), exact));
+  }
+
+  public HighsStatus getKappa(SWIGTYPE_p_double kappa) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getKappa__SWIG_2(swigCPtr, this, SWIGTYPE_p_double.getCPtr(kappa)));
+  }
+
+  public long getNumCol() {
+    return highsJNI.Highs_getNumCol(swigCPtr, this);
+  }
+
+  public long getNumRow() {
+    return highsJNI.Highs_getNumRow(swigCPtr, this);
+  }
+
+  public long getNumNz() {
+    return highsJNI.Highs_getNumNz(swigCPtr, this);
+  }
+
+  public long getHessianNumNz() {
+    return highsJNI.Highs_getHessianNumNz(swigCPtr, this);
+  }
+
+  public HighsStatus getObjectiveSense(SWIGTYPE_p_ObjSense sense) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getObjectiveSense(swigCPtr, this, SWIGTYPE_p_ObjSense.getCPtr(sense)));
+  }
+
+  public HighsStatus getObjectiveOffset(SWIGTYPE_p_double offset) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getObjectiveOffset(swigCPtr, this, SWIGTYPE_p_double.getCPtr(offset)));
+  }
+
+  public HighsStatus getCols(long from_col, long to_col, SWIGTYPE_p_long_long num_col, SWIGTYPE_p_double cost, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_long_long start, SWIGTYPE_p_long_long index, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getCols__SWIG_0(swigCPtr, this, from_col, to_col, SWIGTYPE_p_long_long.getCPtr(num_col), SWIGTYPE_p_double.getCPtr(cost), SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_long_long.getCPtr(start), SWIGTYPE_p_long_long.getCPtr(index), SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getCols(long num_set_entries, SWIGTYPE_p_long_long set, SWIGTYPE_p_long_long num_col, SWIGTYPE_p_double cost, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_long_long start, SWIGTYPE_p_long_long index, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getCols__SWIG_1(swigCPtr, this, num_set_entries, SWIGTYPE_p_long_long.getCPtr(set), SWIGTYPE_p_long_long.getCPtr(num_col), SWIGTYPE_p_double.getCPtr(cost), SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_long_long.getCPtr(start), SWIGTYPE_p_long_long.getCPtr(index), SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getCols(SWIGTYPE_p_long_long mask, SWIGTYPE_p_long_long num_col, SWIGTYPE_p_double cost, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_long_long start, SWIGTYPE_p_long_long index, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getCols__SWIG_2(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(mask), SWIGTYPE_p_long_long.getCPtr(num_col), SWIGTYPE_p_double.getCPtr(cost), SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_long_long.getCPtr(start), SWIGTYPE_p_long_long.getCPtr(index), SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getColName(long col, SWIGTYPE_p_std__string name) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getColName(swigCPtr, this, col, SWIGTYPE_p_std__string.getCPtr(name)));
+  }
+
+  public HighsStatus getColByName(String name, SWIGTYPE_p_long_long col) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getColByName(swigCPtr, this, name, SWIGTYPE_p_long_long.getCPtr(col)));
+  }
+
+  public HighsStatus getColIntegrality(long col, SWIGTYPE_p_HighsVarType integrality) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getColIntegrality(swigCPtr, this, col, SWIGTYPE_p_HighsVarType.getCPtr(integrality)));
+  }
+
+  public HighsStatus getRows(long from_row, long to_row, SWIGTYPE_p_long_long num_row, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_long_long start, SWIGTYPE_p_long_long index, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRows__SWIG_0(swigCPtr, this, from_row, to_row, SWIGTYPE_p_long_long.getCPtr(num_row), SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_long_long.getCPtr(start), SWIGTYPE_p_long_long.getCPtr(index), SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getRows(long num_set_entries, SWIGTYPE_p_long_long set, SWIGTYPE_p_long_long num_row, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_long_long start, SWIGTYPE_p_long_long index, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRows__SWIG_1(swigCPtr, this, num_set_entries, SWIGTYPE_p_long_long.getCPtr(set), SWIGTYPE_p_long_long.getCPtr(num_row), SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_long_long.getCPtr(start), SWIGTYPE_p_long_long.getCPtr(index), SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getRows(SWIGTYPE_p_long_long mask, SWIGTYPE_p_long_long num_row, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper, SWIGTYPE_p_long_long num_nz, SWIGTYPE_p_long_long start, SWIGTYPE_p_long_long index, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRows__SWIG_2(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(mask), SWIGTYPE_p_long_long.getCPtr(num_row), SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper), SWIGTYPE_p_long_long.getCPtr(num_nz), SWIGTYPE_p_long_long.getCPtr(start), SWIGTYPE_p_long_long.getCPtr(index), SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getRowName(long row, SWIGTYPE_p_std__string name) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRowName(swigCPtr, this, row, SWIGTYPE_p_std__string.getCPtr(name)));
+  }
+
+  public HighsStatus getRowByName(String name, SWIGTYPE_p_long_long row) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getRowByName(swigCPtr, this, name, SWIGTYPE_p_long_long.getCPtr(row)));
+  }
+
+  public HighsStatus getCoeff(long row, long col, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getCoeff(swigCPtr, this, row, col, SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus writeModel(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeModel__SWIG_0(swigCPtr, this, filename));
+  }
+
+  public HighsStatus writeModel() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeModel__SWIG_1(swigCPtr, this));
+  }
+
+  public HighsStatus writePresolvedModel(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writePresolvedModel__SWIG_0(swigCPtr, this, filename));
+  }
+
+  public HighsStatus writePresolvedModel() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writePresolvedModel__SWIG_1(swigCPtr, this));
+  }
+
+  public HighsStatus writeIisModel(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeIisModel__SWIG_0(swigCPtr, this, filename));
+  }
+
+  public HighsStatus writeIisModel() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeIisModel__SWIG_1(swigCPtr, this));
+  }
+
+  public HighsStatus writeLocalModel(HighsModel model, String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeLocalModel__SWIG_0(swigCPtr, this, HighsModel.getCPtr(model), model, filename));
+  }
+
+  public HighsStatus writeLocalModel(HighsModel model) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeLocalModel__SWIG_1(swigCPtr, this, HighsModel.getCPtr(model), model));
+  }
+
+  public HighsStatus writeBasis(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeBasis__SWIG_0(swigCPtr, this, filename));
+  }
+
+  public HighsStatus writeBasis() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeBasis__SWIG_1(swigCPtr, this));
+  }
+
+  public HighsStatus changeObjectiveSense(ObjSense sense) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeObjectiveSense(swigCPtr, this, sense.swigValue()));
+  }
+
+  public HighsStatus changeObjectiveOffset(double offset) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeObjectiveOffset(swigCPtr, this, offset));
+  }
+
+  public HighsStatus changeColIntegrality(long col, HighsVarType integrality) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColIntegrality(swigCPtr, this, col, integrality.swigValue()));
+  }
+
+  public HighsStatus changeColsIntegrality(long from_col, long to_col, SWIGTYPE_p_HighsVarType integrality) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColsIntegrality__SWIG_0(swigCPtr, this, from_col, to_col, SWIGTYPE_p_HighsVarType.getCPtr(integrality)));
+  }
+
+  public HighsStatus changeColsIntegrality(long num_set_entries, SWIGTYPE_p_long_long set, SWIGTYPE_p_HighsVarType integrality) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColsIntegrality__SWIG_1(swigCPtr, this, num_set_entries, SWIGTYPE_p_long_long.getCPtr(set), SWIGTYPE_p_HighsVarType.getCPtr(integrality)));
+  }
+
+  public HighsStatus changeColsIntegrality(SWIGTYPE_p_long_long mask, SWIGTYPE_p_HighsVarType integrality) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColsIntegrality__SWIG_2(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(mask), SWIGTYPE_p_HighsVarType.getCPtr(integrality)));
+  }
+
+  public HighsStatus clearIntegrality() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_clearIntegrality(swigCPtr, this));
+  }
+
+  public HighsStatus changeColCost(long col, double cost) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColCost(swigCPtr, this, col, cost));
+  }
+
+  public HighsStatus changeColsCost(long from_col, long to_col, SWIGTYPE_p_double cost) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColsCost__SWIG_0(swigCPtr, this, from_col, to_col, SWIGTYPE_p_double.getCPtr(cost)));
+  }
+
+  public HighsStatus changeColsCost(long num_set_entries, SWIGTYPE_p_long_long set, SWIGTYPE_p_double cost) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColsCost__SWIG_1(swigCPtr, this, num_set_entries, SWIGTYPE_p_long_long.getCPtr(set), SWIGTYPE_p_double.getCPtr(cost)));
+  }
+
+  public HighsStatus changeColsCost(SWIGTYPE_p_long_long mask, SWIGTYPE_p_double cost) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColsCost__SWIG_2(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(mask), SWIGTYPE_p_double.getCPtr(cost)));
+  }
+
+  public HighsStatus changeColBounds(long col, double lower, double upper) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColBounds(swigCPtr, this, col, lower, upper));
+  }
+
+  public HighsStatus changeColsBounds(long from_col, long to_col, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColsBounds__SWIG_0(swigCPtr, this, from_col, to_col, SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper)));
+  }
+
+  public HighsStatus changeColsBounds(long num_set_entries, SWIGTYPE_p_long_long set, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColsBounds__SWIG_1(swigCPtr, this, num_set_entries, SWIGTYPE_p_long_long.getCPtr(set), SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper)));
+  }
+
+  public HighsStatus changeColsBounds(SWIGTYPE_p_long_long mask, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeColsBounds__SWIG_2(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(mask), SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper)));
+  }
+
+  public HighsStatus changeRowBounds(long row, double lower, double upper) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeRowBounds(swigCPtr, this, row, lower, upper));
+  }
+
+  public HighsStatus changeRowsBounds(long from_row, long to_row, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeRowsBounds__SWIG_0(swigCPtr, this, from_row, to_row, SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper)));
+  }
+
+  public HighsStatus changeRowsBounds(long num_set_entries, SWIGTYPE_p_long_long set, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeRowsBounds__SWIG_1(swigCPtr, this, num_set_entries, SWIGTYPE_p_long_long.getCPtr(set), SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper)));
+  }
+
+  public HighsStatus changeRowsBounds(SWIGTYPE_p_long_long mask, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeRowsBounds__SWIG_2(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(mask), SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper)));
+  }
+
+  public HighsStatus changeCoeff(long row, long col, double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_changeCoeff(swigCPtr, this, row, col, value));
+  }
+
+  public HighsStatus setMatrixFormat(MatrixFormat desired_format) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setMatrixFormat(swigCPtr, this, desired_format.swigValue()));
+  }
+
+  public HighsStatus addCol(double cost, double lower, double upper, long num_new_nz, SWIGTYPE_p_long_long indices, SWIGTYPE_p_double values) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_addCol(swigCPtr, this, cost, lower, upper, num_new_nz, SWIGTYPE_p_long_long.getCPtr(indices), SWIGTYPE_p_double.getCPtr(values)));
+  }
+
+  public HighsStatus addCols(long num_new_col, SWIGTYPE_p_double cost, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper, long num_new_nz, SWIGTYPE_p_long_long starts, SWIGTYPE_p_long_long indices, SWIGTYPE_p_double values) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_addCols(swigCPtr, this, num_new_col, SWIGTYPE_p_double.getCPtr(cost), SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper), num_new_nz, SWIGTYPE_p_long_long.getCPtr(starts), SWIGTYPE_p_long_long.getCPtr(indices), SWIGTYPE_p_double.getCPtr(values)));
+  }
+
+  public HighsStatus addVar(double lower, double upper) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_addVar__SWIG_0(swigCPtr, this, lower, upper));
+  }
+
+  public HighsStatus addVar(double lower) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_addVar__SWIG_1(swigCPtr, this, lower));
+  }
+
+  public HighsStatus addVar() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_addVar__SWIG_2(swigCPtr, this));
+  }
+
+  public HighsStatus addVars(long num_new_var, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_addVars(swigCPtr, this, num_new_var, SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper)));
+  }
+
+  public HighsStatus addRow(double lower, double upper, long num_new_nz, SWIGTYPE_p_long_long indices, SWIGTYPE_p_double values) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_addRow(swigCPtr, this, lower, upper, num_new_nz, SWIGTYPE_p_long_long.getCPtr(indices), SWIGTYPE_p_double.getCPtr(values)));
+  }
+
+  public HighsStatus addRows(long num_new_row, SWIGTYPE_p_double lower, SWIGTYPE_p_double upper, long num_new_nz, SWIGTYPE_p_long_long starts, SWIGTYPE_p_long_long indices, SWIGTYPE_p_double values) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_addRows(swigCPtr, this, num_new_row, SWIGTYPE_p_double.getCPtr(lower), SWIGTYPE_p_double.getCPtr(upper), num_new_nz, SWIGTYPE_p_long_long.getCPtr(starts), SWIGTYPE_p_long_long.getCPtr(indices), SWIGTYPE_p_double.getCPtr(values)));
+  }
+
+  public HighsStatus ensureColwise() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_ensureColwise(swigCPtr, this));
+  }
+
+  public HighsStatus ensureRowwise() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_ensureRowwise(swigCPtr, this));
+  }
+
+  public HighsStatus deleteCols(long from_col, long to_col) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_deleteCols__SWIG_0(swigCPtr, this, from_col, to_col));
+  }
+
+  public HighsStatus deleteCols(long num_set_entries, SWIGTYPE_p_long_long set) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_deleteCols__SWIG_1(swigCPtr, this, num_set_entries, SWIGTYPE_p_long_long.getCPtr(set)));
+  }
+
+  public HighsStatus deleteCols(SWIGTYPE_p_long_long mask) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_deleteCols__SWIG_2(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(mask)));
+  }
+
+  public HighsStatus deleteVars(long from_var, long to_var) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_deleteVars__SWIG_0(swigCPtr, this, from_var, to_var));
+  }
+
+  public HighsStatus deleteVars(long num_set_entries, SWIGTYPE_p_long_long set) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_deleteVars__SWIG_1(swigCPtr, this, num_set_entries, SWIGTYPE_p_long_long.getCPtr(set)));
+  }
+
+  public HighsStatus deleteVars(SWIGTYPE_p_long_long mask) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_deleteVars__SWIG_2(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(mask)));
+  }
+
+  public HighsStatus deleteRows(long from_row, long to_row) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_deleteRows__SWIG_0(swigCPtr, this, from_row, to_row));
+  }
+
+  public HighsStatus deleteRows(long num_set_entries, SWIGTYPE_p_long_long set) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_deleteRows__SWIG_1(swigCPtr, this, num_set_entries, SWIGTYPE_p_long_long.getCPtr(set)));
+  }
+
+  public HighsStatus deleteRows(SWIGTYPE_p_long_long mask) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_deleteRows__SWIG_2(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(mask)));
+  }
+
+  public HighsStatus scaleCol(long col, double scale_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_scaleCol(swigCPtr, this, col, scale_value));
+  }
+
+  public HighsStatus scaleRow(long row, double scale_value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_scaleRow(swigCPtr, this, row, scale_value));
+  }
+
+  public HighsStatus setSolution(HighsSolution solution) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setSolution__SWIG_0(swigCPtr, this, HighsSolution.getCPtr(solution), solution));
+  }
+
+  public HighsStatus setSolution(long num_entries, SWIGTYPE_p_long_long index, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setSolution__SWIG_1(swigCPtr, this, num_entries, SWIGTYPE_p_long_long.getCPtr(index), SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus setCallback(SWIGTYPE_p_HighsCallbackFunctionType user_callback, SWIGTYPE_p_void user_callback_data) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setCallback__SWIG_0(swigCPtr, this, SWIGTYPE_p_HighsCallbackFunctionType.getCPtr(user_callback), SWIGTYPE_p_void.getCPtr(user_callback_data)));
+  }
+
+  public HighsStatus setCallback(SWIGTYPE_p_HighsCallbackFunctionType user_callback) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setCallback__SWIG_1(swigCPtr, this, SWIGTYPE_p_HighsCallbackFunctionType.getCPtr(user_callback)));
+  }
+
+  public HighsStatus setCallback(SWIGTYPE_p_HighsCCallbackType c_callback, SWIGTYPE_p_void user_callback_data) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setCallback__SWIG_2(swigCPtr, this, SWIGTYPE_p_HighsCCallbackType.getCPtr(c_callback), SWIGTYPE_p_void.getCPtr(user_callback_data)));
+  }
+
+  public HighsStatus setCallback(SWIGTYPE_p_HighsCCallbackType c_callback) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setCallback__SWIG_3(swigCPtr, this, SWIGTYPE_p_HighsCCallbackType.getCPtr(c_callback)));
+  }
+
+  public HighsStatus startCallback(int callback_type) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_startCallback__SWIG_0(swigCPtr, this, callback_type));
+  }
+
+  public HighsStatus startCallback(HighsCallbackType callback_type) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_startCallback__SWIG_1(swigCPtr, this, callback_type.swigValue()));
+  }
+
+  public HighsStatus stopCallback(int callback_type) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_stopCallback__SWIG_0(swigCPtr, this, callback_type));
+  }
+
+  public HighsStatus stopCallback(HighsCallbackType callback_type) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_stopCallback__SWIG_1(swigCPtr, this, callback_type.swigValue()));
+  }
+
+  public HighsStatus setBasis(HighsBasis basis, String origin) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setBasis__SWIG_0(swigCPtr, this, HighsBasis.getCPtr(basis), basis, origin));
+  }
+
+  public HighsStatus setBasis(HighsBasis basis) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setBasis__SWIG_1(swigCPtr, this, HighsBasis.getCPtr(basis), basis));
+  }
+
+  public HighsStatus setBasis() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setBasis__SWIG_2(swigCPtr, this));
+  }
+
+  public void reportProfiling() {
+    highsJNI.Highs_reportProfiling(swigCPtr, this);
+  }
+
+  public HighsStatus crossover(HighsSolution user_solution) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_crossover(swigCPtr, this, HighsSolution.getCPtr(user_solution), user_solution));
+  }
+
+  public HighsStatus openLogFile(String log_file) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_openLogFile__SWIG_0(swigCPtr, this, log_file));
+  }
+
+  public HighsStatus openLogFile() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_openLogFile__SWIG_1(swigCPtr, this));
+  }
+
+  public HighsStatus closeLogFile() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_closeLogFile(swigCPtr, this));
+  }
+
+  public String presolveStatusToString(HighsPresolveStatus presolve_status) {
+    return highsJNI.Highs_presolveStatusToString(swigCPtr, this, presolve_status.swigValue());
+  }
+
+  public String modelStatusToString(HighsModelStatus model_status) {
+    return highsJNI.Highs_modelStatusToString(swigCPtr, this, model_status.swigValue());
+  }
+
+  public String solutionStatusToString(long solution_status) {
+    return highsJNI.Highs_solutionStatusToString(swigCPtr, this, solution_status);
+  }
+
+  public String basisStatusToString(HighsBasisStatus basis_status) {
+    return highsJNI.Highs_basisStatusToString(swigCPtr, this, basis_status.swigValue());
+  }
+
+  public String basisValidityToString(long basis_validity) {
+    return highsJNI.Highs_basisValidityToString(swigCPtr, this, basis_validity);
+  }
+
+  public String presolveRuleTypeToString(long presolve_rule) {
+    return highsJNI.Highs_presolveRuleTypeToString(swigCPtr, this, presolve_rule);
+  }
+
+  public HighsStatus initializeMultiThreading() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_initializeMultiThreading(swigCPtr, this));
+  }
+
+  public static void resetGlobalScheduler(boolean blocking) {
+    highsJNI.Highs_resetGlobalScheduler__SWIG_0(blocking);
+  }
+
+  public static void resetGlobalScheduler() {
+    highsJNI.Highs_resetGlobalScheduler__SWIG_1();
+  }
+
+  public void initializeProfiling(HighsProfiling profiling) {
+    highsJNI.Highs_initializeProfiling(swigCPtr, this, HighsProfiling.getCPtr(profiling), profiling);
+  }
+
+  public void initializeSingleThreadedProfiling(HighsProfiling profiling) {
+    highsJNI.Highs_initializeSingleThreadedProfiling(swigCPtr, this, HighsProfiling.getCPtr(profiling), profiling);
+  }
+
+  public void resetProfiling() {
+    highsJNI.Highs_resetProfiling(swigCPtr, this);
+  }
+
+  public void clearProfiling() {
+    highsJNI.Highs_clearProfiling(swigCPtr, this);
+  }
+
+  public void setProfiling(HighsProfiling profiling) {
+    highsJNI.Highs_setProfiling(swigCPtr, this, HighsProfiling.getCPtr(profiling), profiling);
+  }
+
+  public HighsStatus optimizeHighs() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_optimizeHighs(swigCPtr, this));
+  }
+
+  public HighsStatus optimizeModel() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_optimizeModel(swigCPtr, this));
+  }
+
+  public HighsStatus calledOptimizeModel() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_calledOptimizeModel(swigCPtr, this));
+  }
+
+  public HighsStatus optimizeLp() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_optimizeLp(swigCPtr, this));
+  }
+
+  public HighsSimplexStats getSimplexStats() {
+    return new HighsSimplexStats(highsJNI.Highs_getSimplexStats(swigCPtr, this), false);
+  }
+
+  public void reportSimplexStats(SWIGTYPE_p_FILE file) {
+    highsJNI.Highs_reportSimplexStats(swigCPtr, this, SWIGTYPE_p_FILE.getCPtr(file));
+  }
+
+  public HighsStatus putIterate() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_putIterate(swigCPtr, this));
+  }
+
+  public HighsStatus getIterate() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getIterate(swigCPtr, this));
+  }
+
+  public SWIGTYPE_p_double getDualEdgeWeights() {
+    long cPtr = highsJNI.Highs_getDualEdgeWeights(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_double(cPtr, false);
+  }
+
+  public SWIGTYPE_p_long_long getBasicVariablesArray() {
+    long cPtr = highsJNI.Highs_getBasicVariablesArray(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_long_long(cPtr, false);
+  }
+
+  public HighsStatus getBasisInverseRowSparse(long row, SWIGTYPE_p_HVector row_ep_buffer) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getBasisInverseRowSparse(swigCPtr, this, row, SWIGTYPE_p_HVector.getCPtr(row_ep_buffer)));
+  }
+
+  public DoubleVector getPrimalPhase1Dual() {
+    return new DoubleVector(highsJNI.Highs_getPrimalPhase1Dual(swigCPtr, this), false);
+  }
+
+  public HighsStatus getColOrRowName(SWIGTYPE_p_HighsLp lp, boolean is_col, long index, SWIGTYPE_p_std__string name) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getColOrRowName(swigCPtr, this, SWIGTYPE_p_HighsLp.getCPtr(lp), is_col, index, SWIGTYPE_p_std__string.getCPtr(name)));
+  }
+
+  public long defineClock(String name) {
+    return highsJNI.Highs_defineClock(swigCPtr, this, name);
+  }
+
+  public void writeAllClocks() {
+    highsJNI.Highs_writeAllClocks(swigCPtr, this);
+  }
+
+  public HighsStatus clearModelNames() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_clearModelNames(swigCPtr, this));
+  }
+
+  public String compilationDate() {
+    return highsJNI.Highs_compilationDate(swigCPtr, this);
+  }
+
+  public HighsStatus setLogCallback(SWIGTYPE_p_f_enum_HighsLogType_p_q_const__char_p_void__void user_log_callback, SWIGTYPE_p_void user_log_callback_data) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setLogCallback__SWIG_0(swigCPtr, this, SWIGTYPE_p_f_enum_HighsLogType_p_q_const__char_p_void__void.getCPtr(user_log_callback), SWIGTYPE_p_void.getCPtr(user_log_callback_data)));
+  }
+
+  public HighsStatus setLogCallback(SWIGTYPE_p_f_enum_HighsLogType_p_q_const__char_p_void__void user_log_callback) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setLogCallback__SWIG_1(swigCPtr, this, SWIGTYPE_p_f_enum_HighsLogType_p_q_const__char_p_void__void.getCPtr(user_log_callback)));
+  }
+
+  public long getNumCols() {
+    return highsJNI.Highs_getNumCols(swigCPtr, this);
+  }
+
+  public long getNumRows() {
+    return highsJNI.Highs_getNumRows(swigCPtr, this);
+  }
+
+  public long getNumEntries() {
+    return highsJNI.Highs_getNumEntries(swigCPtr, this);
+  }
+
+  public HighsStatus setHighsOptionValue(String option, boolean value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOptionValue__SWIG_0(swigCPtr, this, option, value));
+  }
+
+  public HighsStatus setHighsOptionValue(String option, long value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOptionValue__SWIG_1(swigCPtr, this, option, value));
+  }
+
+  public HighsStatus setHighsOptionValue(String option, int value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOptionValue__SWIG_2(swigCPtr, this, option, value));
+  }
+
+  public HighsStatus setHighsOptionValue(String option, double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOptionValue__SWIG_3(swigCPtr, this, option, value));
+  }
+
+  public HighsStatus setHighsOptionValue(String option, String value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOptionValue__SWIG_4(swigCPtr, this, option, value));
+  }
+
+  public HighsStatus readHighsOptions(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_readHighsOptions(swigCPtr, this, filename));
+  }
+
+  public HighsStatus passHighsOptions(SWIGTYPE_p_HighsOptions options) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_passHighsOptions(swigCPtr, this, SWIGTYPE_p_HighsOptions.getCPtr(options)));
+  }
+
+  public HighsStatus getHighsOptionValue(String option, SWIGTYPE_p_bool value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getHighsOptionValue__SWIG_0(swigCPtr, this, option, SWIGTYPE_p_bool.getCPtr(value)));
+  }
+
+  public HighsStatus getHighsOptionValue(String option, SWIGTYPE_p_long_long value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getHighsOptionValue__SWIG_1(swigCPtr, this, option, SWIGTYPE_p_long_long.getCPtr(value)));
+  }
+
+  public HighsStatus getHighsOptionValue(String option, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getHighsOptionValue__SWIG_2(swigCPtr, this, option, SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus getHighsOptionValue(String option, SWIGTYPE_p_std__string value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getHighsOptionValue__SWIG_3(swigCPtr, this, option, SWIGTYPE_p_std__string.getCPtr(value)));
+  }
+
+  public HighsStatus getHighsOptionType(String option, SWIGTYPE_p_HighsOptionType type) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getHighsOptionType(swigCPtr, this, option, SWIGTYPE_p_HighsOptionType.getCPtr(type)));
+  }
+
+  public SWIGTYPE_p_HighsOptions getHighsOptions() {
+    return new SWIGTYPE_p_HighsOptions(highsJNI.Highs_getHighsOptions(swigCPtr, this), false);
+  }
+
+  public HighsStatus resetHighsOptions() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_resetHighsOptions(swigCPtr, this));
+  }
+
+  public HighsStatus writeHighsOptions(String filename, boolean report_only_deviations) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeHighsOptions__SWIG_0(swigCPtr, this, filename, report_only_deviations));
+  }
+
+  public HighsStatus writeHighsOptions(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeHighsOptions__SWIG_1(swigCPtr, this, filename));
+  }
+
+  public long getSimplexIterationCount() {
+    return highsJNI.Highs_getSimplexIterationCount(swigCPtr, this);
+  }
+
+  public HighsStatus setHighsLogfile(SWIGTYPE_p_FILE logfile) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setHighsLogfile__SWIG_0(swigCPtr, this, SWIGTYPE_p_FILE.getCPtr(logfile)));
+  }
+
+  public HighsStatus setHighsLogfile() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setHighsLogfile__SWIG_1(swigCPtr, this));
+  }
+
+  public HighsStatus setHighsOutput(SWIGTYPE_p_FILE output) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOutput__SWIG_0(swigCPtr, this, SWIGTYPE_p_FILE.getCPtr(output)));
+  }
+
+  public HighsStatus setHighsOutput() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setHighsOutput__SWIG_1(swigCPtr, this));
+  }
+
+  public HighsInfo getHighsInfo() {
+    return new HighsInfo(highsJNI.Highs_getHighsInfo(swigCPtr, this), false);
+  }
+
+  public HighsStatus getHighsInfoValue(String info, SWIGTYPE_p_long_long value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getHighsInfoValue__SWIG_0(swigCPtr, this, info, SWIGTYPE_p_long_long.getCPtr(value)));
+  }
+
+  public HighsStatus getHighsInfoValue(String info, SWIGTYPE_p_double value) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_getHighsInfoValue__SWIG_1(swigCPtr, this, info, SWIGTYPE_p_double.getCPtr(value)));
+  }
+
+  public HighsStatus writeHighsInfo(String filename) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_writeHighsInfo(swigCPtr, this, filename));
+  }
+
+  public double getHighsInfinity() {
+    return highsJNI.Highs_getHighsInfinity(swigCPtr, this);
+  }
+
+  public double getHighsRunTime() {
+    return highsJNI.Highs_getHighsRunTime(swigCPtr, this);
+  }
+
+  public HighsModelStatus getModelStatus(boolean scaled_model) {
+    return HighsModelStatus.swigToEnum(highsJNI.Highs_getModelStatus__SWIG_1(swigCPtr, this, scaled_model));
+  }
+
+  public void logHeader() {
+    highsJNI.Highs_logHeader(swigCPtr, this);
+  }
+
+  public void deprecationMessage(String method_name, String alt_method_name) {
+    highsJNI.Highs_deprecationMessage(swigCPtr, this, method_name, alt_method_name);
+  }
+
+  public HotStart getHotStart() {
+    return new HotStart(highsJNI.Highs_getHotStart(swigCPtr, this), false);
+  }
+
+  public HighsStatus setHotStart(HotStart hot_start) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_setHotStart(swigCPtr, this, HotStart.getCPtr(hot_start), hot_start));
+  }
+
+  public HighsStatus freezeBasis(SWIGTYPE_p_long_long frozen_basis_id) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_freezeBasis(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(frozen_basis_id)));
+  }
+
+  public HighsStatus unfreezeBasis(long frozen_basis_id) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_unfreezeBasis(swigCPtr, this, frozen_basis_id));
+  }
+
+  public HighsStatus frozenBasisAllDataClear() {
+    return HighsStatus.swigToEnum(highsJNI.Highs_frozenBasisAllDataClear(swigCPtr, this));
+  }
 
 }

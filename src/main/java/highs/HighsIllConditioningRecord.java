@@ -9,65 +9,63 @@
 package highs;
 
 public class HighsIllConditioningRecord {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected HighsIllConditioningRecord(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected HighsIllConditioningRecord(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public HighsIllConditioningRecord() {
-        this(highsJNI.new_HighsIllConditioningRecord(), true);
-    }
+  protected static long getCPtr(HighsIllConditioningRecord obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(HighsIllConditioningRecord obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
+  protected static long swigRelease(HighsIllConditioningRecord obj) {
+    long ptr = 0;
+    if (obj != null) {
+      if (!obj.swigCMemOwn)
+        throw new RuntimeException("Cannot release ownership as memory is not owned");
+      ptr = obj.swigCPtr;
+      obj.swigCMemOwn = false;
+      obj.delete();
     }
+    return ptr;
+  }
 
-    protected static long swigRelease(HighsIllConditioningRecord obj) {
-        long ptr = 0;
-        if (obj != null) {
-            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
-            ptr = obj.swigCPtr;
-            obj.swigCMemOwn = false;
-            obj.delete();
-        }
-        return ptr;
-    }
+  @SuppressWarnings({"deprecation", "removal"})
+  protected void finalize() {
+    delete();
+  }
 
-    @SuppressWarnings({
-            "deprecation",
-            "removal"
-    })
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        highsJNI.delete_HighsIllConditioningRecord(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                highsJNI.delete_HighsIllConditioningRecord(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setIndex(long value) {
+    highsJNI.HighsIllConditioningRecord_index_set(swigCPtr, this, value);
+  }
 
-    public long getIndex() {
-        return highsJNI.HighsIllConditioningRecord_index_get(swigCPtr, this);
-    }
+  public long getIndex() {
+    return highsJNI.HighsIllConditioningRecord_index_get(swigCPtr, this);
+  }
 
-    public void setIndex(long value) {
-        highsJNI.HighsIllConditioningRecord_index_set(swigCPtr, this, value);
-    }
+  public void setMultiplier(double value) {
+    highsJNI.HighsIllConditioningRecord_multiplier_set(swigCPtr, this, value);
+  }
 
-    public double getMultiplier() {
-        return highsJNI.HighsIllConditioningRecord_multiplier_get(swigCPtr, this);
-    }
+  public double getMultiplier() {
+    return highsJNI.HighsIllConditioningRecord_multiplier_get(swigCPtr, this);
+  }
 
-    public void setMultiplier(double value) {
-        highsJNI.HighsIllConditioningRecord_multiplier_set(swigCPtr, this, value);
-    }
+  public HighsIllConditioningRecord() {
+    this(highsJNI.new_HighsIllConditioningRecord(), true);
+  }
 
 }

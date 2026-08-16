@@ -9,56 +9,49 @@
 package highs;
 
 public final class IisStatus {
-    public final static IisStatus kIisStatusMin = new IisStatus("kIisStatusMin", highsJNI.kIisStatusMin_get());
-    public final static IisStatus kIisStatusNotInConflict = new IisStatus(
-            "kIisStatusNotInConflict",
-            highsJNI.kIisStatusNotInConflict_get()
-    );
-    public final static IisStatus kIisStatusMaybeInConflict = new IisStatus("kIisStatusMaybeInConflict");
-    public final static IisStatus kIisStatusInConflict = new IisStatus("kIisStatusInConflict");
-    public final static IisStatus kIisStatusMax = new IisStatus("kIisStatusMax", highsJNI.kIisStatusMax_get());
-    private static IisStatus[] swigValues = {
-            kIisStatusMin,
-            kIisStatusNotInConflict,
-            kIisStatusMaybeInConflict,
-            kIisStatusInConflict,
-            kIisStatusMax
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static IisStatus kIisStatusMin = new IisStatus("kIisStatusMin", highsJNI.kIisStatusMin_get());
+  public final static IisStatus kIisStatusNotInConflict = new IisStatus("kIisStatusNotInConflict", highsJNI.kIisStatusNotInConflict_get());
+  public final static IisStatus kIisStatusMaybeInConflict = new IisStatus("kIisStatusMaybeInConflict");
+  public final static IisStatus kIisStatusInConflict = new IisStatus("kIisStatusInConflict");
+  public final static IisStatus kIisStatusMax = new IisStatus("kIisStatusMax", highsJNI.kIisStatusMax_get());
 
-    private IisStatus(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private IisStatus(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private IisStatus(String swigName, IisStatus swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static IisStatus swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + IisStatus.class + " with value " + swigValue);
+  }
 
-    public static IisStatus swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + IisStatus.class + " with value " + swigValue);
-    }
+  private IisStatus(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private IisStatus(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private IisStatus(String swigName, IisStatus swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static IisStatus[] swigValues = { kIisStatusMin, kIisStatusNotInConflict, kIisStatusMaybeInConflict, kIisStatusInConflict, kIisStatusMax };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

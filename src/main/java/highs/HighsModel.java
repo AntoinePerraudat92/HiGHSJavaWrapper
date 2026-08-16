@@ -9,108 +9,99 @@
 package highs;
 
 public class HighsModel {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected HighsModel(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected HighsModel(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public HighsModel() {
-        this(highsJNI.new_HighsModel(), true);
-    }
+  protected static long getCPtr(HighsModel obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(HighsModel obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
+  protected static long swigRelease(HighsModel obj) {
+    long ptr = 0;
+    if (obj != null) {
+      if (!obj.swigCMemOwn)
+        throw new RuntimeException("Cannot release ownership as memory is not owned");
+      ptr = obj.swigCPtr;
+      obj.swigCMemOwn = false;
+      obj.delete();
     }
+    return ptr;
+  }
 
-    protected static long swigRelease(HighsModel obj) {
-        long ptr = 0;
-        if (obj != null) {
-            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
-            ptr = obj.swigCPtr;
-            obj.swigCMemOwn = false;
-            obj.delete();
-        }
-        return ptr;
-    }
+  @SuppressWarnings({"deprecation", "removal"})
+  protected void finalize() {
+    delete();
+  }
 
-    @SuppressWarnings({
-            "deprecation",
-            "removal"
-    })
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        highsJNI.delete_HighsModel(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                highsJNI.delete_HighsModel(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setLp_(SWIGTYPE_p_HighsLp value) {
+    highsJNI.HighsModel_lp__set(swigCPtr, this, SWIGTYPE_p_HighsLp.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_HighsLp getLp_() {
-        return new SWIGTYPE_p_HighsLp(highsJNI.HighsModel_lp__get(swigCPtr, this), true);
-    }
+  public SWIGTYPE_p_HighsLp getLp_() {
+    return new SWIGTYPE_p_HighsLp(highsJNI.HighsModel_lp__get(swigCPtr, this), true);
+  }
 
-    public void setLp_(SWIGTYPE_p_HighsLp value) {
-        highsJNI.HighsModel_lp__set(swigCPtr, this, SWIGTYPE_p_HighsLp.getCPtr(value));
-    }
+  public void setHessian_(SWIGTYPE_p_HighsHessian value) {
+    highsJNI.HighsModel_hessian__set(swigCPtr, this, SWIGTYPE_p_HighsHessian.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_HighsHessian getHessian_() {
-        return new SWIGTYPE_p_HighsHessian(highsJNI.HighsModel_hessian__get(swigCPtr, this), true);
-    }
+  public SWIGTYPE_p_HighsHessian getHessian_() {
+    return new SWIGTYPE_p_HighsHessian(highsJNI.HighsModel_hessian__get(swigCPtr, this), true);
+  }
 
-    public void setHessian_(SWIGTYPE_p_HighsHessian value) {
-        highsJNI.HighsModel_hessian__set(swigCPtr, this, SWIGTYPE_p_HighsHessian.getCPtr(value));
-    }
+  public boolean equalButForNames(HighsModel model) {
+    return highsJNI.HighsModel_equalButForNames(swigCPtr, this, HighsModel.getCPtr(model), model);
+  }
 
-    public boolean equalButForNames(HighsModel model) {
-        return highsJNI.HighsModel_equalButForNames(swigCPtr, this, HighsModel.getCPtr(model), model);
-    }
+  public boolean isQp() {
+    return highsJNI.HighsModel_isQp(swigCPtr, this);
+  }
 
-    public boolean isQp() {
-        return highsJNI.HighsModel_isQp(swigCPtr, this);
-    }
+  public boolean isMip() {
+    return highsJNI.HighsModel_isMip(swigCPtr, this);
+  }
 
-    public boolean isMip() {
-        return highsJNI.HighsModel_isMip(swigCPtr, this);
-    }
+  public boolean isEmpty() {
+    return highsJNI.HighsModel_isEmpty(swigCPtr, this);
+  }
 
-    public boolean isEmpty() {
-        return highsJNI.HighsModel_isEmpty(swigCPtr, this);
-    }
+  public boolean needsMods(double infinite_cost) {
+    return highsJNI.HighsModel_needsMods(swigCPtr, this, infinite_cost);
+  }
 
-    public boolean needsMods(double infinite_cost) {
-        return highsJNI.HighsModel_needsMods(swigCPtr, this, infinite_cost);
-    }
+  public boolean hasMods() {
+    return highsJNI.HighsModel_hasMods(swigCPtr, this);
+  }
 
-    public boolean hasMods() {
-        return highsJNI.HighsModel_hasMods(swigCPtr, this);
-    }
+  public void clear() {
+    highsJNI.HighsModel_clear(swigCPtr, this);
+  }
 
-    public void clear() {
-        highsJNI.HighsModel_clear(swigCPtr, this);
-    }
+  public double objectiveValue(DoubleVector solution) {
+    return highsJNI.HighsModel_objectiveValue(swigCPtr, this, DoubleVector.getCPtr(solution), solution);
+  }
 
-    public double objectiveValue(DoubleVector solution) {
-        return highsJNI.HighsModel_objectiveValue(swigCPtr, this, DoubleVector.getCPtr(solution), solution);
-    }
+  public void objectiveGradient(DoubleVector solution, DoubleVector gradient) {
+    highsJNI.HighsModel_objectiveGradient(swigCPtr, this, DoubleVector.getCPtr(solution), solution, DoubleVector.getCPtr(gradient), gradient);
+  }
 
-    public void objectiveGradient(DoubleVector solution, DoubleVector gradient) {
-        highsJNI.HighsModel_objectiveGradient(
-                swigCPtr,
-                this,
-                DoubleVector.getCPtr(solution),
-                solution,
-                DoubleVector.getCPtr(gradient),
-                gradient
-        );
-    }
+  public HighsModel() {
+    this(highsJNI.new_HighsModel(), true);
+  }
 
 }

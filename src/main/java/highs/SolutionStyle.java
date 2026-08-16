@@ -9,71 +9,52 @@
 package highs;
 
 public final class SolutionStyle {
-    public final static SolutionStyle kSolutionStyleOldRaw = new SolutionStyle(
-            "kSolutionStyleOldRaw",
-            highsJNI.kSolutionStyleOldRaw_get()
-    );
-    public final static SolutionStyle kSolutionStyleRaw = new SolutionStyle(
-            "kSolutionStyleRaw",
-            highsJNI.kSolutionStyleRaw_get()
-    );
-    public final static SolutionStyle kSolutionStylePretty = new SolutionStyle("kSolutionStylePretty");
-    public final static SolutionStyle kSolutionStyleGlpsolRaw = new SolutionStyle("kSolutionStyleGlpsolRaw");
-    public final static SolutionStyle kSolutionStyleGlpsolPretty = new SolutionStyle("kSolutionStyleGlpsolPretty");
-    public final static SolutionStyle kSolutionStyleSparse = new SolutionStyle("kSolutionStyleSparse");
-    public final static SolutionStyle kSolutionStyleMin = new SolutionStyle(
-            "kSolutionStyleMin",
-            highsJNI.kSolutionStyleMin_get()
-    );
-    public final static SolutionStyle kSolutionStyleMax = new SolutionStyle(
-            "kSolutionStyleMax",
-            highsJNI.kSolutionStyleMax_get()
-    );
-    private static SolutionStyle[] swigValues = {
-            kSolutionStyleOldRaw,
-            kSolutionStyleRaw,
-            kSolutionStylePretty,
-            kSolutionStyleGlpsolRaw,
-            kSolutionStyleGlpsolPretty,
-            kSolutionStyleSparse,
-            kSolutionStyleMin,
-            kSolutionStyleMax
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static SolutionStyle kSolutionStyleOldRaw = new SolutionStyle("kSolutionStyleOldRaw", highsJNI.kSolutionStyleOldRaw_get());
+  public final static SolutionStyle kSolutionStyleRaw = new SolutionStyle("kSolutionStyleRaw", highsJNI.kSolutionStyleRaw_get());
+  public final static SolutionStyle kSolutionStylePretty = new SolutionStyle("kSolutionStylePretty");
+  public final static SolutionStyle kSolutionStyleGlpsolRaw = new SolutionStyle("kSolutionStyleGlpsolRaw");
+  public final static SolutionStyle kSolutionStyleGlpsolPretty = new SolutionStyle("kSolutionStyleGlpsolPretty");
+  public final static SolutionStyle kSolutionStyleSparse = new SolutionStyle("kSolutionStyleSparse");
+  public final static SolutionStyle kSolutionStyleMin = new SolutionStyle("kSolutionStyleMin", highsJNI.kSolutionStyleMin_get());
+  public final static SolutionStyle kSolutionStyleMax = new SolutionStyle("kSolutionStyleMax", highsJNI.kSolutionStyleMax_get());
 
-    private SolutionStyle(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private SolutionStyle(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private SolutionStyle(String swigName, SolutionStyle swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static SolutionStyle swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + SolutionStyle.class + " with value " + swigValue);
+  }
 
-    public static SolutionStyle swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + SolutionStyle.class + " with value " + swigValue);
-    }
+  private SolutionStyle(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private SolutionStyle(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private SolutionStyle(String swigName, SolutionStyle swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static SolutionStyle[] swigValues = { kSolutionStyleOldRaw, kSolutionStyleRaw, kSolutionStylePretty, kSolutionStyleGlpsolRaw, kSolutionStyleGlpsolPretty, kSolutionStyleSparse, kSolutionStyleMin, kSolutionStyleMax };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

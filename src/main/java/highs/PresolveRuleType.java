@@ -9,119 +9,70 @@
 package highs;
 
 public final class PresolveRuleType {
-    public final static PresolveRuleType kPresolveRuleIllegal = new PresolveRuleType(
-            "kPresolveRuleIllegal",
-            highsJNI.kPresolveRuleIllegal_get()
-    );
-    public final static PresolveRuleType kPresolveRuleMin = new PresolveRuleType(
-            "kPresolveRuleMin",
-            highsJNI.kPresolveRuleMin_get()
-    );
-    public final static PresolveRuleType kPresolveRuleEmptyRow = new PresolveRuleType(
-            "kPresolveRuleEmptyRow",
-            highsJNI.kPresolveRuleEmptyRow_get()
-    );
-    public final static PresolveRuleType kPresolveRuleSingletonRow = new PresolveRuleType("kPresolveRuleSingletonRow");
-    public final static PresolveRuleType kPresolveRuleRedundantRow = new PresolveRuleType("kPresolveRuleRedundantRow");
-    public final static PresolveRuleType kPresolveRuleEmptyCol = new PresolveRuleType("kPresolveRuleEmptyCol");
-    public final static PresolveRuleType kPresolveRuleFixedCol = new PresolveRuleType("kPresolveRuleFixedCol");
-    public final static PresolveRuleType kPresolveRuleDominatedCol = new PresolveRuleType("kPresolveRuleDominatedCol");
-    public final static PresolveRuleType kPresolveRuleFirstAllowOff = new PresolveRuleType(
-            "kPresolveRuleFirstAllowOff");
-    public final static PresolveRuleType kPresolveRuleForcingRow = new PresolveRuleType(
-            "kPresolveRuleForcingRow",
-            highsJNI.kPresolveRuleForcingRow_get()
-    );
-    public final static PresolveRuleType kPresolveRuleForcingCol = new PresolveRuleType("kPresolveRuleForcingCol");
-    public final static PresolveRuleType kPresolveRuleFreeColSubstitution = new PresolveRuleType(
-            "kPresolveRuleFreeColSubstitution");
-    public final static PresolveRuleType kPresolveRuleDoubletonEquation = new PresolveRuleType(
-            "kPresolveRuleDoubletonEquation");
-    public final static PresolveRuleType kPresolveRuleDependentEquations = new PresolveRuleType(
-            "kPresolveRuleDependentEquations");
-    public final static PresolveRuleType kPresolveRuleDependentFreeCols = new PresolveRuleType(
-            "kPresolveRuleDependentFreeCols");
-    public final static PresolveRuleType kPresolveRuleAggregator = new PresolveRuleType("kPresolveRuleAggregator");
-    public final static PresolveRuleType kPresolveRuleParallelRowsAndCols = new PresolveRuleType(
-            "kPresolveRuleParallelRowsAndCols");
-    public final static PresolveRuleType kPresolveRuleSparsify = new PresolveRuleType("kPresolveRuleSparsify");
-    public final static PresolveRuleType kPresolveRuleProbing = new PresolveRuleType("kPresolveRuleProbing");
-    public final static PresolveRuleType kPresolveRuleEnumeration = new PresolveRuleType("kPresolveRuleEnumeration");
-    public final static PresolveRuleType kPresolveRuleDualFixing = new PresolveRuleType("kPresolveRuleDualFixing");
-    public final static PresolveRuleType kPresolveRuleColStuffing = new PresolveRuleType("kPresolveRuleColStuffing");
-    public final static PresolveRuleType kPresolveRuleInitialSweep = new PresolveRuleType("kPresolveRuleInitialSweep");
-    public final static PresolveRuleType kPresolveRuleMax = new PresolveRuleType(
-            "kPresolveRuleMax",
-            highsJNI.kPresolveRuleMax_get()
-    );
-    public final static PresolveRuleType kPresolveRuleLastAllowOff = new PresolveRuleType(
-            "kPresolveRuleLastAllowOff",
-            highsJNI.kPresolveRuleLastAllowOff_get()
-    );
-    public final static PresolveRuleType kPresolveRuleCount = new PresolveRuleType("kPresolveRuleCount");
-    private static PresolveRuleType[] swigValues = {
-            kPresolveRuleIllegal,
-            kPresolveRuleMin,
-            kPresolveRuleEmptyRow,
-            kPresolveRuleSingletonRow,
-            kPresolveRuleRedundantRow,
-            kPresolveRuleEmptyCol,
-            kPresolveRuleFixedCol,
-            kPresolveRuleDominatedCol,
-            kPresolveRuleFirstAllowOff,
-            kPresolveRuleForcingRow,
-            kPresolveRuleForcingCol,
-            kPresolveRuleFreeColSubstitution,
-            kPresolveRuleDoubletonEquation,
-            kPresolveRuleDependentEquations,
-            kPresolveRuleDependentFreeCols,
-            kPresolveRuleAggregator,
-            kPresolveRuleParallelRowsAndCols,
-            kPresolveRuleSparsify,
-            kPresolveRuleProbing,
-            kPresolveRuleEnumeration,
-            kPresolveRuleDualFixing,
-            kPresolveRuleColStuffing,
-            kPresolveRuleInitialSweep,
-            kPresolveRuleMax,
-            kPresolveRuleLastAllowOff,
-            kPresolveRuleCount
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static PresolveRuleType kPresolveRuleIllegal = new PresolveRuleType("kPresolveRuleIllegal", highsJNI.kPresolveRuleIllegal_get());
+  public final static PresolveRuleType kPresolveRuleMin = new PresolveRuleType("kPresolveRuleMin", highsJNI.kPresolveRuleMin_get());
+  public final static PresolveRuleType kPresolveRuleEmptyRow = new PresolveRuleType("kPresolveRuleEmptyRow", highsJNI.kPresolveRuleEmptyRow_get());
+  public final static PresolveRuleType kPresolveRuleSingletonRow = new PresolveRuleType("kPresolveRuleSingletonRow");
+  public final static PresolveRuleType kPresolveRuleRedundantRow = new PresolveRuleType("kPresolveRuleRedundantRow");
+  public final static PresolveRuleType kPresolveRuleEmptyCol = new PresolveRuleType("kPresolveRuleEmptyCol");
+  public final static PresolveRuleType kPresolveRuleFixedCol = new PresolveRuleType("kPresolveRuleFixedCol");
+  public final static PresolveRuleType kPresolveRuleDominatedCol = new PresolveRuleType("kPresolveRuleDominatedCol");
+  public final static PresolveRuleType kPresolveRuleFirstAllowOff = new PresolveRuleType("kPresolveRuleFirstAllowOff");
+  public final static PresolveRuleType kPresolveRuleForcingRow = new PresolveRuleType("kPresolveRuleForcingRow", highsJNI.kPresolveRuleForcingRow_get());
+  public final static PresolveRuleType kPresolveRuleForcingCol = new PresolveRuleType("kPresolveRuleForcingCol");
+  public final static PresolveRuleType kPresolveRuleFreeColSubstitution = new PresolveRuleType("kPresolveRuleFreeColSubstitution");
+  public final static PresolveRuleType kPresolveRuleDoubletonEquation = new PresolveRuleType("kPresolveRuleDoubletonEquation");
+  public final static PresolveRuleType kPresolveRuleDependentEquations = new PresolveRuleType("kPresolveRuleDependentEquations");
+  public final static PresolveRuleType kPresolveRuleDependentFreeCols = new PresolveRuleType("kPresolveRuleDependentFreeCols");
+  public final static PresolveRuleType kPresolveRuleAggregator = new PresolveRuleType("kPresolveRuleAggregator");
+  public final static PresolveRuleType kPresolveRuleParallelRowsAndCols = new PresolveRuleType("kPresolveRuleParallelRowsAndCols");
+  public final static PresolveRuleType kPresolveRuleSparsify = new PresolveRuleType("kPresolveRuleSparsify");
+  public final static PresolveRuleType kPresolveRuleProbing = new PresolveRuleType("kPresolveRuleProbing");
+  public final static PresolveRuleType kPresolveRuleEnumeration = new PresolveRuleType("kPresolveRuleEnumeration");
+  public final static PresolveRuleType kPresolveRuleDualFixing = new PresolveRuleType("kPresolveRuleDualFixing");
+  public final static PresolveRuleType kPresolveRuleColStuffing = new PresolveRuleType("kPresolveRuleColStuffing");
+  public final static PresolveRuleType kPresolveRuleInitialSweep = new PresolveRuleType("kPresolveRuleInitialSweep");
+  public final static PresolveRuleType kPresolveRuleMax = new PresolveRuleType("kPresolveRuleMax", highsJNI.kPresolveRuleMax_get());
+  public final static PresolveRuleType kPresolveRuleLastAllowOff = new PresolveRuleType("kPresolveRuleLastAllowOff", highsJNI.kPresolveRuleLastAllowOff_get());
+  public final static PresolveRuleType kPresolveRuleCount = new PresolveRuleType("kPresolveRuleCount");
 
-    private PresolveRuleType(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private PresolveRuleType(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private PresolveRuleType(String swigName, PresolveRuleType swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static PresolveRuleType swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + PresolveRuleType.class + " with value " + swigValue);
+  }
 
-    public static PresolveRuleType swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + PresolveRuleType.class + " with value " + swigValue);
-    }
+  private PresolveRuleType(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private PresolveRuleType(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private PresolveRuleType(String swigName, PresolveRuleType swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static PresolveRuleType[] swigValues = { kPresolveRuleIllegal, kPresolveRuleMin, kPresolveRuleEmptyRow, kPresolveRuleSingletonRow, kPresolveRuleRedundantRow, kPresolveRuleEmptyCol, kPresolveRuleFixedCol, kPresolveRuleDominatedCol, kPresolveRuleFirstAllowOff, kPresolveRuleForcingRow, kPresolveRuleForcingCol, kPresolveRuleFreeColSubstitution, kPresolveRuleDoubletonEquation, kPresolveRuleDependentEquations, kPresolveRuleDependentFreeCols, kPresolveRuleAggregator, kPresolveRuleParallelRowsAndCols, kPresolveRuleSparsify, kPresolveRuleProbing, kPresolveRuleEnumeration, kPresolveRuleDualFixing, kPresolveRuleColStuffing, kPresolveRuleInitialSweep, kPresolveRuleMax, kPresolveRuleLastAllowOff, kPresolveRuleCount };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

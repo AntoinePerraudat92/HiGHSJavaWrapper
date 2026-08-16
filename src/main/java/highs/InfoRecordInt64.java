@@ -9,81 +9,64 @@
 package highs;
 
 public class InfoRecordInt64 extends InfoRecord {
-    private transient long swigCPtr;
+  private transient long swigCPtr;
 
-    protected InfoRecordInt64(long cPtr, boolean cMemoryOwn) {
-        super(highsJNI.InfoRecordInt64_SWIGUpcast(cPtr), cMemoryOwn);
-        swigCPtr = cPtr;
-    }
+  protected InfoRecordInt64(long cPtr, boolean cMemoryOwn) {
+    super(highsJNI.InfoRecordInt64_SWIGUpcast(cPtr), cMemoryOwn);
+    swigCPtr = cPtr;
+  }
 
-    public InfoRecordInt64(
-            String Xname,
-            String Xdescription,
-            boolean Xadvanced,
-            SWIGTYPE_p_long_long Xvalue_pointer,
-            long Xdefault_value
-    ) {
-        this(
-                highsJNI.new_InfoRecordInt64(
-                        Xname,
-                        Xdescription,
-                        Xadvanced,
-                        SWIGTYPE_p_long_long.getCPtr(Xvalue_pointer),
-                        Xdefault_value
-                ),
-                true
-        );
-    }
+  protected static long getCPtr(InfoRecordInt64 obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(InfoRecordInt64 obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
+  protected static long swigRelease(InfoRecordInt64 obj) {
+    long ptr = 0;
+    if (obj != null) {
+      if (!obj.swigCMemOwn)
+        throw new RuntimeException("Cannot release ownership as memory is not owned");
+      ptr = obj.swigCPtr;
+      obj.swigCMemOwn = false;
+      obj.delete();
     }
+    return ptr;
+  }
 
-    protected static long swigRelease(InfoRecordInt64 obj) {
-        long ptr = 0;
-        if (obj != null) {
-            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
-            ptr = obj.swigCPtr;
-            obj.swigCMemOwn = false;
-            obj.delete();
-        }
-        return ptr;
-    }
+  @SuppressWarnings({"deprecation", "removal"})
+  protected void finalize() {
+    delete();
+  }
 
-    @SuppressWarnings({
-            "deprecation",
-            "removal"
-    })
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        highsJNI.delete_InfoRecordInt64(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+    super.delete();
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                highsJNI.delete_InfoRecordInt64(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-        super.delete();
-    }
+  public void setValue(SWIGTYPE_p_long_long value) {
+    highsJNI.InfoRecordInt64_value_set(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_long_long getValue() {
-        long cPtr = highsJNI.InfoRecordInt64_value_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_long_long(cPtr, false);
-    }
+  public SWIGTYPE_p_long_long getValue() {
+    long cPtr = highsJNI.InfoRecordInt64_value_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_long_long(cPtr, false);
+  }
 
-    public void setValue(SWIGTYPE_p_long_long value) {
-        highsJNI.InfoRecordInt64_value_set(swigCPtr, this, SWIGTYPE_p_long_long.getCPtr(value));
-    }
+  public void setDefault_value(long value) {
+    highsJNI.InfoRecordInt64_default_value_set(swigCPtr, this, value);
+  }
 
-    public long getDefault_value() {
-        return highsJNI.InfoRecordInt64_default_value_get(swigCPtr, this);
-    }
+  public long getDefault_value() {
+    return highsJNI.InfoRecordInt64_default_value_get(swigCPtr, this);
+  }
 
-    public void setDefault_value(long value) {
-        highsJNI.InfoRecordInt64_default_value_set(swigCPtr, this, value);
-    }
+  public InfoRecordInt64(String Xname, String Xdescription, boolean Xadvanced, SWIGTYPE_p_long_long Xvalue_pointer, long Xdefault_value) {
+    this(highsJNI.new_InfoRecordInt64(Xname, Xdescription, Xadvanced, SWIGTYPE_p_long_long.getCPtr(Xvalue_pointer), Xdefault_value), true);
+  }
 
 }
