@@ -11,7 +11,7 @@
 #include "Highs.h"
 %}
 
-
+// Ignore these methods to fix link and simplify MSVC CI
 %ignore checkInfo(const InfoRecordInt&);
 %ignore checkInfo(const InfoRecordDouble&);
 
