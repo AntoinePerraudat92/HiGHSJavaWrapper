@@ -12,6 +12,9 @@
 %}
 
 
+%ignore checkInfo(const InfoRecordInt&);
+%ignore checkInfo(const InfoRecordDouble&);
+
 %include "std_vector.i"
 namespace std {
    %template(DoubleVector) vector<double>;

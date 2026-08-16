@@ -1795,11 +1795,7 @@ public class highsJNI {
 
     public final static native int getInfoIndex(long jarg1, String jarg2, long jarg3, long jarg4);
 
-    public final static native int checkInfo__SWIG_0(long jarg1, long jarg2);
-
-    public final static native int checkInfo__SWIG_1(long jarg1, InfoRecordInt jarg1_);
-
-    public final static native int checkInfo__SWIG_2(long jarg1, InfoRecordDouble jarg1_);
+    public final static native int checkInfo(long jarg1, long jarg2);
 
     public final static native int getLocalInfoValue__SWIG_0(
             long jarg1,

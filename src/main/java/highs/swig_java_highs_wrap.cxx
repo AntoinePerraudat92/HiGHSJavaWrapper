@@ -8764,7 +8764,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_getInfoIndex(JNIEnv *jenv, jclass jc
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_checkInfo_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_checkInfo(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
   jint jresult = 0 ;
   HighsLogOptions *arg1 = 0 ;
   std::vector< InfoRecord * > *arg2 = 0 ;
@@ -8783,44 +8783,6 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_checkInfo_1_1SWIG_10(JNIEnv *jenv, j
     return 0;
   } 
   result = (InfoStatus)checkInfo((HighsLogOptions const &)*arg1,(std::vector< InfoRecord * > const &)*arg2);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_checkInfo_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  InfoRecordInt *arg1 = 0 ;
-  InfoStatus result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(InfoRecordInt **)&jarg1;
-  if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "InfoRecordInt const & is null");
-    return 0;
-  } 
-  result = (InfoStatus)checkInfo((InfoRecordInt const &)*arg1);
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_checkInfo_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  InfoRecordDouble *arg1 = 0 ;
-  InfoStatus result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(InfoRecordDouble **)&jarg1;
-  if (!arg1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "InfoRecordDouble const & is null");
-    return 0;
-  } 
-  result = (InfoStatus)checkInfo((InfoRecordDouble const &)*arg1);
   jresult = (jint)result; 
   return jresult;
 }
