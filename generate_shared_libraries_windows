@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-cp "${HIGHS_HOME}/build/bin/highs.dll" ./
-cp "${HIGHS_HOME}/build/lib/highs.lib" ./
+cp "${HIGHS_HOME}/build/Release/bin/highs.dll" ./
+cp "${HIGHS_HOME}/build/Release/bin/highs.lib" ./
 
 cd src/main/java/highs
 
