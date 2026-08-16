@@ -9,48 +9,60 @@
 package highs;
 
 public final class BasisValidity {
-  public final static BasisValidity kBasisValidityInvalid = new BasisValidity("kBasisValidityInvalid", highsJNI.kBasisValidityInvalid_get());
-  public final static BasisValidity kBasisValidityValid = new BasisValidity("kBasisValidityValid");
-  public final static BasisValidity kBasisValidityMin = new BasisValidity("kBasisValidityMin", highsJNI.kBasisValidityMin_get());
-  public final static BasisValidity kBasisValidityMax = new BasisValidity("kBasisValidityMax", highsJNI.kBasisValidityMax_get());
+    public final static BasisValidity kBasisValidityInvalid = new BasisValidity(
+            "kBasisValidityInvalid",
+            highsJNI.kBasisValidityInvalid_get()
+    );
+    public final static BasisValidity kBasisValidityValid = new BasisValidity("kBasisValidityValid");
+    public final static BasisValidity kBasisValidityMin = new BasisValidity(
+            "kBasisValidityMin",
+            highsJNI.kBasisValidityMin_get()
+    );
+    public final static BasisValidity kBasisValidityMax = new BasisValidity(
+            "kBasisValidityMax",
+            highsJNI.kBasisValidityMax_get()
+    );
+    private static BasisValidity[] swigValues = {
+            kBasisValidityInvalid,
+            kBasisValidityValid,
+            kBasisValidityMin,
+            kBasisValidityMax
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private BasisValidity(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private BasisValidity(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static BasisValidity swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + BasisValidity.class + " with value " + swigValue);
-  }
+    private BasisValidity(String swigName, BasisValidity swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private BasisValidity(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static BasisValidity swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + BasisValidity.class + " with value " + swigValue);
+    }
 
-  private BasisValidity(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private BasisValidity(String swigName, BasisValidity swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static BasisValidity[] swigValues = { kBasisValidityInvalid, kBasisValidityValid, kBasisValidityMin, kBasisValidityMax };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

@@ -9,46 +9,47 @@
 package highs;
 
 public final class ObjSense {
-  public final static ObjSense kMinimize = new ObjSense("kMinimize", highsJNI.ObjSense_kMinimize_get());
-  public final static ObjSense kMaximize = new ObjSense("kMaximize", highsJNI.ObjSense_kMaximize_get());
+    public final static ObjSense kMinimize = new ObjSense("kMinimize", highsJNI.ObjSense_kMinimize_get());
+    public final static ObjSense kMaximize = new ObjSense("kMaximize", highsJNI.ObjSense_kMaximize_get());
+    private static ObjSense[] swigValues = {
+            kMinimize,
+            kMaximize
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private ObjSense(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private ObjSense(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static ObjSense swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + ObjSense.class + " with value " + swigValue);
-  }
+    private ObjSense(String swigName, ObjSense swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private ObjSense(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static ObjSense swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + ObjSense.class + " with value " + swigValue);
+    }
 
-  private ObjSense(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private ObjSense(String swigName, ObjSense swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static ObjSense[] swigValues = { kMinimize, kMaximize };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

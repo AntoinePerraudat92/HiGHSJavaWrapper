@@ -9,53 +9,80 @@
 package highs;
 
 public final class SimplexScaleStrategy {
-  public final static SimplexScaleStrategy kSimplexScaleStrategyMin = new SimplexScaleStrategy("kSimplexScaleStrategyMin", highsJNI.kSimplexScaleStrategyMin_get());
-  public final static SimplexScaleStrategy kSimplexScaleStrategyOff = new SimplexScaleStrategy("kSimplexScaleStrategyOff", highsJNI.kSimplexScaleStrategyOff_get());
-  public final static SimplexScaleStrategy kSimplexScaleStrategyChoose = new SimplexScaleStrategy("kSimplexScaleStrategyChoose");
-  public final static SimplexScaleStrategy kSimplexScaleStrategyEquilibration = new SimplexScaleStrategy("kSimplexScaleStrategyEquilibration");
-  public final static SimplexScaleStrategy kSimplexScaleStrategyForcedEquilibration = new SimplexScaleStrategy("kSimplexScaleStrategyForcedEquilibration");
-  public final static SimplexScaleStrategy kSimplexScaleStrategyMaxValue = new SimplexScaleStrategy("kSimplexScaleStrategyMaxValue");
-  public final static SimplexScaleStrategy kSimplexScaleStrategyMaxValue015 = new SimplexScaleStrategy("kSimplexScaleStrategyMaxValue015", highsJNI.kSimplexScaleStrategyMaxValue015_get());
-  public final static SimplexScaleStrategy kSimplexScaleStrategyMaxValue0157 = new SimplexScaleStrategy("kSimplexScaleStrategyMaxValue0157", highsJNI.kSimplexScaleStrategyMaxValue0157_get());
-  public final static SimplexScaleStrategy kSimplexScaleStrategyMax = new SimplexScaleStrategy("kSimplexScaleStrategyMax", highsJNI.kSimplexScaleStrategyMax_get());
+    public final static SimplexScaleStrategy kSimplexScaleStrategyMin = new SimplexScaleStrategy(
+            "kSimplexScaleStrategyMin",
+            highsJNI.kSimplexScaleStrategyMin_get()
+    );
+    public final static SimplexScaleStrategy kSimplexScaleStrategyOff = new SimplexScaleStrategy(
+            "kSimplexScaleStrategyOff",
+            highsJNI.kSimplexScaleStrategyOff_get()
+    );
+    public final static SimplexScaleStrategy kSimplexScaleStrategyChoose = new SimplexScaleStrategy(
+            "kSimplexScaleStrategyChoose");
+    public final static SimplexScaleStrategy kSimplexScaleStrategyEquilibration = new SimplexScaleStrategy(
+            "kSimplexScaleStrategyEquilibration");
+    public final static SimplexScaleStrategy kSimplexScaleStrategyForcedEquilibration = new SimplexScaleStrategy(
+            "kSimplexScaleStrategyForcedEquilibration");
+    public final static SimplexScaleStrategy kSimplexScaleStrategyMaxValue = new SimplexScaleStrategy(
+            "kSimplexScaleStrategyMaxValue");
+    public final static SimplexScaleStrategy kSimplexScaleStrategyMaxValue015 = new SimplexScaleStrategy(
+            "kSimplexScaleStrategyMaxValue015",
+            highsJNI.kSimplexScaleStrategyMaxValue015_get()
+    );
+    public final static SimplexScaleStrategy kSimplexScaleStrategyMaxValue0157 = new SimplexScaleStrategy(
+            "kSimplexScaleStrategyMaxValue0157",
+            highsJNI.kSimplexScaleStrategyMaxValue0157_get()
+    );
+    public final static SimplexScaleStrategy kSimplexScaleStrategyMax = new SimplexScaleStrategy(
+            "kSimplexScaleStrategyMax",
+            highsJNI.kSimplexScaleStrategyMax_get()
+    );
+    private static SimplexScaleStrategy[] swigValues = {
+            kSimplexScaleStrategyMin,
+            kSimplexScaleStrategyOff,
+            kSimplexScaleStrategyChoose,
+            kSimplexScaleStrategyEquilibration,
+            kSimplexScaleStrategyForcedEquilibration,
+            kSimplexScaleStrategyMaxValue,
+            kSimplexScaleStrategyMaxValue015,
+            kSimplexScaleStrategyMaxValue0157,
+            kSimplexScaleStrategyMax
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private SimplexScaleStrategy(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private SimplexScaleStrategy(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static SimplexScaleStrategy swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + SimplexScaleStrategy.class + " with value " + swigValue);
-  }
+    private SimplexScaleStrategy(String swigName, SimplexScaleStrategy swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private SimplexScaleStrategy(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static SimplexScaleStrategy swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + SimplexScaleStrategy.class + " with value " + swigValue);
+    }
 
-  private SimplexScaleStrategy(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private SimplexScaleStrategy(String swigName, SimplexScaleStrategy swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static SimplexScaleStrategy[] swigValues = { kSimplexScaleStrategyMin, kSimplexScaleStrategyOff, kSimplexScaleStrategyChoose, kSimplexScaleStrategyEquilibration, kSimplexScaleStrategyForcedEquilibration, kSimplexScaleStrategyMaxValue, kSimplexScaleStrategyMaxValue015, kSimplexScaleStrategyMaxValue0157, kSimplexScaleStrategyMax };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

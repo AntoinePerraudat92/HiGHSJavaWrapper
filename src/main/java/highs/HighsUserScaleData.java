@@ -9,179 +9,197 @@
 package highs;
 
 public class HighsUserScaleData {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsUserScaleData(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsUserScaleData obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsUserScaleData obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsUserScaleData(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsUserScaleData(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsUserScaleData() {
+        this(highsJNI.new_HighsUserScaleData(), true);
     }
-  }
 
-  public void setUser_objective_scale(long value) {
-    highsJNI.HighsUserScaleData_user_objective_scale_set(swigCPtr, this, value);
-  }
+    protected static long getCPtr(HighsUserScaleData obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public long getUser_objective_scale() {
-    return highsJNI.HighsUserScaleData_user_objective_scale_get(swigCPtr, this);
-  }
+    protected static long swigRelease(HighsUserScaleData obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setUser_bound_scale(long value) {
-    highsJNI.HighsUserScaleData_user_bound_scale_set(swigCPtr, this, value);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public long getUser_bound_scale() {
-    return highsJNI.HighsUserScaleData_user_bound_scale_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsUserScaleData(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setInfinite_cost(double value) {
-    highsJNI.HighsUserScaleData_infinite_cost_set(swigCPtr, this, value);
-  }
+    public long getUser_objective_scale() {
+        return highsJNI.HighsUserScaleData_user_objective_scale_get(swigCPtr, this);
+    }
 
-  public double getInfinite_cost() {
-    return highsJNI.HighsUserScaleData_infinite_cost_get(swigCPtr, this);
-  }
+    public void setUser_objective_scale(long value) {
+        highsJNI.HighsUserScaleData_user_objective_scale_set(swigCPtr, this, value);
+    }
 
-  public void setInfinite_bound(double value) {
-    highsJNI.HighsUserScaleData_infinite_bound_set(swigCPtr, this, value);
-  }
+    public long getUser_bound_scale() {
+        return highsJNI.HighsUserScaleData_user_bound_scale_get(swigCPtr, this);
+    }
 
-  public double getInfinite_bound() {
-    return highsJNI.HighsUserScaleData_infinite_bound_get(swigCPtr, this);
-  }
+    public void setUser_bound_scale(long value) {
+        highsJNI.HighsUserScaleData_user_bound_scale_set(swigCPtr, this, value);
+    }
 
-  public void setSmall_matrix_value(double value) {
-    highsJNI.HighsUserScaleData_small_matrix_value_set(swigCPtr, this, value);
-  }
+    public double getInfinite_cost() {
+        return highsJNI.HighsUserScaleData_infinite_cost_get(swigCPtr, this);
+    }
 
-  public double getSmall_matrix_value() {
-    return highsJNI.HighsUserScaleData_small_matrix_value_get(swigCPtr, this);
-  }
+    public void setInfinite_cost(double value) {
+        highsJNI.HighsUserScaleData_infinite_cost_set(swigCPtr, this, value);
+    }
 
-  public void setLarge_matrix_value(double value) {
-    highsJNI.HighsUserScaleData_large_matrix_value_set(swigCPtr, this, value);
-  }
+    public double getInfinite_bound() {
+        return highsJNI.HighsUserScaleData_infinite_bound_get(swigCPtr, this);
+    }
 
-  public double getLarge_matrix_value() {
-    return highsJNI.HighsUserScaleData_large_matrix_value_get(swigCPtr, this);
-  }
+    public void setInfinite_bound(double value) {
+        highsJNI.HighsUserScaleData_infinite_bound_set(swigCPtr, this, value);
+    }
 
-  public void setNum_infinite_costs(long value) {
-    highsJNI.HighsUserScaleData_num_infinite_costs_set(swigCPtr, this, value);
-  }
+    public double getSmall_matrix_value() {
+        return highsJNI.HighsUserScaleData_small_matrix_value_get(swigCPtr, this);
+    }
 
-  public long getNum_infinite_costs() {
-    return highsJNI.HighsUserScaleData_num_infinite_costs_get(swigCPtr, this);
-  }
+    public void setSmall_matrix_value(double value) {
+        highsJNI.HighsUserScaleData_small_matrix_value_set(swigCPtr, this, value);
+    }
 
-  public void setNum_infinite_hessian_values(long value) {
-    highsJNI.HighsUserScaleData_num_infinite_hessian_values_set(swigCPtr, this, value);
-  }
+    public double getLarge_matrix_value() {
+        return highsJNI.HighsUserScaleData_large_matrix_value_get(swigCPtr, this);
+    }
 
-  public long getNum_infinite_hessian_values() {
-    return highsJNI.HighsUserScaleData_num_infinite_hessian_values_get(swigCPtr, this);
-  }
+    public void setLarge_matrix_value(double value) {
+        highsJNI.HighsUserScaleData_large_matrix_value_set(swigCPtr, this, value);
+    }
 
-  public void setNum_infinite_col_bounds(long value) {
-    highsJNI.HighsUserScaleData_num_infinite_col_bounds_set(swigCPtr, this, value);
-  }
+    public long getNum_infinite_costs() {
+        return highsJNI.HighsUserScaleData_num_infinite_costs_get(swigCPtr, this);
+    }
 
-  public long getNum_infinite_col_bounds() {
-    return highsJNI.HighsUserScaleData_num_infinite_col_bounds_get(swigCPtr, this);
-  }
+    public void setNum_infinite_costs(long value) {
+        highsJNI.HighsUserScaleData_num_infinite_costs_set(swigCPtr, this, value);
+    }
 
-  public void setNum_infinite_row_bounds(long value) {
-    highsJNI.HighsUserScaleData_num_infinite_row_bounds_set(swigCPtr, this, value);
-  }
+    public long getNum_infinite_hessian_values() {
+        return highsJNI.HighsUserScaleData_num_infinite_hessian_values_get(swigCPtr, this);
+    }
 
-  public long getNum_infinite_row_bounds() {
-    return highsJNI.HighsUserScaleData_num_infinite_row_bounds_get(swigCPtr, this);
-  }
+    public void setNum_infinite_hessian_values(long value) {
+        highsJNI.HighsUserScaleData_num_infinite_hessian_values_set(swigCPtr, this, value);
+    }
 
-  public void setNum_small_matrix_values(long value) {
-    highsJNI.HighsUserScaleData_num_small_matrix_values_set(swigCPtr, this, value);
-  }
+    public long getNum_infinite_col_bounds() {
+        return highsJNI.HighsUserScaleData_num_infinite_col_bounds_get(swigCPtr, this);
+    }
 
-  public long getNum_small_matrix_values() {
-    return highsJNI.HighsUserScaleData_num_small_matrix_values_get(swigCPtr, this);
-  }
+    public void setNum_infinite_col_bounds(long value) {
+        highsJNI.HighsUserScaleData_num_infinite_col_bounds_set(swigCPtr, this, value);
+    }
 
-  public void setNum_large_matrix_values(long value) {
-    highsJNI.HighsUserScaleData_num_large_matrix_values_set(swigCPtr, this, value);
-  }
+    public long getNum_infinite_row_bounds() {
+        return highsJNI.HighsUserScaleData_num_infinite_row_bounds_get(swigCPtr, this);
+    }
 
-  public long getNum_large_matrix_values() {
-    return highsJNI.HighsUserScaleData_num_large_matrix_values_get(swigCPtr, this);
-  }
+    public void setNum_infinite_row_bounds(long value) {
+        highsJNI.HighsUserScaleData_num_infinite_row_bounds_set(swigCPtr, this, value);
+    }
 
-  public void setSuggested_user_objective_scale(long value) {
-    highsJNI.HighsUserScaleData_suggested_user_objective_scale_set(swigCPtr, this, value);
-  }
+    public long getNum_small_matrix_values() {
+        return highsJNI.HighsUserScaleData_num_small_matrix_values_get(swigCPtr, this);
+    }
 
-  public long getSuggested_user_objective_scale() {
-    return highsJNI.HighsUserScaleData_suggested_user_objective_scale_get(swigCPtr, this);
-  }
+    public void setNum_small_matrix_values(long value) {
+        highsJNI.HighsUserScaleData_num_small_matrix_values_set(swigCPtr, this, value);
+    }
 
-  public void setSuggested_user_bound_scale(long value) {
-    highsJNI.HighsUserScaleData_suggested_user_bound_scale_set(swigCPtr, this, value);
-  }
+    public long getNum_large_matrix_values() {
+        return highsJNI.HighsUserScaleData_num_large_matrix_values_get(swigCPtr, this);
+    }
 
-  public long getSuggested_user_bound_scale() {
-    return highsJNI.HighsUserScaleData_suggested_user_bound_scale_get(swigCPtr, this);
-  }
+    public void setNum_large_matrix_values(long value) {
+        highsJNI.HighsUserScaleData_num_large_matrix_values_set(swigCPtr, this, value);
+    }
 
-  public void setApplied(boolean value) {
-    highsJNI.HighsUserScaleData_applied_set(swigCPtr, this, value);
-  }
+    public long getSuggested_user_objective_scale() {
+        return highsJNI.HighsUserScaleData_suggested_user_objective_scale_get(swigCPtr, this);
+    }
 
-  public boolean getApplied() {
-    return highsJNI.HighsUserScaleData_applied_get(swigCPtr, this);
-  }
+    public void setSuggested_user_objective_scale(long value) {
+        highsJNI.HighsUserScaleData_suggested_user_objective_scale_set(swigCPtr, this, value);
+    }
 
-  public void initialise(long user_objective_scale_, long user_bound_scale_, double infinite_cost_, double infinite_bound_, double small_matrix_value_, double large_matrix_value_) {
-    highsJNI.HighsUserScaleData_initialise(swigCPtr, this, user_objective_scale_, user_bound_scale_, infinite_cost_, infinite_bound_, small_matrix_value_, large_matrix_value_);
-  }
+    public long getSuggested_user_bound_scale() {
+        return highsJNI.HighsUserScaleData_suggested_user_bound_scale_get(swigCPtr, this);
+    }
 
-  public boolean scaleError(SWIGTYPE_p_std__string message) {
-    return highsJNI.HighsUserScaleData_scaleError(swigCPtr, this, SWIGTYPE_p_std__string.getCPtr(message));
-  }
+    public void setSuggested_user_bound_scale(long value) {
+        highsJNI.HighsUserScaleData_suggested_user_bound_scale_set(swigCPtr, this, value);
+    }
 
-  public boolean scaleWarning(SWIGTYPE_p_std__string message) {
-    return highsJNI.HighsUserScaleData_scaleWarning(swigCPtr, this, SWIGTYPE_p_std__string.getCPtr(message));
-  }
+    public boolean getApplied() {
+        return highsJNI.HighsUserScaleData_applied_get(swigCPtr, this);
+    }
 
-  public HighsUserScaleData() {
-    this(highsJNI.new_HighsUserScaleData(), true);
-  }
+    public void setApplied(boolean value) {
+        highsJNI.HighsUserScaleData_applied_set(swigCPtr, this, value);
+    }
+
+    public void initialise(
+            long user_objective_scale_,
+            long user_bound_scale_,
+            double infinite_cost_,
+            double infinite_bound_,
+            double small_matrix_value_,
+            double large_matrix_value_
+    ) {
+        highsJNI.HighsUserScaleData_initialise(
+                swigCPtr,
+                this,
+                user_objective_scale_,
+                user_bound_scale_,
+                infinite_cost_,
+                infinite_bound_,
+                small_matrix_value_,
+                large_matrix_value_
+        );
+    }
+
+    public boolean scaleError(SWIGTYPE_p_std__string message) {
+        return highsJNI.HighsUserScaleData_scaleError(swigCPtr, this, SWIGTYPE_p_std__string.getCPtr(message));
+    }
+
+    public boolean scaleWarning(SWIGTYPE_p_std__string message) {
+        return highsJNI.HighsUserScaleData_scaleWarning(swigCPtr, this, SWIGTYPE_p_std__string.getCPtr(message));
+    }
 
 }

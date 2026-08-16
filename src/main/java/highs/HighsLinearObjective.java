@@ -9,100 +9,102 @@
 package highs;
 
 public class HighsLinearObjective {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsLinearObjective(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsLinearObjective obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsLinearObjective obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsLinearObjective(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsLinearObjective(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsLinearObjective() {
+        this(highsJNI.new_HighsLinearObjective(), true);
     }
-  }
 
-  public void setWeight(double value) {
-    highsJNI.HighsLinearObjective_weight_set(swigCPtr, this, value);
-  }
+    protected static long getCPtr(HighsLinearObjective obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public double getWeight() {
-    return highsJNI.HighsLinearObjective_weight_get(swigCPtr, this);
-  }
+    protected static long swigRelease(HighsLinearObjective obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setOffset(double value) {
-    highsJNI.HighsLinearObjective_offset_set(swigCPtr, this, value);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public double getOffset() {
-    return highsJNI.HighsLinearObjective_offset_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsLinearObjective(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setCoefficients(DoubleVector value) {
-    highsJNI.HighsLinearObjective_coefficients_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public double getWeight() {
+        return highsJNI.HighsLinearObjective_weight_get(swigCPtr, this);
+    }
 
-  public DoubleVector getCoefficients() {
-    long cPtr = highsJNI.HighsLinearObjective_coefficients_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setWeight(double value) {
+        highsJNI.HighsLinearObjective_weight_set(swigCPtr, this, value);
+    }
 
-  public void setAbs_tolerance(double value) {
-    highsJNI.HighsLinearObjective_abs_tolerance_set(swigCPtr, this, value);
-  }
+    public double getOffset() {
+        return highsJNI.HighsLinearObjective_offset_get(swigCPtr, this);
+    }
 
-  public double getAbs_tolerance() {
-    return highsJNI.HighsLinearObjective_abs_tolerance_get(swigCPtr, this);
-  }
+    public void setOffset(double value) {
+        highsJNI.HighsLinearObjective_offset_set(swigCPtr, this, value);
+    }
 
-  public void setRel_tolerance(double value) {
-    highsJNI.HighsLinearObjective_rel_tolerance_set(swigCPtr, this, value);
-  }
+    public DoubleVector getCoefficients() {
+        long cPtr = highsJNI.HighsLinearObjective_coefficients_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
 
-  public double getRel_tolerance() {
-    return highsJNI.HighsLinearObjective_rel_tolerance_get(swigCPtr, this);
-  }
+    public void setCoefficients(DoubleVector value) {
+        highsJNI.HighsLinearObjective_coefficients_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
 
-  public void setPriority(long value) {
-    highsJNI.HighsLinearObjective_priority_set(swigCPtr, this, value);
-  }
+    public double getAbs_tolerance() {
+        return highsJNI.HighsLinearObjective_abs_tolerance_get(swigCPtr, this);
+    }
 
-  public long getPriority() {
-    return highsJNI.HighsLinearObjective_priority_get(swigCPtr, this);
-  }
+    public void setAbs_tolerance(double value) {
+        highsJNI.HighsLinearObjective_abs_tolerance_set(swigCPtr, this, value);
+    }
 
-  public void clear() {
-    highsJNI.HighsLinearObjective_clear(swigCPtr, this);
-  }
+    public double getRel_tolerance() {
+        return highsJNI.HighsLinearObjective_rel_tolerance_get(swigCPtr, this);
+    }
 
-  public HighsLinearObjective() {
-    this(highsJNI.new_HighsLinearObjective(), true);
-  }
+    public void setRel_tolerance(double value) {
+        highsJNI.HighsLinearObjective_rel_tolerance_set(swigCPtr, this, value);
+    }
+
+    public long getPriority() {
+        return highsJNI.HighsLinearObjective_priority_get(swigCPtr, this);
+    }
+
+    public void setPriority(long value) {
+        highsJNI.HighsLinearObjective_priority_set(swigCPtr, this, value);
+    }
+
+    public void clear() {
+        highsJNI.HighsLinearObjective_clear(swigCPtr, this);
+    }
 
 }

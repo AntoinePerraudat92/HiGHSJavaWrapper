@@ -9,50 +9,64 @@
 package highs;
 
 public final class HighsDebugLevel {
-  public final static HighsDebugLevel kHighsDebugLevelNone = new HighsDebugLevel("kHighsDebugLevelNone", highsJNI.kHighsDebugLevelNone_get());
-  public final static HighsDebugLevel kHighsDebugLevelCheap = new HighsDebugLevel("kHighsDebugLevelCheap");
-  public final static HighsDebugLevel kHighsDebugLevelCostly = new HighsDebugLevel("kHighsDebugLevelCostly");
-  public final static HighsDebugLevel kHighsDebugLevelExpensive = new HighsDebugLevel("kHighsDebugLevelExpensive");
-  public final static HighsDebugLevel kHighsDebugLevelMin = new HighsDebugLevel("kHighsDebugLevelMin", highsJNI.kHighsDebugLevelMin_get());
-  public final static HighsDebugLevel kHighsDebugLevelMax = new HighsDebugLevel("kHighsDebugLevelMax", highsJNI.kHighsDebugLevelMax_get());
+    public final static HighsDebugLevel kHighsDebugLevelNone = new HighsDebugLevel(
+            "kHighsDebugLevelNone",
+            highsJNI.kHighsDebugLevelNone_get()
+    );
+    public final static HighsDebugLevel kHighsDebugLevelCheap = new HighsDebugLevel("kHighsDebugLevelCheap");
+    public final static HighsDebugLevel kHighsDebugLevelCostly = new HighsDebugLevel("kHighsDebugLevelCostly");
+    public final static HighsDebugLevel kHighsDebugLevelExpensive = new HighsDebugLevel("kHighsDebugLevelExpensive");
+    public final static HighsDebugLevel kHighsDebugLevelMin = new HighsDebugLevel(
+            "kHighsDebugLevelMin",
+            highsJNI.kHighsDebugLevelMin_get()
+    );
+    public final static HighsDebugLevel kHighsDebugLevelMax = new HighsDebugLevel(
+            "kHighsDebugLevelMax",
+            highsJNI.kHighsDebugLevelMax_get()
+    );
+    private static HighsDebugLevel[] swigValues = {
+            kHighsDebugLevelNone,
+            kHighsDebugLevelCheap,
+            kHighsDebugLevelCostly,
+            kHighsDebugLevelExpensive,
+            kHighsDebugLevelMin,
+            kHighsDebugLevelMax
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private HighsDebugLevel(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private HighsDebugLevel(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static HighsDebugLevel swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + HighsDebugLevel.class + " with value " + swigValue);
-  }
+    private HighsDebugLevel(String swigName, HighsDebugLevel swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private HighsDebugLevel(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static HighsDebugLevel swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + HighsDebugLevel.class + " with value " + swigValue);
+    }
 
-  private HighsDebugLevel(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private HighsDebugLevel(String swigName, HighsDebugLevel swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static HighsDebugLevel[] swigValues = { kHighsDebugLevelNone, kHighsDebugLevelCheap, kHighsDebugLevelCostly, kHighsDebugLevelExpensive, kHighsDebugLevelMin, kHighsDebugLevelMax };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

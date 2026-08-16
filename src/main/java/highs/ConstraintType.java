@@ -9,49 +9,53 @@
 package highs;
 
 public final class ConstraintType {
-  public final static ConstraintType EQ = new ConstraintType("EQ", highsJNI.EQ_get());
-  public final static ConstraintType LEQ = new ConstraintType("LEQ");
-  public final static ConstraintType GEQ = new ConstraintType("GEQ");
-  public final static ConstraintType BOUND = new ConstraintType("BOUND");
-  public final static ConstraintType FREE = new ConstraintType("FREE");
+    public final static ConstraintType EQ = new ConstraintType("EQ", highsJNI.EQ_get());
+    public final static ConstraintType LEQ = new ConstraintType("LEQ");
+    public final static ConstraintType GEQ = new ConstraintType("GEQ");
+    public final static ConstraintType BOUND = new ConstraintType("BOUND");
+    public final static ConstraintType FREE = new ConstraintType("FREE");
+    private static ConstraintType[] swigValues = {
+            EQ,
+            LEQ,
+            GEQ,
+            BOUND,
+            FREE
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private ConstraintType(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private ConstraintType(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static ConstraintType swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + ConstraintType.class + " with value " + swigValue);
-  }
+    private ConstraintType(String swigName, ConstraintType swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private ConstraintType(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static ConstraintType swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + ConstraintType.class + " with value " + swigValue);
+    }
 
-  private ConstraintType(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private ConstraintType(String swigName, ConstraintType swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static ConstraintType[] swigValues = { EQ, LEQ, GEQ, BOUND, FREE };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

@@ -9,172 +9,218 @@
 package highs;
 
 public class HighsLpMods {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsLpMods(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsLpMods obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsLpMods obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsLpMods(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsLpMods(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsLpMods() {
+        this(highsJNI.new_HighsLpMods(), true);
     }
-  }
 
-  public void setSave_non_semi_variable_index(SWIGTYPE_p_std__vectorT_long_long_t value) {
-    highsJNI.HighsLpMods_save_non_semi_variable_index_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
-  }
+    protected static long getCPtr(HighsLpMods obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public SWIGTYPE_p_std__vectorT_long_long_t getSave_non_semi_variable_index() {
-    long cPtr = highsJNI.HighsLpMods_save_non_semi_variable_index_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
-  }
+    protected static long swigRelease(HighsLpMods obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setSave_inconsistent_semi_variable_index(SWIGTYPE_p_std__vectorT_long_long_t value) {
-    highsJNI.HighsLpMods_save_inconsistent_semi_variable_index_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public SWIGTYPE_p_std__vectorT_long_long_t getSave_inconsistent_semi_variable_index() {
-    long cPtr = highsJNI.HighsLpMods_save_inconsistent_semi_variable_index_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsLpMods(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setSave_inconsistent_semi_variable_lower_bound_value(DoubleVector value) {
-    highsJNI.HighsLpMods_save_inconsistent_semi_variable_lower_bound_value_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public SWIGTYPE_p_std__vectorT_long_long_t getSave_non_semi_variable_index() {
+        long cPtr = highsJNI.HighsLpMods_save_non_semi_variable_index_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
+    }
 
-  public DoubleVector getSave_inconsistent_semi_variable_lower_bound_value() {
-    long cPtr = highsJNI.HighsLpMods_save_inconsistent_semi_variable_lower_bound_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setSave_non_semi_variable_index(SWIGTYPE_p_std__vectorT_long_long_t value) {
+        highsJNI.HighsLpMods_save_non_semi_variable_index_set(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value)
+        );
+    }
 
-  public void setSave_inconsistent_semi_variable_upper_bound_value(DoubleVector value) {
-    highsJNI.HighsLpMods_save_inconsistent_semi_variable_upper_bound_value_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public SWIGTYPE_p_std__vectorT_long_long_t getSave_inconsistent_semi_variable_index() {
+        long cPtr = highsJNI.HighsLpMods_save_inconsistent_semi_variable_index_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
+    }
 
-  public DoubleVector getSave_inconsistent_semi_variable_upper_bound_value() {
-    long cPtr = highsJNI.HighsLpMods_save_inconsistent_semi_variable_upper_bound_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setSave_inconsistent_semi_variable_index(SWIGTYPE_p_std__vectorT_long_long_t value) {
+        highsJNI.HighsLpMods_save_inconsistent_semi_variable_index_set(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value)
+        );
+    }
 
-  public void setSave_inconsistent_semi_variable_type(SWIGTYPE_p_std__vectorT_HighsVarType_t value) {
-    highsJNI.HighsLpMods_save_inconsistent_semi_variable_type_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_HighsVarType_t.getCPtr(value));
-  }
+    public DoubleVector getSave_inconsistent_semi_variable_lower_bound_value() {
+        long cPtr = highsJNI.HighsLpMods_save_inconsistent_semi_variable_lower_bound_value_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
 
-  public SWIGTYPE_p_std__vectorT_HighsVarType_t getSave_inconsistent_semi_variable_type() {
-    long cPtr = highsJNI.HighsLpMods_save_inconsistent_semi_variable_type_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsVarType_t(cPtr, false);
-  }
+    public void setSave_inconsistent_semi_variable_lower_bound_value(DoubleVector value) {
+        highsJNI.HighsLpMods_save_inconsistent_semi_variable_lower_bound_value_set(
+                swigCPtr,
+                this,
+                DoubleVector.getCPtr(value),
+                value
+        );
+    }
 
-  public void setSave_relaxed_semi_variable_lower_bound_index(SWIGTYPE_p_std__vectorT_long_long_t value) {
-    highsJNI.HighsLpMods_save_relaxed_semi_variable_lower_bound_index_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
-  }
+    public DoubleVector getSave_inconsistent_semi_variable_upper_bound_value() {
+        long cPtr = highsJNI.HighsLpMods_save_inconsistent_semi_variable_upper_bound_value_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
 
-  public SWIGTYPE_p_std__vectorT_long_long_t getSave_relaxed_semi_variable_lower_bound_index() {
-    long cPtr = highsJNI.HighsLpMods_save_relaxed_semi_variable_lower_bound_index_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
-  }
+    public void setSave_inconsistent_semi_variable_upper_bound_value(DoubleVector value) {
+        highsJNI.HighsLpMods_save_inconsistent_semi_variable_upper_bound_value_set(
+                swigCPtr,
+                this,
+                DoubleVector.getCPtr(value),
+                value
+        );
+    }
 
-  public void setSave_relaxed_semi_variable_lower_bound_value(DoubleVector value) {
-    highsJNI.HighsLpMods_save_relaxed_semi_variable_lower_bound_value_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public SWIGTYPE_p_std__vectorT_HighsVarType_t getSave_inconsistent_semi_variable_type() {
+        long cPtr = highsJNI.HighsLpMods_save_inconsistent_semi_variable_type_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsVarType_t(cPtr, false);
+    }
 
-  public DoubleVector getSave_relaxed_semi_variable_lower_bound_value() {
-    long cPtr = highsJNI.HighsLpMods_save_relaxed_semi_variable_lower_bound_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setSave_inconsistent_semi_variable_type(SWIGTYPE_p_std__vectorT_HighsVarType_t value) {
+        highsJNI.HighsLpMods_save_inconsistent_semi_variable_type_set(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_std__vectorT_HighsVarType_t.getCPtr(value)
+        );
+    }
 
-  public void setSave_tightened_semi_variable_upper_bound_index(SWIGTYPE_p_std__vectorT_long_long_t value) {
-    highsJNI.HighsLpMods_save_tightened_semi_variable_upper_bound_index_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
-  }
+    public SWIGTYPE_p_std__vectorT_long_long_t getSave_relaxed_semi_variable_lower_bound_index() {
+        long cPtr = highsJNI.HighsLpMods_save_relaxed_semi_variable_lower_bound_index_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
+    }
 
-  public SWIGTYPE_p_std__vectorT_long_long_t getSave_tightened_semi_variable_upper_bound_index() {
-    long cPtr = highsJNI.HighsLpMods_save_tightened_semi_variable_upper_bound_index_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
-  }
+    public void setSave_relaxed_semi_variable_lower_bound_index(SWIGTYPE_p_std__vectorT_long_long_t value) {
+        highsJNI.HighsLpMods_save_relaxed_semi_variable_lower_bound_index_set(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value)
+        );
+    }
 
-  public void setSave_tightened_semi_variable_upper_bound_value(DoubleVector value) {
-    highsJNI.HighsLpMods_save_tightened_semi_variable_upper_bound_value_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public DoubleVector getSave_relaxed_semi_variable_lower_bound_value() {
+        long cPtr = highsJNI.HighsLpMods_save_relaxed_semi_variable_lower_bound_value_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
 
-  public DoubleVector getSave_tightened_semi_variable_upper_bound_value() {
-    long cPtr = highsJNI.HighsLpMods_save_tightened_semi_variable_upper_bound_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setSave_relaxed_semi_variable_lower_bound_value(DoubleVector value) {
+        highsJNI.HighsLpMods_save_relaxed_semi_variable_lower_bound_value_set(
+                swigCPtr,
+                this,
+                DoubleVector.getCPtr(value),
+                value
+        );
+    }
 
-  public void setSave_inf_cost_variable_index(SWIGTYPE_p_std__vectorT_long_long_t value) {
-    highsJNI.HighsLpMods_save_inf_cost_variable_index_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
-  }
+    public SWIGTYPE_p_std__vectorT_long_long_t getSave_tightened_semi_variable_upper_bound_index() {
+        long cPtr = highsJNI.HighsLpMods_save_tightened_semi_variable_upper_bound_index_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
+    }
 
-  public SWIGTYPE_p_std__vectorT_long_long_t getSave_inf_cost_variable_index() {
-    long cPtr = highsJNI.HighsLpMods_save_inf_cost_variable_index_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
-  }
+    public void setSave_tightened_semi_variable_upper_bound_index(SWIGTYPE_p_std__vectorT_long_long_t value) {
+        highsJNI.HighsLpMods_save_tightened_semi_variable_upper_bound_index_set(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value)
+        );
+    }
 
-  public void setSave_inf_cost_variable_cost(DoubleVector value) {
-    highsJNI.HighsLpMods_save_inf_cost_variable_cost_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public DoubleVector getSave_tightened_semi_variable_upper_bound_value() {
+        long cPtr = highsJNI.HighsLpMods_save_tightened_semi_variable_upper_bound_value_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
 
-  public DoubleVector getSave_inf_cost_variable_cost() {
-    long cPtr = highsJNI.HighsLpMods_save_inf_cost_variable_cost_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setSave_tightened_semi_variable_upper_bound_value(DoubleVector value) {
+        highsJNI.HighsLpMods_save_tightened_semi_variable_upper_bound_value_set(
+                swigCPtr,
+                this,
+                DoubleVector.getCPtr(value),
+                value
+        );
+    }
 
-  public void setSave_inf_cost_variable_lower(DoubleVector value) {
-    highsJNI.HighsLpMods_save_inf_cost_variable_lower_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public SWIGTYPE_p_std__vectorT_long_long_t getSave_inf_cost_variable_index() {
+        long cPtr = highsJNI.HighsLpMods_save_inf_cost_variable_index_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
+    }
 
-  public DoubleVector getSave_inf_cost_variable_lower() {
-    long cPtr = highsJNI.HighsLpMods_save_inf_cost_variable_lower_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setSave_inf_cost_variable_index(SWIGTYPE_p_std__vectorT_long_long_t value) {
+        highsJNI.HighsLpMods_save_inf_cost_variable_index_set(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value)
+        );
+    }
 
-  public void setSave_inf_cost_variable_upper(DoubleVector value) {
-    highsJNI.HighsLpMods_save_inf_cost_variable_upper_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    public DoubleVector getSave_inf_cost_variable_cost() {
+        long cPtr = highsJNI.HighsLpMods_save_inf_cost_variable_cost_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
 
-  public DoubleVector getSave_inf_cost_variable_upper() {
-    long cPtr = highsJNI.HighsLpMods_save_inf_cost_variable_upper_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public void setSave_inf_cost_variable_cost(DoubleVector value) {
+        highsJNI.HighsLpMods_save_inf_cost_variable_cost_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
 
-  public void clear() {
-    highsJNI.HighsLpMods_clear(swigCPtr, this);
-  }
+    public DoubleVector getSave_inf_cost_variable_lower() {
+        long cPtr = highsJNI.HighsLpMods_save_inf_cost_variable_lower_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
 
-  public boolean isClear() {
-    return highsJNI.HighsLpMods_isClear(swigCPtr, this);
-  }
+    public void setSave_inf_cost_variable_lower(DoubleVector value) {
+        highsJNI.HighsLpMods_save_inf_cost_variable_lower_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
 
-  public HighsLpMods() {
-    this(highsJNI.new_HighsLpMods(), true);
-  }
+    public DoubleVector getSave_inf_cost_variable_upper() {
+        long cPtr = highsJNI.HighsLpMods_save_inf_cost_variable_upper_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
+
+    public void setSave_inf_cost_variable_upper(DoubleVector value) {
+        highsJNI.HighsLpMods_save_inf_cost_variable_upper_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
+
+    public void clear() {
+        highsJNI.HighsLpMods_clear(swigCPtr, this);
+    }
+
+    public boolean isClear() {
+        return highsJNI.HighsLpMods_isClear(swigCPtr, this);
+    }
 
 }
