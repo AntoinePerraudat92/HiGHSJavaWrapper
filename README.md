@@ -32,8 +32,9 @@ On Ubuntu systems, one can use `sudo apt install swig`.
 
 ### Compiler
 
-`gcc` or `clang` must be installed. Note that `HiGHS` must have been installed with the same compiler. The environment
-variables `CC` or `CXX` must be defined.
+A compiler being able to compile `HiGHS` is required. `gcc`, `clang` and `MSCV` are actively supported with dedicated CI
+builds. For a Linux system, the environment variables `CC` or `CXX` must be defined. Note that `HiGHS` must have been
+installed with the same compiler.
 
 ## Extending the JNI classes
 
@@ -42,19 +43,18 @@ To build the JNI classes required by the wrapper, `generate_jni_classes` should 
 
 ## How to use the wrapper?
 
-Firstly, `HiGHS` must be compiled and `HIGHS_HOME` must be defined.
+Firstly, `HiGHS` must be compiled, `HIGHS_HOME` and `JAVA_HOME` must be defined.
 
-Secondly, `generate_shared_libraries` must be run to build the shared libraries required by the wrapper. It
-automatically creates the required shared libraries, `libhighs.so` and `libhighswrap.so`, in the base directory. The
-following environment variables must be defined for the script to work:
+Secondly, `generate_shared_libraries_linux` must be run to build the shared libraries required by the wrapper for Linux
+systems. `generate_shared_libraries_windows` can be used for Windows systems.
 
-- `HIGHS_HOME`,
-- `JAVA_HOME`.
+The script automatically creates both required shared libraries, `libhighs.so` and `libhighswrap.so` for
+Linux systems, or `libhighs.dll` and `libhighswrap.dll` for
+Windows systems, in the base directory.
 
 Then, to run the tests or use the wrapper for another project, the JVM argument `-Djava.library.path` must be filled.
-The
-referred path must contain `libhighs.so` and `libhighswrap.so`. The relevant classes (relying on calls to
-`HiGHS`) then must also contain (or something equivalent):
+The referred path must contain the shared libraries. The relevant classes (relying on calls to `HiGHS`)
+then must also contain (or something equivalent):
 
 ```
     static {
@@ -63,6 +63,5 @@ referred path must contain `libhighs.so` and `libhighswrap.so`. The relevant cla
     }
 ```
 
-If the shared libraries `libhighs.so` and `libhighswrap.so` cannot be found at run time, then exceptions of type
-`UnsatisfiedLinkError` or type `ClassNotFound` will be thrown. Note that `libhighs.so` must be loaded before
-`libhighswrap.so`.
+If the shared libraries cannot be found at run time, then exceptions of type
+`UnsatisfiedLinkError` or type `ClassNotFound` will be thrown. Note that the load order of libraries also matters.
