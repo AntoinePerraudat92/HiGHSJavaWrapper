@@ -9,48 +9,55 @@
 package highs;
 
 public final class HighsPostsolveStatus {
-  public final static HighsPostsolveStatus kNotPresolved = new HighsPostsolveStatus("kNotPresolved", highsJNI.HighsPostsolveStatus_kNotPresolved_get());
-  public final static HighsPostsolveStatus kNoPrimalSolutionError = new HighsPostsolveStatus("kNoPrimalSolutionError");
-  public final static HighsPostsolveStatus kSolutionRecovered = new HighsPostsolveStatus("kSolutionRecovered");
-  public final static HighsPostsolveStatus kBasisError = new HighsPostsolveStatus("kBasisError");
+    public final static HighsPostsolveStatus kNotPresolved = new HighsPostsolveStatus(
+            "kNotPresolved",
+            highsJNI.HighsPostsolveStatus_kNotPresolved_get()
+    );
+    public final static HighsPostsolveStatus kNoPrimalSolutionError = new HighsPostsolveStatus(
+            "kNoPrimalSolutionError");
+    public final static HighsPostsolveStatus kSolutionRecovered = new HighsPostsolveStatus("kSolutionRecovered");
+    public final static HighsPostsolveStatus kBasisError = new HighsPostsolveStatus("kBasisError");
+    private static HighsPostsolveStatus[] swigValues = {
+            kNotPresolved,
+            kNoPrimalSolutionError,
+            kSolutionRecovered,
+            kBasisError
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private HighsPostsolveStatus(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private HighsPostsolveStatus(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static HighsPostsolveStatus swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + HighsPostsolveStatus.class + " with value " + swigValue);
-  }
+    private HighsPostsolveStatus(String swigName, HighsPostsolveStatus swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private HighsPostsolveStatus(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static HighsPostsolveStatus swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + HighsPostsolveStatus.class + " with value " + swigValue);
+    }
 
-  private HighsPostsolveStatus(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private HighsPostsolveStatus(String swigName, HighsPostsolveStatus swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static HighsPostsolveStatus[] swigValues = { kNotPresolved, kNoPrimalSolutionError, kSolutionRecovered, kBasisError };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

@@ -9,49 +9,65 @@
 package highs;
 
 public final class HighsVarType {
-  public final static HighsVarType kContinuous = new HighsVarType("kContinuous", highsJNI.HighsVarType_kContinuous_get());
-  public final static HighsVarType kInteger = new HighsVarType("kInteger", highsJNI.HighsVarType_kInteger_get());
-  public final static HighsVarType kSemiContinuous = new HighsVarType("kSemiContinuous", highsJNI.HighsVarType_kSemiContinuous_get());
-  public final static HighsVarType kSemiInteger = new HighsVarType("kSemiInteger", highsJNI.HighsVarType_kSemiInteger_get());
-  public final static HighsVarType kImplicitInteger = new HighsVarType("kImplicitInteger", highsJNI.HighsVarType_kImplicitInteger_get());
+    public final static HighsVarType kContinuous = new HighsVarType(
+            "kContinuous",
+            highsJNI.HighsVarType_kContinuous_get()
+    );
+    public final static HighsVarType kInteger = new HighsVarType("kInteger", highsJNI.HighsVarType_kInteger_get());
+    public final static HighsVarType kSemiContinuous = new HighsVarType(
+            "kSemiContinuous",
+            highsJNI.HighsVarType_kSemiContinuous_get()
+    );
+    public final static HighsVarType kSemiInteger = new HighsVarType(
+            "kSemiInteger",
+            highsJNI.HighsVarType_kSemiInteger_get()
+    );
+    public final static HighsVarType kImplicitInteger = new HighsVarType(
+            "kImplicitInteger",
+            highsJNI.HighsVarType_kImplicitInteger_get()
+    );
+    private static HighsVarType[] swigValues = {
+            kContinuous,
+            kInteger,
+            kSemiContinuous,
+            kSemiInteger,
+            kImplicitInteger
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private HighsVarType(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private HighsVarType(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static HighsVarType swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + HighsVarType.class + " with value " + swigValue);
-  }
+    private HighsVarType(String swigName, HighsVarType swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private HighsVarType(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static HighsVarType swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + HighsVarType.class + " with value " + swigValue);
+    }
 
-  private HighsVarType(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private HighsVarType(String swigName, HighsVarType swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static HighsVarType[] swigValues = { kContinuous, kInteger, kSemiContinuous, kSemiInteger, kImplicitInteger };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

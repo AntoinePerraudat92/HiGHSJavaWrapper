@@ -9,68 +9,70 @@
 package highs;
 
 public class HighsObjectiveSolution {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsObjectiveSolution(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsObjectiveSolution obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsObjectiveSolution obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsObjectiveSolution(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsObjectiveSolution(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsObjectiveSolution() {
+        this(highsJNI.new_HighsObjectiveSolution(), true);
     }
-  }
 
-  public void setObjective(double value) {
-    highsJNI.HighsObjectiveSolution_objective_set(swigCPtr, this, value);
-  }
+    protected static long getCPtr(HighsObjectiveSolution obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public double getObjective() {
-    return highsJNI.HighsObjectiveSolution_objective_get(swigCPtr, this);
-  }
+    protected static long swigRelease(HighsObjectiveSolution obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setCol_value(DoubleVector value) {
-    highsJNI.HighsObjectiveSolution_col_value_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public DoubleVector getCol_value() {
-    long cPtr = highsJNI.HighsObjectiveSolution_col_value_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsObjectiveSolution(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void clear() {
-    highsJNI.HighsObjectiveSolution_clear(swigCPtr, this);
-  }
+    public double getObjective() {
+        return highsJNI.HighsObjectiveSolution_objective_get(swigCPtr, this);
+    }
 
-  public HighsObjectiveSolution() {
-    this(highsJNI.new_HighsObjectiveSolution(), true);
-  }
+    public void setObjective(double value) {
+        highsJNI.HighsObjectiveSolution_objective_set(swigCPtr, this, value);
+    }
+
+    public DoubleVector getCol_value() {
+        long cPtr = highsJNI.HighsObjectiveSolution_col_value_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new DoubleVector(cPtr, false);
+    }
+
+    public void setCol_value(DoubleVector value) {
+        highsJNI.HighsObjectiveSolution_col_value_set(swigCPtr, this, DoubleVector.getCPtr(value), value);
+    }
+
+    public void clear() {
+        highsJNI.HighsObjectiveSolution_clear(swigCPtr, this);
+    }
 
 }

@@ -9,969 +9,3234 @@
 package highs;
 
 public class highsJNI {
-  public final static native long new_DoubleVector__SWIG_0();
-  public final static native long new_DoubleVector__SWIG_1(long jarg1, DoubleVector jarg1_);
-  public final static native boolean DoubleVector_isEmpty(long jarg1, DoubleVector jarg1_);
-  public final static native void DoubleVector_clear(long jarg1, DoubleVector jarg1_);
-  public final static native long new_DoubleVector__SWIG_2(int jarg1, double jarg2);
-  public final static native int DoubleVector_doCapacity(long jarg1, DoubleVector jarg1_);
-  public final static native void DoubleVector_doReserve(long jarg1, DoubleVector jarg1_, int jarg2);
-  public final static native int DoubleVector_doSize(long jarg1, DoubleVector jarg1_);
-  public final static native void DoubleVector_doAdd__SWIG_0(long jarg1, DoubleVector jarg1_, double jarg2);
-  public final static native void DoubleVector_doAdd__SWIG_1(long jarg1, DoubleVector jarg1_, int jarg2, double jarg3);
-  public final static native double DoubleVector_doRemove(long jarg1, DoubleVector jarg1_, int jarg2);
-  public final static native double DoubleVector_doGet(long jarg1, DoubleVector jarg1_, int jarg2);
-  public final static native double DoubleVector_doSet(long jarg1, DoubleVector jarg1_, int jarg2, double jarg3);
-  public final static native void DoubleVector_doRemoveRange(long jarg1, DoubleVector jarg1_, int jarg2, int jarg3);
-  public final static native void delete_DoubleVector(long jarg1);
-  public final static native long new_DoubleArray(long jarg1);
-  public final static native void delete_DoubleArray(long jarg1);
-  public final static native double DoubleArray_getitem(long jarg1, DoubleArray jarg1_, long jarg2);
-  public final static native void DoubleArray_setitem(long jarg1, DoubleArray jarg1_, long jarg2, double jarg3);
-  public final static native long DoubleArray_cast(long jarg1, DoubleArray jarg1_);
-  public final static native long DoubleArray_frompointer(long jarg1);
-  public final static native long new_LongLongArray(long jarg1);
-  public final static native void delete_LongLongArray(long jarg1);
-  public final static native long LongLongArray_getitem(long jarg1, LongLongArray jarg1_, long jarg2);
-  public final static native void LongLongArray_setitem(long jarg1, LongLongArray jarg1_, long jarg2, long jarg3);
-  public final static native long LongLongArray_cast(long jarg1, LongLongArray jarg1_);
-  public final static native long LongLongArray_frompointer(long jarg1);
-  public final static native String CMAKE_BUILD_TYPE_get();
-  public final static native String HIGHS_GITHASH_get();
-  public final static native int HIGHS_VERSION_MAJOR_get();
-  public final static native int HIGHS_VERSION_MINOR_get();
-  public final static native int HIGHS_VERSION_PATCH_get();
-  public final static native void HighsSolution_value_valid_set(long jarg1, HighsSolution jarg1_, boolean jarg2);
-  public final static native boolean HighsSolution_value_valid_get(long jarg1, HighsSolution jarg1_);
-  public final static native void HighsSolution_dual_valid_set(long jarg1, HighsSolution jarg1_, boolean jarg2);
-  public final static native boolean HighsSolution_dual_valid_get(long jarg1, HighsSolution jarg1_);
-  public final static native void HighsSolution_col_value_set(long jarg1, HighsSolution jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsSolution_col_value_get(long jarg1, HighsSolution jarg1_);
-  public final static native void HighsSolution_col_dual_set(long jarg1, HighsSolution jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsSolution_col_dual_get(long jarg1, HighsSolution jarg1_);
-  public final static native void HighsSolution_row_value_set(long jarg1, HighsSolution jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsSolution_row_value_get(long jarg1, HighsSolution jarg1_);
-  public final static native void HighsSolution_row_dual_set(long jarg1, HighsSolution jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsSolution_row_dual_get(long jarg1, HighsSolution jarg1_);
-  public final static native boolean HighsSolution_hasUndefined(long jarg1, HighsSolution jarg1_);
-  public final static native void HighsSolution_invalidate(long jarg1, HighsSolution jarg1_);
-  public final static native void HighsSolution_clear(long jarg1, HighsSolution jarg1_);
-  public final static native void HighsSolution_print__SWIG_0(long jarg1, HighsSolution jarg1_, String jarg2, String jarg3);
-  public final static native void HighsSolution_print__SWIG_1(long jarg1, HighsSolution jarg1_, String jarg2);
-  public final static native void HighsSolution_print__SWIG_2(long jarg1, HighsSolution jarg1_);
-  public final static native boolean HighsSolution_isModelRow(long jarg1, HighsSolution jarg1_, long jarg2);
-  public final static native long new_HighsSolution();
-  public final static native void delete_HighsSolution(long jarg1);
-  public final static native void HighsObjectiveSolution_objective_set(long jarg1, HighsObjectiveSolution jarg1_, double jarg2);
-  public final static native double HighsObjectiveSolution_objective_get(long jarg1, HighsObjectiveSolution jarg1_);
-  public final static native void HighsObjectiveSolution_col_value_set(long jarg1, HighsObjectiveSolution jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsObjectiveSolution_col_value_get(long jarg1, HighsObjectiveSolution jarg1_);
-  public final static native void HighsObjectiveSolution_clear(long jarg1, HighsObjectiveSolution jarg1_);
-  public final static native long new_HighsObjectiveSolution();
-  public final static native void delete_HighsObjectiveSolution(long jarg1);
-  public final static native void RefactorInfo_use_set(long jarg1, RefactorInfo jarg1_, boolean jarg2);
-  public final static native boolean RefactorInfo_use_get(long jarg1, RefactorInfo jarg1_);
-  public final static native void RefactorInfo_pivot_row_set(long jarg1, RefactorInfo jarg1_, long jarg2);
-  public final static native long RefactorInfo_pivot_row_get(long jarg1, RefactorInfo jarg1_);
-  public final static native void RefactorInfo_pivot_var_set(long jarg1, RefactorInfo jarg1_, long jarg2);
-  public final static native long RefactorInfo_pivot_var_get(long jarg1, RefactorInfo jarg1_);
-  public final static native void RefactorInfo_pivot_type_set(long jarg1, RefactorInfo jarg1_, long jarg2);
-  public final static native long RefactorInfo_pivot_type_get(long jarg1, RefactorInfo jarg1_);
-  public final static native void RefactorInfo_build_synthetic_tick_set(long jarg1, RefactorInfo jarg1_, double jarg2);
-  public final static native double RefactorInfo_build_synthetic_tick_get(long jarg1, RefactorInfo jarg1_);
-  public final static native void RefactorInfo_clear(long jarg1, RefactorInfo jarg1_);
-  public final static native long new_RefactorInfo();
-  public final static native void delete_RefactorInfo(long jarg1);
-  public final static native void HotStart_valid_set(long jarg1, HotStart jarg1_, boolean jarg2);
-  public final static native boolean HotStart_valid_get(long jarg1, HotStart jarg1_);
-  public final static native void HotStart_refactor_info_set(long jarg1, HotStart jarg1_, long jarg2, RefactorInfo jarg2_);
-  public final static native long HotStart_refactor_info_get(long jarg1, HotStart jarg1_);
-  public final static native void HotStart_nonbasicMove_set(long jarg1, HotStart jarg1_, long jarg2);
-  public final static native long HotStart_nonbasicMove_get(long jarg1, HotStart jarg1_);
-  public final static native long new_HotStart();
-  public final static native void delete_HotStart(long jarg1);
-  public final static native void HighsBasis_valid_set(long jarg1, HighsBasis jarg1_, boolean jarg2);
-  public final static native boolean HighsBasis_valid_get(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_alien_set(long jarg1, HighsBasis jarg1_, boolean jarg2);
-  public final static native boolean HighsBasis_alien_get(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_useful_set(long jarg1, HighsBasis jarg1_, boolean jarg2);
-  public final static native boolean HighsBasis_useful_get(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_was_alien_set(long jarg1, HighsBasis jarg1_, boolean jarg2);
-  public final static native boolean HighsBasis_was_alien_get(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_debug_id_set(long jarg1, HighsBasis jarg1_, long jarg2);
-  public final static native long HighsBasis_debug_id_get(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_debug_update_count_set(long jarg1, HighsBasis jarg1_, long jarg2);
-  public final static native long HighsBasis_debug_update_count_get(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_debug_origin_name_set(long jarg1, HighsBasis jarg1_, String jarg2);
-  public final static native String HighsBasis_debug_origin_name_get(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_col_status_set(long jarg1, HighsBasis jarg1_, long jarg2);
-  public final static native long HighsBasis_col_status_get(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_row_status_set(long jarg1, HighsBasis jarg1_, long jarg2);
-  public final static native long HighsBasis_row_status_get(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_print__SWIG_0(long jarg1, HighsBasis jarg1_, String jarg2, String jarg3);
-  public final static native void HighsBasis_print__SWIG_1(long jarg1, HighsBasis jarg1_, String jarg2);
-  public final static native void HighsBasis_print__SWIG_2(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_printScalars__SWIG_0(long jarg1, HighsBasis jarg1_, String jarg2, String jarg3);
-  public final static native void HighsBasis_printScalars__SWIG_1(long jarg1, HighsBasis jarg1_, String jarg2);
-  public final static native void HighsBasis_printScalars__SWIG_2(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_invalidate(long jarg1, HighsBasis jarg1_);
-  public final static native void HighsBasis_clear(long jarg1, HighsBasis jarg1_);
-  public final static native long new_HighsBasis();
-  public final static native void delete_HighsBasis(long jarg1);
-  public final static native void HighsScale_strategy_set(long jarg1, HighsScale jarg1_, long jarg2);
-  public final static native long HighsScale_strategy_get(long jarg1, HighsScale jarg1_);
-  public final static native void HighsScale_has_scaling_set(long jarg1, HighsScale jarg1_, boolean jarg2);
-  public final static native boolean HighsScale_has_scaling_get(long jarg1, HighsScale jarg1_);
-  public final static native void HighsScale_num_col_set(long jarg1, HighsScale jarg1_, long jarg2);
-  public final static native long HighsScale_num_col_get(long jarg1, HighsScale jarg1_);
-  public final static native void HighsScale_num_row_set(long jarg1, HighsScale jarg1_, long jarg2);
-  public final static native long HighsScale_num_row_get(long jarg1, HighsScale jarg1_);
-  public final static native void HighsScale_cost_set(long jarg1, HighsScale jarg1_, double jarg2);
-  public final static native double HighsScale_cost_get(long jarg1, HighsScale jarg1_);
-  public final static native void HighsScale_col_set(long jarg1, HighsScale jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsScale_col_get(long jarg1, HighsScale jarg1_);
-  public final static native void HighsScale_row_set(long jarg1, HighsScale jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsScale_row_get(long jarg1, HighsScale jarg1_);
-  public final static native long new_HighsScale();
-  public final static native void delete_HighsScale(long jarg1);
-  public final static native void HighsLpMods_save_non_semi_variable_index_set(long jarg1, HighsLpMods jarg1_, long jarg2);
-  public final static native long HighsLpMods_save_non_semi_variable_index_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_inconsistent_semi_variable_index_set(long jarg1, HighsLpMods jarg1_, long jarg2);
-  public final static native long HighsLpMods_save_inconsistent_semi_variable_index_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_inconsistent_semi_variable_lower_bound_value_set(long jarg1, HighsLpMods jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsLpMods_save_inconsistent_semi_variable_lower_bound_value_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_inconsistent_semi_variable_upper_bound_value_set(long jarg1, HighsLpMods jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsLpMods_save_inconsistent_semi_variable_upper_bound_value_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_inconsistent_semi_variable_type_set(long jarg1, HighsLpMods jarg1_, long jarg2);
-  public final static native long HighsLpMods_save_inconsistent_semi_variable_type_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_relaxed_semi_variable_lower_bound_index_set(long jarg1, HighsLpMods jarg1_, long jarg2);
-  public final static native long HighsLpMods_save_relaxed_semi_variable_lower_bound_index_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_relaxed_semi_variable_lower_bound_value_set(long jarg1, HighsLpMods jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsLpMods_save_relaxed_semi_variable_lower_bound_value_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_tightened_semi_variable_upper_bound_index_set(long jarg1, HighsLpMods jarg1_, long jarg2);
-  public final static native long HighsLpMods_save_tightened_semi_variable_upper_bound_index_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_tightened_semi_variable_upper_bound_value_set(long jarg1, HighsLpMods jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsLpMods_save_tightened_semi_variable_upper_bound_value_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_inf_cost_variable_index_set(long jarg1, HighsLpMods jarg1_, long jarg2);
-  public final static native long HighsLpMods_save_inf_cost_variable_index_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_inf_cost_variable_cost_set(long jarg1, HighsLpMods jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsLpMods_save_inf_cost_variable_cost_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_inf_cost_variable_lower_set(long jarg1, HighsLpMods jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsLpMods_save_inf_cost_variable_lower_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_save_inf_cost_variable_upper_set(long jarg1, HighsLpMods jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsLpMods_save_inf_cost_variable_upper_get(long jarg1, HighsLpMods jarg1_);
-  public final static native void HighsLpMods_clear(long jarg1, HighsLpMods jarg1_);
-  public final static native boolean HighsLpMods_isClear(long jarg1, HighsLpMods jarg1_);
-  public final static native long new_HighsLpMods();
-  public final static native void delete_HighsLpMods(long jarg1);
-  public final static native void HighsNameHash_name2index_set(long jarg1, HighsNameHash jarg1_, long jarg2);
-  public final static native long HighsNameHash_name2index_get(long jarg1, HighsNameHash jarg1_);
-  public final static native void HighsNameHash_form(long jarg1, HighsNameHash jarg1_, long jarg2);
-  public final static native boolean HighsNameHash_hasDuplicate(long jarg1, HighsNameHash jarg1_, long jarg2);
-  public final static native void HighsNameHash_update(long jarg1, HighsNameHash jarg1_, int jarg2, String jarg3, String jarg4);
-  public final static native void HighsNameHash_clear(long jarg1, HighsNameHash jarg1_);
-  public final static native long new_HighsNameHash();
-  public final static native void delete_HighsNameHash(long jarg1);
-  public final static native void HighsPresolveRuleLog_call_set(long jarg1, HighsPresolveRuleLog jarg1_, long jarg2);
-  public final static native long HighsPresolveRuleLog_call_get(long jarg1, HighsPresolveRuleLog jarg1_);
-  public final static native void HighsPresolveRuleLog_col_removed_set(long jarg1, HighsPresolveRuleLog jarg1_, long jarg2);
-  public final static native long HighsPresolveRuleLog_col_removed_get(long jarg1, HighsPresolveRuleLog jarg1_);
-  public final static native void HighsPresolveRuleLog_row_removed_set(long jarg1, HighsPresolveRuleLog jarg1_, long jarg2);
-  public final static native long HighsPresolveRuleLog_row_removed_get(long jarg1, HighsPresolveRuleLog jarg1_);
-  public final static native long new_HighsPresolveRuleLog();
-  public final static native void delete_HighsPresolveRuleLog(long jarg1);
-  public final static native void HighsPresolveLog_rule_set(long jarg1, HighsPresolveLog jarg1_, long jarg2);
-  public final static native long HighsPresolveLog_rule_get(long jarg1, HighsPresolveLog jarg1_);
-  public final static native void HighsPresolveLog_clear(long jarg1, HighsPresolveLog jarg1_);
-  public final static native long new_HighsPresolveLog();
-  public final static native void delete_HighsPresolveLog(long jarg1);
-  public final static native void HighsIllConditioningRecord_index_set(long jarg1, HighsIllConditioningRecord jarg1_, long jarg2);
-  public final static native long HighsIllConditioningRecord_index_get(long jarg1, HighsIllConditioningRecord jarg1_);
-  public final static native void HighsIllConditioningRecord_multiplier_set(long jarg1, HighsIllConditioningRecord jarg1_, double jarg2);
-  public final static native double HighsIllConditioningRecord_multiplier_get(long jarg1, HighsIllConditioningRecord jarg1_);
-  public final static native long new_HighsIllConditioningRecord();
-  public final static native void delete_HighsIllConditioningRecord(long jarg1);
-  public final static native void HighsIllConditioning_record_set(long jarg1, HighsIllConditioning jarg1_, long jarg2);
-  public final static native long HighsIllConditioning_record_get(long jarg1, HighsIllConditioning jarg1_);
-  public final static native void HighsIllConditioning_clear(long jarg1, HighsIllConditioning jarg1_);
-  public final static native long new_HighsIllConditioning();
-  public final static native void delete_HighsIllConditioning(long jarg1);
-  public final static native void HighsLinearObjective_weight_set(long jarg1, HighsLinearObjective jarg1_, double jarg2);
-  public final static native double HighsLinearObjective_weight_get(long jarg1, HighsLinearObjective jarg1_);
-  public final static native void HighsLinearObjective_offset_set(long jarg1, HighsLinearObjective jarg1_, double jarg2);
-  public final static native double HighsLinearObjective_offset_get(long jarg1, HighsLinearObjective jarg1_);
-  public final static native void HighsLinearObjective_coefficients_set(long jarg1, HighsLinearObjective jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsLinearObjective_coefficients_get(long jarg1, HighsLinearObjective jarg1_);
-  public final static native void HighsLinearObjective_abs_tolerance_set(long jarg1, HighsLinearObjective jarg1_, double jarg2);
-  public final static native double HighsLinearObjective_abs_tolerance_get(long jarg1, HighsLinearObjective jarg1_);
-  public final static native void HighsLinearObjective_rel_tolerance_set(long jarg1, HighsLinearObjective jarg1_, double jarg2);
-  public final static native double HighsLinearObjective_rel_tolerance_get(long jarg1, HighsLinearObjective jarg1_);
-  public final static native void HighsLinearObjective_priority_set(long jarg1, HighsLinearObjective jarg1_, long jarg2);
-  public final static native long HighsLinearObjective_priority_get(long jarg1, HighsLinearObjective jarg1_);
-  public final static native void HighsLinearObjective_clear(long jarg1, HighsLinearObjective jarg1_);
-  public final static native long new_HighsLinearObjective();
-  public final static native void delete_HighsLinearObjective(long jarg1);
-  public final static native void HighsProfilingRecord_num_call_set(long jarg1, HighsProfilingRecord jarg1_, long jarg2);
-  public final static native long HighsProfilingRecord_num_call_get(long jarg1, HighsProfilingRecord jarg1_);
-  public final static native void HighsProfilingRecord_run_time_set(long jarg1, HighsProfilingRecord jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsProfilingRecord_run_time_get(long jarg1, HighsProfilingRecord jarg1_);
-  public final static native void HighsProfilingRecord_start_time_set(long jarg1, HighsProfilingRecord jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native long HighsProfilingRecord_start_time_get(long jarg1, HighsProfilingRecord jarg1_);
-  public final static native long new_HighsProfilingRecord();
-  public final static native void delete_HighsProfilingRecord(long jarg1);
-  public final static native void HighsProfiling_timer_set(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native long HighsProfiling_timer_get(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_multi_threaded_set(long jarg1, HighsProfiling jarg1_, boolean jarg2);
-  public final static native boolean HighsProfiling_multi_threaded_get(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_model_name__set(long jarg1, HighsProfiling jarg1_, String jarg2);
-  public final static native String HighsProfiling_model_name__get(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_sub_solver__set(long jarg1, HighsProfiling jarg1_, boolean jarg2);
-  public final static native boolean HighsProfiling_sub_solver__get(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_mip__set(long jarg1, HighsProfiling jarg1_, boolean jarg2);
-  public final static native boolean HighsProfiling_mip__get(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_num_profiling_clock__set(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native long HighsProfiling_num_profiling_clock__get(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_name_set(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native long HighsProfiling_name_get(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_submip_set(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native long HighsProfiling_submip_get(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_record_set(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native long HighsProfiling_record_get(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_submip_record_set(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native long HighsProfiling_submip_record_get(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_initialized_set(long jarg1, HighsProfiling jarg1_, boolean jarg2);
-  public final static native boolean HighsProfiling_initialized_get(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_initialize__SWIG_0(long jarg1, HighsProfiling jarg1_, long jarg2, boolean jarg3, boolean jarg4);
-  public final static native void HighsProfiling_initialize__SWIG_1(long jarg1, HighsProfiling jarg1_, long jarg2, boolean jarg3);
-  public final static native void HighsProfiling_clear(long jarg1, HighsProfiling jarg1_);
-  public final static native long HighsProfiling_numThread(long jarg1, HighsProfiling jarg1_);
-  public final static native long HighsProfiling_myThread(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_setSubMip(long jarg1, HighsProfiling jarg1_, boolean jarg2);
-  public final static native boolean HighsProfiling_isSubMip(long jarg1, HighsProfiling jarg1_);
-  public final static native long HighsProfiling_getHighsProfilingRecord__SWIG_0(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native long HighsProfiling_getHighsProfilingRecord__SWIG_1(long jarg1, HighsProfiling jarg1_);
-  public final static native void HighsProfiling_start__SWIG_0(long jarg1, HighsProfiling jarg1_, long jarg2, boolean jarg3);
-  public final static native void HighsProfiling_start__SWIG_1(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native void HighsProfiling_stop(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native double HighsProfiling_read__SWIG_0(long jarg1, HighsProfiling jarg1_, long jarg2, long jarg3);
-  public final static native double HighsProfiling_read__SWIG_1(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native boolean HighsProfiling_running__SWIG_0(long jarg1, HighsProfiling jarg1_, long jarg2, long jarg3);
-  public final static native boolean HighsProfiling_running__SWIG_1(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native long HighsProfiling_numCall__SWIG_0(long jarg1, HighsProfiling jarg1_, long jarg2, long jarg3);
-  public final static native long HighsProfiling_numCall__SWIG_1(long jarg1, HighsProfiling jarg1_, long jarg2);
-  public final static native void HighsProfiling_solveCall(long jarg1, HighsProfiling jarg1_, String jarg2, boolean jarg3);
-  public final static native long new_HighsProfiling();
-  public final static native void delete_HighsProfiling(long jarg1);
-  public final static native void HighsSimplexStats_valid_set(long jarg1, HighsSimplexStats jarg1_, boolean jarg2);
-  public final static native boolean HighsSimplexStats_valid_get(long jarg1, HighsSimplexStats jarg1_);
-  public final static native void HighsSimplexStats_iteration_count_set(long jarg1, HighsSimplexStats jarg1_, long jarg2);
-  public final static native long HighsSimplexStats_iteration_count_get(long jarg1, HighsSimplexStats jarg1_);
-  public final static native void HighsSimplexStats_num_invert_set(long jarg1, HighsSimplexStats jarg1_, long jarg2);
-  public final static native long HighsSimplexStats_num_invert_get(long jarg1, HighsSimplexStats jarg1_);
-  public final static native void HighsSimplexStats_last_invert_num_el_set(long jarg1, HighsSimplexStats jarg1_, long jarg2);
-  public final static native long HighsSimplexStats_last_invert_num_el_get(long jarg1, HighsSimplexStats jarg1_);
-  public final static native void HighsSimplexStats_last_factored_basis_num_el_set(long jarg1, HighsSimplexStats jarg1_, long jarg2);
-  public final static native long HighsSimplexStats_last_factored_basis_num_el_get(long jarg1, HighsSimplexStats jarg1_);
-  public final static native void HighsSimplexStats_col_aq_density_set(long jarg1, HighsSimplexStats jarg1_, double jarg2);
-  public final static native double HighsSimplexStats_col_aq_density_get(long jarg1, HighsSimplexStats jarg1_);
-  public final static native void HighsSimplexStats_row_ep_density_set(long jarg1, HighsSimplexStats jarg1_, double jarg2);
-  public final static native double HighsSimplexStats_row_ep_density_get(long jarg1, HighsSimplexStats jarg1_);
-  public final static native void HighsSimplexStats_row_ap_density_set(long jarg1, HighsSimplexStats jarg1_, double jarg2);
-  public final static native double HighsSimplexStats_row_ap_density_get(long jarg1, HighsSimplexStats jarg1_);
-  public final static native void HighsSimplexStats_row_DSE_density_set(long jarg1, HighsSimplexStats jarg1_, double jarg2);
-  public final static native double HighsSimplexStats_row_DSE_density_get(long jarg1, HighsSimplexStats jarg1_);
-  public final static native void HighsSimplexStats_report__SWIG_0(long jarg1, HighsSimplexStats jarg1_, long jarg2, String jarg3);
-  public final static native void HighsSimplexStats_report__SWIG_1(long jarg1, HighsSimplexStats jarg1_, long jarg2);
-  public final static native void HighsSimplexStats_initialise__SWIG_0(long jarg1, HighsSimplexStats jarg1_, long jarg2);
-  public final static native void HighsSimplexStats_initialise__SWIG_1(long jarg1, HighsSimplexStats jarg1_);
-  public final static native long new_HighsSimplexStats();
-  public final static native void delete_HighsSimplexStats(long jarg1);
-  public final static native void HighsUserScaleData_user_objective_scale_set(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native long HighsUserScaleData_user_objective_scale_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_user_bound_scale_set(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native long HighsUserScaleData_user_bound_scale_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_infinite_cost_set(long jarg1, HighsUserScaleData jarg1_, double jarg2);
-  public final static native double HighsUserScaleData_infinite_cost_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_infinite_bound_set(long jarg1, HighsUserScaleData jarg1_, double jarg2);
-  public final static native double HighsUserScaleData_infinite_bound_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_small_matrix_value_set(long jarg1, HighsUserScaleData jarg1_, double jarg2);
-  public final static native double HighsUserScaleData_small_matrix_value_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_large_matrix_value_set(long jarg1, HighsUserScaleData jarg1_, double jarg2);
-  public final static native double HighsUserScaleData_large_matrix_value_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_num_infinite_costs_set(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native long HighsUserScaleData_num_infinite_costs_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_num_infinite_hessian_values_set(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native long HighsUserScaleData_num_infinite_hessian_values_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_num_infinite_col_bounds_set(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native long HighsUserScaleData_num_infinite_col_bounds_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_num_infinite_row_bounds_set(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native long HighsUserScaleData_num_infinite_row_bounds_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_num_small_matrix_values_set(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native long HighsUserScaleData_num_small_matrix_values_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_num_large_matrix_values_set(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native long HighsUserScaleData_num_large_matrix_values_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_suggested_user_objective_scale_set(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native long HighsUserScaleData_suggested_user_objective_scale_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_suggested_user_bound_scale_set(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native long HighsUserScaleData_suggested_user_bound_scale_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_applied_set(long jarg1, HighsUserScaleData jarg1_, boolean jarg2);
-  public final static native boolean HighsUserScaleData_applied_get(long jarg1, HighsUserScaleData jarg1_);
-  public final static native void HighsUserScaleData_initialise(long jarg1, HighsUserScaleData jarg1_, long jarg2, long jarg3, double jarg4, double jarg5, double jarg6, double jarg7);
-  public final static native boolean HighsUserScaleData_scaleError(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native boolean HighsUserScaleData_scaleWarning(long jarg1, HighsUserScaleData jarg1_, long jarg2);
-  public final static native long new_HighsUserScaleData();
-  public final static native void delete_HighsUserScaleData(long jarg1);
-  public final static native String kHighsCopyrightStatement_get();
-  public final static native long kHighsSize_tInf_get();
-  public final static native long kHighsIInf_get();
-  public final static native long kHighsIInf32_get();
-  public final static native double kHighsInf_get();
-  public final static native double kHighsUndefined_get();
-  public final static native double kHighsTiny_get();
-  public final static native double kHighsMacheps_get();
-  public final static native double kHighsZero_get();
-  public final static native String kHighsOffString_get();
-  public final static native String kHighsChooseString_get();
-  public final static native String kHighsOnString_get();
-  public final static native long kHighsMaxStringLength_get();
-  public final static native long kSimplexConcurrencyLimit_get();
-  public final static native double kRunningAverageMultiplier_get();
-  public final static native double kExcessivelySmallObjectiveCoefficient_get();
-  public final static native double kExcessivelyLargeObjectiveCoefficient_get();
-  public final static native double kExcessivelySmallBoundValue_get();
-  public final static native double kExcessivelyLargeBoundValue_get();
-  public final static native long kNoThreadInstance_get();
-  public final static native boolean kAllowDeveloperAssert_get();
-  public final static native boolean kExtendInvertWhenAddingRows_get();
-  public final static native int HighsLogType_kInfo_get();
-  public final static native int kSimplexScaleStrategyMin_get();
-  public final static native int kSimplexScaleStrategyOff_get();
-  public final static native int kSimplexScaleStrategyMaxValue015_get();
-  public final static native int kSimplexScaleStrategyMaxValue0157_get();
-  public final static native int kSimplexScaleStrategyMax_get();
-  public final static native int kHighsDebugLevelNone_get();
-  public final static native int kHighsDebugLevelMin_get();
-  public final static native int kHighsDebugLevelMax_get();
-  public final static native int HighsDebugStatus_kNotChecked_get();
-  public final static native int kHighsAnalysisLevelNone_get();
-  public final static native int kHighsAnalysisLevelModelData_get();
-  public final static native int kHighsAnalysisLevelSolverSummaryData_get();
-  public final static native int kHighsAnalysisLevelSolverRuntimeData_get();
-  public final static native int kHighsAnalysisLevelSolverTime_get();
-  public final static native int kHighsAnalysisLevelNlaData_get();
-  public final static native int kHighsAnalysisLevelNlaTime_get();
-  public final static native int kHighsAnalysisLevelMipData_get();
-  public final static native int kHighsAnalysisLevelMipTime_get();
-  public final static native int kHighsAnalysisLevelPresolveTime_get();
-  public final static native int kHighsAnalysisLevelMin_get();
-  public final static native int kHighsAnalysisLevelMax_get();
-  public final static native int HighsVarType_kContinuous_get();
-  public final static native int HighsVarType_kInteger_get();
-  public final static native int HighsVarType_kSemiContinuous_get();
-  public final static native int HighsVarType_kSemiInteger_get();
-  public final static native int HighsVarType_kImplicitInteger_get();
-  public final static native int HighsOptionType_kBool_get();
-  public final static native int HighsInfoType_kInt64_get();
-  public final static native int HighsInfoType_kInt_get();
-  public final static native int HighsRunDataType_kInt64_get();
-  public final static native int HighsRunDataType_kInt_get();
-  public final static native int kHighsOptionOff_get();
-  public final static native int kIpxDualizeStrategyOff_get();
-  public final static native int kIpxDualizeStrategyChoose_get();
-  public final static native int kIpxDualizeStrategyOn_get();
-  public final static native int kIpxDualizeStrategyMin_get();
-  public final static native int kIpxDualizeStrategyMax_get();
-  public final static native int ObjSense_kMinimize_get();
-  public final static native int ObjSense_kMaximize_get();
-  public final static native int MatrixFormat_kColwise_get();
-  public final static native int HessianFormat_kTriangular_get();
-  public final static native int kSolutionStatusNone_get();
-  public final static native int kSolutionStatusMin_get();
-  public final static native int kSolutionStatusMax_get();
-  public final static native int kBasisValidityInvalid_get();
-  public final static native int kBasisValidityMin_get();
-  public final static native int kBasisValidityMax_get();
-  public final static native String kHighsBasisFileV1_get();
-  public final static native String kHighsBasisFileV2_get();
-  public final static native int kSolutionStyleOldRaw_get();
-  public final static native int kSolutionStyleRaw_get();
-  public final static native int kSolutionStyleMin_get();
-  public final static native int kSolutionStyleMax_get();
-  public final static native int kGlpsolCostRowLocationLast_get();
-  public final static native int kGlpsolCostRowLocationMin_get();
-  public final static native String kHighsFilenameDefault_get();
-  public final static native String kHighsMinimalColNamePrefix_get();
-  public final static native String kHighsMinimalrowNamePrefix_get();
-  public final static native String kHighsUniqueColNamePrefix_get();
-  public final static native String kHighsUniquerowNamePrefix_get();
-  public final static native int HighsPresolveStatus_kNotPresolved_get();
-  public final static native int HighsPostsolveStatus_kNotPresolved_get();
-  public final static native int HighsModelStatus_kNotset_get();
-  public final static native int HighsModelStatus_kMin_get();
-  public final static native int HighsModelStatus_kMax_get();
-  public final static native int kCallbackMin_get();
-  public final static native int kCallbackLogging_get();
-  public final static native int kCallbackMax_get();
-  public final static native int HighsBasisStatus_kLower_get();
-  public final static native int kPresolveRuleIllegal_get();
-  public final static native int kPresolveRuleMin_get();
-  public final static native int kPresolveRuleEmptyRow_get();
-  public final static native int kPresolveRuleForcingRow_get();
-  public final static native int kPresolveRuleMax_get();
-  public final static native int kPresolveRuleLastAllowOff_get();
-  public final static native int kIisStrategyMin_get();
-  public final static native int kIisStrategyLight_get();
-  public final static native int kIisStrategyFromRay_get();
-  public final static native int kIisStrategyFromLp_get();
-  public final static native int kIisStrategyIrreducible_get();
-  public final static native int kIisStrategyColPriority_get();
-  public final static native int kIisStrategyRelaxation_get();
-  public final static native int kIisStrategyDefault_get();
-  public final static native int kIisStrategyMax_get();
-  public final static native int kIisStatusMin_get();
-  public final static native int kIisStatusNotInConflict_get();
-  public final static native int kIisStatusMax_get();
-  public final static native int kMipRecord_get();
-  public final static native int kPresolveTime_get();
-  public final static native int kFromSubSolver_get();
-  public final static native int kSubSolverMip_get();
-  public final static native int kLastSubSolver_get();
-  public final static native int kToSubSolver_get();
-  public final static native double kMinimumKktTolerance_get();
-  public final static native double kDefaultKktTolerance_get();
-  public final static native double kMinimumMipTolerance_get();
-  public final static native double kDefaultMipTolerance_get();
-  public final static native double kMinimumIpmTolerance_get();
-  public final static native double kDefaultIpmTolerance_get();
-  public final static native double kHessianRegularizationValue_get();
-  public final static native long kDefaultAllowedMatrixPow2Scale_get();
-  public final static native long kMaxAllowedMatrixPow2Scale_get();
-  public final static native double kHighsIllegalInfeasibilityMeasure_get();
-  public final static native long kHighsIllegalInfeasibilityCount_get();
-  public final static native double kHighsIllegalResidualMeasure_get();
-  public final static native long kHighsIllegalResidualCount_get();
-  public final static native double kHighsIllegalErrorValue_get();
-  public final static native long kHighsIllegalErrorIndex_get();
-  public final static native double kHighsIllegalComplementarityViolation_get();
-  public final static native long kHighsIllegalComplementarityCount_get();
-  public final static native double kHighsIllegalDoubleMeasure_get();
-  public final static native long kHighsIllegalIntMeasure_get();
-  public final static native double kMaxSemiVariableUpper_get();
-  public final static native double kExcessivePrimalValue_get();
-  public final static native long kHashIsDuplicate_get();
-  public final static native double kModelValueToStringTolerance_get();
-  public final static native double kRangingValueToStringTolerance_get();
-  public final static native double kHighsSolutionValueToStringTolerance_get();
-  public final static native double kGlpsolSolutionValueToStringTolerance_get();
-  public final static native long kNoLink_get();
-  public final static native byte kPivotIllegal_get();
-  public final static native byte kPivotLogical_get();
-  public final static native byte kPivotUnit_get();
-  public final static native byte kPivotRowSingleton_get();
-  public final static native byte kPivotColSingleton_get();
-  public final static native byte kPivotMarkowitz_get();
-  public final static native int EQ_get();
-  public final static native int kPdlpAllFeaturesOn_get();
-  public final static native int kPdlpScalingOff_get();
-  public final static native int kPdlpRestartOff_get();
-  public final static native int kPdlpAdaptiveStepSizeOff_get();
-  public final static native int kPdlpAllFeaturesOff_get();
-  public final static native int kPdlpScalingMin_get();
-  public final static native int kPdlpScalingRuiz_get();
-  public final static native int kPdlpScalingL2_get();
-  public final static native int kPdlpScalingPC_get();
-  public final static native int kPdlpScalingMax_get();
-  public final static native int kPdlpStepSizeStrategyFixed_get();
-  public final static native int kPdlpStepSizeStrategyMin_get();
-  public final static native int kPdlpStepSizeStrategyMax_get();
-  public final static native int kPdlpRestartStrategyOff_get();
-  public final static native int kPdlpRestartStrategyMin_get();
-  public final static native int kPdlpRestartStrategyMax_get();
-  public final static native int InfoStatus_kOk_get();
-  public final static native void InfoRecord_type_set(long jarg1, InfoRecord jarg1_, int jarg2);
-  public final static native int InfoRecord_type_get(long jarg1, InfoRecord jarg1_);
-  public final static native void InfoRecord_name_set(long jarg1, InfoRecord jarg1_, String jarg2);
-  public final static native String InfoRecord_name_get(long jarg1, InfoRecord jarg1_);
-  public final static native void InfoRecord_description_set(long jarg1, InfoRecord jarg1_, String jarg2);
-  public final static native String InfoRecord_description_get(long jarg1, InfoRecord jarg1_);
-  public final static native void InfoRecord_advanced_set(long jarg1, InfoRecord jarg1_, boolean jarg2);
-  public final static native boolean InfoRecord_advanced_get(long jarg1, InfoRecord jarg1_);
-  public final static native long new_InfoRecord(int jarg1, String jarg2, String jarg3, boolean jarg4);
-  public final static native void delete_InfoRecord(long jarg1);
-  public final static native void InfoRecordInt64_value_set(long jarg1, InfoRecordInt64 jarg1_, long jarg2);
-  public final static native long InfoRecordInt64_value_get(long jarg1, InfoRecordInt64 jarg1_);
-  public final static native void InfoRecordInt64_default_value_set(long jarg1, InfoRecordInt64 jarg1_, long jarg2);
-  public final static native long InfoRecordInt64_default_value_get(long jarg1, InfoRecordInt64 jarg1_);
-  public final static native long new_InfoRecordInt64(String jarg1, String jarg2, boolean jarg3, long jarg4, long jarg5);
-  public final static native void delete_InfoRecordInt64(long jarg1);
-  public final static native void InfoRecordInt_value_set(long jarg1, InfoRecordInt jarg1_, long jarg2);
-  public final static native long InfoRecordInt_value_get(long jarg1, InfoRecordInt jarg1_);
-  public final static native void InfoRecordInt_default_value_set(long jarg1, InfoRecordInt jarg1_, long jarg2);
-  public final static native long InfoRecordInt_default_value_get(long jarg1, InfoRecordInt jarg1_);
-  public final static native long new_InfoRecordInt(String jarg1, String jarg2, boolean jarg3, long jarg4, long jarg5);
-  public final static native void delete_InfoRecordInt(long jarg1);
-  public final static native void InfoRecordDouble_value_set(long jarg1, InfoRecordDouble jarg1_, long jarg2);
-  public final static native long InfoRecordDouble_value_get(long jarg1, InfoRecordDouble jarg1_);
-  public final static native void InfoRecordDouble_default_value_set(long jarg1, InfoRecordDouble jarg1_, double jarg2);
-  public final static native double InfoRecordDouble_default_value_get(long jarg1, InfoRecordDouble jarg1_);
-  public final static native long new_InfoRecordDouble(String jarg1, String jarg2, boolean jarg3, long jarg4, double jarg5);
-  public final static native void delete_InfoRecordDouble(long jarg1);
-  public final static native void HighsInfoStruct_valid_set(long jarg1, HighsInfoStruct jarg1_, boolean jarg2);
-  public final static native boolean HighsInfoStruct_valid_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_mip_node_count_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_mip_node_count_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_simplex_iteration_count_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_simplex_iteration_count_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_ipm_iteration_count_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_ipm_iteration_count_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_crossover_iteration_count_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_crossover_iteration_count_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_pdlp_iteration_count_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_pdlp_iteration_count_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_qp_iteration_count_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_qp_iteration_count_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_primal_solution_status_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_primal_solution_status_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_dual_solution_status_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_dual_solution_status_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_basis_validity_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_basis_validity_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_objective_function_value_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_objective_function_value_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_mip_dual_bound_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_mip_dual_bound_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_mip_gap_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_mip_gap_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_max_integrality_violation_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_max_integrality_violation_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_num_primal_infeasibilities_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_num_primal_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_max_primal_infeasibility_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_max_primal_infeasibility_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_sum_primal_infeasibilities_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_sum_primal_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_num_dual_infeasibilities_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_num_dual_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_max_dual_infeasibility_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_max_dual_infeasibility_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_sum_dual_infeasibilities_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_sum_dual_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_num_semi_infeasibilities_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_num_semi_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_max_semi_infeasibility_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_max_semi_infeasibility_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_sum_semi_infeasibilities_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_sum_semi_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_num_relative_primal_infeasibilities_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_num_relative_primal_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_max_relative_primal_infeasibility_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_max_relative_primal_infeasibility_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_num_relative_dual_infeasibilities_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_num_relative_dual_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_max_relative_dual_infeasibility_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_max_relative_dual_infeasibility_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_num_primal_residual_errors_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_num_primal_residual_errors_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_max_primal_residual_error_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_max_primal_residual_error_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_num_dual_residual_errors_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_num_dual_residual_errors_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_max_dual_residual_error_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_max_dual_residual_error_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_num_relative_primal_residual_errors_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_num_relative_primal_residual_errors_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_max_relative_primal_residual_error_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_max_relative_primal_residual_error_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_num_relative_dual_residual_errors_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_num_relative_dual_residual_errors_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_max_relative_dual_residual_error_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_max_relative_dual_residual_error_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_num_complementarity_violations_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
-  public final static native long HighsInfoStruct_num_complementarity_violations_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_max_complementarity_violation_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_max_complementarity_violation_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_primal_dual_objective_error_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_primal_dual_objective_error_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native void HighsInfoStruct_primal_dual_integral_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
-  public final static native double HighsInfoStruct_primal_dual_integral_get(long jarg1, HighsInfoStruct jarg1_);
-  public final static native long new_HighsInfoStruct();
-  public final static native void delete_HighsInfoStruct(long jarg1);
-  public final static native long new_HighsInfo__SWIG_0();
-  public final static native long new_HighsInfo__SWIG_1(long jarg1, HighsInfo jarg1_);
-  public final static native void delete_HighsInfo(long jarg1);
-  public final static native void HighsInfo_invalidate(long jarg1, HighsInfo jarg1_);
-  public final static native void HighsInfo_invalidateKkt(long jarg1, HighsInfo jarg1_);
-  public final static native void HighsInfo_invalidatePrimalKkt(long jarg1, HighsInfo jarg1_);
-  public final static native void HighsInfo_invalidateDualKkt(long jarg1, HighsInfo jarg1_);
-  public final static native boolean HighsInfo_equal(long jarg1, HighsInfo jarg1_, long jarg2, HighsInfo jarg2_);
-  public final static native void HighsInfo_records_set(long jarg1, HighsInfo jarg1_, long jarg2);
-  public final static native long HighsInfo_records_get(long jarg1, HighsInfo jarg1_);
-  public final static native int writeInfoToFile__SWIG_0(long jarg1, boolean jarg2, long jarg3, HighsInfo jarg3_, long jarg4);
-  public final static native int writeInfoToFile__SWIG_1(long jarg1, boolean jarg2, long jarg3, HighsInfo jarg3_);
-  public final static native int getInfoIndex(long jarg1, String jarg2, long jarg3, long jarg4);
-  public final static native int checkInfo__SWIG_0(long jarg1, long jarg2);
-  public final static native int checkInfo__SWIG_1(long jarg1, InfoRecordInt jarg1_);
-  public final static native int checkInfo__SWIG_2(long jarg1, InfoRecordDouble jarg1_);
-  public final static native int getLocalInfoValue__SWIG_0(long jarg1, String jarg2, boolean jarg3, long jarg4, long jarg5);
-  public final static native int getLocalInfoValue__SWIG_1(long jarg1, String jarg2, boolean jarg3, long jarg4, long jarg5);
-  public final static native int getLocalInfoValue__SWIG_2(long jarg1, String jarg2, boolean jarg3, long jarg4, long jarg5);
-  public final static native int getLocalInfoType(long jarg1, String jarg2, long jarg3, long jarg4);
-  public final static native int writeInfoToFile__SWIG_2(long jarg1, boolean jarg2, long jarg3, long jarg4);
-  public final static native int writeInfoToFile__SWIG_3(long jarg1, boolean jarg2, long jarg3);
-  public final static native void reportInfo__SWIG_0(long jarg1, long jarg2, long jarg3);
-  public final static native void reportInfo__SWIG_1(long jarg1, long jarg2);
-  public final static native void reportInfo__SWIG_2(long jarg1, long jarg2, InfoRecordInt64 jarg2_, long jarg3);
-  public final static native void reportInfo__SWIG_3(long jarg1, long jarg2, InfoRecordInt64 jarg2_);
-  public final static native void reportInfo__SWIG_4(long jarg1, long jarg2, InfoRecordInt jarg2_, long jarg3);
-  public final static native void reportInfo__SWIG_5(long jarg1, long jarg2, InfoRecordInt jarg2_);
-  public final static native void reportInfo__SWIG_6(long jarg1, long jarg2, InfoRecordDouble jarg2_, long jarg3);
-  public final static native void reportInfo__SWIG_7(long jarg1, long jarg2, InfoRecordDouble jarg2_);
-  public final static native void HighsModel_lp__set(long jarg1, HighsModel jarg1_, long jarg2);
-  public final static native long HighsModel_lp__get(long jarg1, HighsModel jarg1_);
-  public final static native void HighsModel_hessian__set(long jarg1, HighsModel jarg1_, long jarg2);
-  public final static native long HighsModel_hessian__get(long jarg1, HighsModel jarg1_);
-  public final static native boolean HighsModel_equalButForNames(long jarg1, HighsModel jarg1_, long jarg2, HighsModel jarg2_);
-  public final static native boolean HighsModel_isQp(long jarg1, HighsModel jarg1_);
-  public final static native boolean HighsModel_isMip(long jarg1, HighsModel jarg1_);
-  public final static native boolean HighsModel_isEmpty(long jarg1, HighsModel jarg1_);
-  public final static native boolean HighsModel_needsMods(long jarg1, HighsModel jarg1_, double jarg2);
-  public final static native boolean HighsModel_hasMods(long jarg1, HighsModel jarg1_);
-  public final static native void HighsModel_clear(long jarg1, HighsModel jarg1_);
-  public final static native double HighsModel_objectiveValue(long jarg1, HighsModel jarg1_, long jarg2, DoubleVector jarg2_);
-  public final static native void HighsModel_objectiveGradient(long jarg1, HighsModel jarg1_, long jarg2, DoubleVector jarg2_, long jarg3, DoubleVector jarg3_);
-  public final static native long new_HighsModel();
-  public final static native void delete_HighsModel(long jarg1);
-  public final static native int HighsStatus_kError_get();
-  public final static native int HighsStatus_kOk_get();
-  public final static native int HighsStatus_kWarning_get();
-  public final static native String highsStatusToString(int jarg1);
-  public final static native int interpretCallStatus__SWIG_0(long jarg1, int jarg2, int jarg3, String jarg4);
-  public final static native int interpretCallStatus__SWIG_1(long jarg1, int jarg2, int jarg3);
-  public final static native int worseStatus(int jarg1, int jarg2);
-  public final static native String highsVersion();
-  public final static native long highsVersionMajor();
-  public final static native long highsVersionMinor();
-  public final static native long highsVersionPatch();
-  public final static native String highsGithash();
-  public final static native long new_Highs();
-  public final static native void delete_Highs(long jarg1);
-  public final static native String Highs_version(long jarg1, Highs jarg1_);
-  public final static native long Highs_versionMajor(long jarg1, Highs jarg1_);
-  public final static native long Highs_versionMinor(long jarg1, Highs jarg1_);
-  public final static native long Highs_versionPatch(long jarg1, Highs jarg1_);
-  public final static native String Highs_githash(long jarg1, Highs jarg1_);
-  public final static native String Highs_getThirdPartyNotice(long jarg1, Highs jarg1_);
-  public final static native int Highs_clear(long jarg1, Highs jarg1_);
-  public final static native int Highs_clearModel(long jarg1, Highs jarg1_);
-  public final static native int Highs_clearSolver(long jarg1, Highs jarg1_);
-  public final static native int Highs_clearSolverDualData(long jarg1, Highs jarg1_);
-  public final static native int Highs_releaseMemory(long jarg1, Highs jarg1_);
-  public final static native int Highs_passModel__SWIG_0(long jarg1, Highs jarg1_, long jarg2, HighsModel jarg2_);
-  public final static native int Highs_passModel__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_passModel__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8, double jarg9, long jarg10, long jarg11, long jarg12, long jarg13, long jarg14, long jarg15, long jarg16, long jarg17, long jarg18, long jarg19, long jarg20, long jarg21);
-  public final static native int Highs_passModel__SWIG_3(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8, double jarg9, long jarg10, long jarg11, long jarg12, long jarg13, long jarg14, long jarg15, long jarg16, long jarg17, long jarg18, long jarg19, long jarg20);
-  public final static native int Highs_passModel__SWIG_4(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, double jarg7, long jarg8, long jarg9, long jarg10, long jarg11, long jarg12, long jarg13, long jarg14, long jarg15, long jarg16);
-  public final static native int Highs_passModel__SWIG_5(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, double jarg7, long jarg8, long jarg9, long jarg10, long jarg11, long jarg12, long jarg13, long jarg14, long jarg15);
-  public final static native int Highs_passHessian__SWIG_0(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_passHessian__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7);
-  public final static native int Highs_passLinearObjectives(long jarg1, Highs jarg1_, long jarg2, long jarg3, HighsLinearObjective jarg3_);
-  public final static native int Highs_addLinearObjective__SWIG_0(long jarg1, Highs jarg1_, long jarg2, HighsLinearObjective jarg2_, long jarg3);
-  public final static native int Highs_addLinearObjective__SWIG_1(long jarg1, Highs jarg1_, long jarg2, HighsLinearObjective jarg2_);
-  public final static native long Highs_getNumLinearObjectives(long jarg1, Highs jarg1_);
-  public final static native long Highs_getLinearObjective(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_clearLinearObjectives(long jarg1, Highs jarg1_);
-  public final static native int Highs_passColName(long jarg1, Highs jarg1_, long jarg2, String jarg3);
-  public final static native int Highs_passRowName(long jarg1, Highs jarg1_, long jarg2, String jarg3);
-  public final static native int Highs_passModelName(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_readModel(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_readBasis(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_matrixImage__SWIG_0(long jarg1, Highs jarg1_, String jarg2, String jarg3);
-  public final static native int Highs_matrixImage__SWIG_1(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_presolve(long jarg1, Highs jarg1_);
-  public final static native int Highs_run(long jarg1, Highs jarg1_);
-  public final static native int Highs_postsolve__SWIG_0(long jarg1, Highs jarg1_, long jarg2, HighsSolution jarg2_);
-  public final static native int Highs_postsolve__SWIG_1(long jarg1, Highs jarg1_, long jarg2, HighsSolution jarg2_, long jarg3, HighsBasis jarg3_);
-  public final static native int Highs_writeSolution__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_writeSolution__SWIG_1(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_readSolution__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_readSolution__SWIG_1(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_assessPrimalSolution(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_setOptionValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, boolean jarg3);
-  public final static native int Highs_setOptionValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_setOptionValue__SWIG_2(long jarg1, Highs jarg1_, String jarg2, int jarg3);
-  public final static native int Highs_setOptionValue__SWIG_3(long jarg1, Highs jarg1_, String jarg2, double jarg3);
-  public final static native int Highs_setOptionValue__SWIG_4(long jarg1, Highs jarg1_, String jarg2, String jarg3);
-  public final static native int Highs_readOptions(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_passOptions(long jarg1, Highs jarg1_, long jarg2);
-  public final static native long Highs_getOptions(long jarg1, Highs jarg1_);
-  public final static native int Highs_getOptionValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getOptionValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getOptionValue__SWIG_2(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getOptionValue__SWIG_3(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getOptionType__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_resetOptions(long jarg1, Highs jarg1_);
-  public final static native int Highs_writeOptions__SWIG_0(long jarg1, Highs jarg1_, String jarg2, boolean jarg3);
-  public final static native int Highs_writeOptions__SWIG_1(long jarg1, Highs jarg1_, String jarg2);
-  public final static native long Highs_getNumOptions(long jarg1, Highs jarg1_);
-  public final static native int Highs_getOptionName(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getBoolOptionValues__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3, long jarg4);
-  public final static native int Highs_getBoolOptionValues__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getBoolOptionValues__SWIG_2(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_getIntOptionValues__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3, long jarg4, long jarg5, long jarg6);
-  public final static native int Highs_getIntOptionValues__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_getIntOptionValues__SWIG_2(long jarg1, Highs jarg1_, String jarg2, long jarg3, long jarg4);
-  public final static native int Highs_getIntOptionValues__SWIG_3(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getIntOptionValues__SWIG_4(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_getDoubleOptionValues__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3, long jarg4, long jarg5, long jarg6);
-  public final static native int Highs_getDoubleOptionValues__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_getDoubleOptionValues__SWIG_2(long jarg1, Highs jarg1_, String jarg2, long jarg3, long jarg4);
-  public final static native int Highs_getDoubleOptionValues__SWIG_3(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getDoubleOptionValues__SWIG_4(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_getStringOptionValues__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3, long jarg4);
-  public final static native int Highs_getStringOptionValues__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getStringOptionValues__SWIG_2(long jarg1, Highs jarg1_, String jarg2);
-  public final static native long Highs_getRunData(long jarg1, Highs jarg1_);
-  public final static native int Highs_getRunDataValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getRunDataValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getRunDataType(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_writeRunData__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_writeRunData__SWIG_1(long jarg1, Highs jarg1_);
-  public final static native long Highs_getInfo(long jarg1, Highs jarg1_);
-  public final static native int Highs_getInfoValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getInfoValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getInfoType(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_writeInfo__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_writeInfo__SWIG_1(long jarg1, Highs jarg1_);
-  public final static native double Highs_getInfinity(long jarg1, Highs jarg1_);
-  public final static native long Highs_getSizeofHighsInt(long jarg1, Highs jarg1_);
-  public final static native double Highs_getRunTime(long jarg1, Highs jarg1_);
-  public final static native int Highs_getStandardFormLp__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8, long jarg9, long jarg10);
-  public final static native int Highs_getStandardFormLp__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8, long jarg9);
-  public final static native int Highs_getStandardFormLp__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8);
-  public final static native int Highs_getStandardFormLp__SWIG_3(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7);
-  public final static native int Highs_getStandardFormLp__SWIG_4(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6);
-  public final static native int Highs_getStandardFormLp__SWIG_5(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native long Highs_getPresolvedLp(long jarg1, Highs jarg1_);
-  public final static native long Highs_getPresolvedModel(long jarg1, Highs jarg1_);
-  public final static native long Highs_getPresolveLog(long jarg1, Highs jarg1_);
-  public final static native long Highs_getPresolveOrigColsIndex(long jarg1, Highs jarg1_);
-  public final static native long Highs_getPresolveOrigRowsIndex(long jarg1, Highs jarg1_);
-  public final static native int Highs_getFixedLp(long jarg1, Highs jarg1_, long jarg2);
-  public final static native long Highs_getLp(long jarg1, Highs jarg1_);
-  public final static native long Highs_getModel(long jarg1, Highs jarg1_);
-  public final static native long Highs_getSolution(long jarg1, Highs jarg1_);
-  public final static native long Highs_getIisLp(long jarg1, Highs jarg1_);
-  public final static native void Highs_zeroAllClocks(long jarg1, Highs jarg1_);
-  public final static native long Highs_getSavedMipSolutions(long jarg1, Highs jarg1_);
-  public final static native long Highs_getICrashInfo(long jarg1, Highs jarg1_);
-  public final static native long Highs_getBasis(long jarg1, Highs jarg1_);
-  public final static native int Highs_getModelStatus__SWIG_0(long jarg1, Highs jarg1_);
-  public final static native int Highs_getModelPresolveStatus(long jarg1, Highs jarg1_);
-  public final static native int Highs_getDualRay__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getDualRay__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_getDualRaySparse(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getDualUnboundednessDirection__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getDualUnboundednessDirection__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_getPrimalRay__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getPrimalRay__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_getRanging(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_feasibilityRelaxation__SWIG_0(long jarg1, Highs jarg1_, double jarg2, double jarg3, double jarg4, long jarg5, long jarg6, long jarg7);
-  public final static native int Highs_feasibilityRelaxation__SWIG_1(long jarg1, Highs jarg1_, double jarg2, double jarg3, double jarg4, long jarg5, long jarg6);
-  public final static native int Highs_feasibilityRelaxation__SWIG_2(long jarg1, Highs jarg1_, double jarg2, double jarg3, double jarg4, long jarg5);
-  public final static native int Highs_feasibilityRelaxation__SWIG_3(long jarg1, Highs jarg1_, double jarg2, double jarg3, double jarg4);
-  public final static native int Highs_getIllConditioning__SWIG_0(long jarg1, Highs jarg1_, long jarg2, HighsIllConditioning jarg2_, boolean jarg3, long jarg4, double jarg5);
-  public final static native int Highs_getIllConditioning__SWIG_1(long jarg1, Highs jarg1_, long jarg2, HighsIllConditioning jarg2_, boolean jarg3, long jarg4);
-  public final static native int Highs_getIllConditioning__SWIG_2(long jarg1, Highs jarg1_, long jarg2, HighsIllConditioning jarg2_, boolean jarg3);
-  public final static native int Highs_getObjectiveBoundScaling(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getIis(long jarg1, Highs jarg1_, long jarg2);
-  public final static native double Highs_getObjectiveValue(long jarg1, Highs jarg1_);
-  public final static native int Highs_getDualObjectiveValue(long jarg1, Highs jarg1_, long jarg2);
-  public final static native boolean Highs_hasInvert(long jarg1, Highs jarg1_);
-  public final static native int Highs_getBasicVariables(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_getBasisInverseRow__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_getBasisInverseRow__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_getBasisInverseRow__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getBasisInverseCol__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_getBasisInverseCol__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_getBasisInverseCol__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getBasisSolve__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_getBasisSolve__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_getBasisSolve__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getBasisTransposeSolve__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_getBasisTransposeSolve__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_getBasisTransposeSolve__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getReducedRow__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6);
-  public final static native int Highs_getReducedRow__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_getReducedRow__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_getReducedRow__SWIG_3(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getReducedColumn__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_getReducedColumn__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_getReducedColumn__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getKappa__SWIG_0(long jarg1, Highs jarg1_, long jarg2, boolean jarg3, boolean jarg4);
-  public final static native int Highs_getKappa__SWIG_1(long jarg1, Highs jarg1_, long jarg2, boolean jarg3);
-  public final static native int Highs_getKappa__SWIG_2(long jarg1, Highs jarg1_, long jarg2);
-  public final static native long Highs_getNumCol(long jarg1, Highs jarg1_);
-  public final static native long Highs_getNumRow(long jarg1, Highs jarg1_);
-  public final static native long Highs_getNumNz(long jarg1, Highs jarg1_);
-  public final static native long Highs_getHessianNumNz(long jarg1, Highs jarg1_);
-  public final static native int Highs_getObjectiveSense(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_getObjectiveOffset(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_getCols__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8, long jarg9, long jarg10, long jarg11);
-  public final static native int Highs_getCols__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8, long jarg9, long jarg10, long jarg11);
-  public final static native int Highs_getCols__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8, long jarg9, long jarg10);
-  public final static native int Highs_getColName(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getColByName(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getColIntegrality(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getRows__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8, long jarg9, long jarg10);
-  public final static native int Highs_getRows__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8, long jarg9, long jarg10);
-  public final static native int Highs_getRows__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8, long jarg9);
-  public final static native int Highs_getRowName(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_getRowByName(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getCoeff(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_writeModel__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_writeModel__SWIG_1(long jarg1, Highs jarg1_);
-  public final static native int Highs_writePresolvedModel__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_writePresolvedModel__SWIG_1(long jarg1, Highs jarg1_);
-  public final static native int Highs_writeIisModel__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_writeIisModel__SWIG_1(long jarg1, Highs jarg1_);
-  public final static native int Highs_writeLocalModel__SWIG_0(long jarg1, Highs jarg1_, long jarg2, HighsModel jarg2_, String jarg3);
-  public final static native int Highs_writeLocalModel__SWIG_1(long jarg1, Highs jarg1_, long jarg2, HighsModel jarg2_);
-  public final static native int Highs_writeBasis__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_writeBasis__SWIG_1(long jarg1, Highs jarg1_);
-  public final static native int Highs_changeObjectiveSense(long jarg1, Highs jarg1_, int jarg2);
-  public final static native int Highs_changeObjectiveOffset(long jarg1, Highs jarg1_, double jarg2);
-  public final static native int Highs_changeColIntegrality(long jarg1, Highs jarg1_, long jarg2, int jarg3);
-  public final static native int Highs_changeColsIntegrality__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_changeColsIntegrality__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_changeColsIntegrality__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_clearIntegrality(long jarg1, Highs jarg1_);
-  public final static native int Highs_changeColCost(long jarg1, Highs jarg1_, long jarg2, double jarg3);
-  public final static native int Highs_changeColsCost__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_changeColsCost__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_changeColsCost__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_changeColBounds(long jarg1, Highs jarg1_, long jarg2, double jarg3, double jarg4);
-  public final static native int Highs_changeColsBounds__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_changeColsBounds__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_changeColsBounds__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_changeRowBounds(long jarg1, Highs jarg1_, long jarg2, double jarg3, double jarg4);
-  public final static native int Highs_changeRowsBounds__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_changeRowsBounds__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
-  public final static native int Highs_changeRowsBounds__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_changeCoeff(long jarg1, Highs jarg1_, long jarg2, long jarg3, double jarg4);
-  public final static native int Highs_setMatrixFormat(long jarg1, Highs jarg1_, int jarg2);
-  public final static native int Highs_addCol(long jarg1, Highs jarg1_, double jarg2, double jarg3, double jarg4, long jarg5, long jarg6, long jarg7);
-  public final static native int Highs_addCols(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8, long jarg9);
-  public final static native int Highs_addVar__SWIG_0(long jarg1, Highs jarg1_, double jarg2, double jarg3);
-  public final static native int Highs_addVar__SWIG_1(long jarg1, Highs jarg1_, double jarg2);
-  public final static native int Highs_addVar__SWIG_2(long jarg1, Highs jarg1_);
-  public final static native int Highs_addVars(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_addRow(long jarg1, Highs jarg1_, double jarg2, double jarg3, long jarg4, long jarg5, long jarg6);
-  public final static native int Highs_addRows(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, long jarg7, long jarg8);
-  public final static native int Highs_ensureColwise(long jarg1, Highs jarg1_);
-  public final static native int Highs_ensureRowwise(long jarg1, Highs jarg1_);
-  public final static native int Highs_deleteCols__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_deleteCols__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_deleteCols__SWIG_2(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_deleteVars__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_deleteVars__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_deleteVars__SWIG_2(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_deleteRows__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_deleteRows__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_deleteRows__SWIG_2(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_scaleCol(long jarg1, Highs jarg1_, long jarg2, double jarg3);
-  public final static native int Highs_scaleRow(long jarg1, Highs jarg1_, long jarg2, double jarg3);
-  public final static native int Highs_setSolution__SWIG_0(long jarg1, Highs jarg1_, long jarg2, HighsSolution jarg2_);
-  public final static native int Highs_setSolution__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_setCallback__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_setCallback__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_setCallback__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_setCallback__SWIG_3(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_startCallback__SWIG_0(long jarg1, Highs jarg1_, int jarg2);
-  public final static native int Highs_startCallback__SWIG_1(long jarg1, Highs jarg1_, int jarg2);
-  public final static native int Highs_stopCallback__SWIG_0(long jarg1, Highs jarg1_, int jarg2);
-  public final static native int Highs_stopCallback__SWIG_1(long jarg1, Highs jarg1_, int jarg2);
-  public final static native int Highs_setBasis__SWIG_0(long jarg1, Highs jarg1_, long jarg2, HighsBasis jarg2_, String jarg3);
-  public final static native int Highs_setBasis__SWIG_1(long jarg1, Highs jarg1_, long jarg2, HighsBasis jarg2_);
-  public final static native int Highs_setBasis__SWIG_2(long jarg1, Highs jarg1_);
-  public final static native void Highs_reportProfiling(long jarg1, Highs jarg1_);
-  public final static native int Highs_crossover(long jarg1, Highs jarg1_, long jarg2, HighsSolution jarg2_);
-  public final static native int Highs_openLogFile__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_openLogFile__SWIG_1(long jarg1, Highs jarg1_);
-  public final static native int Highs_closeLogFile(long jarg1, Highs jarg1_);
-  public final static native String Highs_presolveStatusToString(long jarg1, Highs jarg1_, int jarg2);
-  public final static native String Highs_modelStatusToString(long jarg1, Highs jarg1_, int jarg2);
-  public final static native String Highs_solutionStatusToString(long jarg1, Highs jarg1_, long jarg2);
-  public final static native String Highs_basisStatusToString(long jarg1, Highs jarg1_, int jarg2);
-  public final static native String Highs_basisValidityToString(long jarg1, Highs jarg1_, long jarg2);
-  public final static native String Highs_presolveRuleTypeToString(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_initializeMultiThreading(long jarg1, Highs jarg1_);
-  public final static native void Highs_resetGlobalScheduler__SWIG_0(boolean jarg1);
-  public final static native void Highs_resetGlobalScheduler__SWIG_1();
-  public final static native void Highs_initializeProfiling(long jarg1, Highs jarg1_, long jarg2, HighsProfiling jarg2_);
-  public final static native void Highs_initializeSingleThreadedProfiling(long jarg1, Highs jarg1_, long jarg2, HighsProfiling jarg2_);
-  public final static native void Highs_resetProfiling(long jarg1, Highs jarg1_);
-  public final static native void Highs_clearProfiling(long jarg1, Highs jarg1_);
-  public final static native void Highs_setProfiling(long jarg1, Highs jarg1_, long jarg2, HighsProfiling jarg2_);
-  public final static native int Highs_optimizeHighs(long jarg1, Highs jarg1_);
-  public final static native int Highs_optimizeModel(long jarg1, Highs jarg1_);
-  public final static native int Highs_calledOptimizeModel(long jarg1, Highs jarg1_);
-  public final static native int Highs_optimizeLp(long jarg1, Highs jarg1_);
-  public final static native long Highs_getSimplexStats(long jarg1, Highs jarg1_);
-  public final static native void Highs_reportSimplexStats(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_putIterate(long jarg1, Highs jarg1_);
-  public final static native int Highs_getIterate(long jarg1, Highs jarg1_);
-  public final static native long Highs_getDualEdgeWeights(long jarg1, Highs jarg1_);
-  public final static native long Highs_getBasicVariablesArray(long jarg1, Highs jarg1_);
-  public final static native int Highs_getBasisInverseRowSparse(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native long Highs_getPrimalPhase1Dual(long jarg1, Highs jarg1_);
-  public final static native int Highs_getColOrRowName(long jarg1, Highs jarg1_, long jarg2, boolean jarg3, long jarg4, long jarg5);
-  public final static native long Highs_defineClock(long jarg1, Highs jarg1_, String jarg2);
-  public final static native void Highs_writeAllClocks(long jarg1, Highs jarg1_);
-  public final static native int Highs_clearModelNames(long jarg1, Highs jarg1_);
-  public final static native String Highs_compilationDate(long jarg1, Highs jarg1_);
-  public final static native int Highs_setLogCallback__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
-  public final static native int Highs_setLogCallback__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
-  public final static native long Highs_getNumCols(long jarg1, Highs jarg1_);
-  public final static native long Highs_getNumRows(long jarg1, Highs jarg1_);
-  public final static native long Highs_getNumEntries(long jarg1, Highs jarg1_);
-  public final static native int Highs_setHighsOptionValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, boolean jarg3);
-  public final static native int Highs_setHighsOptionValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_setHighsOptionValue__SWIG_2(long jarg1, Highs jarg1_, String jarg2, int jarg3);
-  public final static native int Highs_setHighsOptionValue__SWIG_3(long jarg1, Highs jarg1_, String jarg2, double jarg3);
-  public final static native int Highs_setHighsOptionValue__SWIG_4(long jarg1, Highs jarg1_, String jarg2, String jarg3);
-  public final static native int Highs_readHighsOptions(long jarg1, Highs jarg1_, String jarg2);
-  public final static native int Highs_passHighsOptions(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_getHighsOptionValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getHighsOptionValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getHighsOptionValue__SWIG_2(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getHighsOptionValue__SWIG_3(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getHighsOptionType(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native long Highs_getHighsOptions(long jarg1, Highs jarg1_);
-  public final static native int Highs_resetHighsOptions(long jarg1, Highs jarg1_);
-  public final static native int Highs_writeHighsOptions__SWIG_0(long jarg1, Highs jarg1_, String jarg2, boolean jarg3);
-  public final static native int Highs_writeHighsOptions__SWIG_1(long jarg1, Highs jarg1_, String jarg2);
-  public final static native long Highs_getSimplexIterationCount(long jarg1, Highs jarg1_);
-  public final static native int Highs_setHighsLogfile__SWIG_0(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_setHighsLogfile__SWIG_1(long jarg1, Highs jarg1_);
-  public final static native int Highs_setHighsOutput__SWIG_0(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_setHighsOutput__SWIG_1(long jarg1, Highs jarg1_);
-  public final static native long Highs_getHighsInfo(long jarg1, Highs jarg1_);
-  public final static native int Highs_getHighsInfoValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_getHighsInfoValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
-  public final static native int Highs_writeHighsInfo(long jarg1, Highs jarg1_, String jarg2);
-  public final static native double Highs_getHighsInfinity(long jarg1, Highs jarg1_);
-  public final static native double Highs_getHighsRunTime(long jarg1, Highs jarg1_);
-  public final static native int Highs_getModelStatus__SWIG_1(long jarg1, Highs jarg1_, boolean jarg2);
-  public final static native void Highs_logHeader(long jarg1, Highs jarg1_);
-  public final static native void Highs_deprecationMessage(long jarg1, Highs jarg1_, String jarg2, String jarg3);
-  public final static native long Highs_getHotStart(long jarg1, Highs jarg1_);
-  public final static native int Highs_setHotStart(long jarg1, Highs jarg1_, long jarg2, HotStart jarg2_);
-  public final static native int Highs_freezeBasis(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_unfreezeBasis(long jarg1, Highs jarg1_, long jarg2);
-  public final static native int Highs_frozenBasisAllDataClear(long jarg1, Highs jarg1_);
-  public final static native String highsCompilationDate();
-  public final static native long InfoRecordInt64_SWIGUpcast(long jarg1);
-  public final static native long InfoRecordInt_SWIGUpcast(long jarg1);
-  public final static native long InfoRecordDouble_SWIGUpcast(long jarg1);
-  public final static native long HighsInfo_SWIGUpcast(long jarg1);
+    public final static native long new_DoubleVector__SWIG_0();
+
+    public final static native long new_DoubleVector__SWIG_1(long jarg1, DoubleVector jarg1_);
+
+    public final static native boolean DoubleVector_isEmpty(long jarg1, DoubleVector jarg1_);
+
+    public final static native void DoubleVector_clear(long jarg1, DoubleVector jarg1_);
+
+    public final static native long new_DoubleVector__SWIG_2(int jarg1, double jarg2);
+
+    public final static native int DoubleVector_doCapacity(long jarg1, DoubleVector jarg1_);
+
+    public final static native void DoubleVector_doReserve(long jarg1, DoubleVector jarg1_, int jarg2);
+
+    public final static native int DoubleVector_doSize(long jarg1, DoubleVector jarg1_);
+
+    public final static native void DoubleVector_doAdd__SWIG_0(long jarg1, DoubleVector jarg1_, double jarg2);
+
+    public final static native void DoubleVector_doAdd__SWIG_1(
+            long jarg1,
+            DoubleVector jarg1_,
+            int jarg2,
+            double jarg3
+    );
+
+    public final static native double DoubleVector_doRemove(long jarg1, DoubleVector jarg1_, int jarg2);
+
+    public final static native double DoubleVector_doGet(long jarg1, DoubleVector jarg1_, int jarg2);
+
+    public final static native double DoubleVector_doSet(long jarg1, DoubleVector jarg1_, int jarg2, double jarg3);
+
+    public final static native void DoubleVector_doRemoveRange(long jarg1, DoubleVector jarg1_, int jarg2, int jarg3);
+
+    public final static native void delete_DoubleVector(long jarg1);
+
+    public final static native long new_DoubleArray(long jarg1);
+
+    public final static native void delete_DoubleArray(long jarg1);
+
+    public final static native double DoubleArray_getitem(long jarg1, DoubleArray jarg1_, long jarg2);
+
+    public final static native void DoubleArray_setitem(long jarg1, DoubleArray jarg1_, long jarg2, double jarg3);
+
+    public final static native long DoubleArray_cast(long jarg1, DoubleArray jarg1_);
+
+    public final static native long DoubleArray_frompointer(long jarg1);
+
+    public final static native long new_LongLongArray(long jarg1);
+
+    public final static native void delete_LongLongArray(long jarg1);
+
+    public final static native long LongLongArray_getitem(long jarg1, LongLongArray jarg1_, long jarg2);
+
+    public final static native void LongLongArray_setitem(long jarg1, LongLongArray jarg1_, long jarg2, long jarg3);
+
+    public final static native long LongLongArray_cast(long jarg1, LongLongArray jarg1_);
+
+    public final static native long LongLongArray_frompointer(long jarg1);
+
+    public final static native String CMAKE_BUILD_TYPE_get();
+
+    public final static native String HIGHS_GITHASH_get();
+
+    public final static native int HIGHS_VERSION_MAJOR_get();
+
+    public final static native int HIGHS_VERSION_MINOR_get();
+
+    public final static native int HIGHS_VERSION_PATCH_get();
+
+    public final static native void HighsSolution_value_valid_set(long jarg1, HighsSolution jarg1_, boolean jarg2);
+
+    public final static native boolean HighsSolution_value_valid_get(long jarg1, HighsSolution jarg1_);
+
+    public final static native void HighsSolution_dual_valid_set(long jarg1, HighsSolution jarg1_, boolean jarg2);
+
+    public final static native boolean HighsSolution_dual_valid_get(long jarg1, HighsSolution jarg1_);
+
+    public final static native void HighsSolution_col_value_set(
+            long jarg1,
+            HighsSolution jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsSolution_col_value_get(long jarg1, HighsSolution jarg1_);
+
+    public final static native void HighsSolution_col_dual_set(
+            long jarg1,
+            HighsSolution jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsSolution_col_dual_get(long jarg1, HighsSolution jarg1_);
+
+    public final static native void HighsSolution_row_value_set(
+            long jarg1,
+            HighsSolution jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsSolution_row_value_get(long jarg1, HighsSolution jarg1_);
+
+    public final static native void HighsSolution_row_dual_set(
+            long jarg1,
+            HighsSolution jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsSolution_row_dual_get(long jarg1, HighsSolution jarg1_);
+
+    public final static native boolean HighsSolution_hasUndefined(long jarg1, HighsSolution jarg1_);
+
+    public final static native void HighsSolution_invalidate(long jarg1, HighsSolution jarg1_);
+
+    public final static native void HighsSolution_clear(long jarg1, HighsSolution jarg1_);
+
+    public final static native void HighsSolution_print__SWIG_0(
+            long jarg1,
+            HighsSolution jarg1_,
+            String jarg2,
+            String jarg3
+    );
+
+    public final static native void HighsSolution_print__SWIG_1(long jarg1, HighsSolution jarg1_, String jarg2);
+
+    public final static native void HighsSolution_print__SWIG_2(long jarg1, HighsSolution jarg1_);
+
+    public final static native boolean HighsSolution_isModelRow(long jarg1, HighsSolution jarg1_, long jarg2);
+
+    public final static native long new_HighsSolution();
+
+    public final static native void delete_HighsSolution(long jarg1);
+
+    public final static native void HighsObjectiveSolution_objective_set(
+            long jarg1,
+            HighsObjectiveSolution jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsObjectiveSolution_objective_get(long jarg1, HighsObjectiveSolution jarg1_);
+
+    public final static native void HighsObjectiveSolution_col_value_set(
+            long jarg1,
+            HighsObjectiveSolution jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsObjectiveSolution_col_value_get(long jarg1, HighsObjectiveSolution jarg1_);
+
+    public final static native void HighsObjectiveSolution_clear(long jarg1, HighsObjectiveSolution jarg1_);
+
+    public final static native long new_HighsObjectiveSolution();
+
+    public final static native void delete_HighsObjectiveSolution(long jarg1);
+
+    public final static native void RefactorInfo_use_set(long jarg1, RefactorInfo jarg1_, boolean jarg2);
+
+    public final static native boolean RefactorInfo_use_get(long jarg1, RefactorInfo jarg1_);
+
+    public final static native void RefactorInfo_pivot_row_set(long jarg1, RefactorInfo jarg1_, long jarg2);
+
+    public final static native long RefactorInfo_pivot_row_get(long jarg1, RefactorInfo jarg1_);
+
+    public final static native void RefactorInfo_pivot_var_set(long jarg1, RefactorInfo jarg1_, long jarg2);
+
+    public final static native long RefactorInfo_pivot_var_get(long jarg1, RefactorInfo jarg1_);
+
+    public final static native void RefactorInfo_pivot_type_set(long jarg1, RefactorInfo jarg1_, long jarg2);
+
+    public final static native long RefactorInfo_pivot_type_get(long jarg1, RefactorInfo jarg1_);
+
+    public final static native void RefactorInfo_build_synthetic_tick_set(
+            long jarg1,
+            RefactorInfo jarg1_,
+            double jarg2
+    );
+
+    public final static native double RefactorInfo_build_synthetic_tick_get(long jarg1, RefactorInfo jarg1_);
+
+    public final static native void RefactorInfo_clear(long jarg1, RefactorInfo jarg1_);
+
+    public final static native long new_RefactorInfo();
+
+    public final static native void delete_RefactorInfo(long jarg1);
+
+    public final static native void HotStart_valid_set(long jarg1, HotStart jarg1_, boolean jarg2);
+
+    public final static native boolean HotStart_valid_get(long jarg1, HotStart jarg1_);
+
+    public final static native void HotStart_refactor_info_set(
+            long jarg1,
+            HotStart jarg1_,
+            long jarg2,
+            RefactorInfo jarg2_
+    );
+
+    public final static native long HotStart_refactor_info_get(long jarg1, HotStart jarg1_);
+
+    public final static native void HotStart_nonbasicMove_set(long jarg1, HotStart jarg1_, long jarg2);
+
+    public final static native long HotStart_nonbasicMove_get(long jarg1, HotStart jarg1_);
+
+    public final static native long new_HotStart();
+
+    public final static native void delete_HotStart(long jarg1);
+
+    public final static native void HighsBasis_valid_set(long jarg1, HighsBasis jarg1_, boolean jarg2);
+
+    public final static native boolean HighsBasis_valid_get(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_alien_set(long jarg1, HighsBasis jarg1_, boolean jarg2);
+
+    public final static native boolean HighsBasis_alien_get(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_useful_set(long jarg1, HighsBasis jarg1_, boolean jarg2);
+
+    public final static native boolean HighsBasis_useful_get(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_was_alien_set(long jarg1, HighsBasis jarg1_, boolean jarg2);
+
+    public final static native boolean HighsBasis_was_alien_get(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_debug_id_set(long jarg1, HighsBasis jarg1_, long jarg2);
+
+    public final static native long HighsBasis_debug_id_get(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_debug_update_count_set(long jarg1, HighsBasis jarg1_, long jarg2);
+
+    public final static native long HighsBasis_debug_update_count_get(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_debug_origin_name_set(long jarg1, HighsBasis jarg1_, String jarg2);
+
+    public final static native String HighsBasis_debug_origin_name_get(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_col_status_set(long jarg1, HighsBasis jarg1_, long jarg2);
+
+    public final static native long HighsBasis_col_status_get(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_row_status_set(long jarg1, HighsBasis jarg1_, long jarg2);
+
+    public final static native long HighsBasis_row_status_get(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_print__SWIG_0(long jarg1, HighsBasis jarg1_, String jarg2, String jarg3);
+
+    public final static native void HighsBasis_print__SWIG_1(long jarg1, HighsBasis jarg1_, String jarg2);
+
+    public final static native void HighsBasis_print__SWIG_2(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_printScalars__SWIG_0(
+            long jarg1,
+            HighsBasis jarg1_,
+            String jarg2,
+            String jarg3
+    );
+
+    public final static native void HighsBasis_printScalars__SWIG_1(long jarg1, HighsBasis jarg1_, String jarg2);
+
+    public final static native void HighsBasis_printScalars__SWIG_2(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_invalidate(long jarg1, HighsBasis jarg1_);
+
+    public final static native void HighsBasis_clear(long jarg1, HighsBasis jarg1_);
+
+    public final static native long new_HighsBasis();
+
+    public final static native void delete_HighsBasis(long jarg1);
+
+    public final static native void HighsScale_strategy_set(long jarg1, HighsScale jarg1_, long jarg2);
+
+    public final static native long HighsScale_strategy_get(long jarg1, HighsScale jarg1_);
+
+    public final static native void HighsScale_has_scaling_set(long jarg1, HighsScale jarg1_, boolean jarg2);
+
+    public final static native boolean HighsScale_has_scaling_get(long jarg1, HighsScale jarg1_);
+
+    public final static native void HighsScale_num_col_set(long jarg1, HighsScale jarg1_, long jarg2);
+
+    public final static native long HighsScale_num_col_get(long jarg1, HighsScale jarg1_);
+
+    public final static native void HighsScale_num_row_set(long jarg1, HighsScale jarg1_, long jarg2);
+
+    public final static native long HighsScale_num_row_get(long jarg1, HighsScale jarg1_);
+
+    public final static native void HighsScale_cost_set(long jarg1, HighsScale jarg1_, double jarg2);
+
+    public final static native double HighsScale_cost_get(long jarg1, HighsScale jarg1_);
+
+    public final static native void HighsScale_col_set(long jarg1, HighsScale jarg1_, long jarg2, DoubleVector jarg2_);
+
+    public final static native long HighsScale_col_get(long jarg1, HighsScale jarg1_);
+
+    public final static native void HighsScale_row_set(long jarg1, HighsScale jarg1_, long jarg2, DoubleVector jarg2_);
+
+    public final static native long HighsScale_row_get(long jarg1, HighsScale jarg1_);
+
+    public final static native long new_HighsScale();
+
+    public final static native void delete_HighsScale(long jarg1);
+
+    public final static native void HighsLpMods_save_non_semi_variable_index_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsLpMods_save_non_semi_variable_index_get(long jarg1, HighsLpMods jarg1_);
+
+    public final static native void HighsLpMods_save_inconsistent_semi_variable_index_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsLpMods_save_inconsistent_semi_variable_index_get(
+            long jarg1,
+            HighsLpMods jarg1_
+    );
+
+    public final static native void HighsLpMods_save_inconsistent_semi_variable_lower_bound_value_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsLpMods_save_inconsistent_semi_variable_lower_bound_value_get(
+            long jarg1,
+            HighsLpMods jarg1_
+    );
+
+    public final static native void HighsLpMods_save_inconsistent_semi_variable_upper_bound_value_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsLpMods_save_inconsistent_semi_variable_upper_bound_value_get(
+            long jarg1,
+            HighsLpMods jarg1_
+    );
+
+    public final static native void HighsLpMods_save_inconsistent_semi_variable_type_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsLpMods_save_inconsistent_semi_variable_type_get(
+            long jarg1,
+            HighsLpMods jarg1_
+    );
+
+    public final static native void HighsLpMods_save_relaxed_semi_variable_lower_bound_index_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsLpMods_save_relaxed_semi_variable_lower_bound_index_get(
+            long jarg1,
+            HighsLpMods jarg1_
+    );
+
+    public final static native void HighsLpMods_save_relaxed_semi_variable_lower_bound_value_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsLpMods_save_relaxed_semi_variable_lower_bound_value_get(
+            long jarg1,
+            HighsLpMods jarg1_
+    );
+
+    public final static native void HighsLpMods_save_tightened_semi_variable_upper_bound_index_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsLpMods_save_tightened_semi_variable_upper_bound_index_get(
+            long jarg1,
+            HighsLpMods jarg1_
+    );
+
+    public final static native void HighsLpMods_save_tightened_semi_variable_upper_bound_value_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsLpMods_save_tightened_semi_variable_upper_bound_value_get(
+            long jarg1,
+            HighsLpMods jarg1_
+    );
+
+    public final static native void HighsLpMods_save_inf_cost_variable_index_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsLpMods_save_inf_cost_variable_index_get(long jarg1, HighsLpMods jarg1_);
+
+    public final static native void HighsLpMods_save_inf_cost_variable_cost_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsLpMods_save_inf_cost_variable_cost_get(long jarg1, HighsLpMods jarg1_);
+
+    public final static native void HighsLpMods_save_inf_cost_variable_lower_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsLpMods_save_inf_cost_variable_lower_get(long jarg1, HighsLpMods jarg1_);
+
+    public final static native void HighsLpMods_save_inf_cost_variable_upper_set(
+            long jarg1,
+            HighsLpMods jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsLpMods_save_inf_cost_variable_upper_get(long jarg1, HighsLpMods jarg1_);
+
+    public final static native void HighsLpMods_clear(long jarg1, HighsLpMods jarg1_);
+
+    public final static native boolean HighsLpMods_isClear(long jarg1, HighsLpMods jarg1_);
+
+    public final static native long new_HighsLpMods();
+
+    public final static native void delete_HighsLpMods(long jarg1);
+
+    public final static native void HighsNameHash_name2index_set(long jarg1, HighsNameHash jarg1_, long jarg2);
+
+    public final static native long HighsNameHash_name2index_get(long jarg1, HighsNameHash jarg1_);
+
+    public final static native void HighsNameHash_form(long jarg1, HighsNameHash jarg1_, long jarg2);
+
+    public final static native boolean HighsNameHash_hasDuplicate(long jarg1, HighsNameHash jarg1_, long jarg2);
+
+    public final static native void HighsNameHash_update(
+            long jarg1,
+            HighsNameHash jarg1_,
+            int jarg2,
+            String jarg3,
+            String jarg4
+    );
+
+    public final static native void HighsNameHash_clear(long jarg1, HighsNameHash jarg1_);
+
+    public final static native long new_HighsNameHash();
+
+    public final static native void delete_HighsNameHash(long jarg1);
+
+    public final static native void HighsPresolveRuleLog_call_set(long jarg1, HighsPresolveRuleLog jarg1_, long jarg2);
+
+    public final static native long HighsPresolveRuleLog_call_get(long jarg1, HighsPresolveRuleLog jarg1_);
+
+    public final static native void HighsPresolveRuleLog_col_removed_set(
+            long jarg1,
+            HighsPresolveRuleLog jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsPresolveRuleLog_col_removed_get(long jarg1, HighsPresolveRuleLog jarg1_);
+
+    public final static native void HighsPresolveRuleLog_row_removed_set(
+            long jarg1,
+            HighsPresolveRuleLog jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsPresolveRuleLog_row_removed_get(long jarg1, HighsPresolveRuleLog jarg1_);
+
+    public final static native long new_HighsPresolveRuleLog();
+
+    public final static native void delete_HighsPresolveRuleLog(long jarg1);
+
+    public final static native void HighsPresolveLog_rule_set(long jarg1, HighsPresolveLog jarg1_, long jarg2);
+
+    public final static native long HighsPresolveLog_rule_get(long jarg1, HighsPresolveLog jarg1_);
+
+    public final static native void HighsPresolveLog_clear(long jarg1, HighsPresolveLog jarg1_);
+
+    public final static native long new_HighsPresolveLog();
+
+    public final static native void delete_HighsPresolveLog(long jarg1);
+
+    public final static native void HighsIllConditioningRecord_index_set(
+            long jarg1,
+            HighsIllConditioningRecord jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsIllConditioningRecord_index_get(long jarg1, HighsIllConditioningRecord jarg1_);
+
+    public final static native void HighsIllConditioningRecord_multiplier_set(
+            long jarg1,
+            HighsIllConditioningRecord jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsIllConditioningRecord_multiplier_get(
+            long jarg1,
+            HighsIllConditioningRecord jarg1_
+    );
+
+    public final static native long new_HighsIllConditioningRecord();
+
+    public final static native void delete_HighsIllConditioningRecord(long jarg1);
+
+    public final static native void HighsIllConditioning_record_set(
+            long jarg1,
+            HighsIllConditioning jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsIllConditioning_record_get(long jarg1, HighsIllConditioning jarg1_);
+
+    public final static native void HighsIllConditioning_clear(long jarg1, HighsIllConditioning jarg1_);
+
+    public final static native long new_HighsIllConditioning();
+
+    public final static native void delete_HighsIllConditioning(long jarg1);
+
+    public final static native void HighsLinearObjective_weight_set(
+            long jarg1,
+            HighsLinearObjective jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsLinearObjective_weight_get(long jarg1, HighsLinearObjective jarg1_);
+
+    public final static native void HighsLinearObjective_offset_set(
+            long jarg1,
+            HighsLinearObjective jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsLinearObjective_offset_get(long jarg1, HighsLinearObjective jarg1_);
+
+    public final static native void HighsLinearObjective_coefficients_set(
+            long jarg1,
+            HighsLinearObjective jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsLinearObjective_coefficients_get(long jarg1, HighsLinearObjective jarg1_);
+
+    public final static native void HighsLinearObjective_abs_tolerance_set(
+            long jarg1,
+            HighsLinearObjective jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsLinearObjective_abs_tolerance_get(long jarg1, HighsLinearObjective jarg1_);
+
+    public final static native void HighsLinearObjective_rel_tolerance_set(
+            long jarg1,
+            HighsLinearObjective jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsLinearObjective_rel_tolerance_get(long jarg1, HighsLinearObjective jarg1_);
+
+    public final static native void HighsLinearObjective_priority_set(
+            long jarg1,
+            HighsLinearObjective jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsLinearObjective_priority_get(long jarg1, HighsLinearObjective jarg1_);
+
+    public final static native void HighsLinearObjective_clear(long jarg1, HighsLinearObjective jarg1_);
+
+    public final static native long new_HighsLinearObjective();
+
+    public final static native void delete_HighsLinearObjective(long jarg1);
+
+    public final static native void HighsProfilingRecord_num_call_set(
+            long jarg1,
+            HighsProfilingRecord jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsProfilingRecord_num_call_get(long jarg1, HighsProfilingRecord jarg1_);
+
+    public final static native void HighsProfilingRecord_run_time_set(
+            long jarg1,
+            HighsProfilingRecord jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsProfilingRecord_run_time_get(long jarg1, HighsProfilingRecord jarg1_);
+
+    public final static native void HighsProfilingRecord_start_time_set(
+            long jarg1,
+            HighsProfilingRecord jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native long HighsProfilingRecord_start_time_get(long jarg1, HighsProfilingRecord jarg1_);
+
+    public final static native long new_HighsProfilingRecord();
+
+    public final static native void delete_HighsProfilingRecord(long jarg1);
+
+    public final static native void HighsProfiling_timer_set(long jarg1, HighsProfiling jarg1_, long jarg2);
+
+    public final static native long HighsProfiling_timer_get(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_multi_threaded_set(long jarg1, HighsProfiling jarg1_, boolean jarg2);
+
+    public final static native boolean HighsProfiling_multi_threaded_get(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_model_name__set(long jarg1, HighsProfiling jarg1_, String jarg2);
+
+    public final static native String HighsProfiling_model_name__get(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_sub_solver__set(long jarg1, HighsProfiling jarg1_, boolean jarg2);
+
+    public final static native boolean HighsProfiling_sub_solver__get(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_mip__set(long jarg1, HighsProfiling jarg1_, boolean jarg2);
+
+    public final static native boolean HighsProfiling_mip__get(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_num_profiling_clock__set(
+            long jarg1,
+            HighsProfiling jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsProfiling_num_profiling_clock__get(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_name_set(long jarg1, HighsProfiling jarg1_, long jarg2);
+
+    public final static native long HighsProfiling_name_get(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_submip_set(long jarg1, HighsProfiling jarg1_, long jarg2);
+
+    public final static native long HighsProfiling_submip_get(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_record_set(long jarg1, HighsProfiling jarg1_, long jarg2);
+
+    public final static native long HighsProfiling_record_get(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_submip_record_set(long jarg1, HighsProfiling jarg1_, long jarg2);
+
+    public final static native long HighsProfiling_submip_record_get(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_initialized_set(long jarg1, HighsProfiling jarg1_, boolean jarg2);
+
+    public final static native boolean HighsProfiling_initialized_get(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_initialize__SWIG_0(
+            long jarg1,
+            HighsProfiling jarg1_,
+            long jarg2,
+            boolean jarg3,
+            boolean jarg4
+    );
+
+    public final static native void HighsProfiling_initialize__SWIG_1(
+            long jarg1,
+            HighsProfiling jarg1_,
+            long jarg2,
+            boolean jarg3
+    );
+
+    public final static native void HighsProfiling_clear(long jarg1, HighsProfiling jarg1_);
+
+    public final static native long HighsProfiling_numThread(long jarg1, HighsProfiling jarg1_);
+
+    public final static native long HighsProfiling_myThread(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_setSubMip(long jarg1, HighsProfiling jarg1_, boolean jarg2);
+
+    public final static native boolean HighsProfiling_isSubMip(long jarg1, HighsProfiling jarg1_);
+
+    public final static native long HighsProfiling_getHighsProfilingRecord__SWIG_0(
+            long jarg1,
+            HighsProfiling jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsProfiling_getHighsProfilingRecord__SWIG_1(long jarg1, HighsProfiling jarg1_);
+
+    public final static native void HighsProfiling_start__SWIG_0(
+            long jarg1,
+            HighsProfiling jarg1_,
+            long jarg2,
+            boolean jarg3
+    );
+
+    public final static native void HighsProfiling_start__SWIG_1(long jarg1, HighsProfiling jarg1_, long jarg2);
+
+    public final static native void HighsProfiling_stop(long jarg1, HighsProfiling jarg1_, long jarg2);
+
+    public final static native double HighsProfiling_read__SWIG_0(
+            long jarg1,
+            HighsProfiling jarg1_,
+            long jarg2,
+            long jarg3
+    );
+
+    public final static native double HighsProfiling_read__SWIG_1(long jarg1, HighsProfiling jarg1_, long jarg2);
+
+    public final static native boolean HighsProfiling_running__SWIG_0(
+            long jarg1,
+            HighsProfiling jarg1_,
+            long jarg2,
+            long jarg3
+    );
+
+    public final static native boolean HighsProfiling_running__SWIG_1(long jarg1, HighsProfiling jarg1_, long jarg2);
+
+    public final static native long HighsProfiling_numCall__SWIG_0(
+            long jarg1,
+            HighsProfiling jarg1_,
+            long jarg2,
+            long jarg3
+    );
+
+    public final static native long HighsProfiling_numCall__SWIG_1(long jarg1, HighsProfiling jarg1_, long jarg2);
+
+    public final static native void HighsProfiling_solveCall(
+            long jarg1,
+            HighsProfiling jarg1_,
+            String jarg2,
+            boolean jarg3
+    );
+
+    public final static native long new_HighsProfiling();
+
+    public final static native void delete_HighsProfiling(long jarg1);
+
+    public final static native void HighsSimplexStats_valid_set(long jarg1, HighsSimplexStats jarg1_, boolean jarg2);
+
+    public final static native boolean HighsSimplexStats_valid_get(long jarg1, HighsSimplexStats jarg1_);
+
+    public final static native void HighsSimplexStats_iteration_count_set(
+            long jarg1,
+            HighsSimplexStats jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsSimplexStats_iteration_count_get(long jarg1, HighsSimplexStats jarg1_);
+
+    public final static native void HighsSimplexStats_num_invert_set(long jarg1, HighsSimplexStats jarg1_, long jarg2);
+
+    public final static native long HighsSimplexStats_num_invert_get(long jarg1, HighsSimplexStats jarg1_);
+
+    public final static native void HighsSimplexStats_last_invert_num_el_set(
+            long jarg1,
+            HighsSimplexStats jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsSimplexStats_last_invert_num_el_get(long jarg1, HighsSimplexStats jarg1_);
+
+    public final static native void HighsSimplexStats_last_factored_basis_num_el_set(
+            long jarg1,
+            HighsSimplexStats jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsSimplexStats_last_factored_basis_num_el_get(
+            long jarg1,
+            HighsSimplexStats jarg1_
+    );
+
+    public final static native void HighsSimplexStats_col_aq_density_set(
+            long jarg1,
+            HighsSimplexStats jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsSimplexStats_col_aq_density_get(long jarg1, HighsSimplexStats jarg1_);
+
+    public final static native void HighsSimplexStats_row_ep_density_set(
+            long jarg1,
+            HighsSimplexStats jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsSimplexStats_row_ep_density_get(long jarg1, HighsSimplexStats jarg1_);
+
+    public final static native void HighsSimplexStats_row_ap_density_set(
+            long jarg1,
+            HighsSimplexStats jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsSimplexStats_row_ap_density_get(long jarg1, HighsSimplexStats jarg1_);
+
+    public final static native void HighsSimplexStats_row_DSE_density_set(
+            long jarg1,
+            HighsSimplexStats jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsSimplexStats_row_DSE_density_get(long jarg1, HighsSimplexStats jarg1_);
+
+    public final static native void HighsSimplexStats_report__SWIG_0(
+            long jarg1,
+            HighsSimplexStats jarg1_,
+            long jarg2,
+            String jarg3
+    );
+
+    public final static native void HighsSimplexStats_report__SWIG_1(long jarg1, HighsSimplexStats jarg1_, long jarg2);
+
+    public final static native void HighsSimplexStats_initialise__SWIG_0(
+            long jarg1,
+            HighsSimplexStats jarg1_,
+            long jarg2
+    );
+
+    public final static native void HighsSimplexStats_initialise__SWIG_1(long jarg1, HighsSimplexStats jarg1_);
+
+    public final static native long new_HighsSimplexStats();
+
+    public final static native void delete_HighsSimplexStats(long jarg1);
+
+    public final static native void HighsUserScaleData_user_objective_scale_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsUserScaleData_user_objective_scale_get(long jarg1, HighsUserScaleData jarg1_);
+
+    public final static native void HighsUserScaleData_user_bound_scale_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsUserScaleData_user_bound_scale_get(long jarg1, HighsUserScaleData jarg1_);
+
+    public final static native void HighsUserScaleData_infinite_cost_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsUserScaleData_infinite_cost_get(long jarg1, HighsUserScaleData jarg1_);
+
+    public final static native void HighsUserScaleData_infinite_bound_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsUserScaleData_infinite_bound_get(long jarg1, HighsUserScaleData jarg1_);
+
+    public final static native void HighsUserScaleData_small_matrix_value_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsUserScaleData_small_matrix_value_get(long jarg1, HighsUserScaleData jarg1_);
+
+    public final static native void HighsUserScaleData_large_matrix_value_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsUserScaleData_large_matrix_value_get(long jarg1, HighsUserScaleData jarg1_);
+
+    public final static native void HighsUserScaleData_num_infinite_costs_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsUserScaleData_num_infinite_costs_get(long jarg1, HighsUserScaleData jarg1_);
+
+    public final static native void HighsUserScaleData_num_infinite_hessian_values_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsUserScaleData_num_infinite_hessian_values_get(
+            long jarg1,
+            HighsUserScaleData jarg1_
+    );
+
+    public final static native void HighsUserScaleData_num_infinite_col_bounds_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsUserScaleData_num_infinite_col_bounds_get(
+            long jarg1,
+            HighsUserScaleData jarg1_
+    );
+
+    public final static native void HighsUserScaleData_num_infinite_row_bounds_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsUserScaleData_num_infinite_row_bounds_get(
+            long jarg1,
+            HighsUserScaleData jarg1_
+    );
+
+    public final static native void HighsUserScaleData_num_small_matrix_values_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsUserScaleData_num_small_matrix_values_get(
+            long jarg1,
+            HighsUserScaleData jarg1_
+    );
+
+    public final static native void HighsUserScaleData_num_large_matrix_values_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsUserScaleData_num_large_matrix_values_get(
+            long jarg1,
+            HighsUserScaleData jarg1_
+    );
+
+    public final static native void HighsUserScaleData_suggested_user_objective_scale_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsUserScaleData_suggested_user_objective_scale_get(
+            long jarg1,
+            HighsUserScaleData jarg1_
+    );
+
+    public final static native void HighsUserScaleData_suggested_user_bound_scale_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsUserScaleData_suggested_user_bound_scale_get(
+            long jarg1,
+            HighsUserScaleData jarg1_
+    );
+
+    public final static native void HighsUserScaleData_applied_set(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            boolean jarg2
+    );
+
+    public final static native boolean HighsUserScaleData_applied_get(long jarg1, HighsUserScaleData jarg1_);
+
+    public final static native void HighsUserScaleData_initialise(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2,
+            long jarg3,
+            double jarg4,
+            double jarg5,
+            double jarg6,
+            double jarg7
+    );
+
+    public final static native boolean HighsUserScaleData_scaleError(long jarg1, HighsUserScaleData jarg1_, long jarg2);
+
+    public final static native boolean HighsUserScaleData_scaleWarning(
+            long jarg1,
+            HighsUserScaleData jarg1_,
+            long jarg2
+    );
+
+    public final static native long new_HighsUserScaleData();
+
+    public final static native void delete_HighsUserScaleData(long jarg1);
+
+    public final static native String kHighsCopyrightStatement_get();
+
+    public final static native long kHighsSize_tInf_get();
+
+    public final static native long kHighsIInf_get();
+
+    public final static native long kHighsIInf32_get();
+
+    public final static native double kHighsInf_get();
+
+    public final static native double kHighsUndefined_get();
+
+    public final static native double kHighsTiny_get();
+
+    public final static native double kHighsMacheps_get();
+
+    public final static native double kHighsZero_get();
+
+    public final static native String kHighsOffString_get();
+
+    public final static native String kHighsChooseString_get();
+
+    public final static native String kHighsOnString_get();
+
+    public final static native long kHighsMaxStringLength_get();
+
+    public final static native long kSimplexConcurrencyLimit_get();
+
+    public final static native double kRunningAverageMultiplier_get();
+
+    public final static native double kExcessivelySmallObjectiveCoefficient_get();
+
+    public final static native double kExcessivelyLargeObjectiveCoefficient_get();
+
+    public final static native double kExcessivelySmallBoundValue_get();
+
+    public final static native double kExcessivelyLargeBoundValue_get();
+
+    public final static native long kNoThreadInstance_get();
+
+    public final static native boolean kAllowDeveloperAssert_get();
+
+    public final static native boolean kExtendInvertWhenAddingRows_get();
+
+    public final static native int HighsLogType_kInfo_get();
+
+    public final static native int kSimplexScaleStrategyMin_get();
+
+    public final static native int kSimplexScaleStrategyOff_get();
+
+    public final static native int kSimplexScaleStrategyMaxValue015_get();
+
+    public final static native int kSimplexScaleStrategyMaxValue0157_get();
+
+    public final static native int kSimplexScaleStrategyMax_get();
+
+    public final static native int kHighsDebugLevelNone_get();
+
+    public final static native int kHighsDebugLevelMin_get();
+
+    public final static native int kHighsDebugLevelMax_get();
+
+    public final static native int HighsDebugStatus_kNotChecked_get();
+
+    public final static native int kHighsAnalysisLevelNone_get();
+
+    public final static native int kHighsAnalysisLevelModelData_get();
+
+    public final static native int kHighsAnalysisLevelSolverSummaryData_get();
+
+    public final static native int kHighsAnalysisLevelSolverRuntimeData_get();
+
+    public final static native int kHighsAnalysisLevelSolverTime_get();
+
+    public final static native int kHighsAnalysisLevelNlaData_get();
+
+    public final static native int kHighsAnalysisLevelNlaTime_get();
+
+    public final static native int kHighsAnalysisLevelMipData_get();
+
+    public final static native int kHighsAnalysisLevelMipTime_get();
+
+    public final static native int kHighsAnalysisLevelPresolveTime_get();
+
+    public final static native int kHighsAnalysisLevelMin_get();
+
+    public final static native int kHighsAnalysisLevelMax_get();
+
+    public final static native int HighsVarType_kContinuous_get();
+
+    public final static native int HighsVarType_kInteger_get();
+
+    public final static native int HighsVarType_kSemiContinuous_get();
+
+    public final static native int HighsVarType_kSemiInteger_get();
+
+    public final static native int HighsVarType_kImplicitInteger_get();
+
+    public final static native int HighsOptionType_kBool_get();
+
+    public final static native int HighsInfoType_kInt64_get();
+
+    public final static native int HighsInfoType_kInt_get();
+
+    public final static native int HighsRunDataType_kInt64_get();
+
+    public final static native int HighsRunDataType_kInt_get();
+
+    public final static native int kHighsOptionOff_get();
+
+    public final static native int kIpxDualizeStrategyOff_get();
+
+    public final static native int kIpxDualizeStrategyChoose_get();
+
+    public final static native int kIpxDualizeStrategyOn_get();
+
+    public final static native int kIpxDualizeStrategyMin_get();
+
+    public final static native int kIpxDualizeStrategyMax_get();
+
+    public final static native int ObjSense_kMinimize_get();
+
+    public final static native int ObjSense_kMaximize_get();
+
+    public final static native int MatrixFormat_kColwise_get();
+
+    public final static native int HessianFormat_kTriangular_get();
+
+    public final static native int kSolutionStatusNone_get();
+
+    public final static native int kSolutionStatusMin_get();
+
+    public final static native int kSolutionStatusMax_get();
+
+    public final static native int kBasisValidityInvalid_get();
+
+    public final static native int kBasisValidityMin_get();
+
+    public final static native int kBasisValidityMax_get();
+
+    public final static native String kHighsBasisFileV1_get();
+
+    public final static native String kHighsBasisFileV2_get();
+
+    public final static native int kSolutionStyleOldRaw_get();
+
+    public final static native int kSolutionStyleRaw_get();
+
+    public final static native int kSolutionStyleMin_get();
+
+    public final static native int kSolutionStyleMax_get();
+
+    public final static native int kGlpsolCostRowLocationLast_get();
+
+    public final static native int kGlpsolCostRowLocationMin_get();
+
+    public final static native String kHighsFilenameDefault_get();
+
+    public final static native String kHighsMinimalColNamePrefix_get();
+
+    public final static native String kHighsMinimalrowNamePrefix_get();
+
+    public final static native String kHighsUniqueColNamePrefix_get();
+
+    public final static native String kHighsUniquerowNamePrefix_get();
+
+    public final static native int HighsPresolveStatus_kNotPresolved_get();
+
+    public final static native int HighsPostsolveStatus_kNotPresolved_get();
+
+    public final static native int HighsModelStatus_kNotset_get();
+
+    public final static native int HighsModelStatus_kMin_get();
+
+    public final static native int HighsModelStatus_kMax_get();
+
+    public final static native int kCallbackMin_get();
+
+    public final static native int kCallbackLogging_get();
+
+    public final static native int kCallbackMax_get();
+
+    public final static native int HighsBasisStatus_kLower_get();
+
+    public final static native int kPresolveRuleIllegal_get();
+
+    public final static native int kPresolveRuleMin_get();
+
+    public final static native int kPresolveRuleEmptyRow_get();
+
+    public final static native int kPresolveRuleForcingRow_get();
+
+    public final static native int kPresolveRuleMax_get();
+
+    public final static native int kPresolveRuleLastAllowOff_get();
+
+    public final static native int kIisStrategyMin_get();
+
+    public final static native int kIisStrategyLight_get();
+
+    public final static native int kIisStrategyFromRay_get();
+
+    public final static native int kIisStrategyFromLp_get();
+
+    public final static native int kIisStrategyIrreducible_get();
+
+    public final static native int kIisStrategyColPriority_get();
+
+    public final static native int kIisStrategyRelaxation_get();
+
+    public final static native int kIisStrategyDefault_get();
+
+    public final static native int kIisStrategyMax_get();
+
+    public final static native int kIisStatusMin_get();
+
+    public final static native int kIisStatusNotInConflict_get();
+
+    public final static native int kIisStatusMax_get();
+
+    public final static native int kMipRecord_get();
+
+    public final static native int kPresolveTime_get();
+
+    public final static native int kFromSubSolver_get();
+
+    public final static native int kSubSolverMip_get();
+
+    public final static native int kLastSubSolver_get();
+
+    public final static native int kToSubSolver_get();
+
+    public final static native double kMinimumKktTolerance_get();
+
+    public final static native double kDefaultKktTolerance_get();
+
+    public final static native double kMinimumMipTolerance_get();
+
+    public final static native double kDefaultMipTolerance_get();
+
+    public final static native double kMinimumIpmTolerance_get();
+
+    public final static native double kDefaultIpmTolerance_get();
+
+    public final static native double kHessianRegularizationValue_get();
+
+    public final static native long kDefaultAllowedMatrixPow2Scale_get();
+
+    public final static native long kMaxAllowedMatrixPow2Scale_get();
+
+    public final static native double kHighsIllegalInfeasibilityMeasure_get();
+
+    public final static native long kHighsIllegalInfeasibilityCount_get();
+
+    public final static native double kHighsIllegalResidualMeasure_get();
+
+    public final static native long kHighsIllegalResidualCount_get();
+
+    public final static native double kHighsIllegalErrorValue_get();
+
+    public final static native long kHighsIllegalErrorIndex_get();
+
+    public final static native double kHighsIllegalComplementarityViolation_get();
+
+    public final static native long kHighsIllegalComplementarityCount_get();
+
+    public final static native double kHighsIllegalDoubleMeasure_get();
+
+    public final static native long kHighsIllegalIntMeasure_get();
+
+    public final static native double kMaxSemiVariableUpper_get();
+
+    public final static native double kExcessivePrimalValue_get();
+
+    public final static native long kHashIsDuplicate_get();
+
+    public final static native double kModelValueToStringTolerance_get();
+
+    public final static native double kRangingValueToStringTolerance_get();
+
+    public final static native double kHighsSolutionValueToStringTolerance_get();
+
+    public final static native double kGlpsolSolutionValueToStringTolerance_get();
+
+    public final static native long kNoLink_get();
+
+    public final static native byte kPivotIllegal_get();
+
+    public final static native byte kPivotLogical_get();
+
+    public final static native byte kPivotUnit_get();
+
+    public final static native byte kPivotRowSingleton_get();
+
+    public final static native byte kPivotColSingleton_get();
+
+    public final static native byte kPivotMarkowitz_get();
+
+    public final static native int EQ_get();
+
+    public final static native int kPdlpAllFeaturesOn_get();
+
+    public final static native int kPdlpScalingOff_get();
+
+    public final static native int kPdlpRestartOff_get();
+
+    public final static native int kPdlpAdaptiveStepSizeOff_get();
+
+    public final static native int kPdlpAllFeaturesOff_get();
+
+    public final static native int kPdlpScalingMin_get();
+
+    public final static native int kPdlpScalingRuiz_get();
+
+    public final static native int kPdlpScalingL2_get();
+
+    public final static native int kPdlpScalingPC_get();
+
+    public final static native int kPdlpScalingMax_get();
+
+    public final static native int kPdlpStepSizeStrategyFixed_get();
+
+    public final static native int kPdlpStepSizeStrategyMin_get();
+
+    public final static native int kPdlpStepSizeStrategyMax_get();
+
+    public final static native int kPdlpRestartStrategyOff_get();
+
+    public final static native int kPdlpRestartStrategyMin_get();
+
+    public final static native int kPdlpRestartStrategyMax_get();
+
+    public final static native int InfoStatus_kOk_get();
+
+    public final static native void InfoRecord_type_set(long jarg1, InfoRecord jarg1_, int jarg2);
+
+    public final static native int InfoRecord_type_get(long jarg1, InfoRecord jarg1_);
+
+    public final static native void InfoRecord_name_set(long jarg1, InfoRecord jarg1_, String jarg2);
+
+    public final static native String InfoRecord_name_get(long jarg1, InfoRecord jarg1_);
+
+    public final static native void InfoRecord_description_set(long jarg1, InfoRecord jarg1_, String jarg2);
+
+    public final static native String InfoRecord_description_get(long jarg1, InfoRecord jarg1_);
+
+    public final static native void InfoRecord_advanced_set(long jarg1, InfoRecord jarg1_, boolean jarg2);
+
+    public final static native boolean InfoRecord_advanced_get(long jarg1, InfoRecord jarg1_);
+
+    public final static native long new_InfoRecord(int jarg1, String jarg2, String jarg3, boolean jarg4);
+
+    public final static native void delete_InfoRecord(long jarg1);
+
+    public final static native void InfoRecordInt64_value_set(long jarg1, InfoRecordInt64 jarg1_, long jarg2);
+
+    public final static native long InfoRecordInt64_value_get(long jarg1, InfoRecordInt64 jarg1_);
+
+    public final static native void InfoRecordInt64_default_value_set(long jarg1, InfoRecordInt64 jarg1_, long jarg2);
+
+    public final static native long InfoRecordInt64_default_value_get(long jarg1, InfoRecordInt64 jarg1_);
+
+    public final static native long new_InfoRecordInt64(
+            String jarg1,
+            String jarg2,
+            boolean jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native void delete_InfoRecordInt64(long jarg1);
+
+    public final static native void InfoRecordInt_value_set(long jarg1, InfoRecordInt jarg1_, long jarg2);
+
+    public final static native long InfoRecordInt_value_get(long jarg1, InfoRecordInt jarg1_);
+
+    public final static native void InfoRecordInt_default_value_set(long jarg1, InfoRecordInt jarg1_, long jarg2);
+
+    public final static native long InfoRecordInt_default_value_get(long jarg1, InfoRecordInt jarg1_);
+
+    public final static native long new_InfoRecordInt(
+            String jarg1,
+            String jarg2,
+            boolean jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native void delete_InfoRecordInt(long jarg1);
+
+    public final static native void InfoRecordDouble_value_set(long jarg1, InfoRecordDouble jarg1_, long jarg2);
+
+    public final static native long InfoRecordDouble_value_get(long jarg1, InfoRecordDouble jarg1_);
+
+    public final static native void InfoRecordDouble_default_value_set(
+            long jarg1,
+            InfoRecordDouble jarg1_,
+            double jarg2
+    );
+
+    public final static native double InfoRecordDouble_default_value_get(long jarg1, InfoRecordDouble jarg1_);
+
+    public final static native long new_InfoRecordDouble(
+            String jarg1,
+            String jarg2,
+            boolean jarg3,
+            long jarg4,
+            double jarg5
+    );
+
+    public final static native void delete_InfoRecordDouble(long jarg1);
+
+    public final static native void HighsInfoStruct_valid_set(long jarg1, HighsInfoStruct jarg1_, boolean jarg2);
+
+    public final static native boolean HighsInfoStruct_valid_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_mip_node_count_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
+
+    public final static native long HighsInfoStruct_mip_node_count_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_simplex_iteration_count_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_simplex_iteration_count_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_ipm_iteration_count_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_ipm_iteration_count_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_crossover_iteration_count_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_crossover_iteration_count_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_pdlp_iteration_count_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_pdlp_iteration_count_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_qp_iteration_count_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_qp_iteration_count_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_primal_solution_status_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_primal_solution_status_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_dual_solution_status_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_dual_solution_status_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_basis_validity_set(long jarg1, HighsInfoStruct jarg1_, long jarg2);
+
+    public final static native long HighsInfoStruct_basis_validity_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_objective_function_value_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_objective_function_value_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_mip_dual_bound_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_mip_dual_bound_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_mip_gap_set(long jarg1, HighsInfoStruct jarg1_, double jarg2);
+
+    public final static native double HighsInfoStruct_mip_gap_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_max_integrality_violation_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_max_integrality_violation_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_num_primal_infeasibilities_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_num_primal_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_max_primal_infeasibility_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_max_primal_infeasibility_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_sum_primal_infeasibilities_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_sum_primal_infeasibilities_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_num_dual_infeasibilities_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_num_dual_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_max_dual_infeasibility_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_max_dual_infeasibility_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_sum_dual_infeasibilities_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_sum_dual_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_num_semi_infeasibilities_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_num_semi_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_max_semi_infeasibility_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_max_semi_infeasibility_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_sum_semi_infeasibilities_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_sum_semi_infeasibilities_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_num_relative_primal_infeasibilities_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_num_relative_primal_infeasibilities_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_max_relative_primal_infeasibility_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_max_relative_primal_infeasibility_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_num_relative_dual_infeasibilities_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_num_relative_dual_infeasibilities_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_max_relative_dual_infeasibility_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_max_relative_dual_infeasibility_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_num_primal_residual_errors_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_num_primal_residual_errors_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_max_primal_residual_error_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_max_primal_residual_error_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_num_dual_residual_errors_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_num_dual_residual_errors_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_max_dual_residual_error_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_max_dual_residual_error_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native void HighsInfoStruct_num_relative_primal_residual_errors_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_num_relative_primal_residual_errors_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_max_relative_primal_residual_error_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_max_relative_primal_residual_error_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_num_relative_dual_residual_errors_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_num_relative_dual_residual_errors_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_max_relative_dual_residual_error_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_max_relative_dual_residual_error_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_num_complementarity_violations_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            long jarg2
+    );
+
+    public final static native long HighsInfoStruct_num_complementarity_violations_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_max_complementarity_violation_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_max_complementarity_violation_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_primal_dual_objective_error_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_primal_dual_objective_error_get(
+            long jarg1,
+            HighsInfoStruct jarg1_
+    );
+
+    public final static native void HighsInfoStruct_primal_dual_integral_set(
+            long jarg1,
+            HighsInfoStruct jarg1_,
+            double jarg2
+    );
+
+    public final static native double HighsInfoStruct_primal_dual_integral_get(long jarg1, HighsInfoStruct jarg1_);
+
+    public final static native long new_HighsInfoStruct();
+
+    public final static native void delete_HighsInfoStruct(long jarg1);
+
+    public final static native long new_HighsInfo__SWIG_0();
+
+    public final static native long new_HighsInfo__SWIG_1(long jarg1, HighsInfo jarg1_);
+
+    public final static native void delete_HighsInfo(long jarg1);
+
+    public final static native void HighsInfo_invalidate(long jarg1, HighsInfo jarg1_);
+
+    public final static native void HighsInfo_invalidateKkt(long jarg1, HighsInfo jarg1_);
+
+    public final static native void HighsInfo_invalidatePrimalKkt(long jarg1, HighsInfo jarg1_);
+
+    public final static native void HighsInfo_invalidateDualKkt(long jarg1, HighsInfo jarg1_);
+
+    public final static native boolean HighsInfo_equal(long jarg1, HighsInfo jarg1_, long jarg2, HighsInfo jarg2_);
+
+    public final static native void HighsInfo_records_set(long jarg1, HighsInfo jarg1_, long jarg2);
+
+    public final static native long HighsInfo_records_get(long jarg1, HighsInfo jarg1_);
+
+    public final static native int writeInfoToFile__SWIG_0(
+            long jarg1,
+            boolean jarg2,
+            long jarg3,
+            HighsInfo jarg3_,
+            long jarg4
+    );
+
+    public final static native int writeInfoToFile__SWIG_1(long jarg1, boolean jarg2, long jarg3, HighsInfo jarg3_);
+
+    public final static native int getInfoIndex(long jarg1, String jarg2, long jarg3, long jarg4);
+
+    public final static native int checkInfo__SWIG_0(long jarg1, long jarg2);
+
+    public final static native int checkInfo__SWIG_1(long jarg1, InfoRecordInt jarg1_);
+
+    public final static native int checkInfo__SWIG_2(long jarg1, InfoRecordDouble jarg1_);
+
+    public final static native int getLocalInfoValue__SWIG_0(
+            long jarg1,
+            String jarg2,
+            boolean jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int getLocalInfoValue__SWIG_1(
+            long jarg1,
+            String jarg2,
+            boolean jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int getLocalInfoValue__SWIG_2(
+            long jarg1,
+            String jarg2,
+            boolean jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int getLocalInfoType(long jarg1, String jarg2, long jarg3, long jarg4);
+
+    public final static native int writeInfoToFile__SWIG_2(long jarg1, boolean jarg2, long jarg3, long jarg4);
+
+    public final static native int writeInfoToFile__SWIG_3(long jarg1, boolean jarg2, long jarg3);
+
+    public final static native void reportInfo__SWIG_0(long jarg1, long jarg2, long jarg3);
+
+    public final static native void reportInfo__SWIG_1(long jarg1, long jarg2);
+
+    public final static native void reportInfo__SWIG_2(long jarg1, long jarg2, InfoRecordInt64 jarg2_, long jarg3);
+
+    public final static native void reportInfo__SWIG_3(long jarg1, long jarg2, InfoRecordInt64 jarg2_);
+
+    public final static native void reportInfo__SWIG_4(long jarg1, long jarg2, InfoRecordInt jarg2_, long jarg3);
+
+    public final static native void reportInfo__SWIG_5(long jarg1, long jarg2, InfoRecordInt jarg2_);
+
+    public final static native void reportInfo__SWIG_6(long jarg1, long jarg2, InfoRecordDouble jarg2_, long jarg3);
+
+    public final static native void reportInfo__SWIG_7(long jarg1, long jarg2, InfoRecordDouble jarg2_);
+
+    public final static native void HighsModel_lp__set(long jarg1, HighsModel jarg1_, long jarg2);
+
+    public final static native long HighsModel_lp__get(long jarg1, HighsModel jarg1_);
+
+    public final static native void HighsModel_hessian__set(long jarg1, HighsModel jarg1_, long jarg2);
+
+    public final static native long HighsModel_hessian__get(long jarg1, HighsModel jarg1_);
+
+    public final static native boolean HighsModel_equalButForNames(
+            long jarg1,
+            HighsModel jarg1_,
+            long jarg2,
+            HighsModel jarg2_
+    );
+
+    public final static native boolean HighsModel_isQp(long jarg1, HighsModel jarg1_);
+
+    public final static native boolean HighsModel_isMip(long jarg1, HighsModel jarg1_);
+
+    public final static native boolean HighsModel_isEmpty(long jarg1, HighsModel jarg1_);
+
+    public final static native boolean HighsModel_needsMods(long jarg1, HighsModel jarg1_, double jarg2);
+
+    public final static native boolean HighsModel_hasMods(long jarg1, HighsModel jarg1_);
+
+    public final static native void HighsModel_clear(long jarg1, HighsModel jarg1_);
+
+    public final static native double HighsModel_objectiveValue(
+            long jarg1,
+            HighsModel jarg1_,
+            long jarg2,
+            DoubleVector jarg2_
+    );
+
+    public final static native void HighsModel_objectiveGradient(
+            long jarg1,
+            HighsModel jarg1_,
+            long jarg2,
+            DoubleVector jarg2_,
+            long jarg3,
+            DoubleVector jarg3_
+    );
+
+    public final static native long new_HighsModel();
+
+    public final static native void delete_HighsModel(long jarg1);
+
+    public final static native int HighsStatus_kError_get();
+
+    public final static native int HighsStatus_kOk_get();
+
+    public final static native int HighsStatus_kWarning_get();
+
+    public final static native String highsStatusToString(int jarg1);
+
+    public final static native int interpretCallStatus__SWIG_0(long jarg1, int jarg2, int jarg3, String jarg4);
+
+    public final static native int interpretCallStatus__SWIG_1(long jarg1, int jarg2, int jarg3);
+
+    public final static native int worseStatus(int jarg1, int jarg2);
+
+    public final static native String highsVersion();
+
+    public final static native long highsVersionMajor();
+
+    public final static native long highsVersionMinor();
+
+    public final static native long highsVersionPatch();
+
+    public final static native String highsGithash();
+
+    public final static native long new_Highs();
+
+    public final static native void delete_Highs(long jarg1);
+
+    public final static native String Highs_version(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_versionMajor(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_versionMinor(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_versionPatch(long jarg1, Highs jarg1_);
+
+    public final static native String Highs_githash(long jarg1, Highs jarg1_);
+
+    public final static native String Highs_getThirdPartyNotice(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_clear(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_clearModel(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_clearSolver(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_clearSolverDualData(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_releaseMemory(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_passModel__SWIG_0(long jarg1, Highs jarg1_, long jarg2, HighsModel jarg2_);
+
+    public final static native int Highs_passModel__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_passModel__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8,
+            double jarg9,
+            long jarg10,
+            long jarg11,
+            long jarg12,
+            long jarg13,
+            long jarg14,
+            long jarg15,
+            long jarg16,
+            long jarg17,
+            long jarg18,
+            long jarg19,
+            long jarg20,
+            long jarg21
+    );
+
+    public final static native int Highs_passModel__SWIG_3(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8,
+            double jarg9,
+            long jarg10,
+            long jarg11,
+            long jarg12,
+            long jarg13,
+            long jarg14,
+            long jarg15,
+            long jarg16,
+            long jarg17,
+            long jarg18,
+            long jarg19,
+            long jarg20
+    );
+
+    public final static native int Highs_passModel__SWIG_4(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            double jarg7,
+            long jarg8,
+            long jarg9,
+            long jarg10,
+            long jarg11,
+            long jarg12,
+            long jarg13,
+            long jarg14,
+            long jarg15,
+            long jarg16
+    );
+
+    public final static native int Highs_passModel__SWIG_5(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            double jarg7,
+            long jarg8,
+            long jarg9,
+            long jarg10,
+            long jarg11,
+            long jarg12,
+            long jarg13,
+            long jarg14,
+            long jarg15
+    );
+
+    public final static native int Highs_passHessian__SWIG_0(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_passHessian__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7
+    );
+
+    public final static native int Highs_passLinearObjectives(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            HighsLinearObjective jarg3_
+    );
+
+    public final static native int Highs_addLinearObjective__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsLinearObjective jarg2_,
+            long jarg3
+    );
+
+    public final static native int Highs_addLinearObjective__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsLinearObjective jarg2_
+    );
+
+    public final static native long Highs_getNumLinearObjectives(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getLinearObjective(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_clearLinearObjectives(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_passColName(long jarg1, Highs jarg1_, long jarg2, String jarg3);
+
+    public final static native int Highs_passRowName(long jarg1, Highs jarg1_, long jarg2, String jarg3);
+
+    public final static native int Highs_passModelName(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_readModel(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_readBasis(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_matrixImage__SWIG_0(long jarg1, Highs jarg1_, String jarg2, String jarg3);
+
+    public final static native int Highs_matrixImage__SWIG_1(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_presolve(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_run(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_postsolve__SWIG_0(long jarg1, Highs jarg1_, long jarg2, HighsSolution jarg2_);
+
+    public final static native int Highs_postsolve__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsSolution jarg2_,
+            long jarg3,
+            HighsBasis jarg3_
+    );
+
+    public final static native int Highs_writeSolution__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_writeSolution__SWIG_1(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_readSolution__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_readSolution__SWIG_1(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_assessPrimalSolution(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_setOptionValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, boolean jarg3);
+
+    public final static native int Highs_setOptionValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_setOptionValue__SWIG_2(long jarg1, Highs jarg1_, String jarg2, int jarg3);
+
+    public final static native int Highs_setOptionValue__SWIG_3(long jarg1, Highs jarg1_, String jarg2, double jarg3);
+
+    public final static native int Highs_setOptionValue__SWIG_4(long jarg1, Highs jarg1_, String jarg2, String jarg3);
+
+    public final static native int Highs_readOptions(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_passOptions(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native long Highs_getOptions(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getOptionValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getOptionValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getOptionValue__SWIG_2(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getOptionValue__SWIG_3(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getOptionType__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_resetOptions(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_writeOptions__SWIG_0(long jarg1, Highs jarg1_, String jarg2, boolean jarg3);
+
+    public final static native int Highs_writeOptions__SWIG_1(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native long Highs_getNumOptions(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getOptionName(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getBoolOptionValues__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_getBoolOptionValues__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3
+    );
+
+    public final static native int Highs_getBoolOptionValues__SWIG_2(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_getIntOptionValues__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6
+    );
+
+    public final static native int Highs_getIntOptionValues__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_getIntOptionValues__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_getIntOptionValues__SWIG_3(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getIntOptionValues__SWIG_4(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_getDoubleOptionValues__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6
+    );
+
+    public final static native int Highs_getDoubleOptionValues__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_getDoubleOptionValues__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_getDoubleOptionValues__SWIG_3(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3
+    );
+
+    public final static native int Highs_getDoubleOptionValues__SWIG_4(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_getStringOptionValues__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_getStringOptionValues__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3
+    );
+
+    public final static native int Highs_getStringOptionValues__SWIG_2(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native long Highs_getRunData(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getRunDataValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getRunDataValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getRunDataType(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_writeRunData__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_writeRunData__SWIG_1(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getInfo(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getInfoValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getInfoValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getInfoType(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_writeInfo__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_writeInfo__SWIG_1(long jarg1, Highs jarg1_);
+
+    public final static native double Highs_getInfinity(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getSizeofHighsInt(long jarg1, Highs jarg1_);
+
+    public final static native double Highs_getRunTime(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getStandardFormLp__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8,
+            long jarg9,
+            long jarg10
+    );
+
+    public final static native int Highs_getStandardFormLp__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8,
+            long jarg9
+    );
+
+    public final static native int Highs_getStandardFormLp__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8
+    );
+
+    public final static native int Highs_getStandardFormLp__SWIG_3(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7
+    );
+
+    public final static native int Highs_getStandardFormLp__SWIG_4(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6
+    );
+
+    public final static native int Highs_getStandardFormLp__SWIG_5(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native long Highs_getPresolvedLp(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getPresolvedModel(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getPresolveLog(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getPresolveOrigColsIndex(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getPresolveOrigRowsIndex(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getFixedLp(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native long Highs_getLp(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getModel(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getSolution(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getIisLp(long jarg1, Highs jarg1_);
+
+    public final static native void Highs_zeroAllClocks(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getSavedMipSolutions(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getICrashInfo(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getBasis(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getModelStatus__SWIG_0(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getModelPresolveStatus(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getDualRay__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getDualRay__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_getDualRaySparse(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getDualUnboundednessDirection__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3
+    );
+
+    public final static native int Highs_getDualUnboundednessDirection__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_getPrimalRay__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getPrimalRay__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_getRanging(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_feasibilityRelaxation__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            double jarg2,
+            double jarg3,
+            double jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7
+    );
+
+    public final static native int Highs_feasibilityRelaxation__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            double jarg2,
+            double jarg3,
+            double jarg4,
+            long jarg5,
+            long jarg6
+    );
+
+    public final static native int Highs_feasibilityRelaxation__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            double jarg2,
+            double jarg3,
+            double jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_feasibilityRelaxation__SWIG_3(
+            long jarg1,
+            Highs jarg1_,
+            double jarg2,
+            double jarg3,
+            double jarg4
+    );
+
+    public final static native int Highs_getIllConditioning__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsIllConditioning jarg2_,
+            boolean jarg3,
+            long jarg4,
+            double jarg5
+    );
+
+    public final static native int Highs_getIllConditioning__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsIllConditioning jarg2_,
+            boolean jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_getIllConditioning__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsIllConditioning jarg2_,
+            boolean jarg3
+    );
+
+    public final static native int Highs_getObjectiveBoundScaling(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getIis(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native double Highs_getObjectiveValue(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getDualObjectiveValue(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native boolean Highs_hasInvert(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getBasicVariables(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_getBasisInverseRow__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_getBasisInverseRow__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_getBasisInverseRow__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getBasisInverseCol__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_getBasisInverseCol__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_getBasisInverseCol__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getBasisSolve__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_getBasisSolve__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_getBasisSolve__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getBasisTransposeSolve__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_getBasisTransposeSolve__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_getBasisTransposeSolve__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3
+    );
+
+    public final static native int Highs_getReducedRow__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6
+    );
+
+    public final static native int Highs_getReducedRow__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_getReducedRow__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_getReducedRow__SWIG_3(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getReducedColumn__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_getReducedColumn__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_getReducedColumn__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getKappa__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            boolean jarg3,
+            boolean jarg4
+    );
+
+    public final static native int Highs_getKappa__SWIG_1(long jarg1, Highs jarg1_, long jarg2, boolean jarg3);
+
+    public final static native int Highs_getKappa__SWIG_2(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native long Highs_getNumCol(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getNumRow(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getNumNz(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getHessianNumNz(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getObjectiveSense(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_getObjectiveOffset(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_getCols__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8,
+            long jarg9,
+            long jarg10,
+            long jarg11
+    );
+
+    public final static native int Highs_getCols__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8,
+            long jarg9,
+            long jarg10,
+            long jarg11
+    );
+
+    public final static native int Highs_getCols__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8,
+            long jarg9,
+            long jarg10
+    );
+
+    public final static native int Highs_getColName(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getColByName(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getColIntegrality(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getRows__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8,
+            long jarg9,
+            long jarg10
+    );
+
+    public final static native int Highs_getRows__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8,
+            long jarg9,
+            long jarg10
+    );
+
+    public final static native int Highs_getRows__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8,
+            long jarg9
+    );
+
+    public final static native int Highs_getRowName(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_getRowByName(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getCoeff(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
+
+    public final static native int Highs_writeModel__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_writeModel__SWIG_1(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_writePresolvedModel__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_writePresolvedModel__SWIG_1(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_writeIisModel__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_writeIisModel__SWIG_1(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_writeLocalModel__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsModel jarg2_,
+            String jarg3
+    );
+
+    public final static native int Highs_writeLocalModel__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsModel jarg2_
+    );
+
+    public final static native int Highs_writeBasis__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_writeBasis__SWIG_1(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_changeObjectiveSense(long jarg1, Highs jarg1_, int jarg2);
+
+    public final static native int Highs_changeObjectiveOffset(long jarg1, Highs jarg1_, double jarg2);
+
+    public final static native int Highs_changeColIntegrality(long jarg1, Highs jarg1_, long jarg2, int jarg3);
+
+    public final static native int Highs_changeColsIntegrality__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_changeColsIntegrality__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_changeColsIntegrality__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3
+    );
+
+    public final static native int Highs_clearIntegrality(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_changeColCost(long jarg1, Highs jarg1_, long jarg2, double jarg3);
+
+    public final static native int Highs_changeColsCost__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_changeColsCost__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_changeColsCost__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_changeColBounds(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            double jarg3,
+            double jarg4
+    );
+
+    public final static native int Highs_changeColsBounds__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_changeColsBounds__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_changeColsBounds__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_changeRowBounds(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            double jarg3,
+            double jarg4
+    );
+
+    public final static native int Highs_changeRowsBounds__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_changeRowsBounds__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native int Highs_changeRowsBounds__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_changeCoeff(long jarg1, Highs jarg1_, long jarg2, long jarg3, double jarg4);
+
+    public final static native int Highs_setMatrixFormat(long jarg1, Highs jarg1_, int jarg2);
+
+    public final static native int Highs_addCol(
+            long jarg1,
+            Highs jarg1_,
+            double jarg2,
+            double jarg3,
+            double jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7
+    );
+
+    public final static native int Highs_addCols(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8,
+            long jarg9
+    );
+
+    public final static native int Highs_addVar__SWIG_0(long jarg1, Highs jarg1_, double jarg2, double jarg3);
+
+    public final static native int Highs_addVar__SWIG_1(long jarg1, Highs jarg1_, double jarg2);
+
+    public final static native int Highs_addVar__SWIG_2(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_addVars(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
+
+    public final static native int Highs_addRow(
+            long jarg1,
+            Highs jarg1_,
+            double jarg2,
+            double jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6
+    );
+
+    public final static native int Highs_addRows(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4,
+            long jarg5,
+            long jarg6,
+            long jarg7,
+            long jarg8
+    );
+
+    public final static native int Highs_ensureColwise(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_ensureRowwise(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_deleteCols__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_deleteCols__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_deleteCols__SWIG_2(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_deleteVars__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_deleteVars__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_deleteVars__SWIG_2(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_deleteRows__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_deleteRows__SWIG_1(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_deleteRows__SWIG_2(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_scaleCol(long jarg1, Highs jarg1_, long jarg2, double jarg3);
+
+    public final static native int Highs_scaleRow(long jarg1, Highs jarg1_, long jarg2, double jarg3);
+
+    public final static native int Highs_setSolution__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsSolution jarg2_
+    );
+
+    public final static native int Highs_setSolution__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            long jarg3,
+            long jarg4
+    );
+
+    public final static native int Highs_setCallback__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_setCallback__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_setCallback__SWIG_2(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_setCallback__SWIG_3(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_startCallback__SWIG_0(long jarg1, Highs jarg1_, int jarg2);
+
+    public final static native int Highs_startCallback__SWIG_1(long jarg1, Highs jarg1_, int jarg2);
+
+    public final static native int Highs_stopCallback__SWIG_0(long jarg1, Highs jarg1_, int jarg2);
+
+    public final static native int Highs_stopCallback__SWIG_1(long jarg1, Highs jarg1_, int jarg2);
+
+    public final static native int Highs_setBasis__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsBasis jarg2_,
+            String jarg3
+    );
+
+    public final static native int Highs_setBasis__SWIG_1(long jarg1, Highs jarg1_, long jarg2, HighsBasis jarg2_);
+
+    public final static native int Highs_setBasis__SWIG_2(long jarg1, Highs jarg1_);
+
+    public final static native void Highs_reportProfiling(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_crossover(long jarg1, Highs jarg1_, long jarg2, HighsSolution jarg2_);
+
+    public final static native int Highs_openLogFile__SWIG_0(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_openLogFile__SWIG_1(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_closeLogFile(long jarg1, Highs jarg1_);
+
+    public final static native String Highs_presolveStatusToString(long jarg1, Highs jarg1_, int jarg2);
+
+    public final static native String Highs_modelStatusToString(long jarg1, Highs jarg1_, int jarg2);
+
+    public final static native String Highs_solutionStatusToString(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native String Highs_basisStatusToString(long jarg1, Highs jarg1_, int jarg2);
+
+    public final static native String Highs_basisValidityToString(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native String Highs_presolveRuleTypeToString(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_initializeMultiThreading(long jarg1, Highs jarg1_);
+
+    public final static native void Highs_resetGlobalScheduler__SWIG_0(boolean jarg1);
+
+    public final static native void Highs_resetGlobalScheduler__SWIG_1();
+
+    public final static native void Highs_initializeProfiling(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsProfiling jarg2_
+    );
+
+    public final static native void Highs_initializeSingleThreadedProfiling(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            HighsProfiling jarg2_
+    );
+
+    public final static native void Highs_resetProfiling(long jarg1, Highs jarg1_);
+
+    public final static native void Highs_clearProfiling(long jarg1, Highs jarg1_);
+
+    public final static native void Highs_setProfiling(long jarg1, Highs jarg1_, long jarg2, HighsProfiling jarg2_);
+
+    public final static native int Highs_optimizeHighs(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_optimizeModel(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_calledOptimizeModel(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_optimizeLp(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getSimplexStats(long jarg1, Highs jarg1_);
+
+    public final static native void Highs_reportSimplexStats(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_putIterate(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getIterate(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getDualEdgeWeights(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getBasicVariablesArray(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getBasisInverseRowSparse(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native long Highs_getPrimalPhase1Dual(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getColOrRowName(
+            long jarg1,
+            Highs jarg1_,
+            long jarg2,
+            boolean jarg3,
+            long jarg4,
+            long jarg5
+    );
+
+    public final static native long Highs_defineClock(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native void Highs_writeAllClocks(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_clearModelNames(long jarg1, Highs jarg1_);
+
+    public final static native String Highs_compilationDate(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_setLogCallback__SWIG_0(long jarg1, Highs jarg1_, long jarg2, long jarg3);
+
+    public final static native int Highs_setLogCallback__SWIG_1(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native long Highs_getNumCols(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getNumRows(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getNumEntries(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_setHighsOptionValue__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            boolean jarg3
+    );
+
+    public final static native int Highs_setHighsOptionValue__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3
+    );
+
+    public final static native int Highs_setHighsOptionValue__SWIG_2(long jarg1, Highs jarg1_, String jarg2, int jarg3);
+
+    public final static native int Highs_setHighsOptionValue__SWIG_3(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            double jarg3
+    );
+
+    public final static native int Highs_setHighsOptionValue__SWIG_4(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            String jarg3
+    );
+
+    public final static native int Highs_readHighsOptions(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native int Highs_passHighsOptions(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_getHighsOptionValue__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3
+    );
+
+    public final static native int Highs_getHighsOptionValue__SWIG_1(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3
+    );
+
+    public final static native int Highs_getHighsOptionValue__SWIG_2(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3
+    );
+
+    public final static native int Highs_getHighsOptionValue__SWIG_3(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            long jarg3
+    );
+
+    public final static native int Highs_getHighsOptionType(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native long Highs_getHighsOptions(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_resetHighsOptions(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_writeHighsOptions__SWIG_0(
+            long jarg1,
+            Highs jarg1_,
+            String jarg2,
+            boolean jarg3
+    );
+
+    public final static native int Highs_writeHighsOptions__SWIG_1(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native long Highs_getSimplexIterationCount(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_setHighsLogfile__SWIG_0(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_setHighsLogfile__SWIG_1(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_setHighsOutput__SWIG_0(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_setHighsOutput__SWIG_1(long jarg1, Highs jarg1_);
+
+    public final static native long Highs_getHighsInfo(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getHighsInfoValue__SWIG_0(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_getHighsInfoValue__SWIG_1(long jarg1, Highs jarg1_, String jarg2, long jarg3);
+
+    public final static native int Highs_writeHighsInfo(long jarg1, Highs jarg1_, String jarg2);
+
+    public final static native double Highs_getHighsInfinity(long jarg1, Highs jarg1_);
+
+    public final static native double Highs_getHighsRunTime(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_getModelStatus__SWIG_1(long jarg1, Highs jarg1_, boolean jarg2);
+
+    public final static native void Highs_logHeader(long jarg1, Highs jarg1_);
+
+    public final static native void Highs_deprecationMessage(long jarg1, Highs jarg1_, String jarg2, String jarg3);
+
+    public final static native long Highs_getHotStart(long jarg1, Highs jarg1_);
+
+    public final static native int Highs_setHotStart(long jarg1, Highs jarg1_, long jarg2, HotStart jarg2_);
+
+    public final static native int Highs_freezeBasis(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_unfreezeBasis(long jarg1, Highs jarg1_, long jarg2);
+
+    public final static native int Highs_frozenBasisAllDataClear(long jarg1, Highs jarg1_);
+
+    public final static native String highsCompilationDate();
+
+    public final static native long InfoRecordInt64_SWIGUpcast(long jarg1);
+
+    public final static native long InfoRecordInt_SWIGUpcast(long jarg1);
+
+    public final static native long InfoRecordDouble_SWIGUpcast(long jarg1);
+
+    public final static native long HighsInfo_SWIGUpcast(long jarg1);
 }

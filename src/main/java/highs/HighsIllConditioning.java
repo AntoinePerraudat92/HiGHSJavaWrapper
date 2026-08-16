@@ -9,60 +9,66 @@
 package highs;
 
 public class HighsIllConditioning {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsIllConditioning(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsIllConditioning obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsIllConditioning obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsIllConditioning(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsIllConditioning(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsIllConditioning() {
+        this(highsJNI.new_HighsIllConditioning(), true);
     }
-  }
 
-  public void setRecord(SWIGTYPE_p_std__vectorT_HighsIllConditioningRecord_t value) {
-    highsJNI.HighsIllConditioning_record_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_HighsIllConditioningRecord_t.getCPtr(value));
-  }
+    protected static long getCPtr(HighsIllConditioning obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public SWIGTYPE_p_std__vectorT_HighsIllConditioningRecord_t getRecord() {
-    long cPtr = highsJNI.HighsIllConditioning_record_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsIllConditioningRecord_t(cPtr, false);
-  }
+    protected static long swigRelease(HighsIllConditioning obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void clear() {
-    highsJNI.HighsIllConditioning_clear(swigCPtr, this);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public HighsIllConditioning() {
-    this(highsJNI.new_HighsIllConditioning(), true);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsIllConditioning(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
+
+    public SWIGTYPE_p_std__vectorT_HighsIllConditioningRecord_t getRecord() {
+        long cPtr = highsJNI.HighsIllConditioning_record_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsIllConditioningRecord_t(cPtr, false);
+    }
+
+    public void setRecord(SWIGTYPE_p_std__vectorT_HighsIllConditioningRecord_t value) {
+        highsJNI.HighsIllConditioning_record_set(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_std__vectorT_HighsIllConditioningRecord_t.getCPtr(value)
+        );
+    }
+
+    public void clear() {
+        highsJNI.HighsIllConditioning_clear(swigCPtr, this);
+    }
 
 }

@@ -9,53 +9,88 @@
 package highs;
 
 public final class IisStrategy {
-  public final static IisStrategy kIisStrategyMin = new IisStrategy("kIisStrategyMin", highsJNI.kIisStrategyMin_get());
-  public final static IisStrategy kIisStrategyLight = new IisStrategy("kIisStrategyLight", highsJNI.kIisStrategyLight_get());
-  public final static IisStrategy kIisStrategyFromRay = new IisStrategy("kIisStrategyFromRay", highsJNI.kIisStrategyFromRay_get());
-  public final static IisStrategy kIisStrategyFromLp = new IisStrategy("kIisStrategyFromLp", highsJNI.kIisStrategyFromLp_get());
-  public final static IisStrategy kIisStrategyIrreducible = new IisStrategy("kIisStrategyIrreducible", highsJNI.kIisStrategyIrreducible_get());
-  public final static IisStrategy kIisStrategyColPriority = new IisStrategy("kIisStrategyColPriority", highsJNI.kIisStrategyColPriority_get());
-  public final static IisStrategy kIisStrategyRelaxation = new IisStrategy("kIisStrategyRelaxation", highsJNI.kIisStrategyRelaxation_get());
-  public final static IisStrategy kIisStrategyDefault = new IisStrategy("kIisStrategyDefault", highsJNI.kIisStrategyDefault_get());
-  public final static IisStrategy kIisStrategyMax = new IisStrategy("kIisStrategyMax", highsJNI.kIisStrategyMax_get());
+    public final static IisStrategy kIisStrategyMin = new IisStrategy(
+            "kIisStrategyMin",
+            highsJNI.kIisStrategyMin_get()
+    );
+    public final static IisStrategy kIisStrategyLight = new IisStrategy(
+            "kIisStrategyLight",
+            highsJNI.kIisStrategyLight_get()
+    );
+    public final static IisStrategy kIisStrategyFromRay = new IisStrategy(
+            "kIisStrategyFromRay",
+            highsJNI.kIisStrategyFromRay_get()
+    );
+    public final static IisStrategy kIisStrategyFromLp = new IisStrategy(
+            "kIisStrategyFromLp",
+            highsJNI.kIisStrategyFromLp_get()
+    );
+    public final static IisStrategy kIisStrategyIrreducible = new IisStrategy(
+            "kIisStrategyIrreducible",
+            highsJNI.kIisStrategyIrreducible_get()
+    );
+    public final static IisStrategy kIisStrategyColPriority = new IisStrategy(
+            "kIisStrategyColPriority",
+            highsJNI.kIisStrategyColPriority_get()
+    );
+    public final static IisStrategy kIisStrategyRelaxation = new IisStrategy(
+            "kIisStrategyRelaxation",
+            highsJNI.kIisStrategyRelaxation_get()
+    );
+    public final static IisStrategy kIisStrategyDefault = new IisStrategy(
+            "kIisStrategyDefault",
+            highsJNI.kIisStrategyDefault_get()
+    );
+    public final static IisStrategy kIisStrategyMax = new IisStrategy(
+            "kIisStrategyMax",
+            highsJNI.kIisStrategyMax_get()
+    );
+    private static IisStrategy[] swigValues = {
+            kIisStrategyMin,
+            kIisStrategyLight,
+            kIisStrategyFromRay,
+            kIisStrategyFromLp,
+            kIisStrategyIrreducible,
+            kIisStrategyColPriority,
+            kIisStrategyRelaxation,
+            kIisStrategyDefault,
+            kIisStrategyMax
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private IisStrategy(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private IisStrategy(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static IisStrategy swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + IisStrategy.class + " with value " + swigValue);
-  }
+    private IisStrategy(String swigName, IisStrategy swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private IisStrategy(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static IisStrategy swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + IisStrategy.class + " with value " + swigValue);
+    }
 
-  private IisStrategy(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private IisStrategy(String swigName, IisStrategy swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static IisStrategy[] swigValues = { kIisStrategyMin, kIisStrategyLight, kIisStrategyFromRay, kIisStrategyFromLp, kIisStrategyIrreducible, kIisStrategyColPriority, kIisStrategyRelaxation, kIisStrategyDefault, kIisStrategyMax };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 

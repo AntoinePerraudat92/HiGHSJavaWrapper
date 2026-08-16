@@ -9,218 +9,239 @@
 package highs;
 
 public class HighsProfiling {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
 
-  protected HighsProfiling(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(HighsProfiling obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected static long swigRelease(HighsProfiling obj) {
-    long ptr = 0;
-    if (obj != null) {
-      if (!obj.swigCMemOwn)
-        throw new RuntimeException("Cannot release ownership as memory is not owned");
-      ptr = obj.swigCPtr;
-      obj.swigCMemOwn = false;
-      obj.delete();
+    protected HighsProfiling(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-    return ptr;
-  }
 
-  @SuppressWarnings({"deprecation", "removal"})
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        highsJNI.delete_HighsProfiling(swigCPtr);
-      }
-      swigCPtr = 0;
+    public HighsProfiling() {
+        this(highsJNI.new_HighsProfiling(), true);
     }
-  }
 
-  public void setTimer(SWIGTYPE_p_HighsTimer value) {
-    highsJNI.HighsProfiling_timer_set(swigCPtr, this, SWIGTYPE_p_HighsTimer.getCPtr(value));
-  }
+    protected static long getCPtr(HighsProfiling obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public SWIGTYPE_p_HighsTimer getTimer() {
-    long cPtr = highsJNI.HighsProfiling_timer_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_HighsTimer(cPtr, false);
-  }
+    protected static long swigRelease(HighsProfiling obj) {
+        long ptr = 0;
+        if (obj != null) {
+            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
+            ptr = obj.swigCPtr;
+            obj.swigCMemOwn = false;
+            obj.delete();
+        }
+        return ptr;
+    }
 
-  public void setMulti_threaded(boolean value) {
-    highsJNI.HighsProfiling_multi_threaded_set(swigCPtr, this, value);
-  }
+    @SuppressWarnings({
+            "deprecation",
+            "removal"
+    })
+    protected void finalize() {
+        delete();
+    }
 
-  public boolean getMulti_threaded() {
-    return highsJNI.HighsProfiling_multi_threaded_get(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                highsJNI.delete_HighsProfiling(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public void setModel_name_(String value) {
-    highsJNI.HighsProfiling_model_name__set(swigCPtr, this, value);
-  }
+    public SWIGTYPE_p_HighsTimer getTimer() {
+        long cPtr = highsJNI.HighsProfiling_timer_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_HighsTimer(cPtr, false);
+    }
 
-  public String getModel_name_() {
-    return highsJNI.HighsProfiling_model_name__get(swigCPtr, this);
-  }
+    public void setTimer(SWIGTYPE_p_HighsTimer value) {
+        highsJNI.HighsProfiling_timer_set(swigCPtr, this, SWIGTYPE_p_HighsTimer.getCPtr(value));
+    }
 
-  public void setSub_solver_(boolean value) {
-    highsJNI.HighsProfiling_sub_solver__set(swigCPtr, this, value);
-  }
+    public boolean getMulti_threaded() {
+        return highsJNI.HighsProfiling_multi_threaded_get(swigCPtr, this);
+    }
 
-  public boolean getSub_solver_() {
-    return highsJNI.HighsProfiling_sub_solver__get(swigCPtr, this);
-  }
+    public void setMulti_threaded(boolean value) {
+        highsJNI.HighsProfiling_multi_threaded_set(swigCPtr, this, value);
+    }
 
-  public void setMip_(boolean value) {
-    highsJNI.HighsProfiling_mip__set(swigCPtr, this, value);
-  }
+    public String getModel_name_() {
+        return highsJNI.HighsProfiling_model_name__get(swigCPtr, this);
+    }
 
-  public boolean getMip_() {
-    return highsJNI.HighsProfiling_mip__get(swigCPtr, this);
-  }
+    public void setModel_name_(String value) {
+        highsJNI.HighsProfiling_model_name__set(swigCPtr, this, value);
+    }
 
-  public void setNum_profiling_clock_(long value) {
-    highsJNI.HighsProfiling_num_profiling_clock__set(swigCPtr, this, value);
-  }
+    public boolean getSub_solver_() {
+        return highsJNI.HighsProfiling_sub_solver__get(swigCPtr, this);
+    }
 
-  public long getNum_profiling_clock_() {
-    return highsJNI.HighsProfiling_num_profiling_clock__get(swigCPtr, this);
-  }
+    public void setSub_solver_(boolean value) {
+        highsJNI.HighsProfiling_sub_solver__set(swigCPtr, this, value);
+    }
 
-  public void setName(SWIGTYPE_p_std__vectorT_std__string_t value) {
-    highsJNI.HighsProfiling_name_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_std__string_t.getCPtr(value));
-  }
+    public boolean getMip_() {
+        return highsJNI.HighsProfiling_mip__get(swigCPtr, this);
+    }
 
-  public SWIGTYPE_p_std__vectorT_std__string_t getName() {
-    long cPtr = highsJNI.HighsProfiling_name_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_std__string_t(cPtr, false);
-  }
+    public void setMip_(boolean value) {
+        highsJNI.HighsProfiling_mip__set(swigCPtr, this, value);
+    }
 
-  public void setSubmip(SWIGTYPE_p_std__vectorT_unsigned_char_t value) {
-    highsJNI.HighsProfiling_submip_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_unsigned_char_t.getCPtr(value));
-  }
+    public long getNum_profiling_clock_() {
+        return highsJNI.HighsProfiling_num_profiling_clock__get(swigCPtr, this);
+    }
 
-  public SWIGTYPE_p_std__vectorT_unsigned_char_t getSubmip() {
-    long cPtr = highsJNI.HighsProfiling_submip_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_unsigned_char_t(cPtr, false);
-  }
+    public void setNum_profiling_clock_(long value) {
+        highsJNI.HighsProfiling_num_profiling_clock__set(swigCPtr, this, value);
+    }
 
-  public void setRecord(SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t value) {
-    highsJNI.HighsProfiling_record_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t.getCPtr(value));
-  }
+    public SWIGTYPE_p_std__vectorT_std__string_t getName() {
+        long cPtr = highsJNI.HighsProfiling_name_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_std__string_t(cPtr, false);
+    }
 
-  public SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t getRecord() {
-    long cPtr = highsJNI.HighsProfiling_record_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t(cPtr, false);
-  }
+    public void setName(SWIGTYPE_p_std__vectorT_std__string_t value) {
+        highsJNI.HighsProfiling_name_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_std__string_t.getCPtr(value));
+    }
 
-  public void setSubmip_record(SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t value) {
-    highsJNI.HighsProfiling_submip_record_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t.getCPtr(value));
-  }
+    public SWIGTYPE_p_std__vectorT_unsigned_char_t getSubmip() {
+        long cPtr = highsJNI.HighsProfiling_submip_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_unsigned_char_t(cPtr, false);
+    }
 
-  public SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t getSubmip_record() {
-    long cPtr = highsJNI.HighsProfiling_submip_record_get(swigCPtr, this);
-    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t(cPtr, false);
-  }
+    public void setSubmip(SWIGTYPE_p_std__vectorT_unsigned_char_t value) {
+        highsJNI.HighsProfiling_submip_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_unsigned_char_t.getCPtr(value));
+    }
 
-  public void setInitialized(boolean value) {
-    highsJNI.HighsProfiling_initialized_set(swigCPtr, this, value);
-  }
+    public SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t getRecord() {
+        long cPtr = highsJNI.HighsProfiling_record_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t(cPtr, false);
+    }
 
-  public boolean getInitialized() {
-    return highsJNI.HighsProfiling_initialized_get(swigCPtr, this);
-  }
+    public void setRecord(SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t value) {
+        highsJNI.HighsProfiling_record_set(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t.getCPtr(value)
+        );
+    }
 
-  public void initialize(SWIGTYPE_p_HighsTimer timer_, boolean subsolver_profiling, boolean mip_profiling) {
-    highsJNI.HighsProfiling_initialize__SWIG_0(swigCPtr, this, SWIGTYPE_p_HighsTimer.getCPtr(timer_), subsolver_profiling, mip_profiling);
-  }
+    public SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t getSubmip_record() {
+        long cPtr = highsJNI.HighsProfiling_submip_record_get(swigCPtr, this);
+        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t(cPtr, false);
+    }
 
-  public void initialize(SWIGTYPE_p_HighsTimer timer_, boolean subsolver_profiling) {
-    highsJNI.HighsProfiling_initialize__SWIG_1(swigCPtr, this, SWIGTYPE_p_HighsTimer.getCPtr(timer_), subsolver_profiling);
-  }
+    public void setSubmip_record(SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t value) {
+        highsJNI.HighsProfiling_submip_record_set(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_std__vectorT_HighsProfilingRecord_t.getCPtr(value)
+        );
+    }
 
-  public void clear() {
-    highsJNI.HighsProfiling_clear(swigCPtr, this);
-  }
+    public boolean getInitialized() {
+        return highsJNI.HighsProfiling_initialized_get(swigCPtr, this);
+    }
 
-  public long numThread() {
-    return highsJNI.HighsProfiling_numThread(swigCPtr, this);
-  }
+    public void setInitialized(boolean value) {
+        highsJNI.HighsProfiling_initialized_set(swigCPtr, this, value);
+    }
 
-  public long myThread() {
-    return highsJNI.HighsProfiling_myThread(swigCPtr, this);
-  }
+    public void initialize(SWIGTYPE_p_HighsTimer timer_, boolean subsolver_profiling, boolean mip_profiling) {
+        highsJNI.HighsProfiling_initialize__SWIG_0(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_HighsTimer.getCPtr(timer_),
+                subsolver_profiling,
+                mip_profiling
+        );
+    }
 
-  public void setSubMip(boolean submip) {
-    highsJNI.HighsProfiling_setSubMip(swigCPtr, this, submip);
-  }
+    public void initialize(SWIGTYPE_p_HighsTimer timer_, boolean subsolver_profiling) {
+        highsJNI.HighsProfiling_initialize__SWIG_1(
+                swigCPtr,
+                this,
+                SWIGTYPE_p_HighsTimer.getCPtr(timer_),
+                subsolver_profiling
+        );
+    }
 
-  public boolean isSubMip() {
-    return highsJNI.HighsProfiling_isSubMip(swigCPtr, this);
-  }
+    public void clear() {
+        highsJNI.HighsProfiling_clear(swigCPtr, this);
+    }
 
-  public HighsProfilingRecord getHighsProfilingRecord(long record_type) {
-    long cPtr = highsJNI.HighsProfiling_getHighsProfilingRecord__SWIG_0(swigCPtr, this, record_type);
-    return (cPtr == 0) ? null : new HighsProfilingRecord(cPtr, false);
-  }
+    public long numThread() {
+        return highsJNI.HighsProfiling_numThread(swigCPtr, this);
+    }
 
-  public HighsProfilingRecord getHighsProfilingRecord() {
-    long cPtr = highsJNI.HighsProfiling_getHighsProfilingRecord__SWIG_1(swigCPtr, this);
-    return (cPtr == 0) ? null : new HighsProfilingRecord(cPtr, false);
-  }
+    public long myThread() {
+        return highsJNI.HighsProfiling_myThread(swigCPtr, this);
+    }
 
-  public void start(long profiling_clock, boolean restart) {
-    highsJNI.HighsProfiling_start__SWIG_0(swigCPtr, this, profiling_clock, restart);
-  }
+    public boolean isSubMip() {
+        return highsJNI.HighsProfiling_isSubMip(swigCPtr, this);
+    }
 
-  public void start(long profiling_clock) {
-    highsJNI.HighsProfiling_start__SWIG_1(swigCPtr, this, profiling_clock);
-  }
+    public void setSubMip(boolean submip) {
+        highsJNI.HighsProfiling_setSubMip(swigCPtr, this, submip);
+    }
 
-  public void stop(long profiling_clock) {
-    highsJNI.HighsProfiling_stop(swigCPtr, this, profiling_clock);
-  }
+    public HighsProfilingRecord getHighsProfilingRecord(long record_type) {
+        long cPtr = highsJNI.HighsProfiling_getHighsProfilingRecord__SWIG_0(swigCPtr, this, record_type);
+        return (cPtr == 0) ? null : new HighsProfilingRecord(cPtr, false);
+    }
 
-  public double read(long profiling_clock, long record_type) {
-    return highsJNI.HighsProfiling_read__SWIG_0(swigCPtr, this, profiling_clock, record_type);
-  }
+    public HighsProfilingRecord getHighsProfilingRecord() {
+        long cPtr = highsJNI.HighsProfiling_getHighsProfilingRecord__SWIG_1(swigCPtr, this);
+        return (cPtr == 0) ? null : new HighsProfilingRecord(cPtr, false);
+    }
 
-  public double read(long profiling_clock) {
-    return highsJNI.HighsProfiling_read__SWIG_1(swigCPtr, this, profiling_clock);
-  }
+    public void start(long profiling_clock, boolean restart) {
+        highsJNI.HighsProfiling_start__SWIG_0(swigCPtr, this, profiling_clock, restart);
+    }
 
-  public boolean running(long profiling_clock, long record_type) {
-    return highsJNI.HighsProfiling_running__SWIG_0(swigCPtr, this, profiling_clock, record_type);
-  }
+    public void start(long profiling_clock) {
+        highsJNI.HighsProfiling_start__SWIG_1(swigCPtr, this, profiling_clock);
+    }
 
-  public boolean running(long profiling_clock) {
-    return highsJNI.HighsProfiling_running__SWIG_1(swigCPtr, this, profiling_clock);
-  }
+    public void stop(long profiling_clock) {
+        highsJNI.HighsProfiling_stop(swigCPtr, this, profiling_clock);
+    }
 
-  public long numCall(long profiling_clock, long record_type) {
-    return highsJNI.HighsProfiling_numCall__SWIG_0(swigCPtr, this, profiling_clock, record_type);
-  }
+    public double read(long profiling_clock, long record_type) {
+        return highsJNI.HighsProfiling_read__SWIG_0(swigCPtr, this, profiling_clock, record_type);
+    }
 
-  public long numCall(long profiling_clock) {
-    return highsJNI.HighsProfiling_numCall__SWIG_1(swigCPtr, this, profiling_clock);
-  }
+    public double read(long profiling_clock) {
+        return highsJNI.HighsProfiling_read__SWIG_1(swigCPtr, this, profiling_clock);
+    }
 
-  public void solveCall(String model, boolean submip) {
-    highsJNI.HighsProfiling_solveCall(swigCPtr, this, model, submip);
-  }
+    public boolean running(long profiling_clock, long record_type) {
+        return highsJNI.HighsProfiling_running__SWIG_0(swigCPtr, this, profiling_clock, record_type);
+    }
 
-  public HighsProfiling() {
-    this(highsJNI.new_HighsProfiling(), true);
-  }
+    public boolean running(long profiling_clock) {
+        return highsJNI.HighsProfiling_running__SWIG_1(swigCPtr, this, profiling_clock);
+    }
+
+    public long numCall(long profiling_clock, long record_type) {
+        return highsJNI.HighsProfiling_numCall__SWIG_0(swigCPtr, this, profiling_clock, record_type);
+    }
+
+    public long numCall(long profiling_clock) {
+        return highsJNI.HighsProfiling_numCall__SWIG_1(swigCPtr, this, profiling_clock);
+    }
+
+    public void solveCall(String model, boolean submip) {
+        highsJNI.HighsProfiling_solveCall(swigCPtr, this, model, submip);
+    }
 
 }

@@ -9,52 +9,62 @@
 package highs;
 
 public final class HighsDebugStatus {
-  public final static HighsDebugStatus kNotChecked = new HighsDebugStatus("kNotChecked", highsJNI.HighsDebugStatus_kNotChecked_get());
-  public final static HighsDebugStatus kOk = new HighsDebugStatus("kOk");
-  public final static HighsDebugStatus kSmallError = new HighsDebugStatus("kSmallError");
-  public final static HighsDebugStatus kWarning = new HighsDebugStatus("kWarning");
-  public final static HighsDebugStatus kLargeError = new HighsDebugStatus("kLargeError");
-  public final static HighsDebugStatus kError = new HighsDebugStatus("kError");
-  public final static HighsDebugStatus kExcessiveError = new HighsDebugStatus("kExcessiveError");
-  public final static HighsDebugStatus kLogicalError = new HighsDebugStatus("kLogicalError");
+    public final static HighsDebugStatus kNotChecked = new HighsDebugStatus(
+            "kNotChecked",
+            highsJNI.HighsDebugStatus_kNotChecked_get()
+    );
+    public final static HighsDebugStatus kOk = new HighsDebugStatus("kOk");
+    public final static HighsDebugStatus kSmallError = new HighsDebugStatus("kSmallError");
+    public final static HighsDebugStatus kWarning = new HighsDebugStatus("kWarning");
+    public final static HighsDebugStatus kLargeError = new HighsDebugStatus("kLargeError");
+    public final static HighsDebugStatus kError = new HighsDebugStatus("kError");
+    public final static HighsDebugStatus kExcessiveError = new HighsDebugStatus("kExcessiveError");
+    public final static HighsDebugStatus kLogicalError = new HighsDebugStatus("kLogicalError");
+    private static HighsDebugStatus[] swigValues = {
+            kNotChecked,
+            kOk,
+            kSmallError,
+            kWarning,
+            kLargeError,
+            kError,
+            kExcessiveError,
+            kLogicalError
+    };
+    private static int swigNext = 0;
+    private final int swigValue;
+    private final String swigName;
 
-  public final int swigValue() {
-    return swigValue;
-  }
+    private HighsDebugStatus(String swigName) {
+        this.swigName = swigName;
+        this.swigValue = swigNext++;
+    }
 
-  public String toString() {
-    return swigName;
-  }
+    private HighsDebugStatus(String swigName, int swigValue) {
+        this.swigName = swigName;
+        this.swigValue = swigValue;
+        swigNext = swigValue + 1;
+    }
 
-  public static HighsDebugStatus swigToEnum(int swigValue) {
-    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-      return swigValues[swigValue];
-    for (int i = 0; i < swigValues.length; i++)
-      if (swigValues[i].swigValue == swigValue)
-        return swigValues[i];
-    throw new IllegalArgumentException("No enum " + HighsDebugStatus.class + " with value " + swigValue);
-  }
+    private HighsDebugStatus(String swigName, HighsDebugStatus swigEnum) {
+        this.swigName = swigName;
+        this.swigValue = swigEnum.swigValue;
+        swigNext = this.swigValue + 1;
+    }
 
-  private HighsDebugStatus(String swigName) {
-    this.swigName = swigName;
-    this.swigValue = swigNext++;
-  }
+    public static HighsDebugStatus swigToEnum(int swigValue) {
+        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+            return swigValues[swigValue];
+        for (int i = 0; i < swigValues.length; i++)
+            if (swigValues[i].swigValue == swigValue) return swigValues[i];
+        throw new IllegalArgumentException("No enum " + HighsDebugStatus.class + " with value " + swigValue);
+    }
 
-  private HighsDebugStatus(String swigName, int swigValue) {
-    this.swigName = swigName;
-    this.swigValue = swigValue;
-    swigNext = swigValue+1;
-  }
+    public final int swigValue() {
+        return swigValue;
+    }
 
-  private HighsDebugStatus(String swigName, HighsDebugStatus swigEnum) {
-    this.swigName = swigName;
-    this.swigValue = swigEnum.swigValue;
-    swigNext = this.swigValue+1;
-  }
-
-  private static HighsDebugStatus[] swigValues = { kNotChecked, kOk, kSmallError, kWarning, kLargeError, kError, kExcessiveError, kLogicalError };
-  private static int swigNext = 0;
-  private final int swigValue;
-  private final String swigName;
+    public String toString() {
+        return swigName;
+    }
 }
 
