@@ -61,10 +61,10 @@ jobs:
           path: Wrapper
 
       - name: Generate shared libraries
-        shell: bash
+        shell: cmd
         run: |
           cd Wrapper
-          ./generate_shared_libraries_windows
+          ./generate_shared_libraries_windows.bat
 
       - name: Run Tests
         shell: pwsh
