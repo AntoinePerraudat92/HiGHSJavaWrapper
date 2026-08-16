@@ -9,81 +9,57 @@
 package highs;
 
 public final class HighsCallbackType {
-    public final static HighsCallbackType kCallbackMin = new HighsCallbackType(
-            "kCallbackMin",
-            highsJNI.kCallbackMin_get()
-    );
-    public final static HighsCallbackType kCallbackLogging = new HighsCallbackType(
-            "kCallbackLogging",
-            highsJNI.kCallbackLogging_get()
-    );
-    public final static HighsCallbackType kCallbackSimplexInterrupt = new HighsCallbackType(
-            "kCallbackSimplexInterrupt");
-    public final static HighsCallbackType kCallbackIpmInterrupt = new HighsCallbackType("kCallbackIpmInterrupt");
-    public final static HighsCallbackType kCallbackMipSolution = new HighsCallbackType("kCallbackMipSolution");
-    public final static HighsCallbackType kCallbackMipImprovingSolution = new HighsCallbackType(
-            "kCallbackMipImprovingSolution");
-    public final static HighsCallbackType kCallbackMipLogging = new HighsCallbackType("kCallbackMipLogging");
-    public final static HighsCallbackType kCallbackMipInterrupt = new HighsCallbackType("kCallbackMipInterrupt");
-    public final static HighsCallbackType kCallbackMipGetCutPool = new HighsCallbackType("kCallbackMipGetCutPool");
-    public final static HighsCallbackType kCallbackMipDefineLazyConstraints = new HighsCallbackType(
-            "kCallbackMipDefineLazyConstraints");
-    public final static HighsCallbackType kCallbackMipUserSolution = new HighsCallbackType("kCallbackMipUserSolution");
-    public final static HighsCallbackType kCallbackMax = new HighsCallbackType(
-            "kCallbackMax",
-            highsJNI.kCallbackMax_get()
-    );
-    public final static HighsCallbackType kNumCallbackType = new HighsCallbackType("kNumCallbackType");
-    private static HighsCallbackType[] swigValues = {
-            kCallbackMin,
-            kCallbackLogging,
-            kCallbackSimplexInterrupt,
-            kCallbackIpmInterrupt,
-            kCallbackMipSolution,
-            kCallbackMipImprovingSolution,
-            kCallbackMipLogging,
-            kCallbackMipInterrupt,
-            kCallbackMipGetCutPool,
-            kCallbackMipDefineLazyConstraints,
-            kCallbackMipUserSolution,
-            kCallbackMax,
-            kNumCallbackType
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static HighsCallbackType kCallbackMin = new HighsCallbackType("kCallbackMin", highsJNI.kCallbackMin_get());
+  public final static HighsCallbackType kCallbackLogging = new HighsCallbackType("kCallbackLogging", highsJNI.kCallbackLogging_get());
+  public final static HighsCallbackType kCallbackSimplexInterrupt = new HighsCallbackType("kCallbackSimplexInterrupt");
+  public final static HighsCallbackType kCallbackIpmInterrupt = new HighsCallbackType("kCallbackIpmInterrupt");
+  public final static HighsCallbackType kCallbackMipSolution = new HighsCallbackType("kCallbackMipSolution");
+  public final static HighsCallbackType kCallbackMipImprovingSolution = new HighsCallbackType("kCallbackMipImprovingSolution");
+  public final static HighsCallbackType kCallbackMipLogging = new HighsCallbackType("kCallbackMipLogging");
+  public final static HighsCallbackType kCallbackMipInterrupt = new HighsCallbackType("kCallbackMipInterrupt");
+  public final static HighsCallbackType kCallbackMipGetCutPool = new HighsCallbackType("kCallbackMipGetCutPool");
+  public final static HighsCallbackType kCallbackMipDefineLazyConstraints = new HighsCallbackType("kCallbackMipDefineLazyConstraints");
+  public final static HighsCallbackType kCallbackMipUserSolution = new HighsCallbackType("kCallbackMipUserSolution");
+  public final static HighsCallbackType kCallbackMax = new HighsCallbackType("kCallbackMax", highsJNI.kCallbackMax_get());
+  public final static HighsCallbackType kNumCallbackType = new HighsCallbackType("kNumCallbackType");
 
-    private HighsCallbackType(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private HighsCallbackType(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private HighsCallbackType(String swigName, HighsCallbackType swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static HighsCallbackType swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + HighsCallbackType.class + " with value " + swigValue);
+  }
 
-    public static HighsCallbackType swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + HighsCallbackType.class + " with value " + swigValue);
-    }
+  private HighsCallbackType(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private HighsCallbackType(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private HighsCallbackType(String swigName, HighsCallbackType swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static HighsCallbackType[] swigValues = { kCallbackMin, kCallbackLogging, kCallbackSimplexInterrupt, kCallbackIpmInterrupt, kCallbackMipSolution, kCallbackMipImprovingSolution, kCallbackMipLogging, kCallbackMipInterrupt, kCallbackMipGetCutPool, kCallbackMipDefineLazyConstraints, kCallbackMipUserSolution, kCallbackMax, kNumCallbackType };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

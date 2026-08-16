@@ -9,52 +9,47 @@
 package highs;
 
 public final class HighsRunDataType {
-    public final static HighsRunDataType kInt64 = new HighsRunDataType(
-            "kInt64",
-            highsJNI.HighsRunDataType_kInt64_get()
-    );
-    public final static HighsRunDataType kInt = new HighsRunDataType("kInt", highsJNI.HighsRunDataType_kInt_get());
-    public final static HighsRunDataType kDouble = new HighsRunDataType("kDouble");
-    private static HighsRunDataType[] swigValues = {
-            kInt64,
-            kInt,
-            kDouble
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static HighsRunDataType kInt64 = new HighsRunDataType("kInt64", highsJNI.HighsRunDataType_kInt64_get());
+  public final static HighsRunDataType kInt = new HighsRunDataType("kInt", highsJNI.HighsRunDataType_kInt_get());
+  public final static HighsRunDataType kDouble = new HighsRunDataType("kDouble");
 
-    private HighsRunDataType(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private HighsRunDataType(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private HighsRunDataType(String swigName, HighsRunDataType swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static HighsRunDataType swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + HighsRunDataType.class + " with value " + swigValue);
+  }
 
-    public static HighsRunDataType swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + HighsRunDataType.class + " with value " + swigValue);
-    }
+  private HighsRunDataType(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private HighsRunDataType(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private HighsRunDataType(String swigName, HighsRunDataType swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static HighsRunDataType[] swigValues = { kInt64, kInt, kDouble };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

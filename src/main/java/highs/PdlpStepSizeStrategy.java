@@ -9,67 +9,50 @@
 package highs;
 
 public final class PdlpStepSizeStrategy {
-    public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyFixed = new PdlpStepSizeStrategy(
-            "kPdlpStepSizeStrategyFixed",
-            highsJNI.kPdlpStepSizeStrategyFixed_get()
-    );
-    public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyMin = new PdlpStepSizeStrategy(
-            "kPdlpStepSizeStrategyMin",
-            highsJNI.kPdlpStepSizeStrategyMin_get()
-    );
-    public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyAdaptive = new PdlpStepSizeStrategy(
-            "kPdlpStepSizeStrategyAdaptive");
-    public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyMalitskyPock = new PdlpStepSizeStrategy(
-            "kPdlpStepSizeStrategyMalitskyPock");
-    public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyPid = new PdlpStepSizeStrategy(
-            "kPdlpStepSizeStrategyPid");
-    public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyMax = new PdlpStepSizeStrategy(
-            "kPdlpStepSizeStrategyMax",
-            highsJNI.kPdlpStepSizeStrategyMax_get()
-    );
-    private static PdlpStepSizeStrategy[] swigValues = {
-            kPdlpStepSizeStrategyFixed,
-            kPdlpStepSizeStrategyMin,
-            kPdlpStepSizeStrategyAdaptive,
-            kPdlpStepSizeStrategyMalitskyPock,
-            kPdlpStepSizeStrategyPid,
-            kPdlpStepSizeStrategyMax
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyFixed = new PdlpStepSizeStrategy("kPdlpStepSizeStrategyFixed", highsJNI.kPdlpStepSizeStrategyFixed_get());
+  public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyMin = new PdlpStepSizeStrategy("kPdlpStepSizeStrategyMin", highsJNI.kPdlpStepSizeStrategyMin_get());
+  public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyAdaptive = new PdlpStepSizeStrategy("kPdlpStepSizeStrategyAdaptive");
+  public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyMalitskyPock = new PdlpStepSizeStrategy("kPdlpStepSizeStrategyMalitskyPock");
+  public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyPid = new PdlpStepSizeStrategy("kPdlpStepSizeStrategyPid");
+  public final static PdlpStepSizeStrategy kPdlpStepSizeStrategyMax = new PdlpStepSizeStrategy("kPdlpStepSizeStrategyMax", highsJNI.kPdlpStepSizeStrategyMax_get());
 
-    private PdlpStepSizeStrategy(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private PdlpStepSizeStrategy(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private PdlpStepSizeStrategy(String swigName, PdlpStepSizeStrategy swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static PdlpStepSizeStrategy swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + PdlpStepSizeStrategy.class + " with value " + swigValue);
+  }
 
-    public static PdlpStepSizeStrategy swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + PdlpStepSizeStrategy.class + " with value " + swigValue);
-    }
+  private PdlpStepSizeStrategy(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private PdlpStepSizeStrategy(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private PdlpStepSizeStrategy(String swigName, PdlpStepSizeStrategy swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static PdlpStepSizeStrategy[] swigValues = { kPdlpStepSizeStrategyFixed, kPdlpStepSizeStrategyMin, kPdlpStepSizeStrategyAdaptive, kPdlpStepSizeStrategyMalitskyPock, kPdlpStepSizeStrategyPid, kPdlpStepSizeStrategyMax };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

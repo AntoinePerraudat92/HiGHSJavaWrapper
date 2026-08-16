@@ -9,68 +9,55 @@
 package highs;
 
 public final class HighsPresolveStatus {
-    public final static HighsPresolveStatus kNotPresolved = new HighsPresolveStatus(
-            "kNotPresolved",
-            highsJNI.HighsPresolveStatus_kNotPresolved_get()
-    );
-    public final static HighsPresolveStatus kNotReduced = new HighsPresolveStatus("kNotReduced");
-    public final static HighsPresolveStatus kInfeasible = new HighsPresolveStatus("kInfeasible");
-    public final static HighsPresolveStatus kUnboundedOrInfeasible = new HighsPresolveStatus("kUnboundedOrInfeasible");
-    public final static HighsPresolveStatus kReduced = new HighsPresolveStatus("kReduced");
-    public final static HighsPresolveStatus kReducedToEmpty = new HighsPresolveStatus("kReducedToEmpty");
-    public final static HighsPresolveStatus kTimeout = new HighsPresolveStatus("kTimeout");
-    public final static HighsPresolveStatus kNullError = new HighsPresolveStatus("kNullError");
-    public final static HighsPresolveStatus kOptionsError = new HighsPresolveStatus("kOptionsError");
-    public final static HighsPresolveStatus kNotSet = new HighsPresolveStatus("kNotSet");
-    public final static HighsPresolveStatus kOutOfMemory = new HighsPresolveStatus("kOutOfMemory");
-    private static HighsPresolveStatus[] swigValues = {
-            kNotPresolved,
-            kNotReduced,
-            kInfeasible,
-            kUnboundedOrInfeasible,
-            kReduced,
-            kReducedToEmpty,
-            kTimeout,
-            kNullError,
-            kOptionsError,
-            kNotSet,
-            kOutOfMemory
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static HighsPresolveStatus kNotPresolved = new HighsPresolveStatus("kNotPresolved", highsJNI.HighsPresolveStatus_kNotPresolved_get());
+  public final static HighsPresolveStatus kNotReduced = new HighsPresolveStatus("kNotReduced");
+  public final static HighsPresolveStatus kInfeasible = new HighsPresolveStatus("kInfeasible");
+  public final static HighsPresolveStatus kUnboundedOrInfeasible = new HighsPresolveStatus("kUnboundedOrInfeasible");
+  public final static HighsPresolveStatus kReduced = new HighsPresolveStatus("kReduced");
+  public final static HighsPresolveStatus kReducedToEmpty = new HighsPresolveStatus("kReducedToEmpty");
+  public final static HighsPresolveStatus kTimeout = new HighsPresolveStatus("kTimeout");
+  public final static HighsPresolveStatus kNullError = new HighsPresolveStatus("kNullError");
+  public final static HighsPresolveStatus kOptionsError = new HighsPresolveStatus("kOptionsError");
+  public final static HighsPresolveStatus kNotSet = new HighsPresolveStatus("kNotSet");
+  public final static HighsPresolveStatus kOutOfMemory = new HighsPresolveStatus("kOutOfMemory");
 
-    private HighsPresolveStatus(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private HighsPresolveStatus(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private HighsPresolveStatus(String swigName, HighsPresolveStatus swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static HighsPresolveStatus swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + HighsPresolveStatus.class + " with value " + swigValue);
+  }
 
-    public static HighsPresolveStatus swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + HighsPresolveStatus.class + " with value " + swigValue);
-    }
+  private HighsPresolveStatus(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private HighsPresolveStatus(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private HighsPresolveStatus(String swigName, HighsPresolveStatus swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static HighsPresolveStatus[] swigValues = { kNotPresolved, kNotReduced, kInfeasible, kUnboundedOrInfeasible, kReduced, kReducedToEmpty, kTimeout, kNullError, kOptionsError, kNotSet, kOutOfMemory };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

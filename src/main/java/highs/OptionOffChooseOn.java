@@ -9,52 +9,47 @@
 package highs;
 
 public final class OptionOffChooseOn {
-    public final static OptionOffChooseOn kHighsOptionOff = new OptionOffChooseOn(
-            "kHighsOptionOff",
-            highsJNI.kHighsOptionOff_get()
-    );
-    public final static OptionOffChooseOn kHighsOptionChoose = new OptionOffChooseOn("kHighsOptionChoose");
-    public final static OptionOffChooseOn kHighsOptionOn = new OptionOffChooseOn("kHighsOptionOn");
-    private static OptionOffChooseOn[] swigValues = {
-            kHighsOptionOff,
-            kHighsOptionChoose,
-            kHighsOptionOn
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static OptionOffChooseOn kHighsOptionOff = new OptionOffChooseOn("kHighsOptionOff", highsJNI.kHighsOptionOff_get());
+  public final static OptionOffChooseOn kHighsOptionChoose = new OptionOffChooseOn("kHighsOptionChoose");
+  public final static OptionOffChooseOn kHighsOptionOn = new OptionOffChooseOn("kHighsOptionOn");
 
-    private OptionOffChooseOn(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private OptionOffChooseOn(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private OptionOffChooseOn(String swigName, OptionOffChooseOn swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static OptionOffChooseOn swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + OptionOffChooseOn.class + " with value " + swigValue);
+  }
 
-    public static OptionOffChooseOn swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + OptionOffChooseOn.class + " with value " + swigValue);
-    }
+  private OptionOffChooseOn(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private OptionOffChooseOn(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private OptionOffChooseOn(String swigName, OptionOffChooseOn swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static OptionOffChooseOn[] swigValues = { kHighsOptionOff, kHighsOptionChoose, kHighsOptionOn };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

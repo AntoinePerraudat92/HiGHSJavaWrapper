@@ -9,96 +9,94 @@
 package highs;
 
 public class RefactorInfo {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected RefactorInfo(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected RefactorInfo(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public RefactorInfo() {
-        this(highsJNI.new_RefactorInfo(), true);
-    }
+  protected static long getCPtr(RefactorInfo obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(RefactorInfo obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
+  protected static long swigRelease(RefactorInfo obj) {
+    long ptr = 0;
+    if (obj != null) {
+      if (!obj.swigCMemOwn)
+        throw new RuntimeException("Cannot release ownership as memory is not owned");
+      ptr = obj.swigCPtr;
+      obj.swigCMemOwn = false;
+      obj.delete();
     }
+    return ptr;
+  }
 
-    protected static long swigRelease(RefactorInfo obj) {
-        long ptr = 0;
-        if (obj != null) {
-            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
-            ptr = obj.swigCPtr;
-            obj.swigCMemOwn = false;
-            obj.delete();
-        }
-        return ptr;
-    }
+  @SuppressWarnings({"deprecation", "removal"})
+  protected void finalize() {
+    delete();
+  }
 
-    @SuppressWarnings({
-            "deprecation",
-            "removal"
-    })
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        highsJNI.delete_RefactorInfo(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                highsJNI.delete_RefactorInfo(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setUse(boolean value) {
+    highsJNI.RefactorInfo_use_set(swigCPtr, this, value);
+  }
 
-    public boolean getUse() {
-        return highsJNI.RefactorInfo_use_get(swigCPtr, this);
-    }
+  public boolean getUse() {
+    return highsJNI.RefactorInfo_use_get(swigCPtr, this);
+  }
 
-    public void setUse(boolean value) {
-        highsJNI.RefactorInfo_use_set(swigCPtr, this, value);
-    }
+  public void setPivot_row(SWIGTYPE_p_std__vectorT_long_long_t value) {
+    highsJNI.RefactorInfo_pivot_row_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_std__vectorT_long_long_t getPivot_row() {
-        long cPtr = highsJNI.RefactorInfo_pivot_row_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
-    }
+  public SWIGTYPE_p_std__vectorT_long_long_t getPivot_row() {
+    long cPtr = highsJNI.RefactorInfo_pivot_row_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
+  }
 
-    public void setPivot_row(SWIGTYPE_p_std__vectorT_long_long_t value) {
-        highsJNI.RefactorInfo_pivot_row_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
-    }
+  public void setPivot_var(SWIGTYPE_p_std__vectorT_long_long_t value) {
+    highsJNI.RefactorInfo_pivot_var_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_std__vectorT_long_long_t getPivot_var() {
-        long cPtr = highsJNI.RefactorInfo_pivot_var_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
-    }
+  public SWIGTYPE_p_std__vectorT_long_long_t getPivot_var() {
+    long cPtr = highsJNI.RefactorInfo_pivot_var_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_long_long_t(cPtr, false);
+  }
 
-    public void setPivot_var(SWIGTYPE_p_std__vectorT_long_long_t value) {
-        highsJNI.RefactorInfo_pivot_var_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_long_long_t.getCPtr(value));
-    }
+  public void setPivot_type(SWIGTYPE_p_std__vectorT_signed_char_t value) {
+    highsJNI.RefactorInfo_pivot_type_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_signed_char_t.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_std__vectorT_signed_char_t getPivot_type() {
-        long cPtr = highsJNI.RefactorInfo_pivot_type_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_signed_char_t(cPtr, false);
-    }
+  public SWIGTYPE_p_std__vectorT_signed_char_t getPivot_type() {
+    long cPtr = highsJNI.RefactorInfo_pivot_type_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_signed_char_t(cPtr, false);
+  }
 
-    public void setPivot_type(SWIGTYPE_p_std__vectorT_signed_char_t value) {
-        highsJNI.RefactorInfo_pivot_type_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_signed_char_t.getCPtr(value));
-    }
+  public void setBuild_synthetic_tick(double value) {
+    highsJNI.RefactorInfo_build_synthetic_tick_set(swigCPtr, this, value);
+  }
 
-    public double getBuild_synthetic_tick() {
-        return highsJNI.RefactorInfo_build_synthetic_tick_get(swigCPtr, this);
-    }
+  public double getBuild_synthetic_tick() {
+    return highsJNI.RefactorInfo_build_synthetic_tick_get(swigCPtr, this);
+  }
 
-    public void setBuild_synthetic_tick(double value) {
-        highsJNI.RefactorInfo_build_synthetic_tick_set(swigCPtr, this, value);
-    }
+  public void clear() {
+    highsJNI.RefactorInfo_clear(swigCPtr, this);
+  }
 
-    public void clear() {
-        highsJNI.RefactorInfo_clear(swigCPtr, this);
-    }
+  public RefactorInfo() {
+    this(highsJNI.new_RefactorInfo(), true);
+  }
 
 }
