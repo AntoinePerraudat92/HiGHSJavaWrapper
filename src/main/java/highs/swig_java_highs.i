@@ -30,3 +30,5 @@ namespace std {
 %include "model/HighsModel.h"
 %include "lp_data/HighsStatus.h"
 %include "Highs.h"
+%ignore checkInfo(const InfoRecordInt&);
+%ignore checkInfo(const InfoRecordDouble&);
