@@ -42,14 +42,10 @@ To build the JNI classes required by the wrapper, `generate_jni_classes` should 
 
 ## How to use the wrapper?
 
-Firstly, `HiGHS` must be compiled and `HIGHS_HOME` must be defined.
+Firstly, `HiGHS` must be compiled, `HIGHS_HOME` and `JAVA_HOME` must be defined.
 
 Secondly, `generate_shared_libraries` must be run to build the shared libraries required by the wrapper. It
-automatically creates the required shared libraries, `libhighs.so` and `libhighswrap.so`, in the base directory. The
-following environment variables must be defined for the script to work:
-
-- `HIGHS_HOME`,
-- `JAVA_HOME`.
+automatically creates the required shared libraries, `libhighs.so` and `libhighswrap.so`, in the base directory.
 
 Then, to run the tests or use the wrapper for another project, the JVM argument `-Djava.library.path` must be filled.
 The

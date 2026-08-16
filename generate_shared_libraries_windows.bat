@@ -1,4 +1,3 @@
-@echo off
 setlocal
 
 copy "%HIGHS_HOME%\build\Release\bin\highs.dll" . || exit /b 1
