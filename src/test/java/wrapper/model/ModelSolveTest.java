@@ -34,7 +34,7 @@ class ModelSolveTest {
         final Solution solution = model.maximize().orElseThrow();
 
         assertTrue(solution.isFeasible());
-        assertEquals(5.9, solution.getObjectiveValue());
+        assertEquals(5.9, solution.getObjectiveValue(), EPSILON);
     }
 
     @Test
@@ -145,8 +145,8 @@ class ModelSolveTest {
         final Solution firstSolution = model.maximize().orElseThrow();
         assertTrue(firstSolution.isFeasible());
         assertEquals(10.0, firstSolution.getObjectiveValue(), EPSILON);
-        assertEquals(5.0, x1.getValue());
-        assertEquals(0.0, x2.getValue());
+        assertEquals(5.0, x1.getValue(), EPSILON);
+        assertEquals(0.0, x2.getValue(), EPSILON);
 
         final Variable x3 = model.addIntegerVariable(1.0, Double.MAX_VALUE, 1.0);
         model.addEqualityConstraint(
@@ -160,9 +160,9 @@ class ModelSolveTest {
         final Solution secondSolution = model.maximize().orElseThrow();
         assertTrue(secondSolution.isFeasible());
         assertEquals(5.0, secondSolution.getObjectiveValue(), EPSILON);
-        assertEquals(2.0, x1.getValue());
-        assertEquals(0.0, x2.getValue());
-        assertEquals(1.0, x3.getValue());
+        assertEquals(2.0, x1.getValue(), EPSILON);
+        assertEquals(0.0, x2.getValue(), EPSILON);
+        assertEquals(1.0, x3.getValue(), EPSILON);
     }
 
     @Test
