@@ -66,6 +66,14 @@ jobs:
           cd Wrapper
           ./generate_shared_libraries_windows.bat
 
+      - name: Inspect Wrapper build output
+        shell: bash
+        run: |
+          cd Wrapper
+          echo "HIGHS_HOME=$HIGHS_HOME"
+          find "./" -iname "*.dll"
+          find "./" -iname "*.lib"
+
       - name: Run Tests
         shell: pwsh
         run: |
