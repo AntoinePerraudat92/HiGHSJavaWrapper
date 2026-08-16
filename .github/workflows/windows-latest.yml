@@ -42,6 +42,13 @@ jobs:
           cd build
           ctest -C Release
 
+      - name: Inspect HiGHS build output
+        shell: bash
+        run: |
+          echo "HIGHS_HOME=$HIGHS_HOME"
+          find "$HIGHS_HOME/build" -iname "*.dll"
+          find "$HIGHS_HOME/build" -iname "*.lib"
+
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
