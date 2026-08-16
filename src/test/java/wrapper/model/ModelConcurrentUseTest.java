@@ -4,6 +4,7 @@ import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 import org.junit.jupiter.api.Test;
 import wrapper.exceptions.ModelStateException;
+import wrapper.model.option.BooleanOptions;
 
 import java.util.Optional;
 import java.util.concurrent.*;
@@ -84,6 +85,10 @@ class ModelConcurrentUseTest {
         private final Semaphore optimizationStartedSemaphore = new Semaphore(0);
         private final Semaphore optimizationDoneSemaphore = new Semaphore(0);
         private final ExecutorService executorService = Executors.newFixedThreadPool(2);
+
+        public FakeModel() {
+            parseOption(BooleanOptions.SOLVER_OUTPUT.getOption(false));
+        }
 
         @Override
         protected Optional<Solution> solve() {
