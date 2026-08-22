@@ -21,7 +21,7 @@ public class Variable extends ModelObject {
 
     public void setHint(double hint) {
         final Model model = getModel();
-        model.addHint(hint, this);
+        model.setHint(hint, this);
     }
 
 }

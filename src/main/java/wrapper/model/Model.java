@@ -141,7 +141,7 @@ public class Model {
         );
     }
 
-    void addHint(double hint, final Variable variable) {
+    void setHint(double hint, final Variable variable) {
         this.hintManager.setHint(hint, variable);
     }
 
@@ -150,11 +150,7 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(
-                        constraint.getIndex(),
-                        variable.getIndex(),
-                        newCoefficient
-                ),
+                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
