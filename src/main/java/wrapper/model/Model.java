@@ -142,7 +142,7 @@ public class Model {
     }
 
     void addHint(double hint, final Variable variable) {
-        this.hintManager.addHint(hint, variable);
+        this.hintManager.setHint(hint, variable);
     }
 
     void updateConstraintCoefficient(double newCoefficient, final Variable variable, final Constraint constraint) {
@@ -150,7 +150,11 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
+                () -> this.highs.changeCoeff(
+                        constraint.getIndex(),
+                        variable.getIndex(),
+                        newCoefficient
+                ),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -241,7 +245,7 @@ public class Model {
         return new Constraint(this.highs.getNumRow() - 1, this, constraintType);
     }
 
-    private void addInitialSolution() {
+    private void setInitialSolution() {
         if (!this.hintManager.hasHints()) {
             return;
         }
@@ -257,7 +261,7 @@ public class Model {
 
     private Optional<Solution> optimize(final ObjSense objSense) {
         this.state.onModelChangeRequested();
-        addInitialSolution();
+        setInitialSolution();
         this.highs.changeObjectiveSense(objSense);
         this.state.onSolveRequested();
         final Optional<Solution> solution = solve();
@@ -311,7 +315,7 @@ public class Model {
             this.hints.clear();
         }
 
-        public void addHint(double hint, final Variable variable) {
+        public void setHint(double hint, final Variable variable) {
             this.hints.put(variable, hint);
         }
 

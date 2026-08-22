@@ -19,7 +19,7 @@ public class Variable extends ModelObject {
         model.updateVariableBounds(newLb, newUb, this);
     }
 
-    public void addHint(double hint) {
+    public void setHint(double hint) {
         final Model model = getModel();
         model.addHint(hint, this);
     }

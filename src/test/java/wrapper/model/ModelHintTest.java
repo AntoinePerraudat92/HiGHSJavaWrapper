@@ -19,7 +19,7 @@ class ModelHintTest {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
-        x1.addHint(-1.0);
+        x1.setHint(-1.0);
 
         final HintException hintException = assertThrows(HintException.class, model::maximize);
         assertEquals("Impossible to parse hints", hintException.getMessage());
@@ -30,7 +30,7 @@ class ModelHintTest {
         final Model model = createModel();
         final Variable x1 = model.addIntegerVariable(5.0, 12.0, 1.0);
         model.addEqualityConstraint(11.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
-        x1.addHint(-3.0);
+        x1.setHint(-3.0);
 
         assertThrows(HintException.class, model::maximize);
         assertDoesNotThrow(model::maximize);
@@ -46,7 +46,7 @@ class ModelHintTest {
     }
 
     @Test
-    void maximizeMustReturnOneIfHintsSetForAllVariables() {
+    void maximizeMustReturnOneIfHintSetForAllVariables() {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
@@ -59,9 +59,9 @@ class ModelHintTest {
                 )
         );
 
-        x1.addHint(1.0);
-        x2.addHint(0.0);
-        x3.addHint(0.0);
+        x1.setHint(1.0);
+        x2.setHint(0.0);
+        x3.setHint(0.0);
 
         final Solution solution = model.maximize().orElseThrow();
         assertEquals(1.0, solution.getObjectiveValue(), EPSILON);
