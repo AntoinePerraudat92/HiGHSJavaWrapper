@@ -2,5 +2,5 @@
 set -e
 cp ${HIGHS_HOME}/build/lib/libhighs.dylib ./
 cd src/main/java/highs
-$CC -O2 -fPIC -I${JAVA_HOME}/include -I${JAVA_HOME}/include/linux -I${HIGHS_HOME}/highs -I${HIGHS_HOME}/build -c swig_java_highs_wrap.cxx
+$CC -O2 -fPIC -I${JAVA_HOME}/include -I${JAVA_HOME}/include/macos -I${HIGHS_HOME}/highs -I${HIGHS_HOME}/build -c swig_java_highs_wrap.cxx
 $CXX -shared -o ../../../../libhighswrap.dylib swig_java_highs_wrap.o -L../../../../ -lhighs
