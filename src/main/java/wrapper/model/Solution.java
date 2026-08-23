@@ -9,14 +9,16 @@ import org.jspecify.annotations.NullMarked;
 @NullMarked
 public class Solution {
 
+    private final double runTime;
     private final double objectiveValue;
-    private final boolean isFeasible;
     private final double mipGap;
+    private final boolean isFeasible;
 
-    Solution(final HighsInfo highsInfo) {
+    Solution(final double runTime, final HighsInfo highsInfo) {
+        this.runTime = runTime;
         this.objectiveValue = highsInfo.getObjective_function_value();
-        this.isFeasible = isFeasible(highsInfo);
         this.mipGap = highsInfo.getMip_gap();
+        this.isFeasible = isFeasible(highsInfo);
     }
 
     private static boolean isFeasible(final HighsInfo highsInfo) {

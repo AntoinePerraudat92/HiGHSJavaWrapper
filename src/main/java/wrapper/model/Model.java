@@ -158,7 +158,11 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
+                () -> this.highs.changeCoeff(
+                        constraint.getIndex(),
+                        variable.getIndex(),
+                        newCoefficient
+                ),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -196,7 +200,7 @@ public class Model {
     protected Optional<Solution> solve() {
         return this.highs.run() == HighsStatus.kError
                 ? Optional.empty()
-                : Optional.of(new Solution(this.highs.getHighsInfo()));
+                : Optional.of(new Solution(this.highs.getRunTime(), this.highs.getInfo()));
     }
 
     private Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
