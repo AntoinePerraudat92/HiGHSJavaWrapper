@@ -16,7 +16,7 @@ import static wrapper.util.Constants.EPSILON;
 
 class NonLinearWorkloadBalancingProblemTest {
 
-    private static final double RELATIVE_GAP_TARGET = 1E-5;
+    private static final double RELATIVE_GAP_TARGET = 1E-7;
     private static final double WORKLOAD_PRECISION = 1E-7;
 
     static {
