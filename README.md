@@ -32,14 +32,9 @@ On Ubuntu systems, one can use `sudo apt install swig`.
 
 ### Compiler
 
-A compiler being able to compile `HiGHS` is required. For a Linux or macOS, system, the environment variables `CC` or
+A compiler being able to compile `HiGHS` is required. For a Linux or macOS system, the environment variables `CC` or
 `CXX` must be defined. Note that `HiGHS` must have been
 installed with the same compiler.
-
-## Extending the JNI classes
-
-To build the JNI classes required by the wrapper, `generate_jni_classes` should be used. It builds the JNI classes in
-`src/main/java/highs`. Running this script is not necessary unless you want to extend the wrapper.
 
 ## How to use the wrapper?
 
@@ -66,3 +61,8 @@ then must also contain (or something equivalent):
 
 If the shared libraries cannot be found at run time, then exceptions of type
 `UnsatisfiedLinkError` or type `ClassNotFound` will be thrown. Note that the load order of libraries also matters.
+
+## Building the JNI classes
+
+To build the JNI classes required by the wrapper, `generate_jni_classes` should be used. It builds the JNI classes in
+`src/main/java/highs`. Running this script is not necessary unless you want to extend the wrapper.

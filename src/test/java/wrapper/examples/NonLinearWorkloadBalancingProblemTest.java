@@ -21,8 +21,6 @@ class NonLinearWorkloadBalancingProblemTest {
         System.loadLibrary("highswrap");
     }
 
-    private static final double RELATIVE_GAP_TARGET = 1E-7;
-
     private static double getExpectedObjectiveValue(final int balancingExponent) {
         return switch (balancingExponent) {
             case 1 -> 11.857535578957105D;
@@ -79,12 +77,7 @@ class NonLinearWorkloadBalancingProblemTest {
             return false;
         }
         for (int m = 0; m < expectedWorkload.length; ++m) {
-            if (Math.abs(expectedWorkload[m] - computedWorkload[m]) > RELATIVE_GAP_TARGET) {
-                System.out.format("False for (%.11f, %.11f, %.12f)%n".formatted(
-                        expectedWorkload[m],
-                        computedWorkload[m],
-                        Math.abs(expectedWorkload[m] - computedWorkload[m])
-                ));
+            if (Math.abs(expectedWorkload[m] - computedWorkload[m]) > EPSILON) {
                 return false;
             }
         }
@@ -228,7 +221,7 @@ class NonLinearWorkloadBalancingProblemTest {
             }
             final double gap =
                     Math.abs(linearizedObjectiveValue - objectiveValue) / (linearizedObjectiveValue + EPSILON);
-            return linearizedObjectiveValue <= RELATIVE_GAP_TARGET || objectiveValue <= RELATIVE_GAP_TARGET || gap <= RELATIVE_GAP_TARGET;
+            return linearizedObjectiveValue <= EPSILON || objectiveValue <= EPSILON || gap <= EPSILON;
         }
 
         public Solution solve() {
