@@ -71,8 +71,8 @@ jobs:
           cd Wrapper
           $CC --version
           $CXX --version
-          chmod +x ./generate_shared_libraries_linux
-          ./generate_shared_libraries_linux
+          chmod +x ./generate_shared_libraries_macos
+          ./generate_shared_libraries_macos
 
       - name: Run Tests
         run: |
