@@ -21,10 +21,10 @@ class ModelOptionTest {
             "on",
             "off"
     })
-    void addStringOption(final String optionValue) {
+    void setStringOption(final String optionValue) {
         final Model model = new Model();
 
-        assertDoesNotThrow(() -> model.parseOption(StringOptions.PARALLEL.getOption(optionValue)));
+        assertDoesNotThrow(() -> model.setOption(StringOptions.PARALLEL.getOption(optionValue)));
     }
 
     @ParameterizedTest
@@ -32,10 +32,10 @@ class ModelOptionTest {
             true,
             false
     })
-    void addBooleanOption(final boolean optionValue) {
+    void setBooleanOption(final boolean optionValue) {
         final Model model = new Model();
 
-        assertDoesNotThrow(() -> model.parseOption(BooleanOptions.MIP_ALLOW_RESTART.getOption(optionValue)));
+        assertDoesNotThrow(() -> model.setOption(BooleanOptions.MIP_ALLOW_RESTART.getOption(optionValue)));
     }
 
     @ParameterizedTest
@@ -43,10 +43,10 @@ class ModelOptionTest {
             12.4,
             65.4
     })
-    void addDoubleOption(final double optionValue) {
+    void setDoubleOption(final double optionValue) {
         final Model model = new Model();
 
-        assertDoesNotThrow(() -> model.parseOption(DoubleOptions.TIME_LIMIT.getOption(optionValue)));
+        assertDoesNotThrow(() -> model.setOption(DoubleOptions.TIME_LIMIT.getOption(optionValue)));
     }
 
     @ParameterizedTest
@@ -57,10 +57,10 @@ class ModelOptionTest {
             4,
             5
     })
-    void addIntegerOption(final int optionValue) {
+    void setIntegerOption(final int optionValue) {
         final Model model = new Model();
 
-        assertDoesNotThrow(() -> model.parseOption(IntegerOptions.NB_THREADS.getOption(optionValue)));
+        assertDoesNotThrow(() -> model.setOption(IntegerOptions.NB_THREADS.getOption(optionValue)));
     }
 
 }

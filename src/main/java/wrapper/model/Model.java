@@ -118,9 +118,17 @@ public class Model {
         return optimize(ObjSense.kMaximize);
     }
 
-    public void parseOption(final Option option) {
+    public void setOption(final Option option) {
         this.state.onModelChangeRequested();
-        addOption(option);
+        runHighsActionAndThrowOnError(
+                () -> switch (option.getValue()) {
+                    case String stringValue -> this.highs.setOptionValue(option.getName(), stringValue);
+                    case Boolean booleanValue -> this.highs.setOptionValue(option.getName(), booleanValue);
+                    case Double doubleValue -> this.highs.setOptionValue(option.getName(), doubleValue);
+                    case Integer integerValue -> this.highs.setOptionValue(option.getName(), integerValue);
+                    default -> throw new OptionException("Impossible to parse options of incompatible type");
+                }, () -> new OptionException("Impossible to add option")
+        );
     }
 
     void updateVariableCost(double newCost, final Variable variable) {
@@ -189,18 +197,6 @@ public class Model {
         return this.highs.run() == HighsStatus.kError
                 ? Optional.empty()
                 : Optional.of(new Solution(this.highs.getHighsInfo()));
-    }
-
-    private void addOption(final Option option) {
-        runHighsActionAndThrowOnError(
-                () -> switch (option.getValue()) {
-                    case String stringValue -> this.highs.setOptionValue(option.getName(), stringValue);
-                    case Boolean booleanValue -> this.highs.setOptionValue(option.getName(), booleanValue);
-                    case Double doubleValue -> this.highs.setOptionValue(option.getName(), doubleValue);
-                    case Integer integerValue -> this.highs.setOptionValue(option.getName(), integerValue);
-                    default -> throw new OptionException("Impossible to parse options of incompatible type");
-                }, () -> new OptionException("Impossible to add option")
-        );
     }
 
     private Variable addVariable(double lb, double ub, double cost, final HighsVarType varType) {
