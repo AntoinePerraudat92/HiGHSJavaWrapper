@@ -46,7 +46,7 @@ used for macOS systems.
 
 The script automatically creates both required shared libraries, `libhighs.*` and `libhighswrap.so` for
 Linux systems, `libhighs.dll` and `libhighswrap.dll` for
-Windows systems, or `libhighs.dylib` and `libhighswrap.dylib`, in the base directory.
+Windows systems, or `libhighs.dylib` and `libhighswrap.dylib` or macOS systems, in the base directory.
 
 Then, to run the tests or use the wrapper for another project, the JVM argument `-Djava.library.path` must be filled.
 The referred path must contain the shared libraries. The relevant classes (relying on calls to `HiGHS`)
