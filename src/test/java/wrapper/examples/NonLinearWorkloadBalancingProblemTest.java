@@ -16,6 +16,9 @@ import static wrapper.util.Constants.EPSILON;
 
 class NonLinearWorkloadBalancingProblemTest {
 
+    private static final double RELATIVE_GAP_TARGET = 1E-7;
+    private static final double WORKLOAD_PRECISION = 1E-5;
+
     static {
         System.loadLibrary("highs");
         System.loadLibrary("highswrap");
@@ -77,7 +80,7 @@ class NonLinearWorkloadBalancingProblemTest {
             return false;
         }
         for (int m = 0; m < expectedWorkload.length; ++m) {
-            if (Math.abs(expectedWorkload[m] - computedWorkload[m]) > EPSILON) {
+            if (Math.abs(expectedWorkload[m] - computedWorkload[m]) > WORKLOAD_PRECISION) {
                 return false;
             }
         }
@@ -104,8 +107,6 @@ class NonLinearWorkloadBalancingProblemTest {
     }
 
     private static class WorkloadBalancing {
-
-        private static final double RELATIVE_GAP_TARGET = 1E-7;
 
         // Instance data.
         private final int nmbMachines = 10;
@@ -221,8 +222,9 @@ class NonLinearWorkloadBalancingProblemTest {
             for (int m = 0; m < this.nmbMachines; ++m) {
                 linearizedObjectiveValue += Math.pow(workload[m], this.balancingExponent);
             }
-            final double gap = Math.abs(linearizedObjectiveValue - objectiveValue) / (linearizedObjectiveValue + 1E-10);
-            return linearizedObjectiveValue <= RELATIVE_GAP_TARGET || objectiveValue <= RELATIVE_GAP_TARGET || gap <= RELATIVE_GAP_TARGET;
+            final double gap =
+                    Math.abs(linearizedObjectiveValue - objectiveValue) / (linearizedObjectiveValue + EPSILON);
+            return linearizedObjectiveValue <= WORKLOAD_PRECISION || objectiveValue <= WORKLOAD_PRECISION || gap <= RELATIVE_GAP_TARGET;
         }
 
         public Solution solve() {

@@ -32,25 +32,21 @@ On Ubuntu systems, one can use `sudo apt install swig`.
 
 ### Compiler
 
-A compiler being able to compile `HiGHS` is required. `gcc`, `clang` and `MSCV` are actively supported with dedicated CI
-builds. For a Linux system, the environment variables `CC` or `CXX` must be defined. Note that `HiGHS` must have been
+A compiler being able to compile `HiGHS` is required. For a Linux or macOS system, the environment variables `CC` or
+`CXX` must be defined. For Windows systems, MVSC is expected. Note that `HiGHS` must have been
 installed with the same compiler.
-
-## Extending the JNI classes
-
-To build the JNI classes required by the wrapper, `generate_jni_classes` should be used. It builds the JNI classes in
-`src/main/java/highs`. Running this script is not necessary unless you want to extend the wrapper.
 
 ## How to use the wrapper?
 
 Firstly, `HiGHS` must be compiled, `HIGHS_HOME` and `JAVA_HOME` must be defined.
 
 Secondly, `generate_shared_libraries_linux` must be run to build the shared libraries required by the wrapper for Linux
-systems. `generate_shared_libraries_windows` can be used for Windows systems.
+systems. `generate_shared_libraries_windows` must be used for Windows systems. `generate_shared_libraries_macos` must be
+used for macOS systems.
 
 The script automatically creates both required shared libraries, `libhighs.so` and `libhighswrap.so` for
-Linux systems, or `libhighs.dll` and `libhighswrap.dll` for
-Windows systems, in the base directory.
+Linux systems, `libhighs.dll` and `libhighswrap.dll` for
+Windows systems, or `libhighs.dylib` and `libhighswrap.dylib` for macOS systems, in the base directory.
 
 Then, to run the tests or use the wrapper for another project, the JVM argument `-Djava.library.path` must be filled.
 The referred path must contain the shared libraries. The relevant classes (relying on calls to `HiGHS`)
@@ -65,3 +61,8 @@ then must also contain (or something equivalent):
 
 If the shared libraries cannot be found at run time, then exceptions of type
 `UnsatisfiedLinkError` or type `ClassNotFound` will be thrown. Note that the load order of libraries also matters.
+
+## Building the JNI classes
+
+To build the JNI classes required by the wrapper, `generate_jni_classes` should be used. It builds the JNI classes in
+`src/main/java/highs`. Running this script is not necessary unless you want to extend the wrapper.
