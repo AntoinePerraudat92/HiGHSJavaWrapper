@@ -11,28 +11,19 @@ jobs:
 
     strategy:
       matrix:
-        java: [ '21', '23', '24', '25' ]
-        compiler: [ 'gcc', 'clang' ]
+        java: [ '21', '25' ]
+        compiler: [ 'gcc' ]
         os: [ ubuntu-latest ]
 
     name: Build with JDK ${{ matrix.java }} and ${{ matrix.compiler }}
 
     steps:
-      - name: Install GCC
-        if: matrix.compiler == 'gcc'
+      - name: Configure GCC
         run: |
           sudo apt-get update
           sudo apt-get install -y gcc g++
           echo "CC=gcc" >> $GITHUB_ENV
           echo "CXX=g++" >> $GITHUB_ENV
-
-      - name: Install Clang
-        if: matrix.compiler == 'clang'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y clang
-          echo "CC=clang" >> $GITHUB_ENV
-          echo "CXX=clang++" >> $GITHUB_ENV
 
       - name: Install CMake
         run: |

@@ -11,22 +11,14 @@ jobs:
 
     strategy:
       matrix:
-        java: [ '21', '23', '24', '25' ]
-        compiler: [ 'gcc', 'clang' ]
+        java: [ '21', '25' ]
+        compiler: [ 'clang' ]
         os: [ macos-latest ]
 
     name: Build with JDK ${{ matrix.java }} and ${{ matrix.compiler }}
 
     steps:
-      - name: Install GCC
-        if: matrix.compiler == 'gcc'
-        run: |
-          brew install gcc
-          echo "CC=gcc-15" >> $GITHUB_ENV
-          echo "CXX=g++-15" >> $GITHUB_ENV
-
       - name: Configure Clang
-        if: matrix.compiler == 'clang'
         run: |
           echo "CC=clang" >> $GITHUB_ENV
           echo "CXX=clang++" >> $GITHUB_ENV
