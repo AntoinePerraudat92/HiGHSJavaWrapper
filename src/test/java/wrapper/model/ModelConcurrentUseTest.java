@@ -87,7 +87,7 @@ class ModelConcurrentUseTest {
         private final ExecutorService executorService = Executors.newFixedThreadPool(2);
 
         public FakeModel() {
-            parseOption(BooleanOptions.SOLVER_OUTPUT.getOption(false));
+            setOption(BooleanOptions.SOLVER_OUTPUT.getOption(false));
         }
 
         @Override
