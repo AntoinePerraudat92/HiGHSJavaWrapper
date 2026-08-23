@@ -15,9 +15,7 @@ Some examples on how to use the wrapper are provided in `src/test/java/wrapper/e
 ### HiGHS
 
 `HiGHS` must be built following [the instructions](https://github.com/ERGO-Code/HiGHS/) on its repository page. For now,
-the wrapper expects version `1.15.1`.
-
-Note that the wrapper must be compiled with the HiGHS compilation option `HIGHSINT64=on`.
+the wrapper expects version `1.15.1` and also expects `HiGHS` to be compiled with option `HIGHSINT64=on`.
 
 ### Java
 
