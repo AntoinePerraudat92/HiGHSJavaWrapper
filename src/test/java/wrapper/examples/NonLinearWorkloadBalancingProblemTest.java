@@ -78,7 +78,11 @@ class NonLinearWorkloadBalancingProblemTest {
         }
         for (int m = 0; m < expectedWorkload.length; ++m) {
             if (Math.abs(expectedWorkload[m] - computedWorkload[m]) > EPSILON) {
-                System.out.format("False for (%f, %f)".formatted(expectedWorkload[m], computedWorkload[m]));
+                System.out.format("False for (%f, %f, %f)%n".formatted(
+                        expectedWorkload[m],
+                        computedWorkload[m],
+                        Math.abs(expectedWorkload[m] - computedWorkload[m])
+                ));
                 return false;
             }
         }
