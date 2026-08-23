@@ -2,3 +2,6 @@ target/
 .idea/
 *.so
 *.o
+*.dll
+*.lib
+*.dylib
