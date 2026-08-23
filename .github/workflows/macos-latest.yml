@@ -1,0 +1,80 @@
+name: macOS Latest
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        java: [ '21', '23', '24', '25' ]
+        compiler: [ 'gcc', 'clang' ]
+        os: [ macos-latest ]
+
+    name: Build with JDK ${{ matrix.java }} and ${{ matrix.compiler }}
+
+    steps:
+      - name: Install GCC
+        if: matrix.compiler == 'gcc'
+        run: |
+          brew install gcc
+          echo "CC=gcc-15" >> $GITHUB_ENV
+          echo "CXX=g++-15" >> $GITHUB_ENV
+
+      - name: Configure Clang
+        if: matrix.compiler == 'clang'
+        run: |
+          echo "CC=clang" >> $GITHUB_ENV
+          echo "CXX=clang++" >> $GITHUB_ENV
+
+      - name: Install CMake
+        run: |
+          brew install cmake
+
+      - name: Install SWIG
+        run: |
+          brew install swig
+
+      - name: Checkout HiGHS
+        uses: actions/checkout@v4
+        with:
+          repository: ERGO-Code/HiGHS
+          ref: v1.15.1
+          path: HiGHS
+
+      - name: Build HiGHS
+        run: |
+          echo "HIGHS_HOME=$(pwd)/HiGHS" >> $GITHUB_ENV
+          cd HiGHS
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=RELEASE -DHIGHSINT64=on
+          cmake --build build --parallel --config RELEASE
+          cd build
+          ctest
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: temurin
+
+      - name: Checkout project
+        uses: actions/checkout@v4
+        with:
+          path: Wrapper
+
+      - name: Generate shared libraries
+        run: |
+          cd Wrapper
+          $CC --version
+          $CXX --version
+          chmod +x ./generate_shared_libraries_linux
+          ./generate_shared_libraries_linux
+
+      - name: Run Tests
+        run: |
+          cd Wrapper
+          mvn test
