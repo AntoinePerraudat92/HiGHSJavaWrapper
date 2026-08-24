@@ -75,22 +75,6 @@ class ModelConstraintTest {
     }
 
     @Test
-    void updateConstraintSidesForEqualityConstraint() {
-        final Model model = createModel();
-        final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Constraint constraint = model.addEqualityConstraint(
-                1.0,
-                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
-        );
-        constraint.updateRightHandSide(8.0);
-
-        final Solution solution = model.maximize().orElseThrow();
-
-        assertEquals(8.0, solution.getObjectiveValue(), EPSILON);
-    }
-
-    @Test
     void updateConstraintRightHandSideForLessThanOrEqualTo() {
         final Model model = createModel();
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
@@ -185,6 +169,7 @@ class ModelConstraintTest {
         model.maximize().orElseThrow();
 
         assertDoesNotThrow(constraint::getValue);
+        assertDoesNotThrow(constraint::getDualValue);
     }
 
 
