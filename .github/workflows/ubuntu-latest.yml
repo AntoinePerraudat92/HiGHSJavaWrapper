@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         java: [ '21', '25' ]
@@ -29,11 +28,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake
-
-      - name: Install SWIG
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y swig
 
       - name: Checkout HiGHS
         uses: actions/checkout@v4

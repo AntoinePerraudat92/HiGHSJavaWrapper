@@ -8,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         java: [ '21', '25' ]
@@ -26,10 +25,6 @@ jobs:
       - name: Install CMake
         run: |
           brew install cmake
-
-      - name: Install SWIG
-        run: |
-          brew install swig
 
       - name: Checkout HiGHS
         uses: actions/checkout@v4
