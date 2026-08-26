@@ -5,6 +5,7 @@ import org.jspecify.annotations.NullMarked;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.ObjDoubleConsumer;
+import java.util.stream.Stream;
 
 
 @NullMarked
@@ -30,6 +31,16 @@ public class LinearExpression {
         for (final Term term : terms) {
             expression.addTerm(term);
         }
+        return expression;
+    }
+
+    public static LinearExpression of(final Variable... variables) {
+        return of(Stream.of(variables));
+    }
+
+    public static LinearExpression of(final Stream<Variable> variables) {
+        final LinearExpression expression = new LinearExpression();
+        variables.forEachOrdered(variable -> expression.addVariable(variable, 1.0));
         return expression;
     }
 
