@@ -54,7 +54,7 @@ public class Model {
      */
     public Constraint addEqualityConstraint(double rhs, final LinearExpression expression) {
         this.state.onModelChangeRequested();
-        return addConstraint(rhs, rhs, expression, ConstraintType.EQUALITY);
+        return addConstraint(rhs, rhs, expression, Constraint.ConstraintType.EQUALITY);
     }
 
     /**
@@ -71,7 +71,7 @@ public class Model {
      */
     public Constraint addLessThanOrEqualToConstraint(double rhs, final LinearExpression expression) {
         this.state.onModelChangeRequested();
-        return addConstraint(-Double.MAX_VALUE, rhs, expression, ConstraintType.LESS_THAN_OR_EQUAL_TO);
+        return addConstraint(-Double.MAX_VALUE, rhs, expression, Constraint.ConstraintType.LESS_THAN_OR_EQUAL_TO);
     }
 
     /**
@@ -84,7 +84,7 @@ public class Model {
                 -Double.MAX_VALUE,
                 -completeExpression.getConstant(),
                 completeExpression,
-                ConstraintType.LESS_THAN_OR_EQUAL_TO
+                Constraint.ConstraintType.LESS_THAN_OR_EQUAL_TO
         );
     }
 
@@ -93,7 +93,7 @@ public class Model {
      */
     public Constraint addGreaterThanOrEqualToConstraint(double rhs, final LinearExpression expression) {
         this.state.onModelChangeRequested();
-        return addConstraint(rhs, Double.MAX_VALUE, expression, ConstraintType.GREATER_THAN_OR_EQUAL_TO);
+        return addConstraint(rhs, Double.MAX_VALUE, expression, Constraint.ConstraintType.GREATER_THAN_OR_EQUAL_TO);
     }
 
     /**
@@ -106,7 +106,7 @@ public class Model {
                 -completeExpression.getConstant(),
                 Double.MAX_VALUE,
                 completeExpression,
-                ConstraintType.GREATER_THAN_OR_EQUAL_TO
+                Constraint.ConstraintType.GREATER_THAN_OR_EQUAL_TO
         );
     }
 
@@ -158,11 +158,7 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(
-                        constraint.getIndex(),
-                        variable.getIndex(),
-                        newCoefficient
-                ),
+                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -220,7 +216,7 @@ public class Model {
             double lhs,
             double rhs,
             final LinearExpression expression,
-            final ConstraintType constraintType
+            final Constraint.ConstraintType constraintType
     ) {
         final int nmbVariables = expression.getNmbVariables();
         if (nmbVariables < 1) {
