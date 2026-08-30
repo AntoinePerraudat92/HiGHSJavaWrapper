@@ -18,7 +18,7 @@ public class Model {
 
     private final Highs highs = new Highs();
     private final ModelState state = new ModelState();
-    private final HintManager hintManager = new HintManager();
+    private final HintBuffer hintBuffer = new HintBuffer();
 
     private static void runHighsActionAndThrowOnError(
             final Supplier<HighsStatus> action,
@@ -54,7 +54,7 @@ public class Model {
      */
     public Constraint addEqualityConstraint(double rhs, final LinearExpression expression) {
         this.state.onModelChangeRequested();
-        return addConstraint(rhs, rhs, expression, Constraint.ConstraintType.EQUALITY);
+        return addConstraint(rhs, rhs, expression, Constraint.Type.EQUALITY);
     }
 
     /**
@@ -71,7 +71,7 @@ public class Model {
      */
     public Constraint addLessThanOrEqualToConstraint(double rhs, final LinearExpression expression) {
         this.state.onModelChangeRequested();
-        return addConstraint(-Double.MAX_VALUE, rhs, expression, Constraint.ConstraintType.LESS_THAN_OR_EQUAL_TO);
+        return addConstraint(-Double.MAX_VALUE, rhs, expression, Constraint.Type.LESS_THAN_OR_EQUAL_TO);
     }
 
     /**
@@ -84,7 +84,7 @@ public class Model {
                 -Double.MAX_VALUE,
                 -completeExpression.getConstant(),
                 completeExpression,
-                Constraint.ConstraintType.LESS_THAN_OR_EQUAL_TO
+                Constraint.Type.LESS_THAN_OR_EQUAL_TO
         );
     }
 
@@ -93,7 +93,7 @@ public class Model {
      */
     public Constraint addGreaterThanOrEqualToConstraint(double rhs, final LinearExpression expression) {
         this.state.onModelChangeRequested();
-        return addConstraint(rhs, Double.MAX_VALUE, expression, Constraint.ConstraintType.GREATER_THAN_OR_EQUAL_TO);
+        return addConstraint(rhs, Double.MAX_VALUE, expression, Constraint.Type.GREATER_THAN_OR_EQUAL_TO);
     }
 
     /**
@@ -106,7 +106,7 @@ public class Model {
                 -completeExpression.getConstant(),
                 Double.MAX_VALUE,
                 completeExpression,
-                Constraint.ConstraintType.GREATER_THAN_OR_EQUAL_TO
+                Constraint.Type.GREATER_THAN_OR_EQUAL_TO
         );
     }
 
@@ -150,7 +150,7 @@ public class Model {
     }
 
     void setHint(double hint, final Variable variable) {
-        this.hintManager.setHint(hint, variable);
+        this.hintBuffer.setHint(hint, variable);
     }
 
     void updateConstraintCoefficient(double newCoefficient, final Variable variable, final Constraint constraint) {
@@ -158,7 +158,11 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
+                () -> this.highs.changeCoeff(
+                        constraint.getIndex(),
+                        variable.getIndex(),
+                        newCoefficient
+                ),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }
@@ -167,7 +171,7 @@ public class Model {
         this.state.onModelChangeRequested();
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> switch (constraint.getConstraintType()) {
+                () -> switch (constraint.getType()) {
                     case EQUALITY -> highs.changeRowBounds(constraint.getIndex(), newRhs, newRhs);
                     case GREATER_THAN_OR_EQUAL_TO ->
                             highs.changeRowBounds(constraint.getIndex(), newRhs, Double.MAX_VALUE);
@@ -216,7 +220,7 @@ public class Model {
             double lhs,
             double rhs,
             final LinearExpression expression,
-            final Constraint.ConstraintType constraintType
+            final Constraint.Type type
     ) {
         final int nmbVariables = expression.getNmbVariables();
         if (nmbVariables < 1) {
@@ -234,17 +238,17 @@ public class Model {
                 ),
                 () -> new VariableException("Impossible to add constraint")
         );
-        return new Constraint(this.highs.getNumRow() - 1, this, constraintType);
+        return new Constraint(this.highs.getNumRow() - 1, this, type);
     }
 
     private void setInitialSolution() {
-        if (!this.hintManager.hasHints()) {
+        if (!this.hintBuffer.hasHints()) {
             return;
         }
-        final int nmbHints = this.hintManager.getNmbHints();
+        final int nmbHints = this.hintBuffer.getNmbHints();
         final VariableConsumer variableConsumer = new VariableConsumer(this, nmbHints);
-        this.hintManager.consumeHints(variableConsumer);
-        this.hintManager.clearHints();
+        this.hintBuffer.consumeHints(variableConsumer);
+        this.hintBuffer.clearHints();
         runHighsActionAndThrowOnError(
                 () -> this.highs.setSolution(nmbHints, variableConsumer.indices.cast(), variableConsumer.values.cast()),
                 () -> new HintException("Impossible to parse hints")
@@ -299,7 +303,7 @@ public class Model {
 
     @NullMarked
     @NoArgsConstructor
-    private static class HintManager {
+    private static class HintBuffer {
 
         private final Map<Variable, Double> hints = new HashMap<>();
 

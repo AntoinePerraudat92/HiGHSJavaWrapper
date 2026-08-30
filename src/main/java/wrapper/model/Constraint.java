@@ -9,11 +9,11 @@ import org.jspecify.annotations.NullMarked;
 public class Constraint extends ModelObject {
 
     @Getter(AccessLevel.PACKAGE)
-    private final ConstraintType constraintType;
+    private final Type type;
 
-    Constraint(long index, final Model model, final ConstraintType constraintType) {
+    Constraint(long index, final Model model, final Type type) {
         super(index, model);
-        this.constraintType = constraintType;
+        this.type = type;
     }
 
     public void updateCoefficient(double newCoefficient, final Variable variable) {
@@ -26,7 +26,7 @@ public class Constraint extends ModelObject {
         model.updateRightHandSide(newRhs, this);
     }
 
-    enum ConstraintType {
+    enum Type {
         EQUALITY,
         GREATER_THAN_OR_EQUAL_TO,
         LESS_THAN_OR_EQUAL_TO
