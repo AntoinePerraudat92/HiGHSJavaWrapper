@@ -162,8 +162,8 @@ class NonLinearWorkloadBalancingProblemTest {
                 }
             }
             for (int m = 0; m < this.nmbMachines; ++m) {
-                this.w[m] = this.model.addContinuousVariable(-Double.MAX_VALUE, Double.MAX_VALUE, 0.0);
-                this.wl[m] = this.model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
+                this.w[m] = this.model.addContinuousVariable(Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, 0.0);
+                this.wl[m] = this.model.addContinuousVariable(0.0, Double.POSITIVE_INFINITY, 1.0);
             }
             // Workload computation constraints.
             // For machine m: \sum_{p}(qualificationPerProductPerMachine_{p,m} * this
@@ -209,10 +209,7 @@ class NonLinearWorkloadBalancingProblemTest {
             double rhsConstant = Math.pow(x0, this.balancingExponent) * (1.0 - this.balancingExponent);
             double rhsCoefficient = this.balancingExponent * Math.pow(x0, this.balancingExponent - 1.0);
             this.model.addGreaterThanOrEqualToConstraint(
-                    LinearExpression.of(new LinearExpression.Term(
-                            this.wl[m],
-                            1.0
-                    )),
+                    LinearExpression.of(new LinearExpression.Term(this.wl[m], 1.0)),
                     LinearExpression.of(rhsConstant, new LinearExpression.Term(this.w[m], rhsCoefficient))
             );
         }

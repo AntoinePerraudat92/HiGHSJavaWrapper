@@ -62,8 +62,8 @@ class ModelConstraintTest {
     @Test
     void updateConstraintRightHandSidesForEquality() {
         final Model model = createModel();
-        final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
+        final Variable x1 = model.addContinuousVariable(0.0, Double.POSITIVE_INFINITY, 1.0);
+        final Variable x2 = model.addContinuousVariable(0.0, Double.POSITIVE_INFINITY, 1.0);
         final Constraint constraint = model.addEqualityConstraint(
                 LinearExpression.of(
                         new LinearExpression.Term(
@@ -85,12 +85,11 @@ class ModelConstraintTest {
     @Test
     void updateConstraintRightHandSideForLessThanOrEqualTo() {
         final Model model = createModel();
-        final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
-        final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
+        final Variable x1 = model.addContinuousVariable(0.0, Double.POSITIVE_INFINITY, 1.0);
+        final Variable x2 = model.addContinuousVariable(0.0, Double.POSITIVE_INFINITY, 1.0);
         final Constraint constraint = model.addLessThanOrEqualToConstraint(
                 LinearExpression.of(
-                        new LinearExpression.Term(
-                                x1,
+                        new LinearExpression.Term(x1,
                                 1.0
                         ), new LinearExpression.Term(x2, 1.0)
                 ), 10.0
@@ -105,12 +104,11 @@ class ModelConstraintTest {
     @Test
     void updateConstraintRightHandSideForGreaterThanOrEqualTo() {
         final Model model = createModel();
-        final Variable x1 = model.addIntegerVariable(12.0, Double.MAX_VALUE, 2.0);
-        final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
+        final Variable x1 = model.addIntegerVariable(12.0, Double.POSITIVE_INFINITY, 2.0);
+        final Variable x2 = model.addContinuousVariable(0.0, Double.POSITIVE_INFINITY, 1.0);
         final Constraint constraint = model.addGreaterThanOrEqualToConstraint(
                 LinearExpression.of(
-                        new LinearExpression.Term(
-                                x1,
+                        new LinearExpression.Term(x1,
                                 1.0
                         ), new LinearExpression.Term(x2, 1.0)
                 ), 20.0

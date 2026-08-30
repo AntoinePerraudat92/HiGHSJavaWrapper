@@ -42,7 +42,7 @@ class KnapsackProblemTest {
         // x[i] = number of times item i is picked.
         final Variable[] x = new Variable[nmbItems];
         for (int i = 0; i < nmbItems; ++i) {
-            x[i] = model.addIntegerVariable(0.0, Double.MAX_VALUE, values[i]);
+            x[i] = model.addIntegerVariable(0.0, Double.POSITIVE_INFINITY, values[i]);
         }
         // Knapsack capacity constraint: \sum_{i}w_{i}x_{i} <= capacity.
         final LinearExpression capacityExpression = new LinearExpression();

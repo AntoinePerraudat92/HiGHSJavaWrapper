@@ -51,7 +51,7 @@ class FacilityLocationProblemTest {
         for (int f = 0; f < nmbFacilities; ++f) {
             x[f] = model.addBinaryVariable(openingCostPerFacility[f]);
             for (int c = 0; c < nmbCustomers; ++c) {
-                y[f][c] = model.addIntegerVariable(0.0, Double.MAX_VALUE, shipCostPerFacilityPerCustomer[f][c]);
+                y[f][c] = model.addIntegerVariable(0.0, Double.POSITIVE_INFINITY, shipCostPerFacilityPerCustomer[f][c]);
             }
         }
         // Facility capacity constraints.
