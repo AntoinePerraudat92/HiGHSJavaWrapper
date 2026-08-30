@@ -18,7 +18,7 @@ class ModelHintTest {
     void maximizeMustThrowIfInvalidInitialValue() {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
-        model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
+        model.addEqualityConstraint(LinearExpression.of(new LinearExpression.Term(x1, 1.0)), 1.0);
         x1.setHint(-1.0);
 
         final HintException hintException = assertThrows(HintException.class, model::maximize);
@@ -29,7 +29,7 @@ class ModelHintTest {
     void hintsMustBeClearedAfterFirstSolveEvenIfNotSuccessful() {
         final Model model = createModel();
         final Variable x1 = model.addIntegerVariable(5.0, 12.0, 1.0);
-        model.addEqualityConstraint(11.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
+        model.addEqualityConstraint(LinearExpression.of(new LinearExpression.Term(x1, 1.0)), 11.0);
         x1.setHint(-3.0);
 
         assertThrows(HintException.class, model::maximize);
@@ -40,7 +40,7 @@ class ModelHintTest {
     void maximizeMustNotThrowIfNoHint() {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
-        model.addEqualityConstraint(1.0, LinearExpression.of(new LinearExpression.Term(x1, 1.0)));
+        model.addEqualityConstraint(LinearExpression.of(new LinearExpression.Term(x1, 1.0)), 1.0);
 
         assertDoesNotThrow(model::maximize);
     }
@@ -52,11 +52,11 @@ class ModelHintTest {
         final Variable x2 = model.addBinaryVariable(1.0);
         final Variable x3 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(
-                1.0, LinearExpression.of(
+                LinearExpression.of(
                         new LinearExpression.Term(x1, 1.0),
                         new LinearExpression.Term(x2, 1.0),
                         new LinearExpression.Term(x3, 1.0)
-                )
+                ), 1.0
         );
 
         x1.setHint(1.0);

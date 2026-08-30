@@ -57,7 +57,7 @@ class FacilityLocationProblemTest {
         // Facility capacity constraints.
         // For facility f, \sum_{c}y_{f,c} <= capacityPerFacility_{f}.
         for (int f = 0; f < nmbFacilities; ++f) {
-            model.addLessThanOrEqualToConstraint(capacityPerFacility[f], LinearExpression.of(y[f]));
+            model.addLessThanOrEqualToConstraint(LinearExpression.of(y[f]), capacityPerFacility[f]);
         }
         // Demand satisfaction constraints.
         // For customer c, \sum_{f}y_{f,c} == demandPerCustomer_{c}.
@@ -66,14 +66,14 @@ class FacilityLocationProblemTest {
             for (int f = 0; f < nmbFacilities; ++f) {
                 expression.addVariable(y[f][c], 1.0);
             }
-            model.addEqualityConstraint(demandPerCustomer[c], expression);
+            model.addEqualityConstraint(expression, demandPerCustomer[c]);
         }
         // Opening cost facility constraints.
         // For facility f, \sum_{c}y_{f,c} <= M.x_{f}, where M = totalDemand.
         for (int f = 0; f < nmbFacilities; ++f) {
             model.addLessThanOrEqualToConstraint(
-                    LinearExpression.of(new LinearExpression.Term(x[f], totalDemand)),
-                    LinearExpression.of(y[f])
+                    LinearExpression.of(y[f]),
+                    LinearExpression.of(new LinearExpression.Term(x[f], totalDemand))
             );
         }
 

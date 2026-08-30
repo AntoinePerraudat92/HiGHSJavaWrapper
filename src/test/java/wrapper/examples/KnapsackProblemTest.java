@@ -49,7 +49,7 @@ class KnapsackProblemTest {
         for (int i = 0; i < nmbItems; ++i) {
             capacityExpression.addVariable(x[i], weights[i]);
         }
-        model.addLessThanOrEqualToConstraint(capacity, capacityExpression);
+        model.addLessThanOrEqualToConstraint(capacityExpression, capacity);
 
         final Solution solution = model.maximize().orElseThrow();
 

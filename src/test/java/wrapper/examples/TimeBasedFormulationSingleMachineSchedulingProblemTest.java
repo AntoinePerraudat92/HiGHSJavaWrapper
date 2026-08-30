@@ -48,7 +48,7 @@ class TimeBasedFormulationSingleMachineSchedulingProblemTest {
             for (int t = 0; t < nmbPeriods; ++t) {
                 expression.addVariable(x[j][t], 1.0);
             }
-            model.addLessThanOrEqualToConstraint(1.0, expression);
+            model.addLessThanOrEqualToConstraint(expression, 1.0);
         }
         // The machine can only process one job at a time: For period t, \sum_{j}\sum_{s}^{min(nmbPeriods, t + p_{j}
         // - 1)}x_{j,s} <= 1.0.
@@ -59,7 +59,7 @@ class TimeBasedFormulationSingleMachineSchedulingProblemTest {
                     expression.addVariable(x[j][s], 1.0);
                 }
             }
-            model.addLessThanOrEqualToConstraint(1.0, expression);
+            model.addLessThanOrEqualToConstraint(expression, 1.0);
         }
 
         final Solution solution = model.maximize().orElseThrow();

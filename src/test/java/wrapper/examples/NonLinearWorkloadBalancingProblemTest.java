@@ -176,11 +176,8 @@ class NonLinearWorkloadBalancingProblemTest {
                     expression.addVariable(this.x[p][m], coefficient);
                 }
                 this.model.addEqualityConstraint(
-                        LinearExpression.of(new LinearExpression.Term(
-                                this.w[m],
-                                this.capacityPerMachine[m]
-                        )),
-                        expression
+                        expression,
+                        LinearExpression.of(new LinearExpression.Term(this.w[m], this.capacityPerMachine[m]))
                 );
             }
             // Demand satisfaction constraints.
@@ -190,7 +187,7 @@ class NonLinearWorkloadBalancingProblemTest {
                 for (int m = 0; m < this.nmbMachines; ++m) {
                     expression.addVariable(this.x[p][m], this.qualificationPerProductPerMachine[p][m]);
                 }
-                this.model.addEqualityConstraint(this.demandPerProduct[p], expression);
+                this.model.addEqualityConstraint(expression, this.demandPerProduct[p]);
             }
             // Linearization constraints.
             for (double x0 = 0.0; x0 <= 1.0; x0 += 0.1) {
@@ -212,8 +209,11 @@ class NonLinearWorkloadBalancingProblemTest {
             double rhsConstant = Math.pow(x0, this.balancingExponent) * (1.0 - this.balancingExponent);
             double rhsCoefficient = this.balancingExponent * Math.pow(x0, this.balancingExponent - 1.0);
             this.model.addGreaterThanOrEqualToConstraint(
-                    LinearExpression.of(rhsConstant, new LinearExpression.Term(this.w[m], rhsCoefficient)),
-                    LinearExpression.of(new LinearExpression.Term(this.wl[m], 1.0))
+                    LinearExpression.of(new LinearExpression.Term(
+                            this.wl[m],
+                            1.0
+                    )),
+                    LinearExpression.of(rhsConstant, new LinearExpression.Term(this.w[m], rhsCoefficient))
             );
         }
 

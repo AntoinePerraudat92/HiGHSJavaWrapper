@@ -52,7 +52,7 @@ public class Model {
     /**
      * Expression = RHS. Example: 2x1 + 5x2 = 4.
      */
-    public Constraint addEqualityConstraint(double rhs, final LinearExpression expression) {
+    public Constraint addEqualityConstraint(final LinearExpression expression, double rhs) {
         this.state.onModelChangeRequested();
         return addConstraint(rhs, rhs, expression, Constraint.Type.EQUALITY);
     }
@@ -60,16 +60,16 @@ public class Model {
     /**
      * Expression = RHS. Example: 2x1 + 5x2 = x3 + 4.
      */
-    public Constraint addEqualityConstraint(final LinearExpression rhs, final LinearExpression expression) {
+    public Constraint addEqualityConstraint(final LinearExpression expression, final LinearExpression rhs) {
         this.state.onModelChangeRequested();
         final LinearExpression completeExpression = expression.merge(rhs);
-        return addEqualityConstraint(-completeExpression.getConstant(), completeExpression);
+        return addEqualityConstraint(completeExpression, -completeExpression.getConstant());
     }
 
     /**
      * Expression <= RHS. Example: 2x1 + 5x2 <= 4.
      */
-    public Constraint addLessThanOrEqualToConstraint(double rhs, final LinearExpression expression) {
+    public Constraint addLessThanOrEqualToConstraint(final LinearExpression expression, double rhs) {
         this.state.onModelChangeRequested();
         return addConstraint(-Double.MAX_VALUE, rhs, expression, Constraint.Type.LESS_THAN_OR_EQUAL_TO);
     }
@@ -77,7 +77,7 @@ public class Model {
     /**
      * Expression <= RHS. Example: 2x1 + 5x2 <= x3 + 4.
      */
-    public Constraint addLessThanOrEqualToConstraint(final LinearExpression rhs, final LinearExpression expression) {
+    public Constraint addLessThanOrEqualToConstraint(final LinearExpression expression, final LinearExpression rhs) {
         this.state.onModelChangeRequested();
         final LinearExpression completeExpression = expression.merge(rhs);
         return addConstraint(
@@ -91,7 +91,7 @@ public class Model {
     /**
      * Expression >= RHS. Example: 2x1 + 5x2 >= 4.
      */
-    public Constraint addGreaterThanOrEqualToConstraint(double rhs, final LinearExpression expression) {
+    public Constraint addGreaterThanOrEqualToConstraint(final LinearExpression expression, double rhs) {
         this.state.onModelChangeRequested();
         return addConstraint(rhs, Double.MAX_VALUE, expression, Constraint.Type.GREATER_THAN_OR_EQUAL_TO);
     }
@@ -99,7 +99,7 @@ public class Model {
     /**
      * Expression >= RHS. Example: 2x1 + 5x2 >= x3 + 4.
      */
-    public Constraint addGreaterThanOrEqualToConstraint(final LinearExpression rhs, final LinearExpression expression) {
+    public Constraint addGreaterThanOrEqualToConstraint(final LinearExpression expression, final LinearExpression rhs) {
         this.state.onModelChangeRequested();
         final LinearExpression completeExpression = expression.merge(rhs);
         return addConstraint(
@@ -158,11 +158,7 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(
-                        constraint.getIndex(),
-                        variable.getIndex(),
-                        newCoefficient
-                ),
+                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }

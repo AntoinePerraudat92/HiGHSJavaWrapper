@@ -41,16 +41,10 @@ class ModelSolveTest {
     void maximizeWithSimpleConstraint() {
         final Model model = createModel();
         final LinearExpression linearExpression = LinearExpression.of(
-                new LinearExpression.Term(
-                        model.addContinuousVariable(
-                                0.0,
-                                Double.MAX_VALUE,
-                                5.5
-                        ), 1.0
-                ),
+                new LinearExpression.Term(model.addContinuousVariable(0.0, Double.MAX_VALUE, 5.5), 1.0),
                 new LinearExpression.Term(model.addContinuousVariable(0.5, Double.MAX_VALUE, 1.0), 1.0)
         );
-        model.addEqualityConstraint(1.0, linearExpression);
+        model.addEqualityConstraint(linearExpression, 1.0);
 
         final Solution solution = model.maximize().orElseThrow();
 
@@ -65,12 +59,16 @@ class ModelSolveTest {
         final Variable x2 = model.addContinuousVariable(0.0, 12.0, 5.0);
         final Variable x3 = model.addContinuousVariable(0.0, 5.0, 14.0);
         model.addLessThanOrEqualToConstraint(
-                7.0,
-                LinearExpression.of(new LinearExpression.Term(x1, 0.5), new LinearExpression.Term(x3, 14.0))
+                LinearExpression.of(
+                        new LinearExpression.Term(x1, 0.5),
+                        new LinearExpression.Term(x3, 14.0)
+                ), 7.0
         );
         model.addEqualityConstraint(
-                2.0,
-                LinearExpression.of(new LinearExpression.Term(x2, 12.4), new LinearExpression.Term(x3, 0.2))
+                LinearExpression.of(
+                        new LinearExpression.Term(x2, 12.4),
+                        new LinearExpression.Term(x3, 0.2)
+                ), 2.0
         );
 
         final Solution solution = model.maximize().orElseThrow();
@@ -85,8 +83,10 @@ class ModelSolveTest {
         final Variable x1 = model.addBinaryVariable(1.2);
         final Variable x2 = model.addBinaryVariable(1.3);
         model.addLessThanOrEqualToConstraint(
-                1.2,
-                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+                LinearExpression.of(
+                        new LinearExpression.Term(x1, 1.0),
+                        new LinearExpression.Term(x2, 1.0)
+                ), 1.2
         );
 
         final Solution solution = model.maximize().orElseThrow();
@@ -101,8 +101,10 @@ class ModelSolveTest {
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(
-                1.5,
-                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+                LinearExpression.of(
+                        new LinearExpression.Term(x1, 1.0),
+                        new LinearExpression.Term(x2, 1.0)
+                ), 1.5
         );
 
         final Solution solution = model.maximize().orElseThrow();
@@ -117,11 +119,11 @@ class ModelSolveTest {
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 8.0);
         final Variable x3 = model.addIntegerVariable(2.0, Double.MAX_VALUE, 15.0);
         model.addGreaterThanOrEqualToConstraint(
-                4.5, LinearExpression.of(
+                LinearExpression.of(
                         new LinearExpression.Term(x1, 0.5),
                         new LinearExpression.Term(x2, 1.0),
                         new LinearExpression.Term(x3, 1.0)
-                )
+                ), 4.5
         );
 
         final Solution solution = model.minimize().orElseThrow();
@@ -138,8 +140,10 @@ class ModelSolveTest {
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 2.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 1.0);
         model.addLessThanOrEqualToConstraint(
-                5.0,
-                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+                LinearExpression.of(
+                        new LinearExpression.Term(x1, 1.0),
+                        new LinearExpression.Term(x2, 1.0)
+                ), 5.0
         );
 
         final Solution firstSolution = model.maximize().orElseThrow();
@@ -150,11 +154,11 @@ class ModelSolveTest {
 
         final Variable x3 = model.addIntegerVariable(1.0, Double.MAX_VALUE, 1.0);
         model.addEqualityConstraint(
-                3.0, LinearExpression.of(
+                LinearExpression.of(
                         new LinearExpression.Term(x1, 1.0),
                         new LinearExpression.Term(x2, 1.0),
                         new LinearExpression.Term(x3, 1.0)
-                )
+                ), 3.0
         );
 
         final Solution secondSolution = model.maximize().orElseThrow();
@@ -171,8 +175,10 @@ class ModelSolveTest {
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 2.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 1.0);
         model.addLessThanOrEqualToConstraint(
-                5.0,
-                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+                LinearExpression.of(
+                        new LinearExpression.Term(x1, 1.0),
+                        new LinearExpression.Term(x2, 1.0)
+                ), 5.0
         );
 
         final Solution firstSolution = model.maximize().orElseThrow();
@@ -191,12 +197,12 @@ class ModelSolveTest {
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
         final Variable x3 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 1.0);
         model.addEqualityConstraint(
-                LinearExpression.of(2.0, new LinearExpression.Term(x3, 1.0)),
-                LinearExpression.of(new LinearExpression.Term(x1, 3.0), new LinearExpression.Term(x2, 1.0))
+                LinearExpression.of(new LinearExpression.Term(x1, 3.0), new LinearExpression.Term(x2, 1.0)),
+                LinearExpression.of(2.0, new LinearExpression.Term(x3, 1.0))
         );
         model.addLessThanOrEqualToConstraint(
-                LinearExpression.of(1.0),
-                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0)),
+                LinearExpression.of(1.0)
         );
 
         final Solution solution = model.maximize().orElseThrow();
@@ -211,8 +217,8 @@ class ModelSolveTest {
         final Variable x1 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
         final Variable x2 = model.addIntegerVariable(0.0, Double.MAX_VALUE, 0.0);
         model.addGreaterThanOrEqualToConstraint(
-                LinearExpression.of(10.0, new LinearExpression.Term(x1, 1.0)),
-                LinearExpression.of(5.0, new LinearExpression.Term(x2, 1.0))
+                LinearExpression.of(5.0, new LinearExpression.Term(x2, 1.0)),
+                LinearExpression.of(10.0, new LinearExpression.Term(x1, 1.0))
         );
 
         final Solution solution = model.minimize().orElseThrow();

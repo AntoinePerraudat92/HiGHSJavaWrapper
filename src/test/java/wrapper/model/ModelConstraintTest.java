@@ -21,8 +21,10 @@ class ModelConstraintTest {
         final Variable x1 = model.addBinaryVariable(1.0);
         final Variable x2 = model.addBinaryVariable(1.0);
         final Constraint constraint = model.addLessThanOrEqualToConstraint(
-                1.0,
-                LinearExpression.of(new LinearExpression.Term(x1, 1.0))
+                LinearExpression.of(new LinearExpression.Term(
+                        x1,
+                        1.0
+                )), 1.0
         );
 
         final Solution firstSolution = model.maximize().orElseThrow();
@@ -41,8 +43,10 @@ class ModelConstraintTest {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         final Constraint constraint = model.addLessThanOrEqualToConstraint(
-                4.0,
-                LinearExpression.of(new LinearExpression.Term(x1, 0.5))
+                LinearExpression.of(new LinearExpression.Term(
+                        x1,
+                        0.5
+                )), 4.0
         );
 
         final ModelStateException exception = assertThrows(
@@ -61,8 +65,12 @@ class ModelConstraintTest {
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Constraint constraint = model.addEqualityConstraint(
-                1.0,
-                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+                LinearExpression.of(
+                        new LinearExpression.Term(
+                                x1,
+                                1.0
+                        ), new LinearExpression.Term(x2, 1.0)
+                ), 1.0
         );
         constraint.updateRightHandSide(18.0);
 
@@ -80,8 +88,12 @@ class ModelConstraintTest {
         final Variable x1 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Constraint constraint = model.addLessThanOrEqualToConstraint(
-                10.0,
-                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+                LinearExpression.of(
+                        new LinearExpression.Term(
+                                x1,
+                                1.0
+                        ), new LinearExpression.Term(x2, 1.0)
+                ), 10.0
         );
         constraint.updateRightHandSide(37.0);
 
@@ -96,8 +108,12 @@ class ModelConstraintTest {
         final Variable x1 = model.addIntegerVariable(12.0, Double.MAX_VALUE, 2.0);
         final Variable x2 = model.addContinuousVariable(0.0, Double.MAX_VALUE, 1.0);
         final Constraint constraint = model.addGreaterThanOrEqualToConstraint(
-                20.0,
-                LinearExpression.of(new LinearExpression.Term(x1, 1.0), new LinearExpression.Term(x2, 1.0))
+                LinearExpression.of(
+                        new LinearExpression.Term(
+                                x1,
+                                1.0
+                        ), new LinearExpression.Term(x2, 1.0)
+                ), 20.0
         );
         constraint.updateRightHandSide(12.0);
 
@@ -112,12 +128,12 @@ class ModelConstraintTest {
         final LinearExpression expression = new LinearExpression();
         expression.addVariable(model.addContinuousVariable(1.0, 2.0, 0.0), 1.0);
 
-        assertEquals(0, model.addLessThanOrEqualToConstraint(50.0, expression).getIndex());
-        assertEquals(1, model.addLessThanOrEqualToConstraint(LinearExpression.of(50.0), expression).getIndex());
-        assertEquals(2, model.addEqualityConstraint(25.0, expression).getIndex());
-        assertEquals(3, model.addEqualityConstraint(LinearExpression.of(25.0), expression).getIndex());
-        assertEquals(4, model.addGreaterThanOrEqualToConstraint(1.9, expression).getIndex());
-        assertEquals(5, model.addGreaterThanOrEqualToConstraint(LinearExpression.of(1.9), expression).getIndex());
+        assertEquals(0, model.addLessThanOrEqualToConstraint(expression, 50.0).getIndex());
+        assertEquals(1, model.addLessThanOrEqualToConstraint(expression, LinearExpression.of(50.0)).getIndex());
+        assertEquals(2, model.addEqualityConstraint(expression, 25.0).getIndex());
+        assertEquals(3, model.addEqualityConstraint(expression, LinearExpression.of(25.0)).getIndex());
+        assertEquals(4, model.addGreaterThanOrEqualToConstraint(expression, 1.9).getIndex());
+        assertEquals(5, model.addGreaterThanOrEqualToConstraint(expression, LinearExpression.of(1.9)).getIndex());
     }
 
     @Test
@@ -132,7 +148,7 @@ class ModelConstraintTest {
 
         final ModelStateException exception = assertThrows(
                 ModelStateException.class,
-                () -> model.addEqualityConstraint(2.4, expression)
+                () -> model.addEqualityConstraint(expression, 2.4)
         );
         assertEquals(
                 "Trying to access or modify variable/constraint associated with wrong model",
@@ -147,7 +163,7 @@ class ModelConstraintTest {
 
         final VariableException exception = assertThrows(
                 VariableException.class,
-                () -> model.addEqualityConstraint(18.3, expression)
+                () -> model.addEqualityConstraint(expression, 18.3)
         );
         assertEquals("Linear expression has no variable", exception.getMessage());
     }
@@ -159,11 +175,11 @@ class ModelConstraintTest {
         final Variable x2 = model.addBinaryVariable(1.0);
         final Variable x3 = model.addBinaryVariable(1.0);
         final Constraint constraint = model.addEqualityConstraint(
-                5.0, LinearExpression.of(
+                LinearExpression.of(
                         new LinearExpression.Term(x1, 1.0),
                         new LinearExpression.Term(x2, 1.0),
                         new LinearExpression.Term(x3, 1.0)
-                )
+                ), 5.0
         );
 
         model.maximize().orElseThrow();
