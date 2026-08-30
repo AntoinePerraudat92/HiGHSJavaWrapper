@@ -62,7 +62,7 @@ public class Model {
      */
     public Constraint addEqualityConstraint(final LinearExpression rhs, final LinearExpression expression) {
         this.state.onModelChangeRequested();
-        final LinearExpression completeExpression = expression.minus(rhs);
+        final LinearExpression completeExpression = expression.merge(rhs);
         return addEqualityConstraint(-completeExpression.getConstant(), completeExpression);
     }
 
@@ -79,7 +79,7 @@ public class Model {
      */
     public Constraint addLessThanOrEqualToConstraint(final LinearExpression rhs, final LinearExpression expression) {
         this.state.onModelChangeRequested();
-        final LinearExpression completeExpression = expression.minus(rhs);
+        final LinearExpression completeExpression = expression.merge(rhs);
         return addConstraint(
                 -Double.MAX_VALUE,
                 -completeExpression.getConstant(),
@@ -101,7 +101,7 @@ public class Model {
      */
     public Constraint addGreaterThanOrEqualToConstraint(final LinearExpression rhs, final LinearExpression expression) {
         this.state.onModelChangeRequested();
-        final LinearExpression completeExpression = expression.minus(rhs);
+        final LinearExpression completeExpression = expression.merge(rhs);
         return addConstraint(
                 -completeExpression.getConstant(),
                 Double.MAX_VALUE,
@@ -158,11 +158,7 @@ public class Model {
         check(variable);
         check(constraint);
         runHighsActionAndThrowOnError(
-                () -> this.highs.changeCoeff(
-                        constraint.getIndex(),
-                        variable.getIndex(),
-                        newCoefficient
-                ),
+                () -> this.highs.changeCoeff(constraint.getIndex(), variable.getIndex(), newCoefficient),
                 () -> new VariableException("Impossible to update coefficient of constraint")
         );
     }

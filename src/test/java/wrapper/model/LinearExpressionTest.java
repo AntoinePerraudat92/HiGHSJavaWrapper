@@ -28,7 +28,7 @@ class LinearExpressionTest {
     }
 
     @Test
-    void minus() {
+    void merge() {
         final Model model = createModel();
         final Variable x1 = model.addSemicontinuousVariable(0.0, 15.0, 7.2);
         final Variable x2 = model.addBinaryVariable(5.6);
@@ -43,7 +43,7 @@ class LinearExpressionTest {
         secondExpression.addVariable(x1, 2.0);
         secondExpression.addVariable(x5, 1.0);
 
-        final LinearExpression expression = firstExpression.minus(secondExpression);
+        final LinearExpression expression = firstExpression.merge(secondExpression);
 
         final Map<Long, Double> computedCoefficients = new HashMap<>();
         expression.consumeVariables((variable, value) -> computedCoefficients.put(variable.getIndex(), value));

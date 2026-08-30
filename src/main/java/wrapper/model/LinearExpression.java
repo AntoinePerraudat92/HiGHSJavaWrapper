@@ -56,7 +56,7 @@ public class LinearExpression {
         this.terms.values().forEach(term -> consumer.accept(term.variable(), term.scalar()));
     }
 
-    LinearExpression minus(final LinearExpression otherExpression) {
+    LinearExpression merge(final LinearExpression otherExpression) {
         final LinearExpression newLinearExpression = new LinearExpression(this.constant - otherExpression.constant);
         consumeVariables(newLinearExpression::addVariable);
         for (final Term term : otherExpression.terms.values()) {
