@@ -33,7 +33,7 @@ jobs:
           echo "HIGHS_HOME=$pwd\HiGHS" >> $env:GITHUB_ENV
           cd HiGHS
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DHIGHSINT64=on -DBUILD_SHARED_LIBS=ON
-          cmake --build build --config Release --parallel
+          cmake --build build --config Release -j 2
           cd build
           ctest -C Release
 
