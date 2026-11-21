@@ -9,52 +9,47 @@
 package highs;
 
 public final class MipChooseSubMipRecord {
-    public final static MipChooseSubMipRecord kMipRecord = new MipChooseSubMipRecord(
-            "kMipRecord",
-            highsJNI.kMipRecord_get()
-    );
-    public final static MipChooseSubMipRecord kChooseRecord = new MipChooseSubMipRecord("kChooseRecord");
-    public final static MipChooseSubMipRecord kSubMipRecord = new MipChooseSubMipRecord("kSubMipRecord");
-    private static MipChooseSubMipRecord[] swigValues = {
-            kMipRecord,
-            kChooseRecord,
-            kSubMipRecord
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static MipChooseSubMipRecord kMipRecord = new MipChooseSubMipRecord("kMipRecord", highsJNI.kMipRecord_get());
+  public final static MipChooseSubMipRecord kChooseRecord = new MipChooseSubMipRecord("kChooseRecord");
+  public final static MipChooseSubMipRecord kSubMipRecord = new MipChooseSubMipRecord("kSubMipRecord");
 
-    private MipChooseSubMipRecord(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private MipChooseSubMipRecord(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private MipChooseSubMipRecord(String swigName, MipChooseSubMipRecord swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static MipChooseSubMipRecord swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + MipChooseSubMipRecord.class + " with value " + swigValue);
+  }
 
-    public static MipChooseSubMipRecord swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + MipChooseSubMipRecord.class + " with value " + swigValue);
-    }
+  private MipChooseSubMipRecord(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private MipChooseSubMipRecord(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private MipChooseSubMipRecord(String swigName, MipChooseSubMipRecord swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static MipChooseSubMipRecord[] swigValues = { kMipRecord, kChooseRecord, kSubMipRecord };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

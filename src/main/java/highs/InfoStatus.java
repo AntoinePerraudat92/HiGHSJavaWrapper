@@ -9,51 +9,48 @@
 package highs;
 
 public final class InfoStatus {
-    public final static InfoStatus kOk = new InfoStatus("kOk", highsJNI.InfoStatus_kOk_get());
-    public final static InfoStatus kUnknownInfo = new InfoStatus("kUnknownInfo");
-    public final static InfoStatus kIllegalValue = new InfoStatus("kIllegalValue");
-    public final static InfoStatus kUnavailable = new InfoStatus("kUnavailable");
-    private static InfoStatus[] swigValues = {
-            kOk,
-            kUnknownInfo,
-            kIllegalValue,
-            kUnavailable
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static InfoStatus kOk = new InfoStatus("kOk", highsJNI.InfoStatus_kOk_get());
+  public final static InfoStatus kUnknownInfo = new InfoStatus("kUnknownInfo");
+  public final static InfoStatus kIllegalValue = new InfoStatus("kIllegalValue");
+  public final static InfoStatus kUnavailable = new InfoStatus("kUnavailable");
 
-    private InfoStatus(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private InfoStatus(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private InfoStatus(String swigName, InfoStatus swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static InfoStatus swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + InfoStatus.class + " with value " + swigValue);
+  }
 
-    public static InfoStatus swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + InfoStatus.class + " with value " + swigValue);
-    }
+  private InfoStatus(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private InfoStatus(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private InfoStatus(String swigName, InfoStatus swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static InfoStatus[] swigValues = { kOk, kUnknownInfo, kIllegalValue, kUnavailable };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

@@ -9,51 +9,48 @@
 package highs;
 
 public final class HighsOptionType {
-    public final static HighsOptionType kBool = new HighsOptionType("kBool", highsJNI.HighsOptionType_kBool_get());
-    public final static HighsOptionType kInt = new HighsOptionType("kInt");
-    public final static HighsOptionType kDouble = new HighsOptionType("kDouble");
-    public final static HighsOptionType kString = new HighsOptionType("kString");
-    private static HighsOptionType[] swigValues = {
-            kBool,
-            kInt,
-            kDouble,
-            kString
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static HighsOptionType kBool = new HighsOptionType("kBool", highsJNI.HighsOptionType_kBool_get());
+  public final static HighsOptionType kInt = new HighsOptionType("kInt");
+  public final static HighsOptionType kDouble = new HighsOptionType("kDouble");
+  public final static HighsOptionType kString = new HighsOptionType("kString");
 
-    private HighsOptionType(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private HighsOptionType(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private HighsOptionType(String swigName, HighsOptionType swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static HighsOptionType swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + HighsOptionType.class + " with value " + swigValue);
+  }
 
-    public static HighsOptionType swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + HighsOptionType.class + " with value " + swigValue);
-    }
+  private HighsOptionType(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private HighsOptionType(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private HighsOptionType(String swigName, HighsOptionType swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static HighsOptionType[] swigValues = { kBool, kInt, kDouble, kString };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

@@ -9,55 +9,48 @@
 package highs;
 
 public final class PresolveSolvePostsolveIndex {
-    public final static PresolveSolvePostsolveIndex kPresolveTime = new PresolveSolvePostsolveIndex(
-            "kPresolveTime",
-            highsJNI.kPresolveTime_get()
-    );
-    public final static PresolveSolvePostsolveIndex kSolveTime = new PresolveSolvePostsolveIndex("kSolveTime");
-    public final static PresolveSolvePostsolveIndex kPostsolveTime = new PresolveSolvePostsolveIndex("kPostsolveTime");
-    public final static PresolveSolvePostsolveIndex kToPresolveSolvePostsolve = new PresolveSolvePostsolveIndex(
-            "kToPresolveSolvePostsolve");
-    private static PresolveSolvePostsolveIndex[] swigValues = {
-            kPresolveTime,
-            kSolveTime,
-            kPostsolveTime,
-            kToPresolveSolvePostsolve
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static PresolveSolvePostsolveIndex kPresolveTime = new PresolveSolvePostsolveIndex("kPresolveTime", highsJNI.kPresolveTime_get());
+  public final static PresolveSolvePostsolveIndex kSolveTime = new PresolveSolvePostsolveIndex("kSolveTime");
+  public final static PresolveSolvePostsolveIndex kPostsolveTime = new PresolveSolvePostsolveIndex("kPostsolveTime");
+  public final static PresolveSolvePostsolveIndex kToPresolveSolvePostsolve = new PresolveSolvePostsolveIndex("kToPresolveSolvePostsolve");
 
-    private PresolveSolvePostsolveIndex(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private PresolveSolvePostsolveIndex(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private PresolveSolvePostsolveIndex(String swigName, PresolveSolvePostsolveIndex swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static PresolveSolvePostsolveIndex swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + PresolveSolvePostsolveIndex.class + " with value " + swigValue);
+  }
 
-    public static PresolveSolvePostsolveIndex swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + PresolveSolvePostsolveIndex.class + " with value " + swigValue);
-    }
+  private PresolveSolvePostsolveIndex(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private PresolveSolvePostsolveIndex(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private PresolveSolvePostsolveIndex(String swigName, PresolveSolvePostsolveIndex swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static PresolveSolvePostsolveIndex[] swigValues = { kPresolveTime, kSolveTime, kPostsolveTime, kToPresolveSolvePostsolve };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

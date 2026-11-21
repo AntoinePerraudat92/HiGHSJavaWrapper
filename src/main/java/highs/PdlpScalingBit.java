@@ -9,68 +9,49 @@
 package highs;
 
 public final class PdlpScalingBit {
-    public final static PdlpScalingBit kPdlpScalingMin = new PdlpScalingBit(
-            "kPdlpScalingMin",
-            highsJNI.kPdlpScalingMin_get()
-    );
-    public final static PdlpScalingBit kPdlpScalingRuiz = new PdlpScalingBit(
-            "kPdlpScalingRuiz",
-            highsJNI.kPdlpScalingRuiz_get()
-    );
-    public final static PdlpScalingBit kPdlpScalingL2 = new PdlpScalingBit(
-            "kPdlpScalingL2",
-            highsJNI.kPdlpScalingL2_get()
-    );
-    public final static PdlpScalingBit kPdlpScalingPC = new PdlpScalingBit(
-            "kPdlpScalingPC",
-            highsJNI.kPdlpScalingPC_get()
-    );
-    public final static PdlpScalingBit kPdlpScalingMax = new PdlpScalingBit(
-            "kPdlpScalingMax",
-            highsJNI.kPdlpScalingMax_get()
-    );
-    private static PdlpScalingBit[] swigValues = {
-            kPdlpScalingMin,
-            kPdlpScalingRuiz,
-            kPdlpScalingL2,
-            kPdlpScalingPC,
-            kPdlpScalingMax
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static PdlpScalingBit kPdlpScalingMin = new PdlpScalingBit("kPdlpScalingMin", highsJNI.kPdlpScalingMin_get());
+  public final static PdlpScalingBit kPdlpScalingRuiz = new PdlpScalingBit("kPdlpScalingRuiz", highsJNI.kPdlpScalingRuiz_get());
+  public final static PdlpScalingBit kPdlpScalingL2 = new PdlpScalingBit("kPdlpScalingL2", highsJNI.kPdlpScalingL2_get());
+  public final static PdlpScalingBit kPdlpScalingPC = new PdlpScalingBit("kPdlpScalingPC", highsJNI.kPdlpScalingPC_get());
+  public final static PdlpScalingBit kPdlpScalingMax = new PdlpScalingBit("kPdlpScalingMax", highsJNI.kPdlpScalingMax_get());
 
-    private PdlpScalingBit(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private PdlpScalingBit(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private PdlpScalingBit(String swigName, PdlpScalingBit swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static PdlpScalingBit swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + PdlpScalingBit.class + " with value " + swigValue);
+  }
 
-    public static PdlpScalingBit swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + PdlpScalingBit.class + " with value " + swigValue);
-    }
+  private PdlpScalingBit(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private PdlpScalingBit(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private PdlpScalingBit(String swigName, PdlpScalingBit swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static PdlpScalingBit[] swigValues = { kPdlpScalingMin, kPdlpScalingRuiz, kPdlpScalingL2, kPdlpScalingPC, kPdlpScalingMax };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

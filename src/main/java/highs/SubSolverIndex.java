@@ -9,82 +9,59 @@
 package highs;
 
 public final class SubSolverIndex {
-    public final static SubSolverIndex kFromSubSolver = new SubSolverIndex(
-            "kFromSubSolver",
-            highsJNI.kFromSubSolver_get()
-    );
-    public final static SubSolverIndex kSubSolverMip = new SubSolverIndex(
-            "kSubSolverMip",
-            highsJNI.kSubSolverMip_get()
-    );
-    public final static SubSolverIndex kSubSolverDuSimplexBasis = new SubSolverIndex("kSubSolverDuSimplexBasis");
-    public final static SubSolverIndex kSubSolverDuSimplexNoBasis = new SubSolverIndex("kSubSolverDuSimplexNoBasis");
-    public final static SubSolverIndex kSubSolverPrSimplexBasis = new SubSolverIndex("kSubSolverPrSimplexBasis");
-    public final static SubSolverIndex kSubSolverPrSimplexNoBasis = new SubSolverIndex("kSubSolverPrSimplexNoBasis");
-    public final static SubSolverIndex kSubSolverHipo = new SubSolverIndex("kSubSolverHipo");
-    public final static SubSolverIndex kSubSolverIpx = new SubSolverIndex("kSubSolverIpx");
-    public final static SubSolverIndex kSubSolverHipoAc = new SubSolverIndex("kSubSolverHipoAc");
-    public final static SubSolverIndex kSubSolverIpxAc = new SubSolverIndex("kSubSolverIpxAc");
-    public final static SubSolverIndex kSubSolverPdlp = new SubSolverIndex("kSubSolverPdlp");
-    public final static SubSolverIndex kSubSolverQpAsm = new SubSolverIndex("kSubSolverQpAsm");
-    public final static SubSolverIndex kSubSolverSubMip = new SubSolverIndex("kSubSolverSubMip");
-    public final static SubSolverIndex kLastSubSolver = new SubSolverIndex(
-            "kLastSubSolver",
-            highsJNI.kLastSubSolver_get()
-    );
-    public final static SubSolverIndex kToSubSolver = new SubSolverIndex("kToSubSolver", highsJNI.kToSubSolver_get());
-    private static SubSolverIndex[] swigValues = {
-            kFromSubSolver,
-            kSubSolverMip,
-            kSubSolverDuSimplexBasis,
-            kSubSolverDuSimplexNoBasis,
-            kSubSolverPrSimplexBasis,
-            kSubSolverPrSimplexNoBasis,
-            kSubSolverHipo,
-            kSubSolverIpx,
-            kSubSolverHipoAc,
-            kSubSolverIpxAc,
-            kSubSolverPdlp,
-            kSubSolverQpAsm,
-            kSubSolverSubMip,
-            kLastSubSolver,
-            kToSubSolver
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static SubSolverIndex kFromSubSolver = new SubSolverIndex("kFromSubSolver", highsJNI.kFromSubSolver_get());
+  public final static SubSolverIndex kSubSolverMip = new SubSolverIndex("kSubSolverMip", highsJNI.kSubSolverMip_get());
+  public final static SubSolverIndex kSubSolverDuSimplexBasis = new SubSolverIndex("kSubSolverDuSimplexBasis");
+  public final static SubSolverIndex kSubSolverDuSimplexNoBasis = new SubSolverIndex("kSubSolverDuSimplexNoBasis");
+  public final static SubSolverIndex kSubSolverPrSimplexBasis = new SubSolverIndex("kSubSolverPrSimplexBasis");
+  public final static SubSolverIndex kSubSolverPrSimplexNoBasis = new SubSolverIndex("kSubSolverPrSimplexNoBasis");
+  public final static SubSolverIndex kSubSolverHipo = new SubSolverIndex("kSubSolverHipo");
+  public final static SubSolverIndex kSubSolverIpx = new SubSolverIndex("kSubSolverIpx");
+  public final static SubSolverIndex kSubSolverHipoAc = new SubSolverIndex("kSubSolverHipoAc");
+  public final static SubSolverIndex kSubSolverIpxAc = new SubSolverIndex("kSubSolverIpxAc");
+  public final static SubSolverIndex kSubSolverPdlp = new SubSolverIndex("kSubSolverPdlp");
+  public final static SubSolverIndex kSubSolverQpAsm = new SubSolverIndex("kSubSolverQpAsm");
+  public final static SubSolverIndex kSubSolverSubMip = new SubSolverIndex("kSubSolverSubMip");
+  public final static SubSolverIndex kLastSubSolver = new SubSolverIndex("kLastSubSolver", highsJNI.kLastSubSolver_get());
+  public final static SubSolverIndex kToSubSolver = new SubSolverIndex("kToSubSolver", highsJNI.kToSubSolver_get());
 
-    private SubSolverIndex(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private SubSolverIndex(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private SubSolverIndex(String swigName, SubSolverIndex swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static SubSolverIndex swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + SubSolverIndex.class + " with value " + swigValue);
+  }
 
-    public static SubSolverIndex swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + SubSolverIndex.class + " with value " + swigValue);
-    }
+  private SubSolverIndex(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private SubSolverIndex(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private SubSolverIndex(String swigName, SubSolverIndex swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static SubSolverIndex[] swigValues = { kFromSubSolver, kSubSolverMip, kSubSolverDuSimplexBasis, kSubSolverDuSimplexNoBasis, kSubSolverPrSimplexBasis, kSubSolverPrSimplexNoBasis, kSubSolverHipo, kSubSolverIpx, kSubSolverHipoAc, kSubSolverIpxAc, kSubSolverPdlp, kSubSolverQpAsm, kSubSolverSubMip, kLastSubSolver, kToSubSolver };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

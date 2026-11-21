@@ -9,56 +9,49 @@
 package highs;
 
 public final class HighsBasisStatus {
-    public final static HighsBasisStatus kLower = new HighsBasisStatus(
-            "kLower",
-            highsJNI.HighsBasisStatus_kLower_get()
-    );
-    public final static HighsBasisStatus kBasic = new HighsBasisStatus("kBasic");
-    public final static HighsBasisStatus kUpper = new HighsBasisStatus("kUpper");
-    public final static HighsBasisStatus kZero = new HighsBasisStatus("kZero");
-    public final static HighsBasisStatus kNonbasic = new HighsBasisStatus("kNonbasic");
-    private static HighsBasisStatus[] swigValues = {
-            kLower,
-            kBasic,
-            kUpper,
-            kZero,
-            kNonbasic
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static HighsBasisStatus kLower = new HighsBasisStatus("kLower", highsJNI.HighsBasisStatus_kLower_get());
+  public final static HighsBasisStatus kBasic = new HighsBasisStatus("kBasic");
+  public final static HighsBasisStatus kUpper = new HighsBasisStatus("kUpper");
+  public final static HighsBasisStatus kZero = new HighsBasisStatus("kZero");
+  public final static HighsBasisStatus kNonbasic = new HighsBasisStatus("kNonbasic");
 
-    private HighsBasisStatus(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private HighsBasisStatus(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private HighsBasisStatus(String swigName, HighsBasisStatus swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static HighsBasisStatus swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + HighsBasisStatus.class + " with value " + swigValue);
+  }
 
-    public static HighsBasisStatus swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + HighsBasisStatus.class + " with value " + swigValue);
-    }
+  private HighsBasisStatus(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private HighsBasisStatus(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private HighsBasisStatus(String swigName, HighsBasisStatus swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static HighsBasisStatus[] swigValues = { kLower, kBasic, kUpper, kZero, kNonbasic };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

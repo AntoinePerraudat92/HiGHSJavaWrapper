@@ -9,67 +9,65 @@
 package highs;
 
 public class DoubleArray {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected DoubleArray(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected DoubleArray(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public DoubleArray(long nelements) {
-        this(highsJNI.new_DoubleArray(nelements), true);
-    }
+  protected static long getCPtr(DoubleArray obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(DoubleArray obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
+  protected static long swigRelease(DoubleArray obj) {
+    long ptr = 0;
+    if (obj != null) {
+      if (!obj.swigCMemOwn)
+        throw new RuntimeException("Cannot release ownership as memory is not owned");
+      ptr = obj.swigCPtr;
+      obj.swigCMemOwn = false;
+      obj.delete();
     }
+    return ptr;
+  }
 
-    protected static long swigRelease(DoubleArray obj) {
-        long ptr = 0;
-        if (obj != null) {
-            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
-            ptr = obj.swigCPtr;
-            obj.swigCMemOwn = false;
-            obj.delete();
-        }
-        return ptr;
-    }
+  @SuppressWarnings({"deprecation", "removal"})
+  protected void finalize() {
+    delete();
+  }
 
-    public static DoubleArray frompointer(SWIGTYPE_p_double t) {
-        long cPtr = highsJNI.DoubleArray_frompointer(SWIGTYPE_p_double.getCPtr(t));
-        return (cPtr == 0) ? null : new DoubleArray(cPtr, false);
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        highsJNI.delete_DoubleArray(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    @SuppressWarnings({
-            "deprecation",
-            "removal"
-    })
-    protected void finalize() {
-        delete();
-    }
+  public DoubleArray(long nelements) {
+    this(highsJNI.new_DoubleArray(nelements), true);
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                highsJNI.delete_DoubleArray(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public double getitem(long index) {
+    return highsJNI.DoubleArray_getitem(swigCPtr, this, index);
+  }
 
-    public double getitem(long index) {
-        return highsJNI.DoubleArray_getitem(swigCPtr, this, index);
-    }
+  public void setitem(long index, double value) {
+    highsJNI.DoubleArray_setitem(swigCPtr, this, index, value);
+  }
 
-    public void setitem(long index, double value) {
-        highsJNI.DoubleArray_setitem(swigCPtr, this, index, value);
-    }
+  public SWIGTYPE_p_double cast() {
+    long cPtr = highsJNI.DoubleArray_cast(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_double(cPtr, false);
+  }
 
-    public SWIGTYPE_p_double cast() {
-        long cPtr = highsJNI.DoubleArray_cast(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_double(cPtr, false);
-    }
+  public static DoubleArray frompointer(SWIGTYPE_p_double t) {
+    long cPtr = highsJNI.DoubleArray_frompointer(SWIGTYPE_p_double.getCPtr(t));
+    return (cPtr == 0) ? null : new DoubleArray(cPtr, false);
+  }
 
 }
