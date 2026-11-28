@@ -16,9 +16,9 @@ public enum StringOptions {
         }
     },
 
-    LOG_TO_FILE {
+    LOG_FILE {
         String getHighsOptionName() {
-            return "log_to_file";
+            return "log_file";
         }
     };
 
