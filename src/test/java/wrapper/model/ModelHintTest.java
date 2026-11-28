@@ -1,7 +1,6 @@
 package wrapper.model;
 
 import org.junit.jupiter.api.Test;
-import wrapper.exceptions.HintException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static wrapper.util.Constants.EPSILON;
@@ -15,25 +14,24 @@ class ModelHintTest {
     }
 
     @Test
-    void maximizeMustThrowIfInvalidInitialValue() {
+    void maximizeMustNotThrowIfInvalidInitialValue() {
         final Model model = createModel();
         final Variable x1 = model.addBinaryVariable(1.0);
         model.addEqualityConstraint(LinearExpression.of(new LinearExpression.Term(x1, 1.0)), 1.0);
         x1.setHint(-1.0);
 
-        final HintException hintException = assertThrows(HintException.class, model::maximize);
-        assertEquals("Impossible to parse hints", hintException.getMessage());
+        assertTrue(model.maximize().isPresent());
     }
 
     @Test
-    void hintsMustBeClearedAfterFirstSolveEvenIfNotSuccessful() {
+    void hintsMustBeClearedAfterFirstSolve() {
         final Model model = createModel();
         final Variable x1 = model.addIntegerVariable(5.0, 12.0, 1.0);
         model.addEqualityConstraint(LinearExpression.of(new LinearExpression.Term(x1, 1.0)), 11.0);
         x1.setHint(-3.0);
 
-        assertThrows(HintException.class, model::maximize);
-        assertDoesNotThrow(model::maximize);
+        assertTrue(model.maximize().isPresent());
+        assertTrue(model.maximize().isPresent());
     }
 
     @Test
