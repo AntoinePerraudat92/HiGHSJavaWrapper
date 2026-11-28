@@ -120,28 +120,12 @@ public class Highs {
     return HighsStatus.swigToEnum(highsJNI.Highs_passModel__SWIG_5(swigCPtr, this, num_col, num_row, num_nz, a_format, sense, offset, SWIGTYPE_p_double.getCPtr(col_cost), SWIGTYPE_p_double.getCPtr(col_lower), SWIGTYPE_p_double.getCPtr(col_upper), SWIGTYPE_p_double.getCPtr(row_lower), SWIGTYPE_p_double.getCPtr(row_upper), SWIGTYPE_p_long_long.getCPtr(a_start), SWIGTYPE_p_long_long.getCPtr(a_index), SWIGTYPE_p_double.getCPtr(a_value)));
   }
 
-  public HighsStatus passHessian(SWIGTYPE_p_HighsHessian hessian_) {
-    return HighsStatus.swigToEnum(highsJNI.Highs_passHessian__SWIG_0(swigCPtr, this, SWIGTYPE_p_HighsHessian.getCPtr(hessian_)));
-  }
-
-  public HighsStatus passHessian(long dim, long num_nz, long format, SWIGTYPE_p_long_long start, SWIGTYPE_p_long_long index, SWIGTYPE_p_double value) {
-    return HighsStatus.swigToEnum(highsJNI.Highs_passHessian__SWIG_1(swigCPtr, this, dim, num_nz, format, SWIGTYPE_p_long_long.getCPtr(start), SWIGTYPE_p_long_long.getCPtr(index), SWIGTYPE_p_double.getCPtr(value)));
-  }
-
-  public HighsStatus passHessian(long dim, SWIGTYPE_p_std__functionT_long_long_flong_long_const_long_long_const_p_long_long_const_p_double_const_p_long_long_p_long_long_p_double_p_void_pF_t oracleCall, SWIGTYPE_p_void oracle_data, SWIGTYPE_p_HighsCHessianFunctionType c_oracleCall) {
-    return HighsStatus.swigToEnum(highsJNI.Highs_passHessian__SWIG_2(swigCPtr, this, dim, SWIGTYPE_p_std__functionT_long_long_flong_long_const_long_long_const_p_long_long_const_p_double_const_p_long_long_p_long_long_p_double_p_void_pF_t.getCPtr(oracleCall), SWIGTYPE_p_void.getCPtr(oracle_data), SWIGTYPE_p_HighsCHessianFunctionType.getCPtr(c_oracleCall)));
-  }
-
   public HighsStatus passHessian(long dim, SWIGTYPE_p_std__functionT_long_long_flong_long_const_long_long_const_p_long_long_const_p_double_const_p_long_long_p_long_long_p_double_p_void_pF_t oracleCall, SWIGTYPE_p_void oracle_data) {
-    return HighsStatus.swigToEnum(highsJNI.Highs_passHessian__SWIG_3(swigCPtr, this, dim, SWIGTYPE_p_std__functionT_long_long_flong_long_const_long_long_const_p_long_long_const_p_double_const_p_long_long_p_long_long_p_double_p_void_pF_t.getCPtr(oracleCall), SWIGTYPE_p_void.getCPtr(oracle_data)));
-  }
-
-  public HighsStatus checkHessianOracle(boolean exit_on_first_error) {
-    return HighsStatus.swigToEnum(highsJNI.Highs_checkHessianOracle__SWIG_0(swigCPtr, this, exit_on_first_error));
+    return HighsStatus.swigToEnum(highsJNI.Highs_passHessian(swigCPtr, this, dim, SWIGTYPE_p_std__functionT_long_long_flong_long_const_long_long_const_p_long_long_const_p_double_const_p_long_long_p_long_long_p_double_p_void_pF_t.getCPtr(oracleCall), SWIGTYPE_p_void.getCPtr(oracle_data)));
   }
 
   public HighsStatus checkHessianOracle() {
-    return HighsStatus.swigToEnum(highsJNI.Highs_checkHessianOracle__SWIG_1(swigCPtr, this));
+    return HighsStatus.swigToEnum(highsJNI.Highs_checkHessianOracle(swigCPtr, this));
   }
 
   public HighsStatus passLinearObjectives(long num_linear_objective, HighsLinearObjective linear_objective) {

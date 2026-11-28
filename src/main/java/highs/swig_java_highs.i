@@ -11,9 +11,15 @@
 #include "Highs.h"
 %}
 
-// Ignore these methods to fix link and simplify MSVC CI
+// Ignore these methods to fix link errors and simplify CI
 %ignore checkInfo(const InfoRecordInt&);
 %ignore checkInfo(const InfoRecordDouble&);
+%ignore passHessian(HighsHessian hessian_);
+%ignore passHessian(const HighsInt, const HighsInt,const HighsInt, const HighsInt*, const HighsInt*, const double*);
+%ignore passHessian(const HighsInt, HighsHessianFunctionType, void*, HighsCHessianFunctionType);
+%ignore checkHessianOracle(const bool);
+%ignore getHessianNumNz();
+
 
 %include "std_vector.i"
 namespace std {
