@@ -10891,7 +10891,92 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passModel_1_1SWIG_15(JNIEnv *
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsHessian arg2 ;
+  HighsHessian *argp2 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  argp2 = *(HighsHessian **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null HighsHessian");
+    return 0;
+  }
+  arg2 = *argp2; 
+  result = (HighsStatus)(arg1)->passHessian(SWIG_STD_MOVE(arg2));
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5, jlong jarg6, jlong jarg7) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsInt arg2 ;
+  HighsInt arg3 ;
+  HighsInt arg4 ;
+  HighsInt *arg5 = (HighsInt *) 0 ;
+  HighsInt *arg6 = (HighsInt *) 0 ;
+  double *arg7 = (double *) 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  arg3 = (HighsInt)jarg3; 
+  arg4 = (HighsInt)jarg4; 
+  arg5 = *(HighsInt **)&jarg5; 
+  arg6 = *(HighsInt **)&jarg6; 
+  arg7 = *(double **)&jarg7; 
+  result = (HighsStatus)(arg1)->passHessian(arg2,arg3,arg4,(HighsInt const *)arg5,(HighsInt const *)arg6,(double const *)arg7);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsInt arg2 ;
+  HighsHessianFunctionType arg3 ;
+  void *arg4 = (void *) 0 ;
+  HighsCHessianFunctionType arg5 ;
+  HighsHessianFunctionType *argp3 ;
+  HighsCHessianFunctionType *argp5 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  argp3 = *(HighsHessianFunctionType **)&jarg3; 
+  if (!argp3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null HighsHessianFunctionType");
+    return 0;
+  }
+  arg3 = *argp3; 
+  arg4 = *(void **)&jarg4; 
+  argp5 = *(HighsCHessianFunctionType **)&jarg5; 
+  if (!argp5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null HighsCHessianFunctionType");
+    return 0;
+  }
+  arg5 = *argp5; 
+  result = (HighsStatus)(arg1)->passHessian(arg2,SWIG_STD_MOVE(arg3),arg4,SWIG_STD_MOVE(arg5));
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsInt arg2 ;
