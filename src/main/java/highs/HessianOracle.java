@@ -101,10 +101,6 @@ public class HessianOracle {
     return highsJNI.HessianOracle_hasProductCall(swigCPtr, this);
   }
 
-  public void formFromOracle() {
-    highsJNI.HessianOracle_formFromOracle(swigCPtr, this);
-  }
-
   public double diagonal(long i) {
     return highsJNI.HessianOracle_diagonal(swigCPtr, this, i);
   }

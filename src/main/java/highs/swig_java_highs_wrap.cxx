@@ -5200,17 +5200,6 @@ SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HessianOracle_1hasProductCall(JN
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1formFromOracle(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  HessianOracle *arg1 = (HessianOracle *) 0 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HessianOracle **)&jarg1; 
-  (arg1)->formFromOracle();
-}
-
-
 SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_HessianOracle_1diagonal(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   jdouble jresult = 0 ;
   HessianOracle *arg1 = (HessianOracle *) 0 ;

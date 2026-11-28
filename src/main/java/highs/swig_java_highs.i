@@ -14,6 +14,7 @@
 // Ignore these methods to fix link errors and simplify CI
 %ignore checkInfo(const InfoRecordInt&);
 %ignore checkInfo(const InfoRecordDouble&);
+%ignore HessianOracle::formFromOracle();
 
 %include "std_vector.i"
 namespace std {

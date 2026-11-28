@@ -337,7 +337,6 @@ public class highsJNI {
   public final static native void HessianOracle_clear(long jarg1, HessianOracle jarg1_);
   public final static native boolean HessianOracle_isValid(long jarg1, HessianOracle jarg1_);
   public final static native boolean HessianOracle_hasProductCall(long jarg1, HessianOracle jarg1_);
-  public final static native void HessianOracle_formFromOracle(long jarg1, HessianOracle jarg1_);
   public final static native double HessianOracle_diagonal(long jarg1, HessianOracle jarg1_, long jarg2);
   public final static native double HessianOracle_entry(long jarg1, HessianOracle jarg1_, long jarg2, long jarg3);
   public final static native void HessianOracle_getPackedColumn(long jarg1, HessianOracle jarg1_, long jarg2, long jarg3, long jarg4, long jarg5);
