@@ -9,103 +9,56 @@
 package highs;
 
 public final class HighsAnalysisLevel {
-    public final static HighsAnalysisLevel kHighsAnalysisLevelNone = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelNone",
-            highsJNI.kHighsAnalysisLevelNone_get()
-    );
-    public final static HighsAnalysisLevel kHighsAnalysisLevelModelData = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelModelData",
-            highsJNI.kHighsAnalysisLevelModelData_get()
-    );
-    public final static HighsAnalysisLevel kHighsAnalysisLevelSolverSummaryData = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelSolverSummaryData",
-            highsJNI.kHighsAnalysisLevelSolverSummaryData_get()
-    );
-    public final static HighsAnalysisLevel kHighsAnalysisLevelSolverRuntimeData = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelSolverRuntimeData",
-            highsJNI.kHighsAnalysisLevelSolverRuntimeData_get()
-    );
-    public final static HighsAnalysisLevel kHighsAnalysisLevelSolverTime = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelSolverTime",
-            highsJNI.kHighsAnalysisLevelSolverTime_get()
-    );
-    public final static HighsAnalysisLevel kHighsAnalysisLevelNlaData = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelNlaData",
-            highsJNI.kHighsAnalysisLevelNlaData_get()
-    );
-    public final static HighsAnalysisLevel kHighsAnalysisLevelNlaTime = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelNlaTime",
-            highsJNI.kHighsAnalysisLevelNlaTime_get()
-    );
-    public final static HighsAnalysisLevel kHighsAnalysisLevelMipData = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelMipData",
-            highsJNI.kHighsAnalysisLevelMipData_get()
-    );
-    public final static HighsAnalysisLevel kHighsAnalysisLevelMipTime = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelMipTime",
-            highsJNI.kHighsAnalysisLevelMipTime_get()
-    );
-    public final static HighsAnalysisLevel kHighsAnalysisLevelPresolveTime = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelPresolveTime",
-            highsJNI.kHighsAnalysisLevelPresolveTime_get()
-    );
-    public final static HighsAnalysisLevel kHighsAnalysisLevelMin = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelMin",
-            highsJNI.kHighsAnalysisLevelMin_get()
-    );
-    public final static HighsAnalysisLevel kHighsAnalysisLevelMax = new HighsAnalysisLevel(
-            "kHighsAnalysisLevelMax",
-            highsJNI.kHighsAnalysisLevelMax_get()
-    );
-    private static HighsAnalysisLevel[] swigValues = {
-            kHighsAnalysisLevelNone,
-            kHighsAnalysisLevelModelData,
-            kHighsAnalysisLevelSolverSummaryData,
-            kHighsAnalysisLevelSolverRuntimeData,
-            kHighsAnalysisLevelSolverTime,
-            kHighsAnalysisLevelNlaData,
-            kHighsAnalysisLevelNlaTime,
-            kHighsAnalysisLevelMipData,
-            kHighsAnalysisLevelMipTime,
-            kHighsAnalysisLevelPresolveTime,
-            kHighsAnalysisLevelMin,
-            kHighsAnalysisLevelMax
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static HighsAnalysisLevel kHighsAnalysisLevelNone = new HighsAnalysisLevel("kHighsAnalysisLevelNone", highsJNI.kHighsAnalysisLevelNone_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelModelData = new HighsAnalysisLevel("kHighsAnalysisLevelModelData", highsJNI.kHighsAnalysisLevelModelData_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelSolverSummaryData = new HighsAnalysisLevel("kHighsAnalysisLevelSolverSummaryData", highsJNI.kHighsAnalysisLevelSolverSummaryData_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelSolverRuntimeData = new HighsAnalysisLevel("kHighsAnalysisLevelSolverRuntimeData", highsJNI.kHighsAnalysisLevelSolverRuntimeData_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelSolverTime = new HighsAnalysisLevel("kHighsAnalysisLevelSolverTime", highsJNI.kHighsAnalysisLevelSolverTime_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelNlaData = new HighsAnalysisLevel("kHighsAnalysisLevelNlaData", highsJNI.kHighsAnalysisLevelNlaData_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelNlaTime = new HighsAnalysisLevel("kHighsAnalysisLevelNlaTime", highsJNI.kHighsAnalysisLevelNlaTime_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelMipData = new HighsAnalysisLevel("kHighsAnalysisLevelMipData", highsJNI.kHighsAnalysisLevelMipData_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelMipTime = new HighsAnalysisLevel("kHighsAnalysisLevelMipTime", highsJNI.kHighsAnalysisLevelMipTime_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelPresolveTime = new HighsAnalysisLevel("kHighsAnalysisLevelPresolveTime", highsJNI.kHighsAnalysisLevelPresolveTime_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelMin = new HighsAnalysisLevel("kHighsAnalysisLevelMin", highsJNI.kHighsAnalysisLevelMin_get());
+  public final static HighsAnalysisLevel kHighsAnalysisLevelMax = new HighsAnalysisLevel("kHighsAnalysisLevelMax", highsJNI.kHighsAnalysisLevelMax_get());
 
-    private HighsAnalysisLevel(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private HighsAnalysisLevel(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private HighsAnalysisLevel(String swigName, HighsAnalysisLevel swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static HighsAnalysisLevel swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + HighsAnalysisLevel.class + " with value " + swigValue);
+  }
 
-    public static HighsAnalysisLevel swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + HighsAnalysisLevel.class + " with value " + swigValue);
-    }
+  private HighsAnalysisLevel(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private HighsAnalysisLevel(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private HighsAnalysisLevel(String swigName, HighsAnalysisLevel swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static HighsAnalysisLevel[] swigValues = { kHighsAnalysisLevelNone, kHighsAnalysisLevelModelData, kHighsAnalysisLevelSolverSummaryData, kHighsAnalysisLevelSolverRuntimeData, kHighsAnalysisLevelSolverTime, kHighsAnalysisLevelNlaData, kHighsAnalysisLevelNlaTime, kHighsAnalysisLevelMipData, kHighsAnalysisLevelMipTime, kHighsAnalysisLevelPresolveTime, kHighsAnalysisLevelMin, kHighsAnalysisLevelMax };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

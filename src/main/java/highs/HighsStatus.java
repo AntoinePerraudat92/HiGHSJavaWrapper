@@ -9,49 +9,47 @@
 package highs;
 
 public final class HighsStatus {
-    public final static HighsStatus kError = new HighsStatus("kError", highsJNI.HighsStatus_kError_get());
-    public final static HighsStatus kOk = new HighsStatus("kOk", highsJNI.HighsStatus_kOk_get());
-    public final static HighsStatus kWarning = new HighsStatus("kWarning", highsJNI.HighsStatus_kWarning_get());
-    private static HighsStatus[] swigValues = {
-            kError,
-            kOk,
-            kWarning
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static HighsStatus kError = new HighsStatus("kError", highsJNI.HighsStatus_kError_get());
+  public final static HighsStatus kOk = new HighsStatus("kOk", highsJNI.HighsStatus_kOk_get());
+  public final static HighsStatus kWarning = new HighsStatus("kWarning", highsJNI.HighsStatus_kWarning_get());
 
-    private HighsStatus(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private HighsStatus(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private HighsStatus(String swigName, HighsStatus swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static HighsStatus swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + HighsStatus.class + " with value " + swigValue);
+  }
 
-    public static HighsStatus swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + HighsStatus.class + " with value " + swigValue);
-    }
+  private HighsStatus(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private HighsStatus(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private HighsStatus(String swigName, HighsStatus swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static HighsStatus[] swigValues = { kError, kOk, kWarning };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

@@ -9,155 +9,153 @@
 package highs;
 
 public class HighsBasis {
-    protected transient boolean swigCMemOwn;
-    private transient long swigCPtr;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
-    protected HighsBasis(long cPtr, boolean cMemoryOwn) {
-        swigCMemOwn = cMemoryOwn;
-        swigCPtr = cPtr;
-    }
+  protected HighsBasis(long cPtr, boolean cMemoryOwn) {
+    swigCMemOwn = cMemoryOwn;
+    swigCPtr = cPtr;
+  }
 
-    public HighsBasis() {
-        this(highsJNI.new_HighsBasis(), true);
-    }
+  protected static long getCPtr(HighsBasis obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long getCPtr(HighsBasis obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
+  protected static long swigRelease(HighsBasis obj) {
+    long ptr = 0;
+    if (obj != null) {
+      if (!obj.swigCMemOwn)
+        throw new RuntimeException("Cannot release ownership as memory is not owned");
+      ptr = obj.swigCPtr;
+      obj.swigCMemOwn = false;
+      obj.delete();
     }
+    return ptr;
+  }
 
-    protected static long swigRelease(HighsBasis obj) {
-        long ptr = 0;
-        if (obj != null) {
-            if (!obj.swigCMemOwn) throw new RuntimeException("Cannot release ownership as memory is not owned");
-            ptr = obj.swigCPtr;
-            obj.swigCMemOwn = false;
-            obj.delete();
-        }
-        return ptr;
-    }
+  @SuppressWarnings({"deprecation", "removal"})
+  protected void finalize() {
+    delete();
+  }
 
-    @SuppressWarnings({
-            "deprecation",
-            "removal"
-    })
-    protected void finalize() {
-        delete();
+  public synchronized void delete() {
+    if (swigCPtr != 0) {
+      if (swigCMemOwn) {
+        swigCMemOwn = false;
+        highsJNI.delete_HighsBasis(swigCPtr);
+      }
+      swigCPtr = 0;
     }
+  }
 
-    public synchronized void delete() {
-        if (swigCPtr != 0) {
-            if (swigCMemOwn) {
-                swigCMemOwn = false;
-                highsJNI.delete_HighsBasis(swigCPtr);
-            }
-            swigCPtr = 0;
-        }
-    }
+  public void setValid(boolean value) {
+    highsJNI.HighsBasis_valid_set(swigCPtr, this, value);
+  }
 
-    public boolean getValid() {
-        return highsJNI.HighsBasis_valid_get(swigCPtr, this);
-    }
+  public boolean getValid() {
+    return highsJNI.HighsBasis_valid_get(swigCPtr, this);
+  }
 
-    public void setValid(boolean value) {
-        highsJNI.HighsBasis_valid_set(swigCPtr, this, value);
-    }
+  public void setAlien(boolean value) {
+    highsJNI.HighsBasis_alien_set(swigCPtr, this, value);
+  }
 
-    public boolean getAlien() {
-        return highsJNI.HighsBasis_alien_get(swigCPtr, this);
-    }
+  public boolean getAlien() {
+    return highsJNI.HighsBasis_alien_get(swigCPtr, this);
+  }
 
-    public void setAlien(boolean value) {
-        highsJNI.HighsBasis_alien_set(swigCPtr, this, value);
-    }
+  public void setUseful(boolean value) {
+    highsJNI.HighsBasis_useful_set(swigCPtr, this, value);
+  }
 
-    public boolean getUseful() {
-        return highsJNI.HighsBasis_useful_get(swigCPtr, this);
-    }
+  public boolean getUseful() {
+    return highsJNI.HighsBasis_useful_get(swigCPtr, this);
+  }
 
-    public void setUseful(boolean value) {
-        highsJNI.HighsBasis_useful_set(swigCPtr, this, value);
-    }
+  public void setWas_alien(boolean value) {
+    highsJNI.HighsBasis_was_alien_set(swigCPtr, this, value);
+  }
 
-    public boolean getWas_alien() {
-        return highsJNI.HighsBasis_was_alien_get(swigCPtr, this);
-    }
+  public boolean getWas_alien() {
+    return highsJNI.HighsBasis_was_alien_get(swigCPtr, this);
+  }
 
-    public void setWas_alien(boolean value) {
-        highsJNI.HighsBasis_was_alien_set(swigCPtr, this, value);
-    }
+  public void setDebug_id(long value) {
+    highsJNI.HighsBasis_debug_id_set(swigCPtr, this, value);
+  }
 
-    public long getDebug_id() {
-        return highsJNI.HighsBasis_debug_id_get(swigCPtr, this);
-    }
+  public long getDebug_id() {
+    return highsJNI.HighsBasis_debug_id_get(swigCPtr, this);
+  }
 
-    public void setDebug_id(long value) {
-        highsJNI.HighsBasis_debug_id_set(swigCPtr, this, value);
-    }
+  public void setDebug_update_count(long value) {
+    highsJNI.HighsBasis_debug_update_count_set(swigCPtr, this, value);
+  }
 
-    public long getDebug_update_count() {
-        return highsJNI.HighsBasis_debug_update_count_get(swigCPtr, this);
-    }
+  public long getDebug_update_count() {
+    return highsJNI.HighsBasis_debug_update_count_get(swigCPtr, this);
+  }
 
-    public void setDebug_update_count(long value) {
-        highsJNI.HighsBasis_debug_update_count_set(swigCPtr, this, value);
-    }
+  public void setDebug_origin_name(String value) {
+    highsJNI.HighsBasis_debug_origin_name_set(swigCPtr, this, value);
+  }
 
-    public String getDebug_origin_name() {
-        return highsJNI.HighsBasis_debug_origin_name_get(swigCPtr, this);
-    }
+  public String getDebug_origin_name() {
+    return highsJNI.HighsBasis_debug_origin_name_get(swigCPtr, this);
+  }
 
-    public void setDebug_origin_name(String value) {
-        highsJNI.HighsBasis_debug_origin_name_set(swigCPtr, this, value);
-    }
+  public void setCol_status(SWIGTYPE_p_std__vectorT_HighsBasisStatus_t value) {
+    highsJNI.HighsBasis_col_status_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_HighsBasisStatus_t.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_std__vectorT_HighsBasisStatus_t getCol_status() {
-        long cPtr = highsJNI.HighsBasis_col_status_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsBasisStatus_t(cPtr, false);
-    }
+  public SWIGTYPE_p_std__vectorT_HighsBasisStatus_t getCol_status() {
+    long cPtr = highsJNI.HighsBasis_col_status_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsBasisStatus_t(cPtr, false);
+  }
 
-    public void setCol_status(SWIGTYPE_p_std__vectorT_HighsBasisStatus_t value) {
-        highsJNI.HighsBasis_col_status_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_HighsBasisStatus_t.getCPtr(value));
-    }
+  public void setRow_status(SWIGTYPE_p_std__vectorT_HighsBasisStatus_t value) {
+    highsJNI.HighsBasis_row_status_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_HighsBasisStatus_t.getCPtr(value));
+  }
 
-    public SWIGTYPE_p_std__vectorT_HighsBasisStatus_t getRow_status() {
-        long cPtr = highsJNI.HighsBasis_row_status_get(swigCPtr, this);
-        return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsBasisStatus_t(cPtr, false);
-    }
+  public SWIGTYPE_p_std__vectorT_HighsBasisStatus_t getRow_status() {
+    long cPtr = highsJNI.HighsBasis_row_status_get(swigCPtr, this);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_std__vectorT_HighsBasisStatus_t(cPtr, false);
+  }
 
-    public void setRow_status(SWIGTYPE_p_std__vectorT_HighsBasisStatus_t value) {
-        highsJNI.HighsBasis_row_status_set(swigCPtr, this, SWIGTYPE_p_std__vectorT_HighsBasisStatus_t.getCPtr(value));
-    }
+  public void print(String prefix, String message) {
+    highsJNI.HighsBasis_print__SWIG_0(swigCPtr, this, prefix, message);
+  }
 
-    public void print(String prefix, String message) {
-        highsJNI.HighsBasis_print__SWIG_0(swigCPtr, this, prefix, message);
-    }
+  public void print(String prefix) {
+    highsJNI.HighsBasis_print__SWIG_1(swigCPtr, this, prefix);
+  }
 
-    public void print(String prefix) {
-        highsJNI.HighsBasis_print__SWIG_1(swigCPtr, this, prefix);
-    }
+  public void print() {
+    highsJNI.HighsBasis_print__SWIG_2(swigCPtr, this);
+  }
 
-    public void print() {
-        highsJNI.HighsBasis_print__SWIG_2(swigCPtr, this);
-    }
+  public void printScalars(String prefix, String message) {
+    highsJNI.HighsBasis_printScalars__SWIG_0(swigCPtr, this, prefix, message);
+  }
 
-    public void printScalars(String prefix, String message) {
-        highsJNI.HighsBasis_printScalars__SWIG_0(swigCPtr, this, prefix, message);
-    }
+  public void printScalars(String prefix) {
+    highsJNI.HighsBasis_printScalars__SWIG_1(swigCPtr, this, prefix);
+  }
 
-    public void printScalars(String prefix) {
-        highsJNI.HighsBasis_printScalars__SWIG_1(swigCPtr, this, prefix);
-    }
+  public void printScalars() {
+    highsJNI.HighsBasis_printScalars__SWIG_2(swigCPtr, this);
+  }
 
-    public void printScalars() {
-        highsJNI.HighsBasis_printScalars__SWIG_2(swigCPtr, this);
-    }
+  public void invalidate() {
+    highsJNI.HighsBasis_invalidate(swigCPtr, this);
+  }
 
-    public void invalidate() {
-        highsJNI.HighsBasis_invalidate(swigCPtr, this);
-    }
+  public void clear() {
+    highsJNI.HighsBasis_clear(swigCPtr, this);
+  }
 
-    public void clear() {
-        highsJNI.HighsBasis_clear(swigCPtr, this);
-    }
+  public HighsBasis() {
+    this(highsJNI.new_HighsBasis(), true);
+  }
 
 }

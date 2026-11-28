@@ -914,7 +914,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HIGHS_1VERSION_1MINOR_1get(JNIEnv *j
   
   (void)jenv;
   (void)jcls;
-  result = (int)(15);
+  result = (int)(16);
   jresult = (jint)result; 
   return jresult;
 }
@@ -926,7 +926,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HIGHS_1VERSION_1PATCH_1get(JNIEnv *j
   
   (void)jenv;
   (void)jcls;
-  result = (int)(1);
+  result = (int)(0);
   jresult = (jint)result; 
   return jresult;
 }
@@ -1201,23 +1201,6 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSolution_1print_1_1SWIG_12(JNIE
   (void)jarg1_;
   arg1 = *(HighsSolution **)&jarg1; 
   ((HighsSolution const *)arg1)->print();
-}
-
-
-SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HighsSolution_1isModelRow(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
-  jboolean jresult = 0 ;
-  HighsSolution *arg1 = (HighsSolution *) 0 ;
-  HighsInt arg2 ;
-  bool result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(HighsSolution **)&jarg1; 
-  arg2 = (HighsInt)jarg2; 
-  result = (bool)((HighsSolution const *)arg1)->isModelRow(arg2);
-  jresult = (jboolean)result; 
-  return jresult;
 }
 
 
@@ -2716,6 +2699,21 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsNameHash_1name2index_1get(JNIE
 }
 
 
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsNameHash_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  HighsNameHash *arg1 = (HighsNameHash *) 0 ;
+  size_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsNameHash **)&jarg1; 
+  result = (arg1)->size();
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsNameHash_1form(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsNameHash *arg1 = (HighsNameHash *) 0 ;
   std::vector< std::string > *arg2 = 0 ;
@@ -2754,17 +2752,16 @@ SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HighsNameHash_1hasDuplicate(JNIE
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsNameHash_1update(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jstring jarg3, jstring jarg4) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsNameHash_1addName(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jstring jarg3) {
   HighsNameHash *arg1 = (HighsNameHash *) 0 ;
-  int arg2 ;
+  HighsInt arg2 ;
   std::string *arg3 = 0 ;
-  std::string *arg4 = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(HighsNameHash **)&jarg1; 
-  arg2 = (int)jarg2; 
+  arg2 = (HighsInt)jarg2; 
   if(!jarg3) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return ;
@@ -2774,16 +2771,92 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsNameHash_1update(JNIEnv *jenv, 
   std::string arg3_str(arg3_pstr);
   arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  (arg1)->addName(arg2,(std::string const &)*arg3);
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HighsNameHash_1addNameFindsDuplicate(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jstring jarg3) {
+  jboolean jresult = 0 ;
+  HighsNameHash *arg1 = (HighsNameHash *) 0 ;
+  HighsInt arg2 ;
+  std::string *arg3 = 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsNameHash **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
+  result = (bool)(arg1)->addNameFindsDuplicate(arg2,(std::string const &)*arg3);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HighsNameHash_1updateFindsDuplicate(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jstring jarg3, jstring jarg4) {
+  jboolean jresult = 0 ;
+  HighsNameHash *arg1 = (HighsNameHash *) 0 ;
+  HighsInt arg2 ;
+  std::string *arg3 = 0 ;
+  std::string *arg4 = 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsNameHash **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  if(!jarg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
+  if (!arg3_pstr) return 0;
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
+  jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
   if(!jarg4) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
-    return ;
+    return 0;
   }
   const char *arg4_pstr = (const char *)jenv->GetStringUTFChars(jarg4, 0); 
-  if (!arg4_pstr) return ;
+  if (!arg4_pstr) return 0;
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  (arg1)->update(arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  result = (bool)(arg1)->updateFindsDuplicate(arg2,(std::string const &)*arg3,(std::string const &)*arg4);
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HighsNameHash_1ok(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jboolean jresult = 0 ;
+  HighsNameHash *arg1 = (HighsNameHash *) 0 ;
+  std::vector< std::string > *arg2 = 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsNameHash **)&jarg1; 
+  arg2 = *(std::vector< std::string > **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< std::string > const & is null");
+    return 0;
+  } 
+  result = (bool)(arg1)->ok((std::vector< std::string > const &)*arg2);
+  jresult = (jboolean)result; 
+  return jresult;
 }
 
 
@@ -3642,13 +3715,13 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsProfiling_1name_1get(JNIEnv *j
 
 SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsProfiling_1submip_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   HighsProfiling *arg1 = (HighsProfiling *) 0 ;
-  std::vector< uint8_t > *arg2 = (std::vector< uint8_t > *) 0 ;
+  std::vector< HighsBool > *arg2 = (std::vector< HighsBool > *) 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(HighsProfiling **)&jarg1; 
-  arg2 = *(std::vector< uint8_t > **)&jarg2; 
+  arg2 = *(std::vector< HighsBool > **)&jarg2; 
   if (arg1) (arg1)->submip = *arg2;
 }
 
@@ -3656,14 +3729,14 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsProfiling_1submip_1set(JNIEnv *
 SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsProfiling_1submip_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   HighsProfiling *arg1 = (HighsProfiling *) 0 ;
-  std::vector< uint8_t > *result = 0 ;
+  std::vector< HighsBool > *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
   arg1 = *(HighsProfiling **)&jarg1; 
-  result = (std::vector< uint8_t > *)& ((arg1)->submip);
-  *(std::vector< uint8_t > **)&jresult = result; 
+  result = (std::vector< HighsBool > *)& ((arg1)->submip);
+  *(std::vector< HighsBool > **)&jresult = result; 
   return jresult;
 }
 
@@ -4342,7 +4415,7 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_HighsSimplexStats_1row_1DSE_1dens
 SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1report_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jstring jarg3) {
   HighsSimplexStats *arg1 = (HighsSimplexStats *) 0 ;
   FILE *arg2 = (FILE *) 0 ;
-  std::string arg3 ;
+  std::string *arg3 = 0 ;
   
   (void)jenv;
   (void)jcls;
@@ -4352,12 +4425,13 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsSimplexStats_1report_1_1SWIG_10
   if(!jarg3) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return ;
-  } 
+  }
   const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
   if (!arg3_pstr) return ;
-  (&arg3)->assign(arg3_pstr);
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
-  ((HighsSimplexStats const *)arg1)->report(arg2,SWIG_STD_MOVE(arg3));
+  ((HighsSimplexStats const *)arg1)->report(arg2,(std::string const &)*arg3);
 }
 
 
@@ -4939,6 +5013,469 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_delete_1HighsUserScaleData(JNIEnv *j
 }
 
 
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1dim_1_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  HighsInt arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  if (arg1) (arg1)->dim_ = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HessianOracle_1dim_1_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  HighsInt result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  result = (HighsInt) ((arg1)->dim_);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1multiplier_1_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  double arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = (double)jarg2; 
+  if (arg1) (arg1)->multiplier_ = arg2;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_HessianOracle_1multiplier_1_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  result = (double) ((arg1)->multiplier_);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1shift_1_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  double arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = (double)jarg2; 
+  if (arg1) (arg1)->shift_ = arg2;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_HessianOracle_1shift_1_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  result = (double) ((arg1)->shift_);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1call_1_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  HighsHessianFunctionType arg2 ;
+  HighsHessianFunctionType *argp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  argp2 = *(HighsHessianFunctionType **)&jarg2; 
+  if (!argp2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null HighsHessianFunctionType");
+    return ;
+  }
+  arg2 = *argp2; 
+  if (arg1) (arg1)->call_ = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HessianOracle_1call_1_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  HighsHessianFunctionType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  result =  ((arg1)->call_);
+  *(HighsHessianFunctionType **)&jresult = new HighsHessianFunctionType(result); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1data_1_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  void *arg2 = (void *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = *(void **)&jarg2; 
+  if (arg1) (arg1)->data_ = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HessianOracle_1data_1_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  void *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  result = (void *) ((arg1)->data_);
+  *(void **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  (arg1)->clear();
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HessianOracle_1isValid(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  result = (bool)((HessianOracle const *)arg1)->isValid();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HessianOracle_1hasProductCall(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jboolean jresult = 0 ;
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  result = (bool)((HessianOracle const *)arg1)->hasProductCall();
+  jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_HessianOracle_1diagonal(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jdouble jresult = 0 ;
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  HighsInt arg2 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  result = (double)((HessianOracle const *)arg1)->diagonal(arg2);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_HessianOracle_1entry(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
+  jdouble jresult = 0 ;
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  HighsInt arg2 ;
+  HighsInt arg3 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  arg3 = (HighsInt)jarg3; 
+  result = (double)((HessianOracle const *)arg1)->entry(arg2,arg3);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1getPackedColumn(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  HighsInt arg2 ;
+  HighsInt *arg3 = 0 ;
+  HighsInt *arg4 = (HighsInt *) 0 ;
+  double *arg5 = (double *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  arg3 = *(HighsInt **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "HighsInt & is null");
+    return ;
+  } 
+  arg4 = *(HighsInt **)&jarg4; 
+  arg5 = *(double **)&jarg5; 
+  ((HessianOracle const *)arg1)->getPackedColumn(arg2,*arg3,arg4,arg5);
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1getScatteredColumn(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  HighsInt arg2 ;
+  HighsInt *arg3 = 0 ;
+  HighsInt *arg4 = (HighsInt *) 0 ;
+  double *arg5 = (double *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  arg3 = *(HighsInt **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "HighsInt & is null");
+    return ;
+  } 
+  arg4 = *(HighsInt **)&jarg4; 
+  arg5 = *(double **)&jarg5; 
+  ((HessianOracle const *)arg1)->getScatteredColumn(arg2,*arg3,arg4,arg5);
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1product_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  std::vector< double > *arg2 = 0 ;
+  std::vector< double > *arg3 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg3_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = *(std::vector< double > **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< double > const & is null");
+    return ;
+  } 
+  arg3 = *(std::vector< double > **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< double > & is null");
+    return ;
+  } 
+  ((HessianOracle const *)arg1)->product((std::vector< double > const &)*arg2,*arg3);
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1product_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  double *arg2 = (double *) 0 ;
+  double *arg3 = (double *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = *(double **)&jarg2; 
+  arg3 = *(double **)&jarg3; 
+  ((HessianOracle const *)arg1)->product((double const *)arg2,arg3);
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1product_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  HighsInt arg2 ;
+  HighsInt *arg3 = (HighsInt *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  arg3 = *(HighsInt **)&jarg3; 
+  arg4 = *(double **)&jarg4; 
+  arg5 = *(double **)&jarg5; 
+  ((HessianOracle const *)arg1)->product(arg2,(HighsInt const *)arg3,(double const *)arg4,arg5);
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HessianOracle_1scaleAndShift(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  HighsInt *arg2 = (HighsInt *) 0 ;
+  HighsInt *arg3 = (HighsInt *) 0 ;
+  double *arg4 = (double *) 0 ;
+  double *arg5 = (double *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HessianOracle **)&jarg1; 
+  arg2 = *(HighsInt **)&jarg2; 
+  arg3 = *(HighsInt **)&jarg3; 
+  arg4 = *(double **)&jarg4; 
+  arg5 = *(double **)&jarg5; 
+  ((HessianOracle const *)arg1)->scaleAndShift((HighsInt const *)arg2,(HighsInt const *)arg3,(double const *)arg4,arg5);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1HessianOracle(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  HessianOracle *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (HessianOracle *)new HessianOracle();
+  *(HessianOracle **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_delete_1HessianOracle(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  HessianOracle *arg1 = (HessianOracle *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(HessianOracle **)&jarg1; 
+  delete arg1;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_StatusString_1full_1_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  StatusString *arg1 = (StatusString *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(StatusString **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return ;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if (arg1) (arg1)->full_ = *arg2;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_highs_highsJNI_StatusString_1full_1_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jstring jresult = 0 ;
+  StatusString *arg1 = (StatusString *) 0 ;
+  std::string *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(StatusString **)&jarg1; 
+  result = (std::string *) & ((arg1)->full_);
+  jresult = jenv->NewStringUTF(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_StatusString_1s2_1_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jstring jarg2) {
+  StatusString *arg1 = (StatusString *) 0 ;
+  std::string *arg2 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(StatusString **)&jarg1; 
+  if(!jarg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  }
+  const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
+  if (!arg2_pstr) return ;
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
+  jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
+  if (arg1) (arg1)->s2_ = *arg2;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_highs_highsJNI_StatusString_1s2_1_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jstring jresult = 0 ;
+  StatusString *arg1 = (StatusString *) 0 ;
+  std::string *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(StatusString **)&jarg1; 
+  result = (std::string *) & ((arg1)->s2_);
+  jresult = jenv->NewStringUTF(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1StatusString(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  StatusString *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (StatusString *)new StatusString();
+  *(StatusString **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_delete_1StatusString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  StatusString *arg1 = (StatusString *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(StatusString **)&jarg1; 
+  delete arg1;
+}
+
+
 SWIGEXPORT jstring JNICALL Java_highs_highsJNI_kHighsCopyrightStatement_1get(JNIEnv *jenv, jclass jcls) {
   jstring jresult = 0 ;
   std::string *result = 0 ;
@@ -5035,6 +5572,18 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kHighsMacheps_1get(JNIEnv *jenv, 
 }
 
 
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kHighsInvMacheps_1get(JNIEnv *jenv, jclass jcls) {
+  jdouble jresult = 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (double)(double)kHighsInvMacheps;
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kHighsZero_1get(JNIEnv *jenv, jclass jcls) {
   jdouble jresult = 0 ;
   double result;
@@ -5078,6 +5627,30 @@ SWIGEXPORT jstring JNICALL Java_highs_highsJNI_kHighsOnString_1get(JNIEnv *jenv,
   (void)jenv;
   (void)jcls;
   result = (std::string *) &kHighsOnString;
+  jresult = jenv->NewStringUTF(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_highs_highsJNI_kHighsSparseString_1get(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  std::string *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::string *) &kHighsSparseString;
+  jresult = jenv->NewStringUTF(result->c_str()); 
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_highs_highsJNI_kHighsPartialString_1get(JNIEnv *jenv, jclass jcls) {
+  jstring jresult = 0 ;
+  std::string *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (std::string *) &kHighsPartialString;
   jresult = jenv->NewStringUTF(result->c_str()); 
   return jresult;
 }
@@ -5162,6 +5735,18 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kExcessivelyLargeBoundValue_1get(
   (void)jenv;
   (void)jcls;
   result = (double)(double)kExcessivelyLargeBoundValue;
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kExcessivelyLargeIntegerBoundValue_1get(JNIEnv *jenv, jclass jcls) {
+  jdouble jresult = 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (double)(double)kExcessivelyLargeIntegerBoundValue;
   jresult = (jdouble)result; 
   return jresult;
 }
@@ -5779,6 +6364,42 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_kBasisValidityMax_1get(JNIEnv *jenv,
 }
 
 
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kCentringStatusNone_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  CentringStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (CentringStatus)kCentringStatusNone;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kCentringStatusMin_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  CentringStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (CentringStatus)kCentringStatusMin;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kCentringStatusMax_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  CentringStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (CentringStatus)kCentringStatusMax;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jstring JNICALL Java_highs_highsJNI_kHighsBasisFileV1_1get(JNIEnv *jenv, jclass jcls) {
   jstring jresult = 0 ;
   std::string *result = 0 ;
@@ -6043,6 +6664,42 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsBasisStatus_1kLower_1get(JNIEnv
 }
 
 
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPresolveModeMin_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PresolveMode result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PresolveMode)kPresolveModeMin;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPresolveModeDefault_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PresolveMode result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PresolveMode)kPresolveModeDefault;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPresolveModeMax_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  PresolveMode result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (PresolveMode)kPresolveModeMax;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPresolveRuleIllegal_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   PresolveRuleType result;
@@ -6074,18 +6731,6 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPresolveRuleEmptyRow_1get(JNIEnv *j
   (void)jenv;
   (void)jcls;
   result = (PresolveRuleType)kPresolveRuleEmptyRow;
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPresolveRuleForcingRow_1get(JNIEnv *jenv, jclass jcls) {
-  jint jresult = 0 ;
-  PresolveRuleType result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (PresolveRuleType)kPresolveRuleForcingRow;
   jresult = (jint)result; 
   return jresult;
 }
@@ -6254,6 +6899,42 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_kIisStatusMax_1get(JNIEnv *jenv, jcl
   (void)jenv;
   (void)jcls;
   result = (IisStatus)kIisStatusMax;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kHessianOracleCallTypeMin_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  HessianOracleCallType result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (HessianOracleCallType)kHessianOracleCallTypeMin;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kHessianOracleCallTypeEntry_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  HessianOracleCallType result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (HessianOracleCallType)kHessianOracleCallTypeEntry;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_kHessianOracleCallTypeMax_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  HessianOracleCallType result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (HessianOracleCallType)kHessianOracleCallTypeMax;
   jresult = (jint)result; 
   return jresult;
 }
@@ -6559,6 +7240,18 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kHighsIllegalIntMeasure_1get(JNIEnv
 }
 
 
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kSquareHessianAsymmetryTolerance_1get(JNIEnv *jenv, jclass jcls) {
+  jdouble jresult = 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (double)(double)kSquareHessianAsymmetryTolerance;
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kMaxSemiVariableUpper_1get(JNIEnv *jenv, jclass jcls) {
   jdouble jresult = 0 ;
   double result;
@@ -6579,18 +7272,6 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_kExcessivePrimalValue_1get(JNIEnv
   (void)jcls;
   result = (double)(double)kExcessivePrimalValue;
   jresult = (jdouble)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_highs_highsJNI_kHashIsDuplicate_1get(JNIEnv *jenv, jclass jcls) {
-  jlong jresult = 0 ;
-  HighsInt result;
-  
-  (void)jenv;
-  (void)jcls;
-  result = (HighsInt)(HighsInt)kHashIsDuplicate;
-  jresult = (jlong)result; 
   return jresult;
 }
 
@@ -6931,6 +7612,42 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_kPdlpRestartStrategyMax_1get(JNIEnv 
 }
 
 
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_ParallelTechnique_1kMin_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  hipo::ParallelTechnique result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (hipo::ParallelTechnique)hipo::ParallelTechnique::kMin;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_ParallelTechnique_1kAnalyse_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  hipo::ParallelTechnique result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (hipo::ParallelTechnique)hipo::ParallelTechnique::kAnalyse;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_ParallelTechnique_1kMaxSum_1get(JNIEnv *jenv, jclass jcls) {
+  jint jresult = 0 ;
+  hipo::ParallelTechnique result;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (hipo::ParallelTechnique)hipo::ParallelTechnique::kMaxSum;
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_highs_highsJNI_InfoStatus_1kOk_1get(JNIEnv *jenv, jclass jcls) {
   jint jresult = 0 ;
   InfoStatus result;
@@ -7074,8 +7791,8 @@ SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_InfoRecord_1advanced_1get(JNIEnv
 SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1InfoRecord(JNIEnv *jenv, jclass jcls, jint jarg1, jstring jarg2, jstring jarg3, jboolean jarg4) {
   jlong jresult = 0 ;
   HighsInfoType arg1 ;
-  std::string arg2 ;
-  std::string arg3 ;
+  std::string *arg2 = 0 ;
+  std::string *arg3 = 0 ;
   bool arg4 ;
   InfoRecord *result = 0 ;
   
@@ -7085,21 +7802,23 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1InfoRecord(JNIEnv *jenv, jclas
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
-  } 
+  }
   const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
   if (!arg2_pstr) return 0;
-  (&arg2)->assign(arg2_pstr);
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
   if(!jarg3) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
-  } 
+  }
   const char *arg3_pstr = (const char *)jenv->GetStringUTFChars(jarg3, 0); 
   if (!arg3_pstr) return 0;
-  (&arg3)->assign(arg3_pstr);
+  std::string arg3_str(arg3_pstr);
+  arg3 = &arg3_str;
   jenv->ReleaseStringUTFChars(jarg3, arg3_pstr); 
   arg4 = jarg4 ? true : false; 
-  result = (InfoRecord *)new InfoRecord(arg1,SWIG_STD_MOVE(arg2),SWIG_STD_MOVE(arg3),arg4);
+  result = (InfoRecord *)new InfoRecord(arg1,(std::string const &)*arg2,(std::string const &)*arg3,arg4);
   *(InfoRecord **)&jresult = result; 
   return jresult;
 }
@@ -7173,8 +7892,8 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_InfoRecordInt64_1default_1value_1ge
 
 SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1InfoRecordInt64(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jboolean jarg3, jlong jarg4, jlong jarg5) {
   jlong jresult = 0 ;
-  std::string arg1 ;
-  std::string arg2 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
   bool arg3 ;
   int64_t *arg4 = (int64_t *) 0 ;
   int64_t arg5 ;
@@ -7185,23 +7904,25 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1InfoRecordInt64(JNIEnv *jenv, 
   if(!jarg1) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
-  } 
+  }
   const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
   if (!arg1_pstr) return 0;
-  (&arg1)->assign(arg1_pstr);
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
-  } 
+  }
   const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
   if (!arg2_pstr) return 0;
-  (&arg2)->assign(arg2_pstr);
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
   arg3 = jarg3 ? true : false; 
   arg4 = *(int64_t **)&jarg4; 
   arg5 = (int64_t)jarg5; 
-  result = (InfoRecordInt64 *)new InfoRecordInt64(SWIG_STD_MOVE(arg1),SWIG_STD_MOVE(arg2),arg3,arg4,arg5);
+  result = (InfoRecordInt64 *)new InfoRecordInt64((std::string const &)*arg1,(std::string const &)*arg2,arg3,arg4,arg5);
   *(InfoRecordInt64 **)&jresult = result; 
   return jresult;
 }
@@ -7275,8 +7996,8 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_InfoRecordInt_1default_1value_1get(
 
 SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1InfoRecordInt(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jboolean jarg3, jlong jarg4, jlong jarg5) {
   jlong jresult = 0 ;
-  std::string arg1 ;
-  std::string arg2 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
   bool arg3 ;
   HighsInt *arg4 = (HighsInt *) 0 ;
   HighsInt arg5 ;
@@ -7287,23 +8008,25 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1InfoRecordInt(JNIEnv *jenv, jc
   if(!jarg1) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
-  } 
+  }
   const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
   if (!arg1_pstr) return 0;
-  (&arg1)->assign(arg1_pstr);
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
-  } 
+  }
   const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
   if (!arg2_pstr) return 0;
-  (&arg2)->assign(arg2_pstr);
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
   arg3 = jarg3 ? true : false; 
   arg4 = *(HighsInt **)&jarg4; 
   arg5 = (HighsInt)jarg5; 
-  result = (InfoRecordInt *)new InfoRecordInt(SWIG_STD_MOVE(arg1),SWIG_STD_MOVE(arg2),arg3,arg4,arg5);
+  result = (InfoRecordInt *)new InfoRecordInt((std::string const &)*arg1,(std::string const &)*arg2,arg3,arg4,arg5);
   *(InfoRecordInt **)&jresult = result; 
   return jresult;
 }
@@ -7377,8 +8100,8 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_InfoRecordDouble_1default_1value_
 
 SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1InfoRecordDouble(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jboolean jarg3, jlong jarg4, jdouble jarg5) {
   jlong jresult = 0 ;
-  std::string arg1 ;
-  std::string arg2 ;
+  std::string *arg1 = 0 ;
+  std::string *arg2 = 0 ;
   bool arg3 ;
   double *arg4 = (double *) 0 ;
   double arg5 ;
@@ -7389,23 +8112,25 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_new_1InfoRecordDouble(JNIEnv *jenv,
   if(!jarg1) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
-  } 
+  }
   const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
   if (!arg1_pstr) return 0;
-  (&arg1)->assign(arg1_pstr);
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
   jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
   if(!jarg2) {
     SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
     return 0;
-  } 
+  }
   const char *arg2_pstr = (const char *)jenv->GetStringUTFChars(jarg2, 0); 
   if (!arg2_pstr) return 0;
-  (&arg2)->assign(arg2_pstr);
+  std::string arg2_str(arg2_pstr);
+  arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
   arg3 = jarg3 ? true : false; 
   arg4 = *(double **)&jarg4; 
   arg5 = (double)jarg5; 
-  result = (InfoRecordDouble *)new InfoRecordDouble(SWIG_STD_MOVE(arg1),SWIG_STD_MOVE(arg2),arg3,arg4,arg5);
+  result = (InfoRecordDouble *)new InfoRecordDouble((std::string const &)*arg1,(std::string const &)*arg2,arg3,arg4,arg5);
   *(InfoRecordDouble **)&jresult = result; 
   return jresult;
 }
@@ -7696,6 +8421,34 @@ SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsInfoStruct_1basis_1validity_1g
   (void)jarg1_;
   arg1 = *(HighsInfoStruct **)&jarg1; 
   result = (HighsInt) ((arg1)->basis_validity);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsInfoStruct_1centring_1status_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  HighsInfoStruct *arg1 = (HighsInfoStruct *) 0 ;
+  HighsInt arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsInfoStruct **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  if (arg1) (arg1)->centring_status = arg2;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_highs_highsJNI_HighsInfoStruct_1centring_1status_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  HighsInfoStruct *arg1 = (HighsInfoStruct *) 0 ;
+  HighsInt result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsInfoStruct **)&jarg1; 
+  result = (HighsInt) ((arg1)->centring_status);
   jresult = (jlong)result; 
   return jresult;
 }
@@ -8508,6 +9261,62 @@ SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_HighsInfoStruct_1primal_1dual_1in
   (void)jarg1_;
   arg1 = *(HighsInfoStruct **)&jarg1; 
   result = (double) ((arg1)->primal_dual_integral);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsInfoStruct_1active_1cost_1norm_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  HighsInfoStruct *arg1 = (HighsInfoStruct *) 0 ;
+  double arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsInfoStruct **)&jarg1; 
+  arg2 = (double)jarg2; 
+  if (arg1) (arg1)->active_cost_norm = arg2;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_HighsInfoStruct_1active_1cost_1norm_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  HighsInfoStruct *arg1 = (HighsInfoStruct *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsInfoStruct **)&jarg1; 
+  result = (double) ((arg1)->active_cost_norm);
+  jresult = (jdouble)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsInfoStruct_1active_1bound_1norm_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jdouble jarg2) {
+  HighsInfoStruct *arg1 = (HighsInfoStruct *) 0 ;
+  double arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsInfoStruct **)&jarg1; 
+  arg2 = (double)jarg2; 
+  if (arg1) (arg1)->active_bound_norm = arg2;
+}
+
+
+SWIGEXPORT jdouble JNICALL Java_highs_highsJNI_HighsInfoStruct_1active_1bound_1norm_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jdouble jresult = 0 ;
+  HighsInfoStruct *arg1 = (HighsInfoStruct *) 0 ;
+  double result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsInfoStruct **)&jarg1; 
+  result = (double) ((arg1)->active_bound_norm);
   jresult = (jdouble)result; 
   return jresult;
 }
@@ -9339,6 +10148,48 @@ SWIGEXPORT jboolean JNICALL Java_highs_highsJNI_HighsModel_1hasMods(JNIEnv *jenv
 }
 
 
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsModel_1lpHessianDimensionsCompatible(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jint jresult = 0 ;
+  HighsModel *arg1 = (HighsModel *) 0 ;
+  HighsLogOptions *arg2 = 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsModel **)&jarg1; 
+  arg2 = *(HighsLogOptions **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "HighsLogOptions const & is null");
+    return 0;
+  } 
+  result = (HighsStatus)((HighsModel const *)arg1)->lpHessianDimensionsCompatible((HighsLogOptions const &)*arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_HighsModel_1assess(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jint jresult = 0 ;
+  HighsModel *arg1 = (HighsModel *) 0 ;
+  HighsOptions *arg2 = 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(HighsModel **)&jarg1; 
+  arg2 = *(HighsOptions **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "HighsOptions const & is null");
+    return 0;
+  } 
+  result = (HighsStatus)(arg1)->assess((HighsOptions const &)*arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_highs_highsJNI_HighsModel_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   HighsModel *arg1 = (HighsModel *) 0 ;
   
@@ -9471,21 +10322,19 @@ SWIGEXPORT jstring JNICALL Java_highs_highsJNI_highsStatusToString(JNIEnv *jenv,
 
 SWIGEXPORT jint JNICALL Java_highs_highsJNI_interpretCallStatus_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jint jarg3, jstring jarg4) {
   jint jresult = 0 ;
-  HighsLogOptions arg1 ;
+  HighsLogOptions *arg1 = 0 ;
   HighsStatus arg2 ;
   HighsStatus arg3 ;
   std::string *arg4 = 0 ;
-  HighsLogOptions const *argp1 ;
   HighsStatus result;
   
   (void)jenv;
   (void)jcls;
-  argp1 = *(HighsLogOptions **)&jarg1; 
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null HighsLogOptions const");
+  arg1 = *(HighsLogOptions **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "HighsLogOptions const & is null");
     return 0;
-  }
-  arg1 = *argp1; 
+  } 
   arg2 = (HighsStatus)jarg2; 
   arg3 = (HighsStatus)jarg3; 
   if(!jarg4) {
@@ -9497,7 +10346,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_interpretCallStatus_1_1SWIG_10(JNIEn
   std::string arg4_str(arg4_pstr);
   arg4 = &arg4_str;
   jenv->ReleaseStringUTFChars(jarg4, arg4_pstr); 
-  result = (HighsStatus)interpretCallStatus(SWIG_STD_MOVE(arg1),arg2,arg3,(std::string const &)*arg4);
+  result = (HighsStatus)interpretCallStatus((HighsLogOptions const &)*arg1,arg2,arg3,(std::string const &)*arg4);
   jresult = (jint)result; 
   return jresult;
 }
@@ -9505,23 +10354,21 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_interpretCallStatus_1_1SWIG_10(JNIEn
 
 SWIGEXPORT jint JNICALL Java_highs_highsJNI_interpretCallStatus_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jint jarg2, jint jarg3) {
   jint jresult = 0 ;
-  HighsLogOptions arg1 ;
+  HighsLogOptions *arg1 = 0 ;
   HighsStatus arg2 ;
   HighsStatus arg3 ;
-  HighsLogOptions const *argp1 ;
   HighsStatus result;
   
   (void)jenv;
   (void)jcls;
-  argp1 = *(HighsLogOptions **)&jarg1; 
-  if (!argp1) {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null HighsLogOptions const");
+  arg1 = *(HighsLogOptions **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "HighsLogOptions const & is null");
     return 0;
-  }
-  arg1 = *argp1; 
+  } 
   arg2 = (HighsStatus)jarg2; 
   arg3 = (HighsStatus)jarg3; 
-  result = (HighsStatus)interpretCallStatus(SWIG_STD_MOVE(arg1),arg2,arg3);
+  result = (HighsStatus)interpretCallStatus((HighsLogOptions const &)*arg1,arg2,arg3);
   jresult = (jint)result; 
   return jresult;
 }
@@ -10078,6 +10925,100 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian_1_1SWIG_11(JNIEnv
   arg6 = *(HighsInt **)&jarg6; 
   arg7 = *(double **)&jarg7; 
   result = (HighsStatus)(arg1)->passHessian(arg2,arg3,arg4,(HighsInt const *)arg5,(HighsInt const *)arg6,(double const *)arg7);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4, jlong jarg5) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsInt arg2 ;
+  HighsHessianFunctionType arg3 ;
+  void *arg4 = (void *) 0 ;
+  HighsCHessianFunctionType arg5 ;
+  HighsHessianFunctionType *argp3 ;
+  HighsCHessianFunctionType *argp5 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  argp3 = *(HighsHessianFunctionType **)&jarg3; 
+  if (!argp3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null HighsHessianFunctionType");
+    return 0;
+  }
+  arg3 = *argp3; 
+  arg4 = *(void **)&jarg4; 
+  argp5 = *(HighsCHessianFunctionType **)&jarg5; 
+  if (!argp5) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null HighsCHessianFunctionType");
+    return 0;
+  }
+  arg5 = *argp5; 
+  result = (HighsStatus)(arg1)->passHessian(arg2,SWIG_STD_MOVE(arg3),arg4,SWIG_STD_MOVE(arg5));
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jlong jarg4) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsInt arg2 ;
+  HighsHessianFunctionType arg3 ;
+  void *arg4 = (void *) 0 ;
+  HighsHessianFunctionType *argp3 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  arg2 = (HighsInt)jarg2; 
+  argp3 = *(HighsHessianFunctionType **)&jarg3; 
+  if (!argp3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null HighsHessianFunctionType");
+    return 0;
+  }
+  arg3 = *argp3; 
+  arg4 = *(void **)&jarg4; 
+  result = (HighsStatus)(arg1)->passHessian(arg2,SWIG_STD_MOVE(arg3),arg4);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1checkHessianOracle_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  bool arg2 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  result = (HighsStatus)((Highs const *)arg1)->checkHessianOracle(arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1checkHessianOracle_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  result = (HighsStatus)((Highs const *)arg1)->checkHessianOracle();
   jresult = (jint)result; 
   return jresult;
 }
@@ -10998,7 +11939,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1writeOptions_1_1SWIG_10(JNIEn
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
   arg3 = jarg3 ? true : false; 
-  result = (HighsStatus)(arg1)->writeOptions((std::string const &)*arg2,arg3);
+  result = (HighsStatus)((Highs const *)arg1)->writeOptions((std::string const &)*arg2,arg3);
   jresult = (jint)result; 
   return jresult;
 }
@@ -11023,7 +11964,7 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1writeOptions_1_1SWIG_11(JNIEn
   std::string arg2_str(arg2_pstr);
   arg2 = &arg2_str;
   jenv->ReleaseStringUTFChars(jarg2, arg2_pstr); 
-  result = (HighsStatus)(arg1)->writeOptions((std::string const &)*arg2);
+  result = (HighsStatus)((Highs const *)arg1)->writeOptions((std::string const &)*arg2);
   jresult = (jint)result; 
   return jresult;
 }
@@ -15228,6 +16169,23 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1closeLogFile(JNIEnv *jenv, jc
 }
 
 
+SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1highsStatusToString(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jstring jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsStatus arg2 ;
+  std::string result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  arg2 = (HighsStatus)jarg2; 
+  result = ((Highs const *)arg1)->highsStatusToString(arg2);
+  jresult = jenv->NewStringUTF((&result)->c_str()); 
+  return jresult;
+}
+
+
 SWIGEXPORT jstring JNICALL Java_highs_highsJNI_Highs_1presolveStatusToString(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jstring jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
@@ -15345,20 +16303,66 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1initializeMultiThreading(JNIE
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_Highs_1resetGlobalScheduler_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jboolean jarg1) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_Highs_1resetThreadScheduler_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jboolean jarg1) {
   bool arg1 ;
   
   (void)jenv;
   (void)jcls;
   arg1 = jarg1 ? true : false; 
-  Highs::resetGlobalScheduler(arg1);
+  Highs::resetThreadScheduler(arg1);
 }
 
 
-SWIGEXPORT void JNICALL Java_highs_highsJNI_Highs_1resetGlobalScheduler_1_1SWIG_11(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT void JNICALL Java_highs_highsJNI_Highs_1resetThreadScheduler_1_1SWIG_11(JNIEnv *jenv, jclass jcls) {
   (void)jenv;
   (void)jcls;
-  Highs::resetGlobalScheduler();
+  Highs::resetThreadScheduler();
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1initializeExtras_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jstring jarg1, jboolean jarg2) {
+  jint jresult = 0 ;
+  std::string *arg1 = 0 ;
+  bool arg2 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  arg2 = jarg2 ? true : false; 
+  result = (HighsStatus)Highs::initializeExtras((std::string const &)*arg1,arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1initializeExtras_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jint jresult = 0 ;
+  std::string *arg1 = 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (HighsStatus)Highs::initializeExtras((std::string const &)*arg1);
+  jresult = (jint)result; 
+  return jresult;
 }
 
 
@@ -15441,6 +16445,21 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1optimizeHighs(JNIEnv *jenv, j
 }
 
 
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1optimizeLp(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  result = (HighsStatus)(arg1)->optimizeLp();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1optimizeModel(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
@@ -15456,6 +16475,21 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1optimizeModel(JNIEnv *jenv, j
 }
 
 
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1optimizeModelTryCatch(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  result = (HighsStatus)(arg1)->optimizeModelTryCatch();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1calledOptimizeModel(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
@@ -15466,21 +16500,6 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1calledOptimizeModel(JNIEnv *j
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
   result = (HighsStatus)(arg1)->calledOptimizeModel();
-  jresult = (jint)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1optimizeLp(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jint jresult = 0 ;
-  Highs *arg1 = (Highs *) 0 ;
-  HighsStatus result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(Highs **)&jarg1; 
-  result = (HighsStatus)(arg1)->optimizeLp();
   jresult = (jint)result; 
   return jresult;
 }
@@ -16448,7 +17467,7 @@ SWIGEXPORT void JNICALL Java_highs_highsJNI_Highs_1logHeader(JNIEnv *jenv, jclas
   (void)jcls;
   (void)jarg1_;
   arg1 = *(Highs **)&jarg1; 
-  (arg1)->logHeader();
+  ((Highs const *)arg1)->logHeader();
 }
 
 
@@ -16570,6 +17589,23 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1frozenBasisAllDataClear(JNIEn
   result = (HighsStatus)(arg1)->frozenBasisAllDataClear();
   jresult = (jint)result; 
   return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_Highs_1resetGlobalScheduler_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jboolean jarg1) {
+  bool arg1 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = jarg1 ? true : false; 
+  Highs::resetGlobalScheduler(arg1);
+}
+
+
+SWIGEXPORT void JNICALL Java_highs_highsJNI_Highs_1resetGlobalScheduler_1_1SWIG_11(JNIEnv *jenv, jclass jcls) {
+  (void)jenv;
+  (void)jcls;
+  Highs::resetGlobalScheduler();
 }
 
 

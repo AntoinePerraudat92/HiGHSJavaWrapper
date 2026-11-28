@@ -9,49 +9,47 @@
 package highs;
 
 public final class HighsInfoType {
-    public final static HighsInfoType kInt64 = new HighsInfoType("kInt64", highsJNI.HighsInfoType_kInt64_get());
-    public final static HighsInfoType kInt = new HighsInfoType("kInt", highsJNI.HighsInfoType_kInt_get());
-    public final static HighsInfoType kDouble = new HighsInfoType("kDouble");
-    private static HighsInfoType[] swigValues = {
-            kInt64,
-            kInt,
-            kDouble
-    };
-    private static int swigNext = 0;
-    private final int swigValue;
-    private final String swigName;
+  public final static HighsInfoType kInt64 = new HighsInfoType("kInt64", highsJNI.HighsInfoType_kInt64_get());
+  public final static HighsInfoType kInt = new HighsInfoType("kInt", highsJNI.HighsInfoType_kInt_get());
+  public final static HighsInfoType kDouble = new HighsInfoType("kDouble");
 
-    private HighsInfoType(String swigName) {
-        this.swigName = swigName;
-        this.swigValue = swigNext++;
-    }
+  public final int swigValue() {
+    return swigValue;
+  }
 
-    private HighsInfoType(String swigName, int swigValue) {
-        this.swigName = swigName;
-        this.swigValue = swigValue;
-        swigNext = swigValue + 1;
-    }
+  public String toString() {
+    return swigName;
+  }
 
-    private HighsInfoType(String swigName, HighsInfoType swigEnum) {
-        this.swigName = swigName;
-        this.swigValue = swigEnum.swigValue;
-        swigNext = this.swigValue + 1;
-    }
+  public static HighsInfoType swigToEnum(int swigValue) {
+    if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
+      return swigValues[swigValue];
+    for (int i = 0; i < swigValues.length; i++)
+      if (swigValues[i].swigValue == swigValue)
+        return swigValues[i];
+    throw new IllegalArgumentException("No enum " + HighsInfoType.class + " with value " + swigValue);
+  }
 
-    public static HighsInfoType swigToEnum(int swigValue) {
-        if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
-            return swigValues[swigValue];
-        for (int i = 0; i < swigValues.length; i++)
-            if (swigValues[i].swigValue == swigValue) return swigValues[i];
-        throw new IllegalArgumentException("No enum " + HighsInfoType.class + " with value " + swigValue);
-    }
+  private HighsInfoType(String swigName) {
+    this.swigName = swigName;
+    this.swigValue = swigNext++;
+  }
 
-    public final int swigValue() {
-        return swigValue;
-    }
+  private HighsInfoType(String swigName, int swigValue) {
+    this.swigName = swigName;
+    this.swigValue = swigValue;
+    swigNext = swigValue+1;
+  }
 
-    public String toString() {
-        return swigName;
-    }
+  private HighsInfoType(String swigName, HighsInfoType swigEnum) {
+    this.swigName = swigName;
+    this.swigValue = swigEnum.swigValue;
+    swigNext = this.swigValue+1;
+  }
+
+  private static HighsInfoType[] swigValues = { kInt64, kInt, kDouble };
+  private static int swigNext = 0;
+  private final int swigValue;
+  private final String swigName;
 }
 

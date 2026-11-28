@@ -9,22 +9,22 @@
 package highs;
 
 public class SWIGTYPE_p_HighsVarType {
-    private transient long swigCPtr;
+  private transient long swigCPtr;
 
-    protected SWIGTYPE_p_HighsVarType(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
-        swigCPtr = cPtr;
-    }
+  protected SWIGTYPE_p_HighsVarType(long cPtr, @SuppressWarnings("unused") boolean futureUse) {
+    swigCPtr = cPtr;
+  }
 
-    protected SWIGTYPE_p_HighsVarType() {
-        swigCPtr = 0;
-    }
+  protected SWIGTYPE_p_HighsVarType() {
+    swigCPtr = 0;
+  }
 
-    protected static long getCPtr(SWIGTYPE_p_HighsVarType obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected static long getCPtr(SWIGTYPE_p_HighsVarType obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 
-    protected static long swigRelease(SWIGTYPE_p_HighsVarType obj) {
-        return (obj == null) ? 0 : obj.swigCPtr;
-    }
+  protected static long swigRelease(SWIGTYPE_p_HighsVarType obj) {
+    return (obj == null) ? 0 : obj.swigCPtr;
+  }
 }
 

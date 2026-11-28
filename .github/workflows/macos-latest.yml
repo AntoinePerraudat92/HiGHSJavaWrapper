@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ERGO-Code/HiGHS
-          ref: v1.15.1
+          ref: v1.16.0
           path: HiGHS
 
       - name: Build HiGHS
@@ -38,7 +38,7 @@ jobs:
           echo "HIGHS_HOME=$(pwd)/HiGHS" >> $GITHUB_ENV
           cd HiGHS
           cmake -S . -B build -DCMAKE_BUILD_TYPE=RELEASE -DHIGHSINT64=on
-          cmake --build build --parallel --config RELEASE
+          cmake --build build --config RELEASE -j 2
           cd build
           ctest
 
