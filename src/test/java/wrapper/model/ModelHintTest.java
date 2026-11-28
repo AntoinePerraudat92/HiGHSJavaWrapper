@@ -24,7 +24,7 @@ class ModelHintTest {
     }
 
     @Test
-    void hintsMustBeClearedAfterFirstSolve() {
+    void successiveMaximizeCallsMustProvideSolutionInPresenceOfHints() {
         final Model model = createModel();
         final Variable x1 = model.addIntegerVariable(5.0, 12.0, 1.0);
         model.addEqualityConstraint(LinearExpression.of(new LinearExpression.Term(x1, 1.0)), 11.0);
