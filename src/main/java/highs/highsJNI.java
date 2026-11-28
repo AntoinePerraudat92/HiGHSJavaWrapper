@@ -727,7 +727,8 @@ public class highsJNI {
   public final static native int Highs_passModel__SWIG_4(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, double jarg7, long jarg8, long jarg9, long jarg10, long jarg11, long jarg12, long jarg13, long jarg14, long jarg15, long jarg16);
   public final static native int Highs_passModel__SWIG_5(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4, long jarg5, long jarg6, double jarg7, long jarg8, long jarg9, long jarg10, long jarg11, long jarg12, long jarg13, long jarg14, long jarg15);
   public final static native int Highs_passHessian(long jarg1, Highs jarg1_, long jarg2, long jarg3, long jarg4);
-  public final static native int Highs_checkHessianOracle(long jarg1, Highs jarg1_);
+  public final static native int Highs_checkHessianOracle__SWIG_0(long jarg1, Highs jarg1_, boolean jarg2);
+  public final static native int Highs_checkHessianOracle__SWIG_1(long jarg1, Highs jarg1_);
   public final static native int Highs_passLinearObjectives(long jarg1, Highs jarg1_, long jarg2, long jarg3, HighsLinearObjective jarg3_);
   public final static native int Highs_addLinearObjective__SWIG_0(long jarg1, Highs jarg1_, long jarg2, HighsLinearObjective jarg2_, long jarg3);
   public final static native int Highs_addLinearObjective__SWIG_1(long jarg1, Highs jarg1_, long jarg2, HighsLinearObjective jarg2_);

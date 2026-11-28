@@ -10918,7 +10918,24 @@ SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1passHessian(JNIEnv *jenv, jcl
 }
 
 
-SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1checkHessianOracle(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1checkHessianOracle_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jboolean jarg2) {
+  jint jresult = 0 ;
+  Highs *arg1 = (Highs *) 0 ;
+  bool arg2 ;
+  HighsStatus result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Highs **)&jarg1; 
+  arg2 = jarg2 ? true : false; 
+  result = (HighsStatus)((Highs const *)arg1)->checkHessianOracle(arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_highs_highsJNI_Highs_1checkHessianOracle_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
   Highs *arg1 = (Highs *) 0 ;
   HighsStatus result;

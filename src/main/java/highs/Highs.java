@@ -124,8 +124,12 @@ public class Highs {
     return HighsStatus.swigToEnum(highsJNI.Highs_passHessian(swigCPtr, this, dim, SWIGTYPE_p_std__functionT_long_long_flong_long_const_long_long_const_p_long_long_const_p_double_const_p_long_long_p_long_long_p_double_p_void_pF_t.getCPtr(oracleCall), SWIGTYPE_p_void.getCPtr(oracle_data)));
   }
 
+  public HighsStatus checkHessianOracle(boolean exit_on_first_error) {
+    return HighsStatus.swigToEnum(highsJNI.Highs_checkHessianOracle__SWIG_0(swigCPtr, this, exit_on_first_error));
+  }
+
   public HighsStatus checkHessianOracle() {
-    return HighsStatus.swigToEnum(highsJNI.Highs_checkHessianOracle(swigCPtr, this));
+    return HighsStatus.swigToEnum(highsJNI.Highs_checkHessianOracle__SWIG_1(swigCPtr, this));
   }
 
   public HighsStatus passLinearObjectives(long num_linear_objective, HighsLinearObjective linear_objective) {
